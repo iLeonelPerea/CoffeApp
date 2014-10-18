@@ -1,0 +1,10 @@
+PODS:
+  - google-plus-ios-sdk (1.7.1)
+
+DEPENDENCIES:
+  - google-plus-ios-sdk (~> 1.7.1)
+
+SPEC CHECKSUMS:
+  google-plus-ios-sdk: bb7b918c2ee0d5f5e389c4fddc06d71995481f67
+
+COCOAPODS: 0.34.2

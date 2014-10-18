@@ -1,0 +1,4 @@
+source 'https://github.com/ievolutioned/Specs.git'
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, "7.0"
+pod 'google-plus-ios-sdk', '~> 1.7.1'
