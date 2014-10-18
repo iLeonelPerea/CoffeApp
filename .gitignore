@@ -1,0 +1,7 @@
+Podfile.lock
+Pods/
+coffeeapp.xcodeproj/
+coffeeapp.xcworkspace/
+coffeeapp/
+coffeeappTests/
+podfile
