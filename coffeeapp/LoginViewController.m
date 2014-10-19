@@ -7,16 +7,34 @@
 //
 
 #import "LoginViewController.h"
+#import <GooglePlus/GooglePlus.h>
+#import <GoogleOpenSource/GoogleOpenSource.h>
 
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
+@synthesize signInButton, btnSignOut;
+
+//Google App client ID. Created specifically for CoffeeApp
+static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    //Set the SignIn
+    GPPSignIn *signIn = [GPPSignIn sharedInstance];
+    [signIn setShouldFetchGooglePlusUser:YES];
+    [signIn setShouldFetchGoogleUserEmail:YES];
+    //Set the ClientID for the app
+    [signIn setClientID: kClientID];
+    //Set the scope
+    [signIn setScopes:@[@"profile"]];
+    //Set the SignIn delegate
+    [signIn setDelegate:self];
+    //Hide the SignOut button
+    [[self btnSignOut] setHidden:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +42,57 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark -- GPPSignIn delegate
+-(void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
+{
+    /*This is the content of auth dictionary, which is the response of the SingIn from G+
+     {accessToken="", 
+     refreshToken="", 
+     code="", 
+     expirationDate=""}
+    */
+    //This is the email which the user used to did log in
+    NSLog(@"%@",[[GPPSignIn sharedInstance] userEmail]);
+    //This is the object with the user data
+    GTLPlusPerson * person = [[GPPSignIn sharedInstance] googlePlusUser];
+    NSLog(@"%@", person);
+    NSLog(@"Received error %@ and auth object %@",error, auth);
+    if (error) {
+        // Do some error handling here.
+    } else {
+        [self refreshInterfaceBasedOnSignIn];
+    }
 }
-*/
+
+-(void)refreshInterfaceBasedOnSignIn {
+    if ([[GPPSignIn sharedInstance] authentication]) {
+        // The user is signed in.
+        [[self signInButton] setHidden:YES];
+        [[self btnSignOut] setHidden:NO];
+        // Perform other actions here, such as showing a sign-out button
+    } else {
+        [[self signInButton] setHidden:NO];
+        [[self btnSignOut] setHidden:YES];
+        // Perform other actions here
+    }
+}
+
+-(void)presentSignInViewController:(UIViewController*)viewController
+{
+    [[self navigationController] pushViewController:viewController animated:YES];
+}
+
+#pragma mark -- SigOut delegate
+-(void)doSignOut:(id)sender
+{
+    //SignOut
+    [[GPPSignIn sharedInstance] signOut];
+    //Revoke token
+    [[GPPSignIn sharedInstance] disconnect];
+    //Display the SignIn button
+    [[self signInButton] setHidden:NO];
+    //Hide the SignOut button
+    [[self btnSignOut] setHidden:YES];
+}
 
 @end
