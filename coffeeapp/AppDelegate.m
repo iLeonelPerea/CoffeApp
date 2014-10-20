@@ -9,14 +9,17 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
-
+#import <GooglePlus/GooglePlus.h>
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
+@synthesize userObject;
 
+//Google App client ID. Created specifically for CoffeeApp
+static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:@"M9XmhjQ8B2iqs3CdNLASwl6hypCXnI8rRJLqFy0x" clientKey:@"6tCRkL9VyM3HQaUQIsduISATRURhHqLQ42ii9QJ4"];
@@ -58,7 +61,10 @@
                                                          UIRemoteNotificationTypeAlert |
                                                          UIRemoteNotificationTypeSound)];
     }
-    
+    //Set app's client ID for GPPSignIn and GPPShare
+    [[GPPSignIn sharedInstance] setClientID:kClientID];
+    //Initialize an empty UserObject instance
+    userObject = [[UserObject alloc] init];
     return YES;
 }
 
@@ -157,6 +163,12 @@
     } else {
         NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
     }
+}
+
+#pragma mark -- GPPSigIn delegate
+- (BOOL)application: (UIApplication *)application openURL: (NSURL *)url sourceApplication: (NSString *)sourceApplication annotation: (id)annotation
+{
+    return [GPPURLHandler handleURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
 @end
