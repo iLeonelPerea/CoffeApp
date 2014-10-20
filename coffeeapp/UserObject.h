@@ -15,8 +15,9 @@
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *userEmail;
 @property (nonatomic, strong) NSString *userPassword;
+@property (nonatomic, strong) NSString *userUrlProfileImage;
 @property (nonatomic, strong) NSString *userSpreeToken;
 
--(id)initUser:(NSString*)user withEmail:(NSString*)email password:(NSString*)password;
+-(id)initUser:(NSString*)user withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage;
 
 @end

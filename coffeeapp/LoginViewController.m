@@ -63,7 +63,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         // Do some error handling here.
     } else {
         [self refreshInterfaceBasedOnSignIn];
-        userObject = [[UserObject alloc] initUser:[person displayName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag]];
+        userObject = [[UserObject alloc] initUser:[person displayName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag] urlProfileImage:[[person image] url] ];
     }
 }
 
@@ -101,8 +101,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 {
     //Set up the userObject in AppDelegate with the userObject values from LogIn
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    NSLog(@"%@", userObject);
     [appDelegate setUserObject:userObject];
+    UserProfileController * userProfileController = [[UserProfileController alloc] initWithNibName:@"UserProfileController" bundle:nil];
+    [self.navigationController pushViewController:userProfileController animated:YES];
 }
 
 @end
