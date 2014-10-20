@@ -37,6 +37,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [[self btnSignOut] setHidden:YES];
     //Add an observer to set up the userObject in AppDelegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSetUserObject) name:@"initUserFinishedLoading" object:nil];
+    //If user has been sign in before, automatically trigger de sign in method
+    [signIn trySilentAuthentication];
 }
 
 - (void)didReceiveMemoryWarning {
