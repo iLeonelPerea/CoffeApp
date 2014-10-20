@@ -7,6 +7,7 @@
 //
 
 #import "UserProfileController.h"
+#import <Parse/Parse.h>
 
 @interface UserProfileController ()
 
@@ -22,8 +23,13 @@
     AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
     userObject = myAppDelegate.userObject;
     
+    NSURL * urlPic = [NSURL URLWithString:userObject.userUrlProfileImage];
+    NSData * dataPic = [NSData dataWithContentsOfURL:urlPic];
+    [self.imgUserURLProfile setImage:[UIImage imageWithData:dataPic]];
     [lblUserName setText:userObject.userName];
     [lblUserEmail setText:userObject.userEmail];
+    NSString * userChannel = [NSString stringWithFormat:@"User_%@",userObject.userSpreeToken];
+    [PFPush subscribeToChannelInBackground:userChannel];
 }
 
 - (void)didReceiveMemoryWarning {
