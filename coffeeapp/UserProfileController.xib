@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfileController">
             <connections>
-                <outlet property="imgUserURLProfile" destination="cTk-o4-wvZ" id="SiE-de-rUT"/>
+                <outlet property="imgUserProfile" destination="cTk-o4-wvZ" id="wJU-We-dGs"/>
                 <outlet property="lblUserEmail" destination="Az9-fm-Z0L" id="FmU-oU-cze"/>
                 <outlet property="lblUserName" destination="Hw5-JL-Qkc" id="hcR-oh-han"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -20,7 +20,7 @@
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mXN-qL-PYW">
                     <rect key="frame" x="0.0" y="43" width="320" height="525"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTk-o4-wvZ">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cTk-o4-wvZ" customClass="NZCircularImageView">
                             <rect key="frame" x="115" y="28" width="90" height="90"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Az9-fm-Z0L">
