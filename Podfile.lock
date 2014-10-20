@@ -13,4 +13,4 @@ SPEC CHECKSUMS:
   google-plus-ios-sdk: bb7b918c2ee0d5f5e389c4fddc06d71995481f67
   Parse: fc9ceb6edbc6bb6a1a1f3c33f0db3293a6894f94
 
-COCOAPODS: 0.34.2
+COCOAPODS: 0.34.4
