@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserProfileController">
             <connections>
-                <outlet property="imgUserProfile" destination="cTk-o4-wvZ" id="P1A-Gm-pIg"/>
+                <outlet property="imgUserProfile" destination="cTk-o4-wvZ" id="wJU-We-dGs"/>
                 <outlet property="lblUserEmail" destination="Az9-fm-Z0L" id="FmU-oU-cze"/>
                 <outlet property="lblUserName" destination="Hw5-JL-Qkc" id="hcR-oh-han"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
