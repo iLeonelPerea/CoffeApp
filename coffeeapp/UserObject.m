@@ -9,7 +9,7 @@
 #import "UserObject.h"
 
 @implementation UserObject
-@synthesize userId, userName, userEmail, userPassword, userSpreeToken;
+@synthesize userId, userName, userEmail, userPassword, userUrlProfileImage, userSpreeToken;
 
 //Init method set default properties values
 -(id)init
@@ -26,13 +26,16 @@
 }
 
 //Create a custom init method which do Log In in Spree store. If the user is not registered, will be and retrieved the necesary data
--(id)initUser:(NSString*)user withEmail:(NSString*)email password:(NSString*)password
+-(id)initUser:(NSString*)user withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage
 {
     self = [super init];
     if (self) {
         [self setUserName:user];
         [self setUserEmail:email];
         [self setUserPassword:password];
+        [self setUserUrlProfileImage:[urlProfileImage stringByReplacingOccurrencesOfString:@"?sz=50"
+                                                                    withString:@"?sz=90"]];
+        
         //With userEmail and userPassword do Log In in spree store to retrieve
         //Set the dictionary with the credentials to spree store
         NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:@{@"spree_user":@{@"email": [self userEmail], @"password": [self userPassword]}}];
@@ -77,6 +80,7 @@
         [self setUserName:[coder decodeObjectForKey:@"userName"]];
         [self setUserEmail:[coder decodeObjectForKey:@"userEmail"]];
         [self setUserPassword:[coder decodeObjectForKey:@"userPassword"]];
+        [self setUserUrlProfileImage:[coder decodeObjectForKey:@"userUrlProfileImage"]];
         [self setUserSpreeToken:[coder decodeObjectForKey:@"userSpreeToken"]];
     }
     return self;
@@ -88,6 +92,7 @@
     [coder encodeObject:userName forKey:@"userName"];
     [coder encodeObject:userEmail forKey:@"userEmail"];
     [coder encodeObject:userPassword forKey:@"userPassword"];
+    [coder encodeObject:userUrlProfileImage forKey:@"userUrlProfileImage"];
     [coder encodeObject:userSpreeToken forKey:@"userSpreeToken"];
 }
 

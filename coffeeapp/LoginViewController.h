@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GooglePlus/GooglePlus.h>
+#import "UserProfileController.h"
 #import "UserObject.h"
 #import "AppDelegate.h"
 
