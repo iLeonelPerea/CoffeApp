@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserObject.h"
 
 @class LoginViewController;
 
@@ -14,6 +15,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) LoginViewController * viewController;
+@property (nonatomic, strong) UserObject *userObject;
+
 
 @end
 

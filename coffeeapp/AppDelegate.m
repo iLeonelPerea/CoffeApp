@@ -15,6 +15,7 @@
 @end
 
 @implementation AppDelegate
+@synthesize userObject;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -29,6 +30,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     //Set app's client ID for GPPSignIn and GPPShare
     [[GPPSignIn sharedInstance] setClientID:kClientID];
     
+    //Initialize an empty UserObject instance
+    userObject = [[UserObject alloc] init];
     return YES;
 }
 

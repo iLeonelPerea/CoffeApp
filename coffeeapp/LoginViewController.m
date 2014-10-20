@@ -15,7 +15,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize signInButton, btnSignOut;
+@synthesize signInButton, btnSignOut, userObject;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -35,6 +35,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [signIn setDelegate:self];
     //Hide the SignOut button
     [[self btnSignOut] setHidden:YES];
+    //Add an observer to set up the userObject in AppDelegate
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSetUserObject) name:@"initUserFinishedLoading" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,15 +54,16 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
      expirationDate=""}
     */
     //This is the email which the user used to did log in
-    NSLog(@"%@",[[GPPSignIn sharedInstance] userEmail]);
+    //NSLog(@"%@",[[GPPSignIn sharedInstance] userEmail]);
     //This is the object with the user data
     GTLPlusPerson * person = [[GPPSignIn sharedInstance] googlePlusUser];
-    NSLog(@"%@", person);
-    NSLog(@"Received error %@ and auth object %@",error, auth);
+    //NSLog(@"%@", person);
+    //NSLog(@"Received error %@ and auth object %@",error, auth);
     if (error) {
         // Do some error handling here.
     } else {
         [self refreshInterfaceBasedOnSignIn];
+        userObject = [[UserObject alloc] initUser:[person displayName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag]];
     }
 }
 
@@ -69,11 +72,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         // The user is signed in.
         [[self signInButton] setHidden:YES];
         [[self btnSignOut] setHidden:NO];
-        // Perform other actions here, such as showing a sign-out button
     } else {
         [[self signInButton] setHidden:NO];
         [[self btnSignOut] setHidden:YES];
-        // Perform other actions here
     }
 }
 
@@ -83,7 +84,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 }
 
 #pragma mark -- SigOut delegate
--(void)doSignOut:(id)sender
+-(IBAction)doSignOut:(id)sender
 {
     //SignOut
     [[GPPSignIn sharedInstance] signOut];
@@ -93,6 +94,15 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [[self signInButton] setHidden:NO];
     //Hide the SignOut button
     [[self btnSignOut] setHidden:YES];
+}
+
+#pragma mark -- Set userObject delegate
+-(void)doSetUserObject
+{
+    //Set up the userObject in AppDelegate with the userObject values from LogIn
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    NSLog(@"%@", userObject);
+    [appDelegate setUserObject:userObject];
 }
 
 @end

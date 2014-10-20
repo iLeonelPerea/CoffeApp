@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <GooglePlus/GooglePlus.h>
+#import "UserObject.h"
+#import "AppDelegate.h"
 
 @class GPPSignInButton;
 
@@ -15,6 +17,7 @@
 
 @property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton;
 @property (nonatomic, strong) IBOutlet UIButton *btnSignOut;
+@property (nonatomic, strong) UserObject *userObject;
 
 -(IBAction)doSignOut:(id)sender;
 
