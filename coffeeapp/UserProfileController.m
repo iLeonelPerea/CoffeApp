@@ -14,7 +14,7 @@
 
 @implementation UserProfileController
 
-@synthesize userObject, imgUserURLProfile, lblUserName, lblUserEmail;
+@synthesize userObject, imgUserProfile, lblUserName, lblUserEmail;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +22,10 @@
     AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
     userObject = myAppDelegate.userObject;
     
+    NSLog(@"usr pic url: %@", userObject.userUrlProfileImage);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [imgUserProfile setImageWithResizeURL:(NSString*)userObject.userUrlProfileImage usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    });
     [lblUserName setText:userObject.userName];
     [lblUserEmail setText:userObject.userEmail];
 }
