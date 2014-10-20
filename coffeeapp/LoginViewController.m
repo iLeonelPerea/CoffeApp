@@ -102,7 +102,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     //Set up the userObject in AppDelegate with the userObject values from LogIn
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setUserObject:userObject];
-    UserProfileController * userProfileController = [[UserProfileController alloc] init];
+    UserProfileController * userProfileController = [[UserProfileController alloc] initWithNibName:@"UserProfileController" bundle:nil];
     [self.navigationController pushViewController:userProfileController animated:YES];
 }
 

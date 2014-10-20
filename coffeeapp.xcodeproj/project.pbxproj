@@ -10,6 +10,8 @@
 		23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176B919F47FB3009F82A3 /* RESTManager.m */; };
 		23C176BE19F48474009F82A3 /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176BD19F48474009F82A3 /* UserObject.m */; };
 		BE4119F981A723393FC373ED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EAE09A761A7211E49B6549 /* libPods.a */; };
+		C839FA4419F5923500BC01D5 /* UserProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = C839FA4219F5923500BC01D5 /* UserProfileController.m */; };
+		C839FA4519F5923500BC01D5 /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C839FA4319F5923500BC01D5 /* UserProfileController.xib */; };
 		C8B7CC4A19F1D76600AEBA27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC4919F1D76600AEBA27 /* main.m */; };
 		C8B7CC4D19F1D76600AEBA27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC4C19F1D76600AEBA27 /* AppDelegate.m */; };
 		C8B7CC5519F1D76600AEBA27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8B7CC5419F1D76600AEBA27 /* Images.xcassets */; };
@@ -35,6 +37,9 @@
 		23C176BC19F48474009F82A3 /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
 		23C176BD19F48474009F82A3 /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
 		39EAE09A761A7211E49B6549 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		C839FA4119F5923500BC01D5 /* UserProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileController.h; sourceTree = "<group>"; };
+		C839FA4219F5923500BC01D5 /* UserProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileController.m; sourceTree = "<group>"; };
+		C839FA4319F5923500BC01D5 /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
 		C8B7CC4419F1D76600AEBA27 /* coffeeapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coffeeapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7CC4819F1D76600AEBA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8B7CC4919F1D76600AEBA27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -153,6 +158,9 @@
 		C8B7CC6D19F1D7A300AEBA27 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				C839FA4119F5923500BC01D5 /* UserProfileController.h */,
+				C839FA4219F5923500BC01D5 /* UserProfileController.m */,
+				C839FA4319F5923500BC01D5 /* UserProfileController.xib */,
 				C8B7CC6E19F1D7BF00AEBA27 /* LoginViewController.h */,
 				C8B7CC6F19F1D7BF00AEBA27 /* LoginViewController.m */,
 				C8B7CC7019F1D7BF00AEBA27 /* LoginViewController.xib */,
@@ -261,6 +269,7 @@
 			files = (
 				C8B7CC5819F1D76600AEBA27 /* LaunchScreen.xib in Resources */,
 				C8B7CC5519F1D76600AEBA27 /* Images.xcassets in Resources */,
+				C839FA4519F5923500BC01D5 /* UserProfileController.xib in Resources */,
 				C8B7CC7219F1D7BF00AEBA27 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,6 +323,7 @@
 			files = (
 				C8B7CC4D19F1D76600AEBA27 /* AppDelegate.m in Sources */,
 				23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */,
+				C839FA4419F5923500BC01D5 /* UserProfileController.m in Sources */,
 				C8B7CC4A19F1D76600AEBA27 /* main.m in Sources */,
 				23C176BE19F48474009F82A3 /* UserObject.m in Sources */,
 				C8B7CC7119F1D7BF00AEBA27 /* LoginViewController.m in Sources */,
