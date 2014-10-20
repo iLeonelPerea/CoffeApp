@@ -21,11 +21,18 @@
     // Load User From AppDelegate
     AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
     userObject = myAppDelegate.userObject;
-    NSArray * arrStrPic = [[NSArray alloc] init];
-    arrStrPic = [(NSString*)userObject.userUrlProfileImage componentsSeparatedByString:@"?"];
-    //NSLog(@"final usr pic url: %@", [arrStrPic objectAtIndex:0]);
-    //NZCircularImageView does not support images with ? chars.
-    [imgUserProfile setImageWithResizeURL:[arrStrPic objectAtIndex:0] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    if([(NSString*) userObject.userUrlProfileImage rangeOfString:@"?"].location != NSNotFound)
+    {
+        NSArray * arrStrPic = [[NSArray alloc] init];
+        arrStrPic = [(NSString*)userObject.userUrlProfileImage componentsSeparatedByString:@"?"];
+        //NSLog(@"final usr pic url: %@", [arrStrPic objectAtIndex:0]);
+        //NZCircularImageView does not support images with ? chars.
+        [imgUserProfile setImageWithResizeURL:[arrStrPic objectAtIndex:0] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
+    else
+    {
+        [imgUserProfile setImageWithResizeURL:userObject.userUrlProfileImage usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
     [lblUserName setText:userObject.userName];
     [lblUserEmail setText:userObject.userEmail];
 }
