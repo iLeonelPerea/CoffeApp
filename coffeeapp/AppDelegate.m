@@ -20,7 +20,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    //self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
     
@@ -31,10 +32,6 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     userObject = [[UserObject alloc] init];
     
     [DBManager checkOrCreateDataBase];
-    [RESTManager updateProducts:userObject.userSpreeToken toCallback:^(id resultSignUp) {
-        self.menuViewController = [[MenuViewController_iPhone alloc] initWithNibName:@"MenuViewController_iPhone" bundle:[NSBundle mainBundle]];
-        self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.menuViewController];
-    }];
     return YES;
 }
 

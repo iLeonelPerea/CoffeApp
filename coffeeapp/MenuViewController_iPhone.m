@@ -53,6 +53,7 @@
     //Set the array prodcuts - If the there's products selected by users, they will be set here.
     arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
     
+    /*
     UISwipeGestureRecognizer *gestureL = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFromL:)];
     gestureL.numberOfTouchesRequired = 1;
     [gestureL setDirection:UISwipeGestureRecognizerDirectionRight];
@@ -61,6 +62,7 @@
     [gestureR setDirection:UISwipeGestureRecognizerDirectionLeft];
     [tblProducts addGestureRecognizer:gestureL];
     [tblProducts addGestureRecognizer:gestureR];
+    */
     
     NSDate *now = [NSDate date];
     NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
@@ -74,7 +76,7 @@
 
 -(void)viewDidAppear:(BOOL)animated{
     //assign labels data days
-    lblCurrentDay.text = [arrWeekDays objectAtIndex:pageControl.currentPage];
+    lblCurrentDay.text = [arrWeekDays objectAtIndex:currentDayOfWeek - 2];
     
     //Set objects to fit screen between 3.5 and 4 inches
     [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 90, 320, 440):CGRectMake(0, 90, 320, 333)];
@@ -232,7 +234,7 @@
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
 	if (!isPageControlInUse) {
 		// Switch the indicator when more than 50% of the previous/next page is visible
-        lblCurrentDay.text = [arrWeekDays objectAtIndex:pageControl.currentPage];
+        lblCurrentDay.text = [arrWeekDays objectAtIndex:currentDayOfWeek - 2];
 //        [self doReloadData];
 	}
 }
@@ -293,7 +295,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSInteger toRet;
-    switch (pageControl.currentPage) {
+    switch (currentDayOfWeek -2) {
         case 0:
             toRet = [arrDataMonday count];
             break;
@@ -338,7 +340,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     productObject = [[ProductObject alloc] init];
-    switch (pageControl.currentPage) {
+    switch (currentDayOfWeek - 2) {
         case 0:
             productObject = [arrDataMonday objectAtIndex:(NSUInteger)indexPath.row];
             break;
@@ -429,7 +431,7 @@
 {
     ProductObject * selectedProduct = [ProductObject new];
     UIButton * senderButton = (UIButton*)sender;
-    switch (pageControl.currentPage) {
+    switch (currentDayOfWeek - 2) {
         case 0:
         {
             selectedProduct = [arrDataMonday objectAtIndex:senderButton.tag];
@@ -477,7 +479,7 @@
 {
     ProductObject * selectedProduct = [ProductObject new];
     UIButton * senderButton = (UIButton*)sender;
-    switch (pageControl.currentPage) {
+    switch (currentDayOfWeek - 2) {
         case 0:
         {
             selectedProduct = [arrDataMonday objectAtIndex:senderButton.tag];
