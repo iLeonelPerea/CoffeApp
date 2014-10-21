@@ -15,7 +15,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize signInButton, btnSignOut, userObject;
+@synthesize signInButton, btnSignOut, userObject, prgLoaging;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -37,6 +37,11 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [[self btnSignOut] setHidden:YES];
     //Add an observer to set up the userObject in AppDelegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSetUserObject) name:@"initUserFinishedLoading" object:nil];
+    //If user has been sign in before, automatically trigger de sign in method
+    [signIn trySilentAuthentication];
+    //Set the progress loading indicator
+    prgLoaging = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    [[prgLoaging textLabel] setText:@"Sign In..."];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,6 +67,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     if (error) {
         // Do some error handling here.
     } else {
+        [prgLoaging showInView:[self view]];
         [self refreshInterfaceBasedOnSignIn];
         userObject = [[UserObject alloc] initUser:[person displayName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag] urlProfileImage:[[person image] url] ];
     }
@@ -102,6 +108,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     //Set up the userObject in AppDelegate with the userObject values from LogIn
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setUserObject:userObject];
+    [prgLoaging dismiss];
     UserProfileController * userProfileController = [[UserProfileController alloc] initWithNibName:@"UserProfileController" bundle:nil];
     [self.navigationController pushViewController:userProfileController animated:YES];
 }

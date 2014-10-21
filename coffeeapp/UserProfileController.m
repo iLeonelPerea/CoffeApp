@@ -15,17 +15,25 @@
 
 @implementation UserProfileController
 
-@synthesize userObject, imgUserURLProfile, lblUserName, lblUserEmail;
+@synthesize userObject, imgUserProfile, lblUserName, lblUserEmail;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Load User From AppDelegate
     AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
     userObject = myAppDelegate.userObject;
-    
-    NSURL * urlPic = [NSURL URLWithString:userObject.userUrlProfileImage];
-    NSData * dataPic = [NSData dataWithContentsOfURL:urlPic];
-    [self.imgUserURLProfile setImage:[UIImage imageWithData:dataPic]];
+    if([(NSString*) userObject.userUrlProfileImage rangeOfString:@"?"].location != NSNotFound)
+    {
+        NSArray * arrStrPic = [[NSArray alloc] init];
+        arrStrPic = [(NSString*)userObject.userUrlProfileImage componentsSeparatedByString:@"?"];
+        //NSLog(@"final usr pic url: %@", [arrStrPic objectAtIndex:0]);
+        //NZCircularImageView does not support images with ? chars.
+        [imgUserProfile setImageWithResizeURL:[arrStrPic objectAtIndex:0] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
+    else
+    {
+        [imgUserProfile setImageWithResizeURL:userObject.userUrlProfileImage usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
     [lblUserName setText:userObject.userName];
     [lblUserEmail setText:userObject.userEmail];
     NSString * userChannel = [NSString stringWithFormat:@"User_%@",userObject.userSpreeToken];

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <GooglePlus/GooglePlus.h>
+#import <JGProgressHUD.h>
 #import "UserProfileController.h"
 #import "UserObject.h"
 #import "AppDelegate.h"
@@ -19,6 +20,7 @@
 @property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton;
 @property (nonatomic, strong) IBOutlet UIButton *btnSignOut;
 @property (nonatomic, strong) UserObject *userObject;
+@property (nonatomic, strong) JGProgressHUD *prgLoaging;
 
 -(IBAction)doSignOut:(id)sender;
 

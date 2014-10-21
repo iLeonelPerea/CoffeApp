@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NZCircularImageView.h>
 #import "AppDelegate.h"
 #import "UserObject.h"
 
 @interface UserProfileController : UIViewController
 
 @property (nonatomic, strong) UserObject *userObject;
-@property (nonatomic, strong) IBOutlet UIImageView *imgUserURLProfile;
+@property (nonatomic, strong) IBOutlet NZCircularImageView * imgUserProfile;
 @property (nonatomic, strong) IBOutlet UILabel *lblUserName;
 @property (nonatomic, strong) IBOutlet UILabel *lblUserEmail;
 
