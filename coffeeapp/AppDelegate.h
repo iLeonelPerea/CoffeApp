@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 crowdint. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>#import <UIKit/UIKit.h>
+#import <UIKit/UIKit.h>
 #import <GooglePlus/GooglePlus.h>
 #import "UserObject.h"
 //#import "LoginViewController.h"

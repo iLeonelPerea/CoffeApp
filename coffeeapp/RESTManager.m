@@ -7,6 +7,8 @@
 //
 
 #import "RESTManager.h"
+//#import <AsyncImageDownloader.h>
+
 #define TESTING_URL @"http://mobile-store.ngrok.com/api/"
 
 @implementation RESTManager

@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "ProductObject.h"
 #import "DBManager.h"
-#import "AsyncImageDownloader.h"
 
 @interface RESTManager : NSObject
 

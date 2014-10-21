@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AsyncImageDownloader.h>
+#import <AsyncImageDownloader/AsyncImageDownloader.h>
 #import "ProductCellTableViewCell.h"
 #import "ProductObject.h"
 #import <JGProgressHUD.h>
