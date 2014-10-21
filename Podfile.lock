@@ -1,14 +1,5 @@
 PODS:
-  - Bolts (1.1.3)
   - google-plus-ios-sdk (1.7.1)
-<<<<<<< HEAD
-  - Parse (1.4.2):
-    - Bolts (~> 1.1.3)
-
-DEPENDENCIES:
-  - google-plus-ios-sdk (~> 1.7.1)
-  - Parse (~> 1.4.2)
-=======
   - JGProgressHUD (1.1.4)
   - NZCircularImageView (0.0.5):
     - UIActivityIndicator-for-SDWebImage (~> 1.2)
@@ -22,18 +13,12 @@ DEPENDENCIES:
   - google-plus-ios-sdk (~> 1.7.1)
   - JGProgressHUD (~> 1.1.4)
   - NZCircularImageView (~> 0.0.5)
->>>>>>> development
 
 SPEC CHECKSUMS:
-  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   google-plus-ios-sdk: bb7b918c2ee0d5f5e389c4fddc06d71995481f67
-<<<<<<< HEAD
-  Parse: fc9ceb6edbc6bb6a1a1f3c33f0db3293a6894f94
-=======
   JGProgressHUD: 119c482bc7574c422a4edded34be357b10481dc2
   NZCircularImageView: 5c92097f2df91f561c501724a4f2dc64841a6ad0
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   UIActivityIndicator-for-SDWebImage: 8bd92c15280fbe54816448c6b14674145eee05c7
->>>>>>> development
 
 COCOAPODS: 0.34.4
