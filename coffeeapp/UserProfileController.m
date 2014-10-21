@@ -59,7 +59,8 @@
     
     NSDictionary *data = @{
                            @"alert": strMessage,
-                           @"userPic": userObject.userUrlProfileImage // Photo's object id
+                           @"userPic": userObject.userUrlProfileImage, // Photo's object id
+                           @"product": @"Americano" // hardcoded kind of coffee
                            };
     PFPush *push = [[PFPush alloc] init];
     [push setChannel:@"requests"];
