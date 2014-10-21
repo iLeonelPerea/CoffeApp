@@ -7,6 +7,9 @@
 //
 
 #import "RESTManager.h"
+#import <AsyncImageDownloader.h>
+#import <UIKit/UIKit.h>
+
 #define TESTING_URL @"http://mobile-store.ngrok.com/api/"
 
 @implementation RESTManager
@@ -65,6 +68,57 @@
         else
         {
             callback(nil);
+        }
+    }];
+}
+
++ (void)updateProducts:(NSString *)userAccessToken toCallback:(void (^)(id))callback{
+    [RESTManager sendData:nil toService:@"products" withMethod:@"GET" isTesting:NO withAccessToken:userAccessToken toCallback:^(id result){
+        //int showDays = 0;
+        [DBManager deleteProducts];
+        ProductObject *productObject;
+        //first time loading fix
+        __block int totalImages = [[result objectForKey:@"total_count"] intValue]; // define __block var, to be used inside async block, in this case AsyncImageDownloader method
+        // this is to control callback dispatch, once all images have been downloaded.
+        NSArray * arrKeys = [result allKeys]; //get all keys from result (since keys are dates)
+        for(NSString * strKey in arrKeys)
+        {
+            if(![strKey isEqual:@"total_count"]) // in result there is a key named total_count to retrieve how many images we are going to download
+            {
+                NSArray * arrMenu = [result objectForKey:strKey];
+                for(NSDictionary * dictFinalProduct in arrMenu)
+                {
+                    NSMutableDictionary * dictProduct = [dictFinalProduct mutableCopy]; //create a mutable NSDictionary to set our key (date) as filter on 'available_on'
+                    [dictProduct setObject:strKey forKey:@"available_on"];
+                    productObject = [[ProductObject alloc] init];
+                    productObject = [productObject assignProductObject:dictProduct];
+                    // Image download to local storage.
+                    NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                    NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
+                    [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+                    NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
+                    NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
+                    NSString *url = productObject.masterObject.imageObject.product_url;
+                    if(url != nil)
+                    {
+                        [[[AsyncImageDownloader alloc] initWithFileURL:url successBlock:^(NSData *data) {
+                            NSData * dataPic = [NSData dataWithData:UIImageJPEGRepresentation([UIImage imageWithData:data], 1.0f)];
+                            [dataPic writeToFile:fullPath atomically:YES];
+                            totalImages --;
+                            if(totalImages == 0)
+                            {
+                                callback(@YES);
+                            }
+                        } failBlock:^(NSError *errro) {
+                            NSLog(@"Failed to download the image to local storage");
+                            totalImages --;
+                            if(totalImages == 0)
+                                callback(@YES);
+                        }] startDownload];
+                    }
+                    [DBManager insertProduct:productObject];
+                }
+            }
         }
     }];
 }

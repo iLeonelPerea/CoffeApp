@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
-#import <GooglePlus/GooglePlus.h>
 
 @interface AppDelegate ()
 
@@ -32,6 +30,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     
     //Initialize an empty UserObject instance
     userObject = [[UserObject alloc] init];
+    
+    [DBManager checkOrCreateDataBase];
     return YES;
 }
 

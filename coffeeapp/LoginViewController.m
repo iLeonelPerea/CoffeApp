@@ -108,9 +108,11 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     //Set up the userObject in AppDelegate with the userObject values from LogIn
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setUserObject:userObject];
-    [prgLoaging dismiss];
-    UserProfileController * userProfileController = [[UserProfileController alloc] initWithNibName:@"UserProfileController" bundle:nil];
-    [self.navigationController pushViewController:userProfileController animated:YES];
+    [RESTManager updateProducts:userObject.userSpreeToken toCallback:^(id resultSignUp) {
+        [prgLoaging dismiss];
+        MenuViewController_iPhone * menuController = [[MenuViewController_iPhone alloc] initWithNibName:@"MenuViewController_iPhone" bundle:nil];
+        [self.navigationController pushViewController:menuController animated:YES];
+    }];
 }
 
 @end
