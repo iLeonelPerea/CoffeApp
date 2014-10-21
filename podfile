@@ -3,3 +3,4 @@ platform :ios, "7.0"
 pod 'google-plus-ios-sdk', '~> 1.7.1'
 pod 'JGProgressHUD', '~> 1.1.4'
 pod 'NZCircularImageView', '~> 0.0.5'
+pod 'AsyncImageDownloader', '~> 1.0.0'

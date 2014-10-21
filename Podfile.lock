@@ -1,4 +1,5 @@
 PODS:
+  - AsyncImageDownloader (1.0.0)
   - google-plus-ios-sdk (1.7.1)
   - JGProgressHUD (1.1.4)
   - NZCircularImageView (0.0.5):
@@ -10,11 +11,13 @@ PODS:
     - SDWebImage (~> 3.7)
 
 DEPENDENCIES:
+  - AsyncImageDownloader (~> 1.0.0)
   - google-plus-ios-sdk (~> 1.7.1)
   - JGProgressHUD (~> 1.1.4)
   - NZCircularImageView (~> 0.0.5)
 
 SPEC CHECKSUMS:
+  AsyncImageDownloader: 6543d0ebd3e535c54b48149b83ebc4e2115d9f87
   google-plus-ios-sdk: bb7b918c2ee0d5f5e389c4fddc06d71995481f67
   JGProgressHUD: 119c482bc7574c422a4edded34be357b10481dc2
   NZCircularImageView: 5c92097f2df91f561c501724a4f2dc64841a6ad0

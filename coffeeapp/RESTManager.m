@@ -7,7 +7,8 @@
 //
 
 #import "RESTManager.h"
-//#import <AsyncImageDownloader.h>
+#import <AsyncImageDownloader.h>
+#import <UIKit/UIKit.h>
 
 #define TESTING_URL @"http://mobile-store.ngrok.com/api/"
 
@@ -101,7 +102,7 @@
                     if(url != nil)
                     {
                         [[[AsyncImageDownloader alloc] initWithFileURL:url successBlock:^(NSData *data) {
-                            NSData *dataPic = [NSData dataWithData:UIImageJPEGRepresentation([UIImage imageWithData:data], 1.0f)];
+                            NSData * dataPic = [NSData dataWithData:UIImageJPEGRepresentation([UIImage imageWithData:data], 1.0f)];
                             [dataPic writeToFile:fullPath atomically:YES];
                             totalImages --;
                             if(totalImages == 0)
