@@ -30,4 +30,6 @@
 @property (nonatomic, strong) NSString * orderNumber;
 @property (nonatomic, strong) UserObject * userObject;
 
+-(NSMutableDictionary *)getOrderPetition;
+
 @end
