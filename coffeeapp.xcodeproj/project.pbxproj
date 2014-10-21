@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		235886C219F6BA1100BDDEED /* OrderObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 235886C119F6BA1100BDDEED /* OrderObject.m */; };
 		23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176B919F47FB3009F82A3 /* RESTManager.m */; };
 		23C176BE19F48474009F82A3 /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176BD19F48474009F82A3 /* UserObject.m */; };
 		BE4119F981A723393FC373ED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EAE09A761A7211E49B6549 /* libPods.a */; };
@@ -32,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		235886C019F6BA1100BDDEED /* OrderObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderObject.h; sourceTree = "<group>"; };
+		235886C119F6BA1100BDDEED /* OrderObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderObject.m; sourceTree = "<group>"; };
 		23C176B819F47FB3009F82A3 /* RESTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTManager.h; sourceTree = "<group>"; };
 		23C176B919F47FB3009F82A3 /* RESTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTManager.m; sourceTree = "<group>"; };
 		23C176BC19F48474009F82A3 /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
@@ -90,6 +93,8 @@
 			children = (
 				23C176BC19F48474009F82A3 /* UserObject.h */,
 				23C176BD19F48474009F82A3 /* UserObject.m */,
+				235886C019F6BA1100BDDEED /* OrderObject.h */,
+				235886C119F6BA1100BDDEED /* OrderObject.m */,
 			);
 			name = VO;
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8B7CC4D19F1D76600AEBA27 /* AppDelegate.m in Sources */,
+				235886C219F6BA1100BDDEED /* OrderObject.m in Sources */,
 				23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */,
 				C839FA4419F5923500BC01D5 /* UserProfileController.m in Sources */,
 				C8B7CC4A19F1D76600AEBA27 /* main.m in Sources */,
