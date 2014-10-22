@@ -514,9 +514,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PODS_ROOT)/Parse\"",
+					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
+				);
 				INFOPLIST_FILE = coffeeapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
@@ -532,9 +536,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PODS_ROOT)/Parse\"",
+					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
+				);
 				INFOPLIST_FILE = coffeeapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",

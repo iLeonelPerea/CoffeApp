@@ -1,7 +1,8 @@
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, "7.0"
 pod 'google-plus-ios-sdk', '~> 1.7.1'
-pod 'Parse', '~> 1.4.2'
 pod 'NZCircularImageView', '~> 0.0.5'
 pod 'JGProgressHUD', '~> 1.1.4'
 pod 'AsyncImageDownloader', '~> 1.0.0'
+pod 'Parse', '~> 1.4.2'
+
