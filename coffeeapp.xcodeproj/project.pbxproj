@@ -300,6 +300,7 @@
 				TargetAttributes = {
 					C8B7CC4319F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = D7848S8M4T;
 					};
 					C8B7CC5C19F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -527,7 +528,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8f6017b3-448e-4ea3-bc0e-766cd26a4efb";
+				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
 			};
 			name = Debug;
 		};
@@ -550,7 +551,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8f6017b3-448e-4ea3-bc0e-766cd26a4efb";
+				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
 			};
 			name = Release;
 		};
