@@ -10,6 +10,8 @@
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import <GooglePlus/GooglePlus.h>
+#import <JASidePanelController.h>
+#import "LeftMenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -27,12 +29,26 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     PFACL * defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
-    
+    /* start view logic // past
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
+    */
+    
+    // start view logic // new
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    self.viewController = [[JASidePanelController alloc] init];
+    self.viewController.leftPanel = [[LeftMenuViewController alloc] init];
+    self.viewController.leftPanel = self.viewController.leftPanel;
+    self.viewController.leftFixedWidth = 200;
+    self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
+    //self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:(facebookUserName || [defaults objectForKey:@"userAccessToken"])?[[AddressValidationViewController alloc] init]:[[AppGateViewController alloc] init]];
+    self.window.rootViewController = self.viewController;
+    [self.window makeKeyAndVisible];
+    
     
     if (application.applicationState != UIApplicationStateBackground) {
         // Track an app open here if we launch with a push, unless
