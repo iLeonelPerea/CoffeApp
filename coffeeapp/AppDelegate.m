@@ -66,6 +66,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [[GPPSignIn sharedInstance] setClientID:kClientID];
     //Initialize an empty UserObject instance
     userObject = [[UserObject alloc] init];
+    
+    [DBManager checkOrCreateDataBase];
     return YES;
 }
 

@@ -10,6 +10,7 @@
 #import <NZCircularImageView.h>
 #import "AppDelegate.h"
 #import "UserObject.h"
+#import <JGProgressHUD.h>
 
 @interface UserProfileController : UIViewController
 
@@ -17,5 +18,8 @@
 @property (nonatomic, strong) IBOutlet NZCircularImageView * imgUserProfile;
 @property (nonatomic, strong) IBOutlet UILabel *lblUserName;
 @property (nonatomic, strong) IBOutlet UILabel *lblUserEmail;
+@property (nonatomic, strong) JGProgressHUD * HUD;
 
+//testing notifications.
+-(IBAction)doRequestAmericano:(id)sender;
 @end
