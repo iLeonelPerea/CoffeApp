@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GooglePlus/GooglePlus.h>
 #import "UserObject.h"
+#import "LoginViewController.h"
+#import "DBManager.h"
 
 @class LoginViewController;
 

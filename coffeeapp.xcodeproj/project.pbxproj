@@ -7,9 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22536D09CF9C58200B049A39 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EAE09A761A7211E49B6549 /* libPods.a */; };
 		23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176B919F47FB3009F82A3 /* RESTManager.m */; };
 		23C176BE19F48474009F82A3 /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176BD19F48474009F82A3 /* UserObject.m */; };
-		BE4119F981A723393FC373ED /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EAE09A761A7211E49B6549 /* libPods.a */; };
+		7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D17919D19F6B4FF00696B91 /* DBManager.m */; };
+		7D1791A019F6CDD000696B91 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D17919F19F6CDD000696B91 /* libsqlite3.dylib */; };
+		7D845F0219F6DB24006C7B0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D845F0119F6DB24006C7B0E /* Foundation.framework */; };
+		7DEE7EE619F60D190081BCEC /* ImageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EE319F60D190081BCEC /* ImageObject.m */; };
+		7DEE7EE719F60D190081BCEC /* MasterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EE519F60D190081BCEC /* MasterObject.m */; };
+		7DEE7EF019F610590081BCEC /* ProductCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EEE19F610590081BCEC /* ProductCellTableViewCell.m */; };
+		7DEE7EF119F610590081BCEC /* ProductCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DEE7EEF19F610590081BCEC /* ProductCellTableViewCell.xib */; };
+		7DEE7EF419F610AD0081BCEC /* ProductObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EF319F610AD0081BCEC /* ProductObject.m */; };
+		7DEE7EF819F611D50081BCEC /* MenuViewController_iPhone.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EF619F611D50081BCEC /* MenuViewController_iPhone.m */; };
+		7DEE7EF919F611D50081BCEC /* MenuViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DEE7EF719F611D50081BCEC /* MenuViewController_iPhone.xib */; };
 		C839FA4419F5923500BC01D5 /* UserProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = C839FA4219F5923500BC01D5 /* UserProfileController.m */; };
 		C839FA4519F5923500BC01D5 /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C839FA4319F5923500BC01D5 /* UserProfileController.xib */; };
 		C8B7CC4A19F1D76600AEBA27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC4919F1D76600AEBA27 /* main.m */; };
@@ -19,6 +29,10 @@
 		C8B7CC6419F1D76600AEBA27 /* coffeeappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC6319F1D76600AEBA27 /* coffeeappTests.m */; };
 		C8B7CC7119F1D7BF00AEBA27 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC6F19F1D7BF00AEBA27 /* LoginViewController.m */; };
 		C8B7CC7219F1D7BF00AEBA27 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8B7CC7019F1D7BF00AEBA27 /* LoginViewController.xib */; };
+		C8FB669E19F6F86000CBED84 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FB669D19F6F86000CBED84 /* MessageUI.framework */; };
+		C8FB66A019F6F86E00CBED84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FB669F19F6F86E00CBED84 /* CoreGraphics.framework */; };
+		C8FB66A119F6F87C00CBED84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D845F0519F6DBF7006C7B0E /* UIKit.framework */; };
+		C8FB66A319F6F88C00CBED84 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FB66A219F6F88C00CBED84 /* CoreData.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,11 +46,30 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		235886C019F6BA1100BDDEED /* OrderObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderObject.h; sourceTree = "<group>"; };
+		235886C119F6BA1100BDDEED /* OrderObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderObject.m; sourceTree = "<group>"; };
 		23C176B819F47FB3009F82A3 /* RESTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTManager.h; sourceTree = "<group>"; };
 		23C176B919F47FB3009F82A3 /* RESTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTManager.m; sourceTree = "<group>"; };
 		23C176BC19F48474009F82A3 /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
 		23C176BD19F48474009F82A3 /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
 		39EAE09A761A7211E49B6549 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D17919C19F6B4FF00696B91 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		7D17919D19F6B4FF00696B91 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		7D17919F19F6CDD000696B91 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		7D845F0119F6DB24006C7B0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		7D845F0519F6DBF7006C7B0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7DEE7EE219F60D190081BCEC /* ImageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageObject.h; sourceTree = "<group>"; };
+		7DEE7EE319F60D190081BCEC /* ImageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageObject.m; sourceTree = "<group>"; };
+		7DEE7EE419F60D190081BCEC /* MasterObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterObject.h; sourceTree = "<group>"; };
+		7DEE7EE519F60D190081BCEC /* MasterObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MasterObject.m; sourceTree = "<group>"; };
+		7DEE7EED19F610590081BCEC /* ProductCellTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductCellTableViewCell.h; sourceTree = "<group>"; };
+		7DEE7EEE19F610590081BCEC /* ProductCellTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductCellTableViewCell.m; sourceTree = "<group>"; };
+		7DEE7EEF19F610590081BCEC /* ProductCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCellTableViewCell.xib; sourceTree = "<group>"; };
+		7DEE7EF219F610AD0081BCEC /* ProductObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductObject.h; sourceTree = "<group>"; };
+		7DEE7EF319F610AD0081BCEC /* ProductObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductObject.m; sourceTree = "<group>"; };
+		7DEE7EF519F611D50081BCEC /* MenuViewController_iPhone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController_iPhone.h; sourceTree = "<group>"; };
+		7DEE7EF619F611D50081BCEC /* MenuViewController_iPhone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController_iPhone.m; sourceTree = "<group>"; };
+		7DEE7EF719F611D50081BCEC /* MenuViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController_iPhone.xib; sourceTree = "<group>"; };
 		C839FA4119F5923500BC01D5 /* UserProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileController.h; sourceTree = "<group>"; };
 		C839FA4219F5923500BC01D5 /* UserProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileController.m; sourceTree = "<group>"; };
 		C839FA4319F5923500BC01D5 /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
@@ -53,6 +86,9 @@
 		C8B7CC6E19F1D7BF00AEBA27 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C8B7CC6F19F1D7BF00AEBA27 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C8B7CC7019F1D7BF00AEBA27 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		C8FB669D19F6F86000CBED84 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		C8FB669F19F6F86E00CBED84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		C8FB66A219F6F88C00CBED84 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		D3031F617E2B201F1E3F8C63 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E60F9533A1FEE1282C1CFB72 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -62,7 +98,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BE4119F981A723393FC373ED /* libPods.a in Frameworks */,
+				C8FB66A319F6F88C00CBED84 /* CoreData.framework in Frameworks */,
+				C8FB66A119F6F87C00CBED84 /* UIKit.framework in Frameworks */,
+				C8FB66A019F6F86E00CBED84 /* CoreGraphics.framework in Frameworks */,
+				C8FB669E19F6F86000CBED84 /* MessageUI.framework in Frameworks */,
+				7D845F0219F6DB24006C7B0E /* Foundation.framework in Frameworks */,
+				7D1791A019F6CDD000696B91 /* libsqlite3.dylib in Frameworks */,
+				22536D09CF9C58200B049A39 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,6 +121,8 @@
 		23C176B719F47F8E009F82A3 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7D17919C19F6B4FF00696B91 /* DBManager.h */,
+				7D17919D19F6B4FF00696B91 /* DBManager.m */,
 				23C176B819F47FB3009F82A3 /* RESTManager.h */,
 				23C176B919F47FB3009F82A3 /* RESTManager.m */,
 			);
@@ -88,8 +132,16 @@
 		23C176BB19F48455009F82A3 /* VO */ = {
 			isa = PBXGroup;
 			children = (
+				7DEE7EE219F60D190081BCEC /* ImageObject.h */,
+				7DEE7EE319F60D190081BCEC /* ImageObject.m */,
+				7DEE7EE419F60D190081BCEC /* MasterObject.h */,
+				7DEE7EE519F60D190081BCEC /* MasterObject.m */,
+				7DEE7EF219F610AD0081BCEC /* ProductObject.h */,
+				7DEE7EF319F610AD0081BCEC /* ProductObject.m */,
 				23C176BC19F48474009F82A3 /* UserObject.h */,
 				23C176BD19F48474009F82A3 /* UserObject.m */,
+				235886C019F6BA1100BDDEED /* OrderObject.h */,
+				235886C119F6BA1100BDDEED /* OrderObject.m */,
 			);
 			name = VO;
 			sourceTree = "<group>";
@@ -158,12 +210,18 @@
 		C8B7CC6D19F1D7A300AEBA27 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				C839FA4119F5923500BC01D5 /* UserProfileController.h */,
-				C839FA4219F5923500BC01D5 /* UserProfileController.m */,
-				C839FA4319F5923500BC01D5 /* UserProfileController.xib */,
+				7DEE7EF519F611D50081BCEC /* MenuViewController_iPhone.h */,
+				7DEE7EF619F611D50081BCEC /* MenuViewController_iPhone.m */,
+				7DEE7EF719F611D50081BCEC /* MenuViewController_iPhone.xib */,
 				C8B7CC6E19F1D7BF00AEBA27 /* LoginViewController.h */,
 				C8B7CC6F19F1D7BF00AEBA27 /* LoginViewController.m */,
 				C8B7CC7019F1D7BF00AEBA27 /* LoginViewController.xib */,
+				7DEE7EED19F610590081BCEC /* ProductCellTableViewCell.h */,
+				7DEE7EEE19F610590081BCEC /* ProductCellTableViewCell.m */,
+				7DEE7EEF19F610590081BCEC /* ProductCellTableViewCell.xib */,
+				C839FA4119F5923500BC01D5 /* UserProfileController.h */,
+				C839FA4219F5923500BC01D5 /* UserProfileController.m */,
+				C839FA4319F5923500BC01D5 /* UserProfileController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -171,6 +229,12 @@
 		E1D64AD1A07F8D544705FCE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C8FB66A219F6F88C00CBED84 /* CoreData.framework */,
+				C8FB669F19F6F86E00CBED84 /* CoreGraphics.framework */,
+				C8FB669D19F6F86000CBED84 /* MessageUI.framework */,
+				7D845F0519F6DBF7006C7B0E /* UIKit.framework */,
+				7D845F0119F6DB24006C7B0E /* Foundation.framework */,
+				7D17919F19F6CDD000696B91 /* libsqlite3.dylib */,
 				39EAE09A761A7211E49B6549 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -269,7 +333,9 @@
 			files = (
 				C8B7CC5819F1D76600AEBA27 /* LaunchScreen.xib in Resources */,
 				C8B7CC5519F1D76600AEBA27 /* Images.xcassets in Resources */,
+				7DEE7EF119F610590081BCEC /* ProductCellTableViewCell.xib in Resources */,
 				C839FA4519F5923500BC01D5 /* UserProfileController.xib in Resources */,
+				7DEE7EF919F611D50081BCEC /* MenuViewController_iPhone.xib in Resources */,
 				C8B7CC7219F1D7BF00AEBA27 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -322,7 +388,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8B7CC4D19F1D76600AEBA27 /* AppDelegate.m in Sources */,
+				7DEE7EF819F611D50081BCEC /* MenuViewController_iPhone.m in Sources */,
+				7DEE7EF419F610AD0081BCEC /* ProductObject.m in Sources */,
+				7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */,
+				7DEE7EF019F610590081BCEC /* ProductCellTableViewCell.m in Sources */,
+				7DEE7EE719F60D190081BCEC /* MasterObject.m in Sources */,
 				23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */,
+				7DEE7EE619F60D190081BCEC /* ImageObject.m in Sources */,
 				C839FA4419F5923500BC01D5 /* UserProfileController.m in Sources */,
 				C8B7CC4A19F1D76600AEBA27 /* main.m in Sources */,
 				23C176BE19F48474009F82A3 /* UserObject.m in Sources */,
@@ -445,6 +517,10 @@
 				INFOPLIST_FILE = coffeeapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8f6017b3-448e-4ea3-bc0e-766cd26a4efb";
 			};
@@ -459,6 +535,10 @@
 				INFOPLIST_FILE = coffeeapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8f6017b3-448e-4ea3-bc0e-766cd26a4efb";
 			};
