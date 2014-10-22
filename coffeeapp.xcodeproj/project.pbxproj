@@ -517,6 +517,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/Parse\"",
 					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = coffeeapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -539,6 +540,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/Parse\"",
 					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = coffeeapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
