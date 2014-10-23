@@ -12,6 +12,7 @@
 #import "UserProfileController.h"
 #import "UserObject.h"
 #import "AppDelegate.h"
+#import "MenuViewController_iPhone.h"
 
 @class GPPSignInButton;
 

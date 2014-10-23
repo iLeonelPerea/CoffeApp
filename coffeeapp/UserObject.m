@@ -21,6 +21,7 @@
         [self setUserEmail:@""];
         [self setUserPassword:@""];
         [self setUserSpreeToken:@""];
+        //[self setUserChannel:@""];
     }
     return self;
 }
@@ -64,7 +65,7 @@
                 }
             [self setUserId:[[[result objectForKey:@"user"] objectForKey:@"id"] intValue]];
             [self setUserSpreeToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"]];
-            NSLog(@"I'm here now");
+            //NSLog(@"I'm here now");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"initUserFinishedLoading" object:nil];
         }];
     }
@@ -82,6 +83,7 @@
         [self setUserPassword:[coder decodeObjectForKey:@"userPassword"]];
         [self setUserUrlProfileImage:[coder decodeObjectForKey:@"userUrlProfileImage"]];
         [self setUserSpreeToken:[coder decodeObjectForKey:@"userSpreeToken"]];
+        //[self setUserChannel:[coder decodeObjectForKey:@"userChannel"]];
     }
     return self;
 }
@@ -94,6 +96,7 @@
     [coder encodeObject:userPassword forKey:@"userPassword"];
     [coder encodeObject:userUrlProfileImage forKey:@"userUrlProfileImage"];
     [coder encodeObject:userSpreeToken forKey:@"userSpreeToken"];
+    //[coder encodeObject:userChannel forKey:@"userChannel"];
 }
 
 @end
