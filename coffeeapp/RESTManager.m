@@ -10,7 +10,7 @@
 #import <AsyncImageDownloader.h>
 #import <UIKit/UIKit.h>
 
-#define TESTING_URL @"http://mobile-store.ngrok.com/api/"
+#define TESTING_URL @"http://5661f5cd.ngrok.com/api"
 
 @implementation RESTManager
 
@@ -23,7 +23,7 @@
         if(testing)
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",TESTING_URL, service]];
         else
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"http://spree-demo-store.herokuapp.com/api/%@", service]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"http://stage-spree-demo-store-two.herokuapp.com/api/%@", service]];
     }
     else
     {
@@ -31,7 +31,7 @@
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@.json", TESTING_URL, service]];
         else
         {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"http://spree-demo-store.herokuapp.com/api/%@.json", service]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"http://stage-spree-demo-store-two.herokuapp.com/api/%@.json", service]];
         }
     }
     
