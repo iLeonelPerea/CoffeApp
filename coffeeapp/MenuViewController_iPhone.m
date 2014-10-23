@@ -18,10 +18,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize arrProductObjects, tblProducts, pageControl, arrDataMonday, arrDataTuesday, arrDataWednesday, arrDataThursday, arrDataFriday, arrDataSaturday, arrDataSunday, isPageControlInUse, lblCurrentDay, HUDJMProgress, directionChangePageControl, currentDayOfWeek;
-@synthesize arrWeekDays;
-
-@synthesize productObject;
+@synthesize arrProductObjects, pageControl, isPageControlInUse, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

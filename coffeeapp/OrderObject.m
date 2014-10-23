@@ -110,8 +110,8 @@
     [dictBillingAddressAttributes setObject:@"Colima" forKey:@"city"];
     [dictBillingAddressAttributes setObject:@"312123456789" forKey:@"phone"];
     [dictBillingAddressAttributes setObject:@"28017" forKey:@"zipcode"];
-    [dictBillingAddressAttributes setObject:@"32" forKey:@"state_id"];
-    [dictBillingAddressAttributes setObject:@"49" forKey:@"country_id"];
+    [dictBillingAddressAttributes setObject:@"60" forKey:@"state_id"];
+    [dictBillingAddressAttributes setObject:@"38" forKey:@"country_id"];
     [dictFullOrder setObject:dictBillingAddressAttributes forKey:@"bill_address_attributes"];
    
     //Shipping address
@@ -122,8 +122,8 @@
     [dictAddressAttributes setObject:@"Colima" forKey:@"city"];
     [dictAddressAttributes setObject:@"312123456789" forKey:@"phone"];
     [dictAddressAttributes setObject:@"28017" forKey:@"zipcode"];
-    [dictAddressAttributes setObject:@"32" forKey:@"state_id"];
-    [dictAddressAttributes setObject:@"49" forKey:@"country_id"];
+    [dictAddressAttributes setObject:@"60" forKey:@"state_id"];
+    [dictAddressAttributes setObject:@"38" forKey:@"country_id"];
     [dictFullOrder setObject:dictAddressAttributes forKey:@"ship_address_attributes"];
     
     //Selected prodcuts
@@ -132,7 +132,7 @@
     //Payment method
     NSMutableArray * arrPaymentsAttributes = [[NSMutableArray alloc] init];
     NSMutableDictionary * dictPaymentMethod = [[NSMutableDictionary alloc] init];
-    [dictPaymentMethod setObject:@"1" forKey:@"payment_method_id"];
+    [dictPaymentMethod setObject:@"6" forKey:@"payment_method_id"];
     [arrPaymentsAttributes addObject:dictPaymentMethod];
     [dictFullOrder setObject:arrPaymentsAttributes forKey:@"payments_attributes"];
     
@@ -152,6 +152,7 @@
     [dictPaymentSourceInfo setObject:@"01/30" forKey:@"expiry"];
     [dictPaymentSourceInfo setObject:@"Visa" forKey:@"cc_type"];
     [dictPaymentSourceInfo setObject:@"Credit" forKey:@"cc_kind"];
+    //[dictPaymentSourceInfo setObject:@"Crowd Interactive" forKey:@"name"];
     [dictPaymentSource setObject:dictPaymentSourceInfo forKey:@"1"];
     
     //Inser into master dictionay all data
