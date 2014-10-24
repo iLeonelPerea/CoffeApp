@@ -12,13 +12,14 @@
 #import "LoginViewController.h"
 #import "DBManager.h"
 
-@class LoginViewController;
+@class LoginViewController, JASidePanelController;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) UINavigationController * navigationController;
-@property (nonatomic, strong) LoginViewController * viewController;
+@property (nonatomic, strong) LoginViewController * mainViewController;
+@property (nonatomic, strong) JASidePanelController * viewController;
 @property (nonatomic, strong) UserObject *userObject;
 
 @end

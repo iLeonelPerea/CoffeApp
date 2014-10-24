@@ -29,6 +29,8 @@
 		C8B7CC6419F1D76600AEBA27 /* coffeeappTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC6319F1D76600AEBA27 /* coffeeappTests.m */; };
 		C8B7CC7119F1D7BF00AEBA27 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC6F19F1D7BF00AEBA27 /* LoginViewController.m */; };
 		C8B7CC7219F1D7BF00AEBA27 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8B7CC7019F1D7BF00AEBA27 /* LoginViewController.xib */; };
+		C8F5FACD19F86F7600BAFEA0 /* LeftMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8F5FACB19F86F7600BAFEA0 /* LeftMenuViewController.m */; };
+		C8F5FACE19F86F7600BAFEA0 /* LeftMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C8F5FACC19F86F7600BAFEA0 /* LeftMenuViewController.xib */; };
 		C8FB669E19F6F86000CBED84 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FB669D19F6F86000CBED84 /* MessageUI.framework */; };
 		C8FB66A019F6F86E00CBED84 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8FB669F19F6F86E00CBED84 /* CoreGraphics.framework */; };
 		C8FB66A119F6F87C00CBED84 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D845F0519F6DBF7006C7B0E /* UIKit.framework */; };
@@ -86,6 +88,9 @@
 		C8B7CC6E19F1D7BF00AEBA27 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		C8B7CC6F19F1D7BF00AEBA27 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C8B7CC7019F1D7BF00AEBA27 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		C8F5FACA19F86F7600BAFEA0 /* LeftMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuViewController.h; sourceTree = "<group>"; };
+		C8F5FACB19F86F7600BAFEA0 /* LeftMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuViewController.m; sourceTree = "<group>"; };
+		C8F5FACC19F86F7600BAFEA0 /* LeftMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftMenuViewController.xib; sourceTree = "<group>"; };
 		C8FB669D19F6F86000CBED84 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		C8FB669F19F6F86E00CBED84 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		C8FB66A219F6F88C00CBED84 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -222,6 +227,9 @@
 				C839FA4119F5923500BC01D5 /* UserProfileController.h */,
 				C839FA4219F5923500BC01D5 /* UserProfileController.m */,
 				C839FA4319F5923500BC01D5 /* UserProfileController.xib */,
+				C8F5FACA19F86F7600BAFEA0 /* LeftMenuViewController.h */,
+				C8F5FACB19F86F7600BAFEA0 /* LeftMenuViewController.m */,
+				C8F5FACC19F86F7600BAFEA0 /* LeftMenuViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -300,6 +308,7 @@
 				TargetAttributes = {
 					C8B7CC4319F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = D7848S8M4T;
 					};
 					C8B7CC5C19F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -336,6 +345,7 @@
 				7DEE7EF119F610590081BCEC /* ProductCellTableViewCell.xib in Resources */,
 				C839FA4519F5923500BC01D5 /* UserProfileController.xib in Resources */,
 				7DEE7EF919F611D50081BCEC /* MenuViewController_iPhone.xib in Resources */,
+				C8F5FACE19F86F7600BAFEA0 /* LeftMenuViewController.xib in Resources */,
 				C8B7CC7219F1D7BF00AEBA27 /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -393,6 +403,7 @@
 				7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */,
 				7DEE7EF019F610590081BCEC /* ProductCellTableViewCell.m in Sources */,
 				7DEE7EE719F60D190081BCEC /* MasterObject.m in Sources */,
+				C8F5FACD19F86F7600BAFEA0 /* LeftMenuViewController.m in Sources */,
 				23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */,
 				7DEE7EE619F60D190081BCEC /* ImageObject.m in Sources */,
 				C839FA4419F5923500BC01D5 /* UserProfileController.m in Sources */,
@@ -514,14 +525,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PODS_ROOT)/Parse\"",
+					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = coffeeapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
 			};
 			name = Debug;
 		};
@@ -531,14 +548,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(PODS_ROOT)/Parse\"",
+					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = coffeeapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
 			};
 			name = Release;
 		};
