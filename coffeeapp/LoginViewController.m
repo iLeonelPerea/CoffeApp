@@ -15,7 +15,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize signInButton, btnSignOut, userObject, prgLoaging;
+@synthesize signInButton, userObject, prgLoaging;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -33,12 +33,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [signIn setScopes:@[@"profile"]];
     //Set the SignIn delegate
     [signIn setDelegate:self];
-    //Hide the SignOut button
-    [[self btnSignOut] setHidden:YES];
     //Add an observer to set up the userObject in AppDelegate
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSetUserObject) name:@"initUserFinishedLoading" object:nil];
-    //If user has been sign in before, automatically trigger de sign in method
-    [signIn trySilentAuthentication];
     //Set the progress loading indicator
     prgLoaging = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     [[prgLoaging textLabel] setText:@"Sign In..."];
@@ -75,12 +71,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 
 -(void)refreshInterfaceBasedOnSignIn {
     if ([[GPPSignIn sharedInstance] authentication]) {
-        // The user is signed in.
-        [[self signInButton] setHidden:YES];
-        [[self btnSignOut] setHidden:NO];
+        //Authentication was successfully
     } else {
-        [[self signInButton] setHidden:NO];
-        [[self btnSignOut] setHidden:YES];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Attention" message:@"There's an unexpected action with your Sign In" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
     }
 }
 
@@ -89,29 +83,20 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [[self navigationController] pushViewController:viewController animated:YES];
 }
 
-#pragma mark -- SigOut delegate
--(IBAction)doSignOut:(id)sender
-{
-    //SignOut
-    [[GPPSignIn sharedInstance] signOut];
-    //Revoke token
-    [[GPPSignIn sharedInstance] disconnect];
-    //Display the SignIn button
-    [[self signInButton] setHidden:NO];
-    //Hide the SignOut button
-    [[self btnSignOut] setHidden:YES];
-}
-
 #pragma mark -- Set userObject delegate
 -(void)doSetUserObject
 {
     //Set up the userObject in AppDelegate with the userObject values from LogIn
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setUserObject:userObject];
+    //Sotre the userObject data in user defaults
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userObject] forKey:@"userObject"];
+    [defaults synchronize];
+    //Update prodcuts
     [RESTManager updateProducts:userObject.userSpreeToken toCallback:^(id resultSignUp) {
         [prgLoaging dismiss];
-        MenuViewController_iPhone * menuController = [[MenuViewController_iPhone alloc] initWithNibName:@"MenuViewController_iPhone" bundle:nil];
-        [self.navigationController pushViewController:menuController animated:YES];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestSignIn" object:nil];
     }];
 }
 

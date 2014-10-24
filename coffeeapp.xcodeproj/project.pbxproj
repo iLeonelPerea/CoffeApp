@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		22536D09CF9C58200B049A39 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EAE09A761A7211E49B6549 /* libPods.a */; };
+		23A8E8B619FAAF050041D30F /* OrdersHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23A8E8B419FAAF050041D30F /* OrdersHistoryViewController.m */; };
+		23A8E8B719FAAF050041D30F /* OrdersHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A8E8B519FAAF050041D30F /* OrdersHistoryViewController.xib */; };
 		23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176B919F47FB3009F82A3 /* RESTManager.m */; };
 		23C176BE19F48474009F82A3 /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176BD19F48474009F82A3 /* UserObject.m */; };
 		7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D17919D19F6B4FF00696B91 /* DBManager.m */; };
@@ -50,6 +52,9 @@
 /* Begin PBXFileReference section */
 		235886C019F6BA1100BDDEED /* OrderObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderObject.h; sourceTree = "<group>"; };
 		235886C119F6BA1100BDDEED /* OrderObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderObject.m; sourceTree = "<group>"; };
+		23A8E8B319FAAF050041D30F /* OrdersHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdersHistoryViewController.h; sourceTree = "<group>"; };
+		23A8E8B419FAAF050041D30F /* OrdersHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdersHistoryViewController.m; sourceTree = "<group>"; };
+		23A8E8B519FAAF050041D30F /* OrdersHistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrdersHistoryViewController.xib; sourceTree = "<group>"; };
 		23C176B819F47FB3009F82A3 /* RESTManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESTManager.h; sourceTree = "<group>"; };
 		23C176B919F47FB3009F82A3 /* RESTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTManager.m; sourceTree = "<group>"; };
 		23C176BC19F48474009F82A3 /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
@@ -230,6 +235,9 @@
 				C8F5FACA19F86F7600BAFEA0 /* LeftMenuViewController.h */,
 				C8F5FACB19F86F7600BAFEA0 /* LeftMenuViewController.m */,
 				C8F5FACC19F86F7600BAFEA0 /* LeftMenuViewController.xib */,
+				23A8E8B319FAAF050041D30F /* OrdersHistoryViewController.h */,
+				23A8E8B419FAAF050041D30F /* OrdersHistoryViewController.m */,
+				23A8E8B519FAAF050041D30F /* OrdersHistoryViewController.xib */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -308,7 +316,7 @@
 				TargetAttributes = {
 					C8B7CC4319F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = D7848S8M4T;
+						DevelopmentTeam = JZ2JGK7NJ9;
 					};
 					C8B7CC5C19F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -340,6 +348,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				23A8E8B719FAAF050041D30F /* OrdersHistoryViewController.xib in Resources */,
 				C8B7CC5819F1D76600AEBA27 /* LaunchScreen.xib in Resources */,
 				C8B7CC5519F1D76600AEBA27 /* Images.xcassets in Resources */,
 				7DEE7EF119F610590081BCEC /* ProductCellTableViewCell.xib in Resources */,
@@ -405,6 +414,7 @@
 				7DEE7EE719F60D190081BCEC /* MasterObject.m in Sources */,
 				C8F5FACD19F86F7600BAFEA0 /* LeftMenuViewController.m in Sources */,
 				23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */,
+				23A8E8B619FAAF050041D30F /* OrdersHistoryViewController.m in Sources */,
 				7DEE7EE619F60D190081BCEC /* ImageObject.m in Sources */,
 				C839FA4419F5923500BC01D5 /* UserProfileController.m in Sources */,
 				C8B7CC4A19F1D76600AEBA27 /* main.m in Sources */,
@@ -525,6 +535,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/Parse\"",
 					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
@@ -538,7 +549,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
+				PROVISIONING_PROFILE = "b57e5096-95d1-4e47-a950-b62d0dce4bf8";
 			};
 			name = Debug;
 		};
@@ -548,6 +559,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/Parse\"",
 					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
@@ -561,7 +573,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
+				PROVISIONING_PROFILE = "b57e5096-95d1-4e47-a950-b62d0dce4bf8";
 			};
 			name = Release;
 		};

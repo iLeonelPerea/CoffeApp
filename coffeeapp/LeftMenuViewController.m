@@ -13,15 +13,31 @@
 @end
 
 @implementation LeftMenuViewController
-@synthesize tblMenu, arrMenu, isUserLogged;
+@synthesize tblMenu, arrMenu, isUserLogged, btnSignOut, lblUser, imgUserProfile;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"Orders", nil];
+    arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
     [tblMenu setDelegate:self];
     [tblMenu setDataSource:self];
     [tblMenu reloadData];
+    //Set the current user name from userObject located at AppDelegate
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    UserObject * userObject = [[UserObject alloc] init];
+    userObject = [appDelegate userObject];
+    [lblUser setText:[userObject userName]];
+    if([(NSString*) userObject.userUrlProfileImage rangeOfString:@"?"].location != NSNotFound)
+    {
+        NSArray * arrStrPic = [[NSArray alloc] init];
+        arrStrPic = [(NSString*)userObject.userUrlProfileImage componentsSeparatedByString:@"?"];
+        userObject.userUrlProfileImage = [arrStrPic objectAtIndex:0];
+        [imgUserProfile setImageWithResizeURL:[arrStrPic objectAtIndex:0] usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
+    else
+    {
+        [imgUserProfile setImageWithResizeURL:userObject.userUrlProfileImage usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,7 +53,16 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    switch ([indexPath row]) {
+        case 0:
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestMenu" object:nil];
+            break;
+        case 1:
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestOrders" object:nil];
+            break;
+        default:
+            break;
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -48,18 +73,27 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
     
-    cell.textLabel.text = [arrMenu objectAtIndex:(NSUInteger)indexPath.row];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [[cell textLabel] setText:[arrMenu objectAtIndex:[indexPath row]]];
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
 }
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark -- SigOut delegate
+-(IBAction)doSignOut:(id)sender
+{
+    //SignOut
+    [[GPPSignIn sharedInstance] signOut];
+    //Revoke token
+    [[GPPSignIn sharedInstance] disconnect];
+    //Clean the AppDelegate's userObject
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setUserObject:nil];
+    //Clean userObject data stored in user defaults
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:nil forKey:@"userObject"];
+    [defaults synchronize];
+    //Calls to set the main view controller to display
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestSignOut" object:nil];
 }
-*/
 
 @end
