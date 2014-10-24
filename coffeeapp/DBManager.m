@@ -45,7 +45,7 @@
     NSString *databasePath;
     dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     docsDir = [dirPaths objectAtIndex:0];
-    databasePath = [[NSString alloc] initWithString:[docsDir stringByAppendingPathComponent:@"GastronautDB.sqlite3"]];
+    databasePath = [[NSString alloc] initWithString:[docsDir stringByAppendingPathComponent:@"CoffeDB.sqlite3"]];
     
     return databasePath;
 }

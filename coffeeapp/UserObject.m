@@ -41,15 +41,15 @@
         //Set the dictionary with the credentials to spree store
         NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:@{@"spree_user":@{@"email": [self userEmail], @"password": [self userPassword]}}];
         //Make the call to do Log In
-        [RESTManager sendData:jsonDict toService:@"v1/authorizations" withMethod:@"POST" isTesting:NO withAccessToken:nil toCallback:^(id result) {
+        [RESTManager sendData:jsonDict toService:@"v1/authorizations" withMethod:@"POST" isTesting:YES withAccessToken:nil toCallback:^(id result) {
             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
                  NSLog(@"%@",[result objectForKey:@"error"]);
                 
                     //Attempt to register the user in spree store
-                    if ([[result objectForKey:@"error"] isEqualToString:@"Internal Server Error"]) {
+                    if ([[result objectForKey:@"error"] isEqualToString:@"Record not found"]) {
                         
                         NSMutableDictionary *jsonDictRegister = [NSMutableDictionary dictionaryWithDictionary:@{@"user":@{@"email": [self userEmail], @"password": [self userPassword], @"password_confirmation": [self userPassword]}}];
-                        [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:NO withAccessToken:nil toCallback:^(id result) {
+                        [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:YES withAccessToken:nil toCallback:^(id result) {
                             
                             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
                                 NSLog(@"%@",[result objectForKey:@"error"]);

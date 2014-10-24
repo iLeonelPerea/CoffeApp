@@ -18,10 +18,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize arrProductObjects, tblProducts, pageControl, arrDataMonday, arrDataTuesday, arrDataWednesday, arrDataThursday, arrDataFriday, arrDataSaturday, arrDataSunday, isPageControlInUse, lblCurrentDay, HUDJMProgress, directionChangePageControl, currentDayOfWeek;
-@synthesize arrWeekDays;
-
-@synthesize productObject;
+@synthesize arrProductObjects, pageControl, isPageControlInUse, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,13 +34,6 @@
     [super viewDidLoad];
     //Arrays data init
     arrWeekDays = [[NSArray alloc] initWithObjects:@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
-    arrDataMonday = [NSMutableArray new];
-    arrDataTuesday = [NSMutableArray new];
-    arrDataWednesday = [NSMutableArray new];
-    arrDataThursday = [NSMutableArray new];
-    arrDataFriday = [NSMutableArray new];
-    arrDataSaturday = [NSMutableArray new];
-    arrDataSunday = [NSMutableArray new];
    
     //Setting up tableview delegates and datasources
     [tblProducts setDelegate:self];
@@ -53,25 +43,11 @@
     //Set the array prodcuts - If the there's products selected by users, they will be set here.
     arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
     
-    /*
-    UISwipeGestureRecognizer *gestureL = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFromL:)];
-    gestureL.numberOfTouchesRequired = 1;
-    [gestureL setDirection:UISwipeGestureRecognizerDirectionRight];
-    UISwipeGestureRecognizer *gestureR = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(handleSwipeFromR:)];
-    gestureR.numberOfTouchesRequired = 1;
-    [gestureR setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [tblProducts addGestureRecognizer:gestureL];
-    [tblProducts addGestureRecognizer:gestureR];
-    */
-    
     NSDate *now = [NSDate date];
     NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
     [weekday setDateFormat: @"e"];
     currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue]; // Get the current date
     pageControl.currentPage = currentDayOfWeek - 2; // Change to the current date
-    
-    directionChangePageControl = pageControl.currentPage;
-    [self loadDataDays];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -82,44 +58,6 @@
     [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 90, 320, 440):CGRectMake(0, 90, 320, 333)];
     [pageControl setFrame:(IS_IPHONE_5)?CGRectMake(0, 531, 320, 37):CGRectMake(0, 443, 320, 37)];
 }
-
-#pragma mark -- SwipeGestureRecognizer delegate
-- (void)handleSwipeFromR:(UISwipeGestureRecognizer *)recognizer {
-    if(pageControl.currentPage < 6)
-    {
-        pageControl.currentPage ++;
-        [tblProducts reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
-        [lblCurrentDay setAlpha:0];
-        [UIView animateWithDuration:.7 animations:^{
-            lblCurrentDay.text = [arrWeekDays objectAtIndex:pageControl.currentPage];
-            [lblCurrentDay setAlpha:1];
-        }];
-        directionChangePageControl = 1;
-    }
-    else
-    {
-        pageControl.currentPage = pageControl.currentPage;
-    }
-}
-
-- (void)handleSwipeFromL:(UISwipeGestureRecognizer *)recognizer {
-    if(pageControl.currentPage > 0)
-    {
-        pageControl.currentPage --;
-        [tblProducts reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
-        [lblCurrentDay setAlpha:0];
-        [UIView animateWithDuration:.7 animations:^{
-            lblCurrentDay.text = [arrWeekDays objectAtIndex:pageControl.currentPage];
-            [lblCurrentDay setAlpha:1];
-        }];
-        directionChangePageControl = 0;
-    }
-    else
-    {
-        pageControl.currentPage = pageControl.currentPage;
-    }
-}
-
 
 #pragma mark -- setQuantitySelectedProducts delegate
 -(NSMutableArray*)setQuantitySelectedProducts:(NSMutableArray *)arrMenuProducts
@@ -158,43 +96,7 @@
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray * arrProductsInQueue = [NSMutableArray new];
     
-    for(ProductObject * tmpObject in arrDataMonday)
-    {
-        if (tmpObject.quantity != 0) {
-            [arrProductsInQueue addObject:tmpObject];
-        }
-    }
-    for(ProductObject * tmpObject in arrDataTuesday)
-    {
-        if (tmpObject.quantity != 0) {
-            [arrProductsInQueue addObject:tmpObject];
-        }
-    }
-    for(ProductObject * tmpObject in arrDataWednesday)
-    {
-        if (tmpObject.quantity != 0) {
-            [arrProductsInQueue addObject:tmpObject];
-        }
-    }
-    for(ProductObject * tmpObject in arrDataThursday)
-    {
-        if (tmpObject.quantity != 0) {
-            [arrProductsInQueue addObject:tmpObject];
-        }
-    }
-    for(ProductObject * tmpObject in arrDataFriday)
-    {
-        if (tmpObject.quantity != 0) {
-            [arrProductsInQueue addObject:tmpObject];
-        }
-    }
-    for(ProductObject * tmpObject in arrDataSaturday)
-    {
-        if (tmpObject.quantity != 0) {
-            [arrProductsInQueue addObject:tmpObject];
-        }
-    }
-    for(ProductObject * tmpObject in arrDataSunday)
+    for(ProductObject * tmpObject in arrProductObjects)
     {
         if (tmpObject.quantity != 0) {
             [arrProductsInQueue addObject:tmpObject];
@@ -211,33 +113,6 @@
 }
 
 #pragma mark --scrollView delegate
-- (IBAction)changePage{
-    if (directionChangePageControl > pageControl.currentPage) {
-        [tblProducts reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationRight];
-        [lblCurrentDay setAlpha:0];
-        [UIView animateWithDuration:.7 animations:^{
-            lblCurrentDay.text = [arrWeekDays objectAtIndex:pageControl.currentPage];
-            [lblCurrentDay setAlpha:1];
-        }];
-    }else{
-        [tblProducts reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationLeft];
-        [lblCurrentDay setAlpha:0];
-        [UIView animateWithDuration:.7 animations:^{
-            lblCurrentDay.text = [arrWeekDays objectAtIndex:pageControl.currentPage];
-            [lblCurrentDay setAlpha:1];
-        }];
-    }
-    directionChangePageControl = pageControl.currentPage;
-    isPageControlInUse = YES;
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)sender {
-	if (!isPageControlInUse) {
-		// Switch the indicator when more than 50% of the previous/next page is visible
-        lblCurrentDay.text = [arrWeekDays objectAtIndex:currentDayOfWeek - 2];
-//        [self doReloadData];
-	}
-}
 
 -(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
@@ -257,36 +132,6 @@
     [tblProducts reloadData];
 }
 
-#pragma mark -- Data days load
--(void)loadDataDays
-{
-    NSSortDescriptor *descriptor = [[NSSortDescriptor alloc] initWithKey:@"date_available" ascending:YES];
-    NSArray *descriptors = [NSArray arrayWithObject:descriptor];
-    NSArray * arrSortedProducts = [arrProductObjects sortedArrayUsingDescriptors:descriptors];
-    
-    ProductObject * firstProduct = [arrSortedProducts objectAtIndex:0];
-    float currentDate = firstProduct.date_available;
-    
-    NSArray * arrDays = [[NSMutableArray alloc] initWithObjects:arrDataMonday, arrDataTuesday, arrDataWednesday, arrDataThursday, arrDataFriday, arrDataSaturday, arrDataSunday, nil];
-    int currentArray = 0;
-    for(ProductObject * product in arrSortedProducts)
-    {
-        //NSLog(@"currentArray: %d, currentDate: %f, product.date_avail: %f", currentArray, currentDate, product.date_available);
-        if(product.date_available == currentDate)
-        {
-            [[arrDays objectAtIndex:currentArray] addObject:product];
-            currentDate = product.date_available;
-        }
-        else
-        {
-            currentArray ++;
-            [[arrDays objectAtIndex:currentArray] addObject:product];
-            currentDate = product.date_available;
-        }
-    }
-    [self changePage];
-}
-
 #pragma mark -- Table view data delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -294,33 +139,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSInteger toRet;
-    switch (currentDayOfWeek -2) {
-        case 0:
-            toRet = [arrDataMonday count];
-            break;
-        case 1:
-            toRet = [arrDataTuesday count];
-            break;
-        case 2:
-            toRet = [arrDataWednesday count];
-            break;
-        case 3:
-            toRet = [arrDataThursday count];
-            break;
-        case 4:
-            toRet = [arrDataFriday count];
-            break;
-        case 5:
-            toRet = [arrDataSaturday count];
-            break;
-        case 6:
-            toRet = [arrDataSunday count];
-            break;
-        default:
-            toRet = 0;
-    }
-    return toRet;
+    return [arrProductObjects count];
 }
 
 
@@ -340,31 +159,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     productObject = [[ProductObject alloc] init];
-    switch (currentDayOfWeek - 2) {
-        case 0:
-            productObject = [arrDataMonday objectAtIndex:(NSUInteger)indexPath.row];
-            break;
-        case 1:
-            productObject = [arrDataTuesday objectAtIndex:(NSUInteger)indexPath.row];
-            break;
-        case 2:
-            productObject = [arrDataWednesday objectAtIndex:(NSUInteger)indexPath.row];
-            break;
-        case 3:
-            productObject = [arrDataThursday objectAtIndex:(NSUInteger)indexPath.row];
-            break;
-        case 4:
-            productObject = [arrDataFriday objectAtIndex:(NSUInteger)indexPath.row];
-            break;
-        case 5:
-            productObject = [arrDataSaturday objectAtIndex:(NSUInteger)indexPath.row];
-            break;
-        case 6:
-            productObject = [arrDataSunday objectAtIndex:(NSUInteger)indexPath.row];
-            break;
-        default:
-            break;
-    }
+    productObject = [arrProductObjects objectAtIndex:(NSInteger)indexPath.row];
     
     UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 20, 280, 21):CGRectMake(20, 10, 280, 21)];
     [lblName setText: [productObject name]];
@@ -431,45 +226,7 @@
 {
     ProductObject * selectedProduct = [ProductObject new];
     UIButton * senderButton = (UIButton*)sender;
-    switch (currentDayOfWeek - 2) {
-        case 0:
-        {
-            selectedProduct = [arrDataMonday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 1:
-        {
-            selectedProduct = [arrDataTuesday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 2:
-        {
-            selectedProduct = [arrDataWednesday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 3:
-        {
-            selectedProduct = [arrDataThursday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 4:
-        {
-            selectedProduct = [arrDataFriday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 5:
-        {
-            selectedProduct = [arrDataSaturday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 6:
-        {
-            selectedProduct = [arrDataSunday objectAtIndex:senderButton.tag];
-        }
-            break;
-        default:
-            break;
-    }
+    selectedProduct = [arrProductObjects objectAtIndex:senderButton.tag];
     selectedProduct.quantity ++;
     [self doReloadData];
     [self synchronizeDefaults];
@@ -479,45 +236,7 @@
 {
     ProductObject * selectedProduct = [ProductObject new];
     UIButton * senderButton = (UIButton*)sender;
-    switch (currentDayOfWeek - 2) {
-        case 0:
-        {
-            selectedProduct = [arrDataMonday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 1:
-        {
-            selectedProduct = [arrDataTuesday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 2:
-        {
-            selectedProduct = [arrDataWednesday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 3:
-        {
-            selectedProduct = [arrDataThursday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 4:
-        {
-            selectedProduct = [arrDataFriday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 5:
-        {
-            selectedProduct = [arrDataSaturday objectAtIndex:senderButton.tag];
-        }
-            break;
-        case 6:
-        {
-            selectedProduct = [arrDataSunday objectAtIndex:senderButton.tag];
-        }
-            break;
-        default:
-            break;
-    }
+    selectedProduct = [arrProductObjects objectAtIndex:senderButton.tag];
     selectedProduct.quantity --;
     [self doReloadData];
     [self synchronizeDefaults];
