@@ -19,10 +19,7 @@
 @interface LoginViewController : UIViewController <GPPSignInDelegate>
 
 @property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton;
-@property (nonatomic, strong) IBOutlet UIButton *btnSignOut;
 @property (nonatomic, strong) UserObject *userObject;
 @property (nonatomic, strong) JGProgressHUD *prgLoaging;
-
--(IBAction)doSignOut:(id)sender;
 
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginViewController.h"
 #import <Parse/Parse.h>
 #import <GooglePlus/GooglePlus.h>
 #import <JASidePanelController.h>
@@ -29,6 +28,22 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     PFACL * defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+
+    //Set app's client ID for GPPSignIn and GPPShare
+    [[GPPSignIn sharedInstance] setClientID:kClientID];
+    //Initialize an empty UserObject instance
+    userObject = [[UserObject alloc] init];
+    
+    //Extract the userObject data from user defaults
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSData * data = [defaults objectForKey:@"userObject"];
+    UserObject * tmpUserObject = [[UserObject alloc] init];
+    tmpUserObject = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    //If exist userObject data from user defaults, is assigned into AppDelegate's userObject
+    if (tmpUserObject != nil) {
+        userObject = tmpUserObject;
+    }
+    
     /* start view logic // past
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
@@ -38,15 +53,23 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     */
     
     // start view logic // new
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
+    //Set the mainViewController property
+    [self setMainViewController:[[LoginViewController alloc] init]];
+    //Set the left panel
     // Override point for customization after application launch.
-    self.viewController = [[JASidePanelController alloc] init];
-    self.viewController.leftPanel = [[LeftMenuViewController alloc] init];
-    self.viewController.leftPanel = self.viewController.leftPanel;
-    self.viewController.leftFixedWidth = 200;
-    self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:[[LoginViewController alloc] init]];
-    //self.viewController.centerPanel = [[UINavigationController alloc] initWithRootViewController:(facebookUserName || [defaults objectForKey:@"userAccessToken"])?[[AddressValidationViewController alloc] init]:[[AppGateViewController alloc] init]];
-    self.window.rootViewController = self.viewController;
+    [self setViewController: [[JASidePanelController alloc] init]];
+    [[self viewController] setLeftPanel:[[LeftMenuViewController alloc] init]];
+    [[self viewController] setLeftPanel:[[self viewController] leftPanel]];
+    [[self viewController] setLeftFixedWidth:200];
+    [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+    
+    //Check if the user is logged to set the root view controller. If is true, show the menu with the left side panel, in other case, show Login view controller
+    if ([[userObject userSpreeToken] isEqual:@""]) {
+        [[self window] setRootViewController:[self mainViewController]];
+    }else{
+        [[self window] setRootViewController:[self viewController]];
+    }
     [self.window makeKeyAndVisible];
     
     
@@ -78,10 +101,12 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
                                                          UIRemoteNotificationTypeAlert |
                                                          UIRemoteNotificationTypeSound)];
     }
-    //Set app's client ID for GPPSignIn and GPPShare
-    [[GPPSignIn sharedInstance] setClientID:kClientID];
-    //Initialize an empty UserObject instance
-    userObject = [[UserObject alloc] init];
+    
+    //Add the notifications for menu's options
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidRequestMenu:) name:@"userDidRequestMenu" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidRequestOrders:) name:@"userDidRequestOrders" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidRequestSignOut:) name:@"userDidRequestSignOut" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidRequestSignIn:) name:@"userDidRequestSignIn" object:nil];
     
     [DBManager checkOrCreateDataBase];
     return YES;
@@ -101,6 +126,32 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
  }
  
  */
+
+#pragma mark -- Menu options methods
+-(void)userDidRequestMenu:(NSNotification*)notification
+{
+    //Menu view controoler
+    [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+}
+
+-(void)userDidRequestOrders:(NSNotification*)notification
+{
+    //Orders history view controller
+    [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[OrdersHistoryViewController alloc] init]]];
+}
+
+-(void)userDidRequestSignOut:(NSNotification*)notification
+{
+    //Login view controller
+    [[self window] setRootViewController:[self mainViewController]];
+}
+
+-(void)userDidRequestSignIn:(NSNotification*)notification
+{
+    //Left panel with menu view controller
+    [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+    [[self window] setRootViewController:[self viewController]];
+}
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     [PFPush storeDeviceToken:newDeviceToken];
