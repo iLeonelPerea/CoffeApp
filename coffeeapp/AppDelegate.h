@@ -10,6 +10,8 @@
 #import <GooglePlus/GooglePlus.h>
 #import "UserObject.h"
 #import "LoginViewController.h"
+#import "MenuViewController_iPhone.h"
+#import "OrdersHistoryViewController.h"
 #import "DBManager.h"
 
 @class LoginViewController, JASidePanelController;
