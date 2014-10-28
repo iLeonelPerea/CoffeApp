@@ -27,7 +27,6 @@
 @property (nonatomic, strong) JGProgressHUD *HUDJMProgress;
 @property (nonatomic, strong) ProductObject *productObject;
 @property (nonatomic, assign) int currentDayOfWeek;
-@property (nonatomic, strong) IBOutlet UIView * viewSample;
 - (void)synchronizeDefaults;
 - (NSMutableArray*)setQuantitySelectedProducts:(NSMutableArray*)arrMenuProducts;
 @end
