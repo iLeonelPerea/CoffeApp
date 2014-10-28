@@ -355,6 +355,7 @@
 					};
 					C8B7CC5C19F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = D7848S8M4T;
 						TestTargetID = C8B7CC4319F1D76600AEBA27;
 					};
 				};
@@ -574,8 +575,8 @@
 			baseConfigurationReference = E60F9533A1FEE1282C1CFB72 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/Parse\"",
 					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
@@ -589,7 +590,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b57e5096-95d1-4e47-a950-b62d0dce4bf8";
+				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
 			};
 			name = Debug;
 		};
@@ -598,8 +599,8 @@
 			baseConfigurationReference = D3031F617E2B201F1E3F8C63 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/Parse\"",
 					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
@@ -613,7 +614,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b57e5096-95d1-4e47-a950-b62d0dce4bf8";
+				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
 			};
 			name = Release;
 		};
