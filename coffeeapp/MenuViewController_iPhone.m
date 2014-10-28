@@ -18,7 +18,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize arrProductObjects, pageControl, isPageControlInUse, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek;
+@synthesize arrProductObjects, arrProductCategoriesObjects, pageControl, isPageControlInUse, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,13 +41,13 @@
     HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     arrProductObjects = [NSMutableArray new];
     //Set the array prodcuts - If the there's products selected by users, they will be set here.
+    arrProductCategoriesObjects = [DBManager getCategories];
     arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
     
     NSDate *now = [NSDate date];
     NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
     [weekday setDateFormat: @"e"];
     currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue]; // Get the current date
-    pageControl.currentPage = currentDayOfWeek - 2; // Change to the current date
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -56,7 +56,6 @@
     
     //Set objects to fit screen between 3.5 and 4 inches
     [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 90, 320, 440):CGRectMake(0, 90, 320, 333)];
-    [pageControl setFrame:(IS_IPHONE_5)?CGRectMake(0, 531, 320, 37):CGRectMake(0, 443, 320, 37)];
 }
 
 #pragma mark -- setQuantitySelectedProducts delegate
@@ -69,24 +68,25 @@
     
     //Check is there's prodcuts selected by user.
     if ([arrOrderSelectedProducts count] > 0) {
-        for (ProductObject *prodObject in arrMenuProducts) {
-            MasterObject *masterObject = [prodObject masterObject];
-            //Loop for the array that contains the selected products by user
-            for (ProductObject *orderSelectedProduct in arrOrderSelectedProducts) {
-                MasterObject *orderMasterProduct = [orderSelectedProduct masterObject];
-                //if the id from selected product is equal to id from menu product, aasign the quantity to display.
-                if ([orderMasterProduct masterObject_id] == [masterObject masterObject_id]) {
-                    [prodObject setQuantity:[orderSelectedProduct quantity]];
-                    continue;
+        for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
+            for(ProductObject *prodObject in [arrMenuProducts objectAtIndex:arrayDimention]){
+                MasterObject *masterObject = [prodObject masterObject];
+                //Loop for the array that contains the selected products by user
+                for (ProductObject *orderSelectedProduct in arrOrderSelectedProducts) {
+                    MasterObject *orderMasterProduct = [orderSelectedProduct masterObject];
+                    //if the id from selected product is equal to id from menu product, aasign the quantity to display.
+                    if ([orderMasterProduct masterObject_id] == [masterObject masterObject_id]) {
+                        [prodObject setQuantity:[orderSelectedProduct quantity]];
+                        continue;
+                    }
                 }
+                [arrToReturn addObject:prodObject];
             }
-            [arrToReturn addObject:prodObject];
         }
         return arrToReturn;
     }else{
         //If there's no selected products, returns the original array
-        arrToReturn = arrMenuProducts;
-        return arrToReturn;
+        return arrMenuProducts;
     }
 }
 
@@ -96,10 +96,12 @@
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray * arrProductsInQueue = [NSMutableArray new];
     
-    for(ProductObject * tmpObject in arrProductObjects)
-    {
-        if (tmpObject.quantity != 0) {
-            [arrProductsInQueue addObject:tmpObject];
+    for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
+        for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
+        {
+            if (tmpObject.quantity != 0) {
+                [arrProductsInQueue addObject:tmpObject];
+            }
         }
     }
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
@@ -138,10 +140,18 @@
     return (IS_IPHONE_5)?440.0f:340.0f;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [arrProductObjects count];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
+    return [[defaults objectForKey:@"count_sections"] intValue]; // Save the count of sections
 }
 
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return [[arrProductObjects objectAtIndex:section] count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return [(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:section] category_name];
+}
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"CellProduct";
@@ -159,7 +169,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     productObject = [[ProductObject alloc] init];
-    productObject = [arrProductObjects objectAtIndex:(NSInteger)indexPath.row];
+    productObject = [[arrProductObjects objectAtIndex:indexPath.section] objectAtIndex:(NSInteger)indexPath.row];
     
     UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 20, 280, 21):CGRectMake(20, 10, 280, 21)];
     [lblName setText: [productObject name]];
@@ -194,11 +204,12 @@
     [lblQuantity setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:lblQuantity];
     
-    UIButton *btnAdd = [UIButton buttonWithType:UIButtonTypeSystem];
+    CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeSystem];
     [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(20, 334, 53, 30):CGRectMake(20, 280, 53, 20)];
     [btnAdd.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [btnAdd setTitle:@"+" forState:UIControlStateNormal];
-    [btnAdd setTag:indexPath.row];
+    [btnAdd setIndex:(int)indexPath.row];
+    [btnAdd setSection:(int)indexPath.section];
     int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
     [btnAdd setEnabled:( productDayAvailable < currentDayOfWeek)? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
     if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
@@ -209,12 +220,12 @@
     [btnAdd addTarget:self action:@selector(didSelectProduct:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:btnAdd];
     
-    UIButton *btnMinus = [UIButton buttonWithType:UIButtonTypeSystem];
+    CustomButton *btnMinus = [CustomButton buttonWithType:UIButtonTypeSystem];
     [btnMinus setFrame:(IS_IPHONE_5)?CGRectMake(247, 334, 53, 30):CGRectMake(247, 280, 53, 20)];
     [btnMinus.titleLabel setFont:[UIFont systemFontOfSize:14]];
     [btnMinus setTitle:@"-" forState:UIControlStateNormal];
-    [btnMinus setTag:indexPath.row];
-    [btnMinus setHidden:(productObject.quantity > 0)?NO:YES];
+    [btnMinus setIndex:(int)indexPath.row];
+    [btnMinus setSection:(int)indexPath.section];    [btnMinus setHidden:(productObject.quantity > 0)?NO:YES];
     [btnMinus addTarget:self action:@selector(didDeselectProduct:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:btnMinus];
     return cell;
@@ -225,8 +236,8 @@
 -(void)didSelectProduct:(id)sender
 {
     ProductObject * selectedProduct = [ProductObject new];
-    UIButton * senderButton = (UIButton*)sender;
-    selectedProduct = [arrProductObjects objectAtIndex:senderButton.tag];
+    CustomButton * senderButton = (CustomButton*)sender;
+    selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
     selectedProduct.quantity ++;
     [self doReloadData];
     [self synchronizeDefaults];
@@ -235,8 +246,8 @@
 -(void)didDeselectProduct:(id)sender
 {
     ProductObject * selectedProduct = [ProductObject new];
-    UIButton * senderButton = (UIButton*)sender;
-    selectedProduct = [arrProductObjects objectAtIndex:senderButton.tag];
+    CustomButton * senderButton = (CustomButton*)sender;
+    selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
     selectedProduct.quantity --;
     [self doReloadData];
     [self synchronizeDefaults];

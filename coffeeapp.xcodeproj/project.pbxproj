@@ -12,8 +12,10 @@
 		23A8E8B719FAAF050041D30F /* OrdersHistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23A8E8B519FAAF050041D30F /* OrdersHistoryViewController.xib */; };
 		23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176B919F47FB3009F82A3 /* RESTManager.m */; };
 		23C176BE19F48474009F82A3 /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176BD19F48474009F82A3 /* UserObject.m */; };
+		7D0C6D0A19FEB05B00677DAF /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0C6D0919FEB05B00677DAF /* CustomButton.m */; };
 		7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D17919D19F6B4FF00696B91 /* DBManager.m */; };
 		7D1791A019F6CDD000696B91 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D17919F19F6CDD000696B91 /* libsqlite3.dylib */; };
+		7D7D137119FAD81900B3FAE3 /* CategoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D137019FAD81900B3FAE3 /* CategoryObject.m */; };
 		7D845F0219F6DB24006C7B0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D845F0119F6DB24006C7B0E /* Foundation.framework */; };
 		7DEE7EE619F60D190081BCEC /* ImageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EE319F60D190081BCEC /* ImageObject.m */; };
 		7DEE7EE719F60D190081BCEC /* MasterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EE519F60D190081BCEC /* MasterObject.m */; };
@@ -60,9 +62,13 @@
 		23C176BC19F48474009F82A3 /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
 		23C176BD19F48474009F82A3 /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
 		39EAE09A761A7211E49B6549 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D0C6D0819FEB05B00677DAF /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		7D0C6D0919FEB05B00677DAF /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		7D17919C19F6B4FF00696B91 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		7D17919D19F6B4FF00696B91 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		7D17919F19F6CDD000696B91 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		7D7D136F19FAD81900B3FAE3 /* CategoryObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryObject.h; sourceTree = "<group>"; };
+		7D7D137019FAD81900B3FAE3 /* CategoryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryObject.m; sourceTree = "<group>"; };
 		7D845F0119F6DB24006C7B0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7D845F0519F6DBF7006C7B0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7DEE7EE219F60D190081BCEC /* ImageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageObject.h; sourceTree = "<group>"; };
@@ -148,12 +154,23 @@
 				7DEE7EE519F60D190081BCEC /* MasterObject.m */,
 				7DEE7EF219F610AD0081BCEC /* ProductObject.h */,
 				7DEE7EF319F610AD0081BCEC /* ProductObject.m */,
+				7D7D136F19FAD81900B3FAE3 /* CategoryObject.h */,
+				7D7D137019FAD81900B3FAE3 /* CategoryObject.m */,
 				23C176BC19F48474009F82A3 /* UserObject.h */,
 				23C176BD19F48474009F82A3 /* UserObject.m */,
 				235886C019F6BA1100BDDEED /* OrderObject.h */,
 				235886C119F6BA1100BDDEED /* OrderObject.m */,
 			);
 			name = VO;
+			sourceTree = "<group>";
+		};
+		7D0C6D0719FEB03300677DAF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7D0C6D0819FEB05B00677DAF /* CustomButton.h */,
+				7D0C6D0919FEB05B00677DAF /* CustomButton.m */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		C8B7CC3B19F1D76600AEBA27 = {
@@ -179,6 +196,7 @@
 		C8B7CC4619F1D76600AEBA27 /* coffeeapp */ = {
 			isa = PBXGroup;
 			children = (
+				7D0C6D0719FEB03300677DAF /* Views */,
 				23C176BB19F48455009F82A3 /* VO */,
 				23C176B719F47F8E009F82A3 /* Managers */,
 				C8B7CC6D19F1D7A300AEBA27 /* ViewControllers */,
@@ -406,11 +424,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D7D137119FAD81900B3FAE3 /* CategoryObject.m in Sources */,
 				C8B7CC4D19F1D76600AEBA27 /* AppDelegate.m in Sources */,
 				7DEE7EF819F611D50081BCEC /* MenuViewController_iPhone.m in Sources */,
 				7DEE7EF419F610AD0081BCEC /* ProductObject.m in Sources */,
 				7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */,
 				7DEE7EF019F610590081BCEC /* ProductCellTableViewCell.m in Sources */,
+				7D0C6D0A19FEB05B00677DAF /* CustomButton.m in Sources */,
 				7DEE7EE719F60D190081BCEC /* MasterObject.m in Sources */,
 				C8F5FACD19F86F7600BAFEA0 /* LeftMenuViewController.m in Sources */,
 				23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */,

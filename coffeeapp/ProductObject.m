@@ -10,7 +10,7 @@
 
 @implementation ProductObject
 
-@synthesize description, display_price, product_id, masterObject, name, price, slug, total_on_hand, quantity, delivery_type, delivery_date, showDays, date_available;
+@synthesize description, display_price, product_id, masterObject, categoryObject, name, price, slug, total_on_hand, quantity, delivery_type, delivery_date, showDays, date_available;
 
 
 //create coder and decoder to be able to save on standar user defaults.
@@ -81,6 +81,12 @@
     [masterObject setPrice:([dictMaster objectForKey:@"price"]!= [NSNull null])? [dictMaster objectForKey:@"price"]:@""];
     [masterObject setSku:([dictMaster objectForKey:@"sku"]!= [NSNull null])? [dictMaster objectForKey:@"sku"]:@""];
     [newProductObject setMasterObject:masterObject];
+    CategoryObject * newCategoryObject = [[CategoryObject alloc] init];
+    NSMutableArray * arrCategory = [dictProduct objectForKey:@"categories"];
+    NSMutableDictionary * dictCategory = [arrCategory objectAtIndex:0];
+    [newCategoryObject setCategory_id:([dictCategory objectForKey:@"id"] != [NSNull null])?[[dictCategory objectForKey:@"id"] intValue]:0];
+    [newCategoryObject setCategory_name:([dictCategory objectForKey:@"name"] != [NSNull null])?[dictCategory objectForKey:@"name"]:@"N/A"];
+    [newProductObject setCategoryObject:newCategoryObject];
     [newProductObject setName:([dictProduct objectForKey:@"name"] != [NSNull null])?[dictProduct objectForKey:@"name"]:@"N/A"];
     [newProductObject setPrice:([dictProduct objectForKey:@"price"] != [NSNull null])?[dictProduct objectForKey:@"price"]:@"N/A"];
     [newProductObject setSlug:([dictProduct objectForKey:@"slug"]!= [NSNull null])? [dictProduct objectForKey:@"slug"]:@""];
@@ -118,6 +124,10 @@
     [masterObject setName:([dictProduct objectForKey:@"name"]!= [NSNull null])? [dictProduct objectForKey:@"name"]:@""];
     [masterObject setPrice:([dictProduct objectForKey:@"price"]!= [NSNull null])? [dictProduct objectForKey:@"price"]:@""];
     [newProductObject setMasterObject:masterObject];
+    CategoryObject * newCategoryObject = [[CategoryObject alloc] init];
+    [newCategoryObject setCategory_id:([dictProduct objectForKey:@"category_id"]!= [NSNull null])? [[dictProduct objectForKey:@"category_id"] intValue]:0];
+    [newCategoryObject setCategory_name:([dictProduct objectForKey:@"category_name"] != [NSNull null])?[dictProduct objectForKey:@"category_name"]:@"N/A"];
+    [newProductObject setCategoryObject:newCategoryObject];
     [newProductObject setName:([dictProduct objectForKey:@"name"] != [NSNull null])?[dictProduct objectForKey:@"name"]:@"N/A"];
     [newProductObject setPrice:([dictProduct objectForKey:@"price"] != [NSNull null])?[dictProduct objectForKey:@"price"]:@"N/A"];
     [newProductObject setSlug:([dictProduct objectForKey:@"slug"]!= [NSNull null])? [dictProduct objectForKey:@"slug"]:@""];
