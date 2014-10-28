@@ -18,7 +18,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize arrProductObjects, arrProductCategoriesObjects, pageControl, isPageControlInUse, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek;
+@synthesize arrProductObjects, arrProductCategoriesObjects, pageControl, isPageControlInUse, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +48,8 @@
     NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
     [weekday setDateFormat: @"e"];
     currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue]; // Get the current date
+    viewPlaceOrder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 600)];
+    [tblProducts bringSubviewToFront:viewPlaceOrder];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -61,14 +63,13 @@
 #pragma mark -- setQuantitySelectedProducts delegate
 -(NSMutableArray*)setQuantitySelectedProducts:(NSMutableArray *)arrMenuProducts
 {
-    NSMutableArray *arrToReturn = [[NSMutableArray alloc] init];
     NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:@"arrProductsInQueue"];
     NSMutableArray *arrOrderSelectedProducts = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
     //Check is there's prodcuts selected by user.
     if ([arrOrderSelectedProducts count] > 0) {
-        for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
+        for (int arrayDimention=0; arrayDimention<arrMenuProducts.count; arrayDimention++) {
             for(ProductObject *prodObject in [arrMenuProducts objectAtIndex:arrayDimention]){
                 MasterObject *masterObject = [prodObject masterObject];
                 //Loop for the array that contains the selected products by user
@@ -80,14 +81,10 @@
                         continue;
                     }
                 }
-                [arrToReturn addObject:prodObject];
             }
         }
-        return arrToReturn;
-    }else{
-        //If there's no selected products, returns the original array
-        return arrMenuProducts;
     }
+    return arrMenuProducts;
 }
 
 #pragma mark -- Synchronize defaults
@@ -96,14 +93,29 @@
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray * arrProductsInQueue = [NSMutableArray new];
     
+    int productsCount = 0;
     for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
         for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
         {
             if (tmpObject.quantity != 0) {
+                productsCount += tmpObject.quantity;
                 [arrProductsInQueue addObject:tmpObject];
             }
         }
     }
+    [lblProductsCount setText:[NSString stringWithFormat:@"%d Products",productsCount]];
+    NSLog(@"viewPlaceOrder.frame.origin.x: %f",viewPlaceOrder.frame.origin.x);
+    NSLog(@"viewPlaceOrder.frame.origin.y: %f",viewPlaceOrder.frame.origin.y);
+    NSLog(@"viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height: %f",viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height);
+    NSLog(@"viewPlaceOrder.frame.size.height: %f",viewPlaceOrder.frame.size.height);
+    NSLog(@"viewPlaceOrder.frame.size.width: %f",viewPlaceOrder.frame.size.width);
+    [viewPlaceOrder setFrame:CGRectMake(viewPlaceOrder.frame.origin.x, viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.width)];
+    NSLog(@"-- after --");
+    NSLog(@"viewPlaceOrder.frame.origin.x: %f",viewPlaceOrder.frame.origin.x);
+    NSLog(@"viewPlaceOrder.frame.origin.y: %f",viewPlaceOrder.frame.origin.y);
+    NSLog(@"viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height: %f",viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height);
+    NSLog(@"viewPlaceOrder.frame.size.height: %f",viewPlaceOrder.frame.size.height);
+    NSLog(@"viewPlaceOrder.frame.size.width: %f",viewPlaceOrder.frame.size.width);
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
     [defaults synchronize];
 }
@@ -251,6 +263,11 @@
     selectedProduct.quantity --;
     [self doReloadData];
     [self synchronizeDefaults];
+}
+
+#pragma mark -- button place Order
+- (IBAction)doPlaceOrder:(id)sender{
+    
 }
 
 @end
