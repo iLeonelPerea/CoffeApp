@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "MasterObject.h"
 #import "ImageObject.h"
+#import "CategoryObject.h"
 
 @interface ProductObject : NSObject
 
@@ -16,6 +17,7 @@
 @property (nonatomic, strong) NSString * display_price;
 @property (nonatomic, assign) int product_id;
 @property (nonatomic, strong) MasterObject * masterObject;
+@property (nonatomic, strong) CategoryObject * categoryObject;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * price;
 @property (nonatomic, strong) NSString * slug;

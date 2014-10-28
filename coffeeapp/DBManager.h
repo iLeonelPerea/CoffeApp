@@ -14,8 +14,11 @@
 
 +(BOOL)checkOrCreateDataBase;
 +(void)insertProduct:(ProductObject *)product;
-+(NSString*)getDBPath;
++(void)insertProductCategory:(ProductObject *)product;
++(NSMutableArray *)getCategories;
 +(NSMutableArray*)getProducts;
++(NSMutableArray *)getProductsCategory:(CategoryObject *)category;
++(NSString*)getDBPath;
 +(void)deleteProducts;
 
 @end
