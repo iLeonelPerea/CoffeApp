@@ -48,6 +48,15 @@
     NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
     [weekday setDateFormat: @"e"];
     currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue]; // Get the current date
+    
+    //Leo: animate self.viewSample
+    [UIView animateWithDuration:1.20f animations:^{
+        [self.viewSample setFrame:CGRectMake(0, self.view.frame.size.height, self.viewSample.frame.size.width, self.viewSample.frame.size.height)];
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:1.20f animations:^{
+            [self.viewSample setFrame:CGRectMake(0, self.viewSample.frame.origin.y-self.viewSample.frame.size.height, self.viewSample.frame.size.width, self.viewSample.frame.size.height)];
+        }];
+    }];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
