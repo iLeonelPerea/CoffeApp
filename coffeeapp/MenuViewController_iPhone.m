@@ -18,7 +18,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize arrProductObjects, arrProductCategoriesObjects, pageControl, isPageControlInUse, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder;
+@synthesize arrProductObjects, arrProductCategoriesObjects, pageControl, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,12 +34,15 @@
     [super viewDidLoad];
     //Arrays data init
     arrWeekDays = [[NSArray alloc] initWithObjects:@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
+    
+    isViewPlaceOrderActive = false;
    
     //Setting up tableview delegates and datasources
     [tblProducts setDelegate:self];
     [tblProducts setDataSource:self];
     HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     arrProductObjects = [NSMutableArray new];
+    
     //Set the array prodcuts - If the there's products selected by users, they will be set here.
     arrProductCategoriesObjects = [DBManager getCategories];
     arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
@@ -48,8 +51,9 @@
     NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
     [weekday setDateFormat: @"e"];
     currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue]; // Get the current date
-    viewPlaceOrder = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 600)];
-    [tblProducts bringSubviewToFront:viewPlaceOrder];
+    
+    //Create a notification that reload data
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSynchronizeDefaults:) name:@"doSynchronizeDefaults" object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -58,6 +62,7 @@
     
     //Set objects to fit screen between 3.5 and 4 inches
     [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 90, 320, 440):CGRectMake(0, 90, 320, 333)];
+    [self synchronizeDefaults];
 }
 
 #pragma mark -- setQuantitySelectedProducts delegate
@@ -87,6 +92,21 @@
     return arrMenuProducts;
 }
 
+#pragma mark -- NSNotificationCenter
+-(void)doSynchronizeDefaults:(NSNotification *)notification{ //Called when ShoppingViewController was dissmised
+    arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+    [tblProducts reloadData];
+    isViewPlaceOrderActive = false;
+    [UIView animateWithDuration:1.20f animations:^{
+        [UIView animateWithDuration:1.20f animations:^{
+            // Increase the frame.origin.y
+            [viewPlaceOrder setFrame:CGRectMake(0, viewPlaceOrder.frame.origin.y+viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.width, viewPlaceOrder.frame.size.height)];
+        }];
+    } completion:^(BOOL finished) {
+    }];
+}
+
+
 #pragma mark -- Synchronize defaults
 -(void)synchronizeDefaults
 {
@@ -103,19 +123,27 @@
             }
         }
     }
+    // If found products in shoppingCart && is not visible the viewPlaceOrder
+    if (productsCount>0 && !isViewPlaceOrderActive) {
+        isViewPlaceOrderActive = true;
+        [UIView animateWithDuration:1.20f animations:^{
+            [UIView animateWithDuration:1.20f animations:^{
+                // Decrease the frame.origin.y
+                [viewPlaceOrder setFrame:CGRectMake(0, viewPlaceOrder.frame.origin.y-viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.width, viewPlaceOrder.frame.size.height)];
+            }];
+        } completion:^(BOOL finished) {
+        }];
+    }else if(productsCount==0 && isViewPlaceOrderActive){
+        isViewPlaceOrderActive = false;
+        [UIView animateWithDuration:1.20f animations:^{
+            [UIView animateWithDuration:1.20f animations:^{
+                // Increase the frame.origin.y
+                [viewPlaceOrder setFrame:CGRectMake(0, viewPlaceOrder.frame.origin.y+viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.width, viewPlaceOrder.frame.size.height)];
+            }];
+        } completion:^(BOOL finished) {
+        }];
+    }
     [lblProductsCount setText:[NSString stringWithFormat:@"%d Products",productsCount]];
-    NSLog(@"viewPlaceOrder.frame.origin.x: %f",viewPlaceOrder.frame.origin.x);
-    NSLog(@"viewPlaceOrder.frame.origin.y: %f",viewPlaceOrder.frame.origin.y);
-    NSLog(@"viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height: %f",viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height);
-    NSLog(@"viewPlaceOrder.frame.size.height: %f",viewPlaceOrder.frame.size.height);
-    NSLog(@"viewPlaceOrder.frame.size.width: %f",viewPlaceOrder.frame.size.width);
-    [viewPlaceOrder setFrame:CGRectMake(viewPlaceOrder.frame.origin.x, viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.width)];
-    NSLog(@"-- after --");
-    NSLog(@"viewPlaceOrder.frame.origin.x: %f",viewPlaceOrder.frame.origin.x);
-    NSLog(@"viewPlaceOrder.frame.origin.y: %f",viewPlaceOrder.frame.origin.y);
-    NSLog(@"viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height: %f",viewPlaceOrder.frame.origin.y - viewPlaceOrder.frame.size.height);
-    NSLog(@"viewPlaceOrder.frame.size.height: %f",viewPlaceOrder.frame.size.height);
-    NSLog(@"viewPlaceOrder.frame.size.width: %f",viewPlaceOrder.frame.size.width);
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
     [defaults synchronize];
 }
@@ -124,21 +152,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark --scrollView delegate
-
--(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
-{
-    isPageControlInUse = NO;
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    isPageControlInUse = NO;
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    isPageControlInUse = NO;
 }
 
 -(void)doReloadData
@@ -206,11 +219,6 @@
     [lblDescription setText:[productObject description]];
     [cell addSubview:lblDescription];
     
-    UILabel *lblPrice = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(227, 254, 73, 21):CGRectMake(227, 201, 73, 21)];
-    [lblPrice setTextAlignment:NSTextAlignmentRight];
-    [lblPrice setText:[NSString stringWithFormat:@"$ %@",[productObject price]]];
-    [cell addSubview:lblPrice];
-    
     UILabel *lblQuantity = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(81, 338, 158, 21):CGRectMake(81, 280, 158, 21)];
     [lblQuantity setText:[NSString stringWithFormat:@"Request: %d Units", productObject.quantity]];
     [lblQuantity setTextAlignment:NSTextAlignmentCenter];
@@ -267,7 +275,12 @@
 
 #pragma mark -- button place Order
 - (IBAction)doPlaceOrder:(id)sender{
-    
+    [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+    ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
+    //[self.navigationController pushViewController:shoppingCartViewController animated:YES];
+    [self bdb_presentPopupViewController:shoppingCartViewController
+                           withAnimation:BDBPopupViewShowAnimationDefault
+                              completion:nil];
 }
 
 @end

@@ -80,7 +80,7 @@
     NSMutableDictionary * dictMaster = [[NSMutableDictionary alloc] init];
     
     //Set the main values required
-    [dictMaster setObject:[NSString stringWithFormat:@"%d",[userObject userId]] forKey:@"user_id"];
+    [dictMaster setObject:@"43" forKey:@"user_id"];
     NSMutableDictionary * dictFullOrder = [[NSMutableDictionary alloc] init];
     [dictFullOrder setObject:itemTotal forKey:@"item_total"];
     [dictFullOrder setObject:total forKey:@"total"];
@@ -113,7 +113,7 @@
     [dictBillingAddressAttributes setObject:@"60" forKey:@"state_id"];
     [dictBillingAddressAttributes setObject:@"38" forKey:@"country_id"];
     [dictFullOrder setObject:dictBillingAddressAttributes forKey:@"bill_address_attributes"];
-   
+    
     //Shipping address
     NSMutableDictionary * dictAddressAttributes = [[NSMutableDictionary alloc] init];
     [dictAddressAttributes setObject:@"Crowd" forKey:@"firstname"];

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6250" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
@@ -15,19 +16,33 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login Screen" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uwu-84-dnN">
-                    <rect key="frame" x="110" y="88" width="101" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knA-Ex-hFR" userLabel="Sign In Button" customClass="GPPSignInButton">
-                    <rect key="frame" x="101" y="143" width="118" height="32"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="splash_ima.png" translatesAutoresizingMaskIntoConstraints="NO" id="Zsu-tX-mZd">
+                    <rect key="frame" x="57" y="78" width="206" height="351"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knA-Ex-hFR" userLabel="Sign In Button" customClass="GPPSignInButton">
+                    <rect key="frame" x="20" y="507" width="280" height="50"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                    <state key="normal" image="login_btn_up.png"/>
+                    <state key="selected" image="login_btn_down.png"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.35294117650000001" green="0.6705882353" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="knA-Ex-hFR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="1nn-29-Ec9"/>
+                <constraint firstAttribute="trailing" secondItem="knA-Ex-hFR" secondAttribute="trailing" constant="20" id="4iy-xq-Php"/>
+                <constraint firstItem="Zsu-tX-mZd" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="78" id="N7X-cI-90h"/>
+                <constraint firstAttribute="trailing" secondItem="Zsu-tX-mZd" secondAttribute="trailing" constant="57" id="NAb-TF-Oh6"/>
+                <constraint firstItem="knA-Ex-hFR" firstAttribute="top" secondItem="Zsu-tX-mZd" secondAttribute="bottom" constant="78" id="RBW-N9-tEb"/>
+                <constraint firstAttribute="bottom" secondItem="knA-Ex-hFR" secondAttribute="bottom" constant="11" id="cAB-dC-FLj"/>
+                <constraint firstAttribute="bottom" secondItem="Zsu-tX-mZd" secondAttribute="bottom" constant="139" id="dXt-jy-i7a"/>
+                <constraint firstItem="Zsu-tX-mZd" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="57" id="qKl-gY-PXE"/>
+            </constraints>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
         </view>
     </objects>
+    <resources>
+        <image name="login_btn_down.png" width="560" height="100"/>
+        <image name="login_btn_up.png" width="560" height="100"/>
+        <image name="splash_ima.png" width="413" height="702"/>
+    </resources>
 </document>

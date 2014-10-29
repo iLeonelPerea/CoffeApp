@@ -45,6 +45,12 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [signInButton setImage:[UIImage imageNamed:@"login_btn_up"] forState:UIControlStateNormal];
+    [signInButton setImage:[UIImage imageNamed:@"login_btn_down"] forState:UIControlStateHighlighted];
+}
+
 #pragma mark -- GPPSignIn delegate
 -(void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
@@ -65,7 +71,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     } else {
         [prgLoaging showInView:[self view]];
         [self refreshInterfaceBasedOnSignIn];
+        AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
         userObject = [[UserObject alloc] initUser:[person displayName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag] urlProfileImage:[[person image] url] ];
+        myAppDelegate.orderObject.userObject = self.userObject;
     }
 }
 

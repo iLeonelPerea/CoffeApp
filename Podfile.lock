@@ -1,5 +1,8 @@
 PODS:
+  - AHEasing (1.2)
   - AsyncImageDownloader (1.0.0)
+  - BDBPopupViewController (1.1):
+    - AHEasing (~> 1.2)
   - Bolts (1.1.3)
   - google-plus-ios-sdk (1.7.1)
   - JASidePanels (1.3.2)
@@ -16,6 +19,7 @@ PODS:
 
 DEPENDENCIES:
   - AsyncImageDownloader (~> 1.0.0)
+  - BDBPopupViewController (~> 1.1)
   - google-plus-ios-sdk (~> 1.7.1)
   - JASidePanels (~> 1.3.2)
   - JGProgressHUD (~> 1.1.4)
@@ -23,7 +27,9 @@ DEPENDENCIES:
   - Parse (~> 1.4.2)
 
 SPEC CHECKSUMS:
+  AHEasing: ecab36683ef8c3a9a925fb85e892d1335e750f31
   AsyncImageDownloader: 6543d0ebd3e535c54b48149b83ebc4e2115d9f87
+  BDBPopupViewController: f0872d8fbda7bd57d30c0a5b5ee1dc6c4b038e93
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   google-plus-ios-sdk: bb7b918c2ee0d5f5e389c4fddc06d71995481f67
   JASidePanels: ca943907d88a0738c80755204c6098969d43e4e9

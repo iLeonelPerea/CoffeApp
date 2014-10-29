@@ -7,13 +7,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuViewController_iPhone">
             <connections>
-                <outlet property="btnPlaceOrder" destination="wdC-aW-T8f" id="yBZ-OY-hRc"/>
                 <outlet property="lblCurrentDay" destination="eZ6-7f-v1O" id="HNV-Dy-fzs"/>
-                <outlet property="lblProductsCount" destination="3gQ-SU-5Gv" id="99n-cS-yfu"/>
+                <outlet property="lblProductsCount" destination="WsC-1d-Nzx" id="udk-0c-LbP"/>
                 <outlet property="pageControl" destination="YsI-2O-GQ4" id="87h-Zm-oUe"/>
                 <outlet property="tblProducts" destination="7yx-Em-d2a" id="Hjc-J0-FbX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="viewPlaceOrder" destination="hpb-Ca-roQ" id="F37-Ib-Zn2"/>
+                <outlet property="viewPlaceOrder" destination="pUe-Ri-9D5" id="w4i-Gq-oRn"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -45,29 +44,30 @@
                         <outlet property="delegate" destination="-1" id="7R6-Ce-dbY"/>
                     </connections>
                 </tableView>
-                <view contentMode="scaleToFill" id="hpb-Ca-roQ">
-                    <rect key="frame" x="0.0" y="568" width="320" height="58"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <view contentMode="scaleToFill" id="pUe-Ri-9D5">
+                    <rect key="frame" x="0.0" y="568" width="320" height="86"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Products" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3gQ-SU-5Gv">
-                            <rect key="frame" x="23" y="18" width="96" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Products" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WsC-1d-Nzx">
+                            <rect key="frame" x="26" y="32" width="84" height="21"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wdC-aW-T8f">
-                            <rect key="frame" x="205" y="14" width="81" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="arX-tN-vq3">
+                            <rect key="frame" x="197" y="28" width="94" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Make Order">
+                            <state key="normal" title="Make Order √">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="doPlaceOrder:" destination="-1" eventType="touchUpInside" id="J7s-D4-30R"/>
+                                <action selector="doPlaceOrder:" destination="-1" eventType="touchUpInside" id="X9l-Ri-D9b"/>
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.85266315607734811" green="0.52381563932647268" blue="0.32002103036086954" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <AsyncImageDownloader/AsyncImageDownloader.h>
-#import "ProductCellTableViewCell.h"
-#import "ProductObject.h"
+#import <BDBPopupViewController/UIViewController+BDBPopupViewController.h>
 #import <JGProgressHUD.h>
+#import "ProductCellTableViewCell.h"
+#import "ShoppingCartViewController.h"
+#import "ProductObject.h"
 #import "AppDelegate.h"
 #import "CustomButton.h"
 
@@ -19,7 +21,7 @@
 @interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray *arrProductObjects;
 @property (nonatomic, strong) NSMutableArray *arrProductCategoriesObjects;
-@property (nonatomic, assign) BOOL isPageControlInUse;
+@property (nonatomic, assign) BOOL isViewPlaceOrderActive;
 @property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, strong) IBOutlet UITableView * tblProducts;
 @property (nonatomic, strong) IBOutlet UILabel * lblCurrentDay;

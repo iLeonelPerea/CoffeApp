@@ -17,7 +17,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize userObject;
+@synthesize userObject, orderObject;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -33,6 +33,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [[GPPSignIn sharedInstance] setClientID:kClientID];
     //Initialize an empty UserObject instance
     userObject = [[UserObject alloc] init];
+    orderObject = [[OrderObject alloc] init];
     
     //Extract the userObject data from user defaults
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -42,6 +43,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     //If exist userObject data from user defaults, is assigned into AppDelegate's userObject
     if (tmpUserObject != nil) {
         userObject = tmpUserObject;
+        orderObject.userObject = userObject;
     }
     
     /* start view logic // past
