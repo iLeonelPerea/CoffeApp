@@ -13,6 +13,7 @@
 #import "ProductCellTableViewCell.h"
 #import "ShoppingCartViewController.h"
 #import "ProductObject.h"
+#import <JGProgressHUD.h>
 #import "AppDelegate.h"
 #import "CustomButton.h"
 
@@ -22,7 +23,6 @@
 @property (nonatomic, strong) NSMutableArray *arrProductObjects;
 @property (nonatomic, strong) NSMutableArray *arrProductCategoriesObjects;
 @property (nonatomic, assign) BOOL isViewPlaceOrderActive;
-@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, strong) IBOutlet UITableView * tblProducts;
 @property (nonatomic, strong) IBOutlet UILabel * lblCurrentDay;
 @property (nonatomic, strong) IBOutlet UIView *viewPlaceOrder;

@@ -18,7 +18,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize arrProductObjects, arrProductCategoriesObjects, pageControl, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder;
+@synthesize arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,15 +54,20 @@
     
     //Create a notification that reload data
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSynchronizeDefaults:) name:@"doSynchronizeDefaults" object:nil];
+    UILabel * lblControllerTitle = [[UILabel alloc] init];
+    [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
+    [lblControllerTitle setText:@"The Crowd's Chef"];
+    [lblControllerTitle setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
+    [lblControllerTitle setTextColor:[UIColor whiteColor]];
+    [[self navigationItem] setTitleView:lblControllerTitle];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     //assign labels data days
-    lblCurrentDay.text = [arrWeekDays objectAtIndex:currentDayOfWeek - 2];
     
     //Set objects to fit screen between 3.5 and 4 inches
-    [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 90, 320, 440):CGRectMake(0, 90, 320, 333)];
     [self synchronizeDefaults];
+    [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 90, 320, 333)];
 }
 
 #pragma mark -- setQuantitySelectedProducts delegate
@@ -162,7 +167,7 @@
 #pragma mark -- Table view data delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (IS_IPHONE_5)?440.0f:340.0f;
+    return (IS_IPHONE_5)?230.0f:340.0f;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -174,8 +179,36 @@
     return [[arrProductObjects objectAtIndex:section] count];
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    return [(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:section] category_name];
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    //to-do:refactor this for other screen size
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 50)];
+    
+    UIImageView * imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 50)];
+    [imgBackground setImage:[UIImage imageNamed:@"patron_01.png"]];
+    [headerView addSubview:imgBackground];
+    
+    UILabel * lblSectionTitle = [[UILabel alloc] init];
+    [lblSectionTitle setFrame:CGRectMake(20, 0, 200, 50)];
+    [lblSectionTitle setText:[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:section] category_name ]];
+    [lblSectionTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20]];
+    [lblSectionTitle setTextColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:255]];
+    [headerView addSubview:lblSectionTitle];
+    
+    UILabel * lblProductsNumber = [[UILabel alloc] init];
+    [lblProductsNumber setFrame:CGRectMake(200, 0, 100, 50)];
+    [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:@"1 Product"];
+    [lblProductsNumber setTextAlignment:NSTextAlignmentRight];
+    [lblProductsNumber setTextColor:[UIColor colorWithRed:146.0f/255.0f green:142.0f/255.0f blue:140.0f/255.0f alpha:1.0f]];
+    [lblProductsNumber setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
+    [headerView addSubview:lblProductsNumber];
+    
+    return headerView;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -195,13 +228,9 @@
     
     productObject = [[ProductObject alloc] init];
     productObject = [[arrProductObjects objectAtIndex:indexPath.section] objectAtIndex:(NSInteger)indexPath.row];
-    
-    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 20, 280, 21):CGRectMake(20, 10, 280, 21)];
-    [lblName setText: [productObject name]];
-    [lblName setTextAlignment:NSTextAlignmentCenter];
-    [cell addSubview:lblName];
-    
-    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 53, 280, 192):CGRectMake(50, 43, 224, 154)];
+
+    //--------- Product image
+    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 230):CGRectMake(50, 43, 224, 154)];
     if(productObject.masterObject.imageObject.attachment_file_name != nil){
         NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
@@ -213,41 +242,76 @@
         [imgProduct setImage:[UIImage imageNamed:@"noAvail.png"]];
     }
     [cell addSubview:imgProduct];
-     
-    UILabel *lblDescription = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 253, 199, 73):CGRectMake(20, 200, 199, 73)];
-    [lblDescription setNumberOfLines:4];
-    [lblDescription setText:[productObject description]];
-    [cell addSubview:lblDescription];
     
-    UILabel *lblQuantity = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(81, 338, 158, 21):CGRectMake(81, 280, 158, 21)];
-    [lblQuantity setText:[NSString stringWithFormat:@"Request: %d Units", productObject.quantity]];
-    [lblQuantity setTextAlignment:NSTextAlignmentCenter];
-    [cell addSubview:lblQuantity];
+    UIImageView * imgTransparent = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"item_transparency.png"]];
+    [imgTransparent setFrame:(IS_IPHONE_5)?CGRectMake(20, 140, 280, 80):CGRectMake(20, 280, 53, 20)];
+    [cell addSubview:imgTransparent];
     
-    CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeSystem];
-    [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(20, 334, 53, 30):CGRectMake(20, 280, 53, 20)];
-    [btnAdd.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    [btnAdd setTitle:@"+" forState:UIControlStateNormal];
+    //--------- Product name
+    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 145, 280, 21):CGRectMake(20, 10, 280, 21)];
+    [lblName setText: [productObject name]];
+    [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:15]];
+    [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
+    [lblName setTextAlignment:NSTextAlignmentCenter];
+    [cell addSubview:lblName];
+    
+    //--------- Add button
+    CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
+    //Check the quantity selected by user, if is more than 0, then change the size of the button on screen
+    if ([productObject quantity] > 0) {
+        [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(95, 170, 200, 45):CGRectMake(20, 280, 53, 20)];
+        [btnAdd setImage:[UIImage imageNamed:@"add02_btn_up.png"] forState:UIControlStateNormal];
+        [btnAdd setImage:[UIImage imageNamed:@"add02_btn_down.png"] forState:UIControlStateHighlighted];
+    }else{
+        [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
+        [btnAdd setImage:[UIImage imageNamed:@"add_btn_up.png"] forState:UIControlStateNormal];
+        [btnAdd  setImage:[UIImage imageNamed:@"add_btn_down.png"] forState:UIControlStateHighlighted];
+    }
     [btnAdd setIndex:(int)indexPath.row];
     [btnAdd setSection:(int)indexPath.section];
     int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
     [btnAdd setEnabled:( productDayAvailable < currentDayOfWeek)? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
+
+    //When a product is outstock
     if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
-        [btnAdd setEnabled:NO];
-        [btnAdd setHidden:YES];
-        [lblQuantity setText:@"Without Stock"];
+        [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
+        [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up.png"] forState:UIControlStateNormal];
+        [btnAdd  setImage:[UIImage imageNamed:@"outstock_btn_down.png"] forState:UIControlStateHighlighted];
     }
     [btnAdd addTarget:self action:@selector(didSelectProduct:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:btnAdd];
-    
-    CustomButton *btnMinus = [CustomButton buttonWithType:UIButtonTypeSystem];
-    [btnMinus setFrame:(IS_IPHONE_5)?CGRectMake(247, 334, 53, 30):CGRectMake(247, 280, 53, 20)];
-    [btnMinus.titleLabel setFont:[UIFont systemFontOfSize:14]];
+
+    //-------- Minus button
+    CustomButton *btnMinus = [CustomButton buttonWithType:UIButtonTypeCustom];
+    if ([productObject quantity] > 0)
+    {
+        [btnMinus setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 60, 45):CGRectMake(247, 280, 53, 20)];
+        [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_up.png"] forState:UIControlStateNormal];
+        [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_down.png"] forState:UIControlStateHighlighted];
+    }
     [btnMinus setTitle:@"-" forState:UIControlStateNormal];
     [btnMinus setIndex:(int)indexPath.row];
-    [btnMinus setSection:(int)indexPath.section];    [btnMinus setHidden:(productObject.quantity > 0)?NO:YES];
+    [btnMinus setSection:(int)indexPath.section];
+    [btnMinus setHidden:(productObject.quantity > 0)?NO:YES];
     [btnMinus addTarget:self action:@selector(didDeselectProduct:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:btnMinus];
+    
+    //-------- Quantity selected
+    UIImageView * imgBadge = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge_ima.png"]];
+    [imgBadge setFrame:(IS_IPHONE_5)?CGRectMake(220, 10, 80, 80):CGRectMake(20, 280, 53, 20)];
+    [imgBadge setHidden:(productObject.quantity > 0)?NO:YES];
+    [cell addSubview:imgBadge];
+    
+    UILabel *lblQuantity = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(223, 10, 70, 70):CGRectMake(81, 280, 158, 21)];
+    [lblQuantity setText:[NSString stringWithFormat:@"%d Selected", productObject.quantity]];
+    [lblQuantity setTextAlignment:NSTextAlignmentCenter];
+    [lblQuantity setTextColor:[UIColor whiteColor]];
+    [lblQuantity setNumberOfLines:2];
+    [lblQuantity setFont:[UIFont fontWithName:@"Helvetica" size:15]];
+    [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
+    [cell addSubview:lblQuantity];
+    //--------------------------
+    
     return cell;
 }
 

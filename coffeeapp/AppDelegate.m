@@ -46,14 +46,6 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         orderObject.userObject = userObject;
     }
     
-    /* start view logic // past
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.viewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
-    self.navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
-    self.window.rootViewController = self.navigationController;
-    [self.window makeKeyAndVisible];
-    */
-    
     // start view logic // new
     [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
     //Set the mainViewController property
@@ -63,8 +55,11 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [self setViewController: [[JASidePanelController alloc] init]];
     [[self viewController] setLeftPanel:[[LeftMenuViewController alloc] init]];
     [[self viewController] setLeftPanel:[[self viewController] leftPanel]];
-    [[self viewController] setLeftFixedWidth:200];
+    [[self viewController] setLeftFixedWidth:270];
     [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+
+    //Navigation bar customization
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:4.0f/255.0f green:130.0f/255.0f blue:118.0f/255.0f alpha:1.0f]];
     
     //Check if the user is logged to set the root view controller. If is true, show the menu with the left side panel, in other case, show Login view controller
     if ([[userObject userSpreeToken] isEqual:@""]) {
@@ -111,23 +106,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDidRequestSignIn:) name:@"userDidRequestSignIn" object:nil];
     
     [DBManager checkOrCreateDataBase];
+    
     return YES;
 }
 
-/*
- 
- ///////////////////////////////////////////////////////////
- // Uncomment this method if you are using Facebook
- ///////////////////////////////////////////////////////////
- 
- - (BOOL)application:(UIApplication *)application
- openURL:(NSURL *)url
- sourceApplication:(NSString *)sourceApplication
- annotation:(id)annotation {
- return [PFFacebookUtils handleOpenURL:url];
- }
- 
- */
 
 #pragma mark -- Menu options methods
 -(void)userDidRequestMenu:(NSNotification*)notification
