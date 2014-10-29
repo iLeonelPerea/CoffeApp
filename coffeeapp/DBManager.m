@@ -211,4 +211,33 @@
         return nil;
 }
 
++(NSArray *)getOrdersHistory:(BOOL)withPastOrders
+{
+    sqlite3 * appDB;
+    sqlite3_stmt * statement;
+    const char * dbPath = [[DBManager getDBPath] UTF8String];
+    NSMutableArray * arrToReturn = [[NSMutableArray alloc] init];
+    NSString * sqlSelect = @"";
+    
+    if (sqlite3_open(dbPath, &appDB) ==  SQLITE_OK) {
+        NSDateFormatter *dtFormat =[[NSDateFormatter alloc] init];
+        [dtFormat setDateFormat:@"dd-MM-yyyy HH:mm"];
+        
+        if (withPastOrders) {
+            sqlSelect = [NSString stringWithFormat:@"SELECT B.PRODUCT_DELIVERY_DATE, C.PRODUCT_MASTER_NAME FROM ORDERSLOG AS A LEFT JOIN ORDER_PRODUCT AS B ON B.ORDER_ID = A.ORDER_ID LEFT JOIN PRODUCTS AS C ON C.PRODUCT_MASTER_MASTEROBJECT_ID = B.PRODUCT_MASTEROBJECT_ID WHERE B.PRODUCT_DELIVERY_DATE < %f ORDER BY B.PRODUCT_DELIVERY_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
+        }else{
+            sqlSelect = [NSString stringWithFormat:@"SELECT B.PRODUCT_DELIVERY_DATE, C.PRODUCT_MASTER_NAME FROM ORDERSLOG AS A LEFT JOIN ORDER_PRODUCT AS B ON B.ORDER_ID = A.ORDER_ID LEFT JOIN PRODUCTS AS C ON C.PRODUCT_MASTER_MASTEROBJECT_ID = B.PRODUCT_MASTEROBJECT_ID WHERE B.PRODUCT_DELIVERY_DATE >= %f ORDER BY B.PRODUCT_DELIVERY_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
+        }
+        const char *select_stmt = [sqlSelect UTF8String];
+        sqlite3_prepare_v2(appDB, select_stmt, -1, &statement, nil);
+        while (sqlite3_step(statement) != SQLITE_DONE) {
+            NSMutableDictionary *dictOrderHistory = [[NSMutableDictionary alloc] init];
+            [dictOrderHistory setObject:[dtFormat stringFromDate:[NSDate dateWithTimeIntervalSince1970:sqlite3_column_double(statement, 0)]] forKey:@"DATE"];
+            [dictOrderHistory setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 1)] forKey:@"PRODUCT_NAME"];
+            [arrToReturn addObject:dictOrderHistory];
+        }
+    }
+    return arrToReturn;
+}
+
 @end

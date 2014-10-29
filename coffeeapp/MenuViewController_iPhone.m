@@ -277,7 +277,6 @@
 }
 
 #pragma mark -- action for + button in cell
-
 -(void)didSelectProduct:(id)sender
 {
     ProductObject * selectedProduct = [ProductObject new];
