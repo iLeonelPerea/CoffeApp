@@ -19,10 +19,8 @@
 @interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSMutableArray *arrProductObjects;
 @property (nonatomic, strong) NSMutableArray *arrProductCategoriesObjects;
-@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
 @property (nonatomic, assign) BOOL isPageControlInUse;
 @property (nonatomic, strong) IBOutlet UITableView * tblProducts;
-@property (nonatomic, strong) IBOutlet UILabel * lblCurrentDay;
 @property (nonatomic, strong) NSArray * arrWeekDays;
 @property (nonatomic, strong) JGProgressHUD *HUDJMProgress;
 @property (nonatomic, strong) ProductObject *productObject;
