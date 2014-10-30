@@ -72,7 +72,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [prgLoaging showInView:[self view]];
         [self refreshInterfaceBasedOnSignIn];
         AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
-        userObject = [[UserObject alloc] initUser:[person displayName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag] urlProfileImage:[[person image] url] ];
+        GTLPlusPersonName * nameData = [person name];
+        //NSLog(@"name: %@, lastname: %@", [nameData givenName], [nameData familyName]);
+        userObject = [[UserObject alloc] initUser:[person displayName] withFirstName:[nameData givenName] andLastName:[nameData familyName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag] urlProfileImage:[[person image] url] ];
         myAppDelegate.orderObject.userObject = self.userObject;
     }
 }

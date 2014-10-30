@@ -9,7 +9,7 @@
 #import "UserObject.h"
 
 @implementation UserObject
-@synthesize userId, userName, userEmail, userPassword, userUrlProfileImage, userSpreeToken;
+@synthesize userId, firstName, lastName, userName, userEmail, userPassword, userUrlProfileImage, userSpreeToken;
 
 //Init method set default properties values
 -(id)init
@@ -17,6 +17,8 @@
     self = [super init];
     if (self) {
         [self setUserId:0];
+        [self setFirstName:@""];
+        [self setLastName:@""];
         [self setUserName:@""];
         [self setUserEmail:@""];
         [self setUserPassword:@""];
@@ -27,11 +29,13 @@
 }
 
 //Create a custom init method which do Log In in Spree store. If the user is not registered, will be and retrieved the necesary data
--(id)initUser:(NSString*)user withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage
+-(id)initUser:(NSString*)user withFirstName:(NSString*)strFirstName andLastName:(NSString*)strLastName withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage
 {
     self = [super init];
     if (self) {
         [self setUserName:user];
+        [self setFirstName:strFirstName];
+        [self setLastName:strLastName];
         [self setUserEmail:email];
         [self setUserPassword:password];
         [self setUserUrlProfileImage:[urlProfileImage stringByReplacingOccurrencesOfString:@"?sz=50"
@@ -79,6 +83,8 @@
     if (self) {
         [self setUserId:[coder decodeIntForKey:@"userId"]];
         [self setUserName:[coder decodeObjectForKey:@"userName"]];
+        [self setFirstName:[coder decodeObjectForKey:@"firstName"]];
+        [self setLastName:[coder decodeObjectForKey:@"lastName"]];
         [self setUserEmail:[coder decodeObjectForKey:@"userEmail"]];
         [self setUserPassword:[coder decodeObjectForKey:@"userPassword"]];
         [self setUserUrlProfileImage:[coder decodeObjectForKey:@"userUrlProfileImage"]];
@@ -92,6 +98,8 @@
 {
     [coder encodeInt:userId forKey:@"userId"];
     [coder encodeObject:userName forKey:@"userName"];
+    [coder encodeObject:firstName forKey:@"firstName"];
+    [coder encodeObject:lastName forKey:@"lastName"];
     [coder encodeObject:userEmail forKey:@"userEmail"];
     [coder encodeObject:userPassword forKey:@"userPassword"];
     [coder encodeObject:userUrlProfileImage forKey:@"userUrlProfileImage"];
