@@ -79,9 +79,6 @@
         ProductObject *productObject;
         //first time loading fix
         __block int totalImages = [[result objectForKey:@"total_count"] intValue]; // define __block var, to be used inside async block, in this case AsyncImageDownloader method
-        NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults]; // Save the count of sections
-        [defaults setObject:[result objectForKey:@"total_count"] forKey:@"count_sections"];
-        [defaults synchronize];
         // this is to control callback dispatch, once all images have been downloaded.
         NSArray * arrKeys = [result allKeys]; //get all keys from result (since keys are dates)
         for(NSString * strKey in arrKeys)

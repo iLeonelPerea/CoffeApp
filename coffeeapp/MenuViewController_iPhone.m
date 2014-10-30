@@ -171,8 +171,7 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
-    return [[defaults objectForKey:@"count_sections"] intValue]; // Save the count of sections
+    return [arrProductObjects count]; // Save the count of sections
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
