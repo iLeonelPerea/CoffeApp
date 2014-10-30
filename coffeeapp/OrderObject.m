@@ -104,8 +104,10 @@
     
     //Billing address
     NSMutableDictionary * dictBillingAddressAttributes = [[NSMutableDictionary alloc] init];
-    [dictBillingAddressAttributes setObject:@"Crowd" forKey:@"firstname"];
-    [dictBillingAddressAttributes setObject:@"Interactive" forKey:@"lastname"];
+    /*[dictBillingAddressAttributes setObject:@"Crowd" forKey:@"firstname"];
+    [dictBillingAddressAttributes setObject:@"Interactive" forKey:@"lastname"];*/
+    [dictBillingAddressAttributes setObject:userObject.firstName forKey:@"firstname"];
+    [dictBillingAddressAttributes setObject:userObject.lastName forKey:@"lastname"];
     [dictBillingAddressAttributes setObject:@"Constitución 2035" forKey:@"address1"];
     [dictBillingAddressAttributes setObject:@"Colima" forKey:@"city"];
     [dictBillingAddressAttributes setObject:@"312123456789" forKey:@"phone"];
@@ -116,8 +118,10 @@
     
     //Shipping address
     NSMutableDictionary * dictAddressAttributes = [[NSMutableDictionary alloc] init];
-    [dictAddressAttributes setObject:@"Crowd" forKey:@"firstname"];
-    [dictAddressAttributes setObject:@"Interactive" forKey:@"lastname"];
+    /*[dictAddressAttributes setObject:@"Crowd" forKey:@"firstname"];
+    [dictAddressAttributes setObject:@"Interactive" forKey:@"lastname"];*/
+    [dictAddressAttributes setObject:userObject.firstName forKey:@"firstname"];
+    [dictAddressAttributes setObject:userObject.lastName forKey:@"lastname"];
     [dictAddressAttributes setObject:@"Constitucion 2035" forKey:@"address1"];
     [dictAddressAttributes setObject:@"Colima" forKey:@"city"];
     [dictAddressAttributes setObject:@"312123456789" forKey:@"phone"];
@@ -126,7 +130,7 @@
     [dictAddressAttributes setObject:@"38" forKey:@"country_id"];
     [dictFullOrder setObject:dictAddressAttributes forKey:@"ship_address_attributes"];
     
-    //Selected prodcuts
+    //Selected products
     [dictFullOrder setObject:arrLineItems forKey:@"line_items"];
     
     //Payment method

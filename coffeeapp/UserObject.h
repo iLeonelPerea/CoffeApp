@@ -12,6 +12,8 @@
 @interface UserObject : NSObject
 
 @property (nonatomic, assign) int userId;
+@property (nonatomic, strong) NSString *firstName;
+@property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSString *userName;
 @property (nonatomic, strong) NSString *userEmail;
 @property (nonatomic, strong) NSString *userPassword;
@@ -19,6 +21,7 @@
 @property (nonatomic, strong) NSString *userSpreeToken;
 //@property (nonatomic, strong) NSString *userChannel; // leave this here if, someday user should go for his coffee, notification may be usefull
 
--(id)initUser:(NSString*)user withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage;
+//-(id)initUser:(NSString*)user withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage;
+-(id)initUser:(NSString*)user withFirstName:(NSString*)strFirstName andLastName:(NSString*)strLastName withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage;
 
 @end
