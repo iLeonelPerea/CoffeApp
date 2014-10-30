@@ -13,6 +13,7 @@
 #import "MenuViewController_iPhone.h"
 #import "OrdersHistoryViewController.h"
 #import "DBManager.h"
+#import "OrderObject.h"
 
 @class LoginViewController, JASidePanelController;
 
@@ -23,5 +24,6 @@
 @property (nonatomic, strong) LoginViewController * mainViewController;
 @property (nonatomic, strong) JASidePanelController * viewController;
 @property (nonatomic, strong) UserObject *userObject;
+@property (nonatomic, strong) OrderObject *orderObject;
 
 @end

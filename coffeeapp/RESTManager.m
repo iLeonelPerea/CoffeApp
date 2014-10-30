@@ -10,7 +10,7 @@
 #import <AsyncImageDownloader.h>
 #import <UIKit/UIKit.h>
 
-#define TESTING_URL @"http://5661f5cd.ngrok.com/api"
+#define TESTING_URL @"http://539aac34.ngrok.com/api"
 
 @implementation RESTManager
 
@@ -101,7 +101,16 @@
                     [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
                     NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
                     NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
-                    NSString *url = productObject.masterObject.imageObject.product_url;
+                    NSArray * arrUrl = [productObject.masterObject.imageObject.product_url componentsSeparatedByString:@"?"];
+                    NSString * url;
+                    if([arrUrl count] > 1)
+                    {
+                        url = [arrUrl objectAtIndex:0];
+                    }
+                    else
+                    {
+                        url = productObject.masterObject.imageObject.product_url;
+                    }
                     if(url != nil)
                     {
                         [[[AsyncImageDownloader alloc] initWithFileURL:url successBlock:^(NSData *data) {

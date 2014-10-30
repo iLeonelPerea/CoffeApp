@@ -71,7 +71,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     } else {
         [prgLoaging showInView:[self view]];
         [self refreshInterfaceBasedOnSignIn];
+        AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
         userObject = [[UserObject alloc] initUser:[person displayName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag] urlProfileImage:[[person image] url] ];
+        myAppDelegate.orderObject.userObject = self.userObject;
     }
 }
 
