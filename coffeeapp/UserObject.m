@@ -49,7 +49,7 @@
                     if ([[result objectForKey:@"error"] isEqualToString:@"Record not found"]) {
                         
                         NSMutableDictionary *jsonDictRegister = [NSMutableDictionary dictionaryWithDictionary:@{@"user":@{@"email": [self userEmail], @"password": [self userPassword], @"password_confirmation": [self userPassword]}}];
-                        [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:YES withAccessToken:nil toCallback:^(id result) {
+                        [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:NO withAccessToken:nil toCallback:^(id result) {
                             
                             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
                                 NSLog(@"%@",[result objectForKey:@"error"]);

@@ -13,7 +13,7 @@
 @end
 
 @implementation LeftMenuViewController
-@synthesize tblMenu, arrMenu, isUserLogged, btnSignOut, lblUser, imgUserProfile;
+@synthesize tblMenu, arrMenu, isUserLogged, btnSignOut, lblUser, imgUserProfile, HUD;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -95,5 +95,4 @@
     //Calls to set the main view controller to display
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestSignOut" object:nil];
 }
-
 @end

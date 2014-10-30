@@ -98,7 +98,16 @@
                     [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
                     NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
                     NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
-                    NSString *url = productObject.masterObject.imageObject.product_url;
+                    NSArray * arrUrl = [productObject.masterObject.imageObject.product_url componentsSeparatedByString:@"?"];
+                    NSString * url;
+                    if([arrUrl count] > 1)
+                    {
+                        url = [arrUrl objectAtIndex:0];
+                    }
+                    else
+                    {
+                        url = productObject.masterObject.imageObject.product_url;
+                    }
                     if(url != nil)
                     {
                         [[[AsyncImageDownloader alloc] initWithFileURL:url successBlock:^(NSData *data) {
