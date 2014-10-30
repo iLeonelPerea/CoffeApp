@@ -19,8 +19,7 @@
 @property (nonatomic, strong) IBOutlet UILabel * lblUser;
 @property (nonatomic, strong) IBOutlet UIButton * btnSignOut;
 @property (nonatomic, strong) IBOutlet NZCircularImageView * imgUserProfile;
-
+@property (nonatomic, strong) JGProgressHUD * HUD;
 // methods
 -(IBAction)doSignOut:(id)sender;
-
 @end

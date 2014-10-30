@@ -45,6 +45,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+// example on how to send a remote Notification
 -(void)doRequestAmericano:(id)sender
 {
     //add hud
@@ -63,14 +64,6 @@
     PFPush *push = [[PFPush alloc] init];
     [push setChannel:@"requests"];
     [push setData:data];
-    [push sendPushInBackground];
-    
-    
-    /*
-    PFPush *push = [[PFPush alloc] init];
-    [push setChannel:@"requests"];
-    [push setMessage:strMessage];
-     */
     [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [HUD dismissAnimated:YES];
         if(!succeeded)
