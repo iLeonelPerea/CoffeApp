@@ -7,6 +7,9 @@
 //
 
 #import "ShoppingCartViewController.h"
+#import <Parse/Parse.h>
+#import "AppDelegate.h"
+#import "UserObject.h"
 
 #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
 
@@ -83,6 +86,7 @@
     [RESTManager sendData:myAppDelegate.orderObject.getOrderPetition toService:@"checkouts" withMethod:@"POST" isTesting:NO
           withAccessToken:nil toCallback:^(id result) {
               [HUDJMProgress dismissAnimated:YES];
+              [self doPostPushNotification];
               NSLog(@"Order done with result %@", result);
               
               NSDictionary * dictResult = result;
@@ -116,8 +120,34 @@
               [defaults synchronize];
               [[NSNotificationCenter defaultCenter] postNotificationName:@"doSynchronizeDefaults" object:nil];
               [self.parentViewController bdb_dismissPopupViewControllerWithAnimation:BDBPopupViewHideAnimationDefault completion:nil];
+
           }];
     // Call the next view
+}
+
+//post notification to coffee boy app
+-(void)doPostPushNotification
+{
+    // Send a notification to all devices subscribed to the "requests" channel, in this case coffee boy app.
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    NSString * strMessage = [NSString stringWithFormat:@"Nuevo pedido de: %@", appDelegate.userObject.userName];
+    
+    NSDictionary *data = @{
+                           @"alert": strMessage,
+                           @"userName": appDelegate.userObject.userName,
+                           @"userPic": appDelegate.userObject.userUrlProfileImage
+                           };
+    PFPush *push = [[PFPush alloc] init];
+    [push setChannel:@"requests"];
+    [push setData:data];
+    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if(!succeeded)
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
 }
 
 -(IBAction)doCancel:(id)sender{

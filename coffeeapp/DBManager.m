@@ -231,22 +231,26 @@
     [DBManager finalizeStatements:statement withDB:appDB];
 }
 
-+(NSArray *)getOrdersHistory:(BOOL)withPastOrders
++(NSMutableArray *)getOrdersHistory:(BOOL)withPastOrders
 {
     sqlite3 * appDB;
     sqlite3_stmt * statement;
     const char * dbPath = [[DBManager getDBPath] UTF8String];
     NSMutableArray * arrToReturn = [[NSMutableArray alloc] init];
+    NSMutableArray * arrTotalOrders = [[NSMutableArray alloc] init];
     NSString * sqlSelect = @"";
-    
+
+    //Get the distincts orders (incoming/past)
     if (sqlite3_open(dbPath, &appDB) ==  SQLITE_OK) {
         NSDateFormatter *dtFormat =[[NSDateFormatter alloc] init];
         [dtFormat setDateFormat:@"dd-MM-yyyy HH:mm"];
         
         if (withPastOrders) {
-            sqlSelect = [NSString stringWithFormat:@"SELECT ORDER_ID, ORDER_DATE, PRODUCT_ID, PRODUCT_NAME FROM ORDERSLOG WHERE ORDER_DATE < %f ORDER BY ORDER_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
+            sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_STATUS = \"complete\"  ORDER BY ORDER_DATE DESC"];
+            //sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_DATE < %f ORDER BY ORDER_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
         }else{
-            sqlSelect = [NSString stringWithFormat:@"SELECT ORDER_ID, ORDER_DATE, PRODUCT_ID, PRODUCT_NAME FROM ORDERSLOG WHERE ORDER_DATE >= %f ORDER BY ORDER_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
+            sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_STATUS = \"confirm\"  ORDER BY ORDER_DATE DESC"];
+            //sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_DATE >= %f ORDER BY ORDER_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
         }
         const char *select_stmt = [sqlSelect UTF8String];
         sqlite3_prepare_v2(appDB, select_stmt, -1, &statement, nil);
@@ -254,40 +258,36 @@
             NSMutableDictionary *dictOrderHistory = [[NSMutableDictionary alloc] init];
             [dictOrderHistory setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 0)] forKey:@"ORDER_ID"];
             [dictOrderHistory setObject:[dtFormat stringFromDate:[NSDate dateWithTimeIntervalSince1970:sqlite3_column_double(statement, 1)]] forKey:@"ORDER_DATE"];
-            [dictOrderHistory setObject:[NSString stringWithFormat:@"%d",sqlite3_column_int(statement, 2)] forKey:@"PRODUCT_ID"];
-            [dictOrderHistory setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 3)] forKey:@"PRODUCT_NAME"];
-            [arrToReturn addObject:dictOrderHistory];
+            [dictOrderHistory setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 2)] forKey:@"ORDER_STATUS"];
+            [arrTotalOrders addObject:dictOrderHistory];
         }
     }
-    return arrToReturn;
-}
+    [DBManager finalizeStatements:statement withDB:appDB];
 
-+(NSArray*)getOrderHistorySummary:(BOOL)withPastOrders
-{
-    sqlite3 * appDB;
-    sqlite3_stmt * statement;
-    const char * dbPath = [[DBManager getDBPath] UTF8String];
-    NSMutableArray * arrToReturn = [[NSMutableArray alloc] init];
-    NSString * sqlSelect = @"";
-    
-    if (sqlite3_open(dbPath, &appDB) ==  SQLITE_OK) {
-        NSDateFormatter *dtFormat =[[NSDateFormatter alloc] init];
-        [dtFormat setDateFormat:@"dd-MM-yyyy HH:mm"];
-        
-        if (withPastOrders) {
-            sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_DATE < %f ORDER BY ORDER_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
-        }else{
-            sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_DATE >= %f ORDER BY ORDER_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
+    //Get the detail of each order previously selected
+    for (NSMutableDictionary * dictDetailOrder in arrTotalOrders) {
+        NSMutableArray * arrOrderDetail = [[NSMutableArray alloc] init];
+        if (sqlite3_open(dbPath, &appDB) ==  SQLITE_OK) {
+            NSDateFormatter *dtFormat =[[NSDateFormatter alloc] init];
+            [dtFormat setDateFormat:@"dd-MM-yyyy HH:mm"];
+            
+            if (withPastOrders) {
+                sqlSelect = [NSString stringWithFormat:@"SELECT PRODUCT_ID, PRODUCT_NAME FROM ORDERSLOG WHERE ORDER_ID = '%@' ORDER BY ORDER_DATE DESC", [dictDetailOrder objectForKey:@"ORDER_ID"]];
+            }else{
+                sqlSelect = [NSString stringWithFormat:@"SELECT PRODUCT_ID, PRODUCT_NAME FROM ORDERSLOG WHERE ORDER_ID = '%@' ORDER BY ORDER_DATE DESC", [dictDetailOrder objectForKey:@"ORDER_ID"]];
+            }
+            const char *select_stmt = [sqlSelect UTF8String];
+            sqlite3_prepare_v2(appDB, select_stmt, -1, &statement, nil);
+            while (sqlite3_step(statement) != SQLITE_DONE) {
+                NSMutableDictionary *dictDetail = [[NSMutableDictionary alloc] init];
+                [dictDetail setObject:[NSString stringWithFormat:@"%d",sqlite3_column_int(statement, 0)] forKey:@"PRODUCT_ID"];
+                [dictDetail setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 1)] forKey:@"PRODUCT_NAME"];
+                [arrOrderDetail addObject:dictDetail];
+            }
+            [dictDetailOrder setObject:arrOrderDetail forKey:@"ORDER_DETAIL"];
+            [arrToReturn addObject:dictDetailOrder];
         }
-        const char *select_stmt = [sqlSelect UTF8String];
-        sqlite3_prepare_v2(appDB, select_stmt, -1, &statement, nil);
-        while (sqlite3_step(statement) != SQLITE_DONE) {
-            NSMutableDictionary *dictOrderHistory = [[NSMutableDictionary alloc] init];
-            [dictOrderHistory setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 0)] forKey:@"ORDER_ID"];
-            [dictOrderHistory setObject:[dtFormat stringFromDate:[NSDate dateWithTimeIntervalSince1970:sqlite3_column_double(statement, 1)]] forKey:@"ORDER_DATE"];
-            [dictOrderHistory setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 0)] forKey:@"ORDER_STATUS"];
-            [arrToReturn addObject:dictOrderHistory];
-        }
+        [DBManager finalizeStatements:statement withDB:appDB];
     }
     return arrToReturn;
 }
