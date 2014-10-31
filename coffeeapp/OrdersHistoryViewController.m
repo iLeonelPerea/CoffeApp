@@ -70,7 +70,7 @@
     [lblSectionTitle setFrame:CGRectMake(20, 15, 200, 30)];
     [lblSectionTitle setText:[dictOrderHeader objectForKey:@"ORDER_DATE"]];
     [lblSectionTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20]];
-    [lblSectionTitle setTextColor:[UIColor blackColor]];
+    [lblSectionTitle setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [headerView addSubview:lblSectionTitle];
     
     /*
