@@ -62,8 +62,8 @@
     [[self navigationItem] setTitleView:lblControllerTitle];
     
     //Set the elementos on the placeHolder view
-    [lblProductsCount setFrame:CGRectMake(20, 0, 75, 60)];
-    [lblProductsCount setTextAlignment:NSTextAlignmentCenter];
+    [lblProductsCount setFrame:CGRectMake(20, 0, 100, 60)];
+    [lblProductsCount setTextAlignment:NSTextAlignmentLeft];
     [btnPlaceOrder setFrame:CGRectMake(175, 0, 120, 60)];
     [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18]];
     [[btnPlaceOrder titleLabel] setTextAlignment:NSTextAlignmentRight];
