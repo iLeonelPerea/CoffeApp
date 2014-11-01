@@ -60,14 +60,24 @@
     [lblControllerTitle setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
+    
+    //Set the elementos on the placeHolder view
+    [lblProductsCount setFrame:CGRectMake(20, 0, 100, 60)];
+    [lblProductsCount setTextAlignment:NSTextAlignmentLeft];
+    [btnPlaceOrder setFrame:CGRectMake(175, 0, 120, 60)];
+    [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18]];
+    [[btnPlaceOrder titleLabel] setTextAlignment:NSTextAlignmentRight];
+    [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    //assign labels data days
-    
     //Set objects to fit screen between 3.5 and 4 inches
     [self synchronizeDefaults];
-    [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 90, 320, 333)];
+    if (isViewPlaceOrderActive) {
+        [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 510):CGRectMake(0, 90, 320, 333)];
+    }else{
+        [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 90, 320, 333)];
+    }
 }
 
 #pragma mark -- setQuantitySelectedProducts delegate
@@ -102,8 +112,9 @@
     arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
     [tblProducts reloadData];
     isViewPlaceOrderActive = false;
-    [UIView animateWithDuration:1.20f animations:^{
-        [UIView animateWithDuration:1.20f animations:^{
+    [UIView animateWithDuration:0.5f animations:^{
+        [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 90, 320, 333)];
+        [UIView animateWithDuration:1.0f animations:^{
             // Increase the frame.origin.y
             [viewPlaceOrder setFrame:CGRectMake(0, viewPlaceOrder.frame.origin.y+viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.width, viewPlaceOrder.frame.size.height)];
         }];
@@ -131,19 +142,21 @@
     // If found products in shoppingCart && is not visible the viewPlaceOrder
     if (productsCount>0 && !isViewPlaceOrderActive) {
         isViewPlaceOrderActive = true;
-        [UIView animateWithDuration:1.20f animations:^{
-            [UIView animateWithDuration:1.20f animations:^{
+        [UIView animateWithDuration:.5f animations:^{
+            [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 510):CGRectMake(0, 90, 320, 333)];
+            [UIView animateWithDuration:1.0f animations:^{
                 // Decrease the frame.origin.y
-                [viewPlaceOrder setFrame:CGRectMake(0, viewPlaceOrder.frame.origin.y-viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.width, viewPlaceOrder.frame.size.height)];
+                [viewPlaceOrder setFrame:CGRectMake(0, viewPlaceOrder.frame.origin.y-60, viewPlaceOrder.frame.size.width, 60)];
             }];
         } completion:^(BOOL finished) {
         }];
     }else if(productsCount==0 && isViewPlaceOrderActive){
         isViewPlaceOrderActive = false;
-        [UIView animateWithDuration:1.20f animations:^{
-            [UIView animateWithDuration:1.20f animations:^{
+        [UIView animateWithDuration:.5f animations:^{
+            [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 90, 320, 333)];
+            [UIView animateWithDuration:1.0f animations:^{
                 // Increase the frame.origin.y
-                [viewPlaceOrder setFrame:CGRectMake(0, viewPlaceOrder.frame.origin.y+viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.width, viewPlaceOrder.frame.size.height)];
+                [viewPlaceOrder setFrame:CGRectMake(0, viewPlaceOrder.frame.origin.y+60, viewPlaceOrder.frame.size.width, 60)];
             }];
         } completion:^(BOOL finished) {
         }];
@@ -275,7 +288,8 @@
     if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
         [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up.png"] forState:UIControlStateNormal];
-        [btnAdd  setImage:[UIImage imageNamed:@"outstock_btn_down.png"] forState:UIControlStateHighlighted];
+        [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down.png"] forState:UIControlStateHighlighted];
+        [btnAdd setEnabled:NO];
     }
     [btnAdd addTarget:self action:@selector(didSelectProduct:) forControlEvents:UIControlEventTouchUpInside];
     [cell addSubview:btnAdd];
@@ -315,7 +329,6 @@
 }
 
 #pragma mark -- action for + button in cell
-
 -(void)didSelectProduct:(id)sender
 {
     ProductObject * selectedProduct = [ProductObject new];
@@ -340,7 +353,6 @@
 - (IBAction)doPlaceOrder:(id)sender{
     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
     ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
-    //[self.navigationController pushViewController:shoppingCartViewController animated:YES];
     [self bdb_presentPopupViewController:shoppingCartViewController
                            withAnimation:BDBPopupViewShowAnimationDefault
                               completion:nil];

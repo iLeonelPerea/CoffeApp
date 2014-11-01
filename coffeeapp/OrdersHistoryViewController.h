@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBManager.h"
 
-@interface OrdersHistoryViewController : UIViewController
+@interface OrdersHistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (nonatomic, strong) IBOutlet UIImageView * imgPatron;
+@property (nonatomic, strong) IBOutlet UILabel * lblTitle;
+@property (nonatomic, strong) IBOutlet UITableView * tblOrders;
+@property (nonatomic, strong) IBOutlet UIButton * btnIncomingOrders;
+@property (nonatomic, strong) IBOutlet UIButton * btnPastOrders;
+@property (nonatomic, strong) NSMutableArray * arrOrders;
+@property (nonatomic, strong) NSMutableArray * arrOrdersDetail;
+
+-(IBAction)doShowPendingOrders:(id)sender;
+-(IBAction)doShowPastOrders:(id)sender;
 
 @end

@@ -88,11 +88,35 @@
               [HUDJMProgress dismissAnimated:YES];
               NSLog(@"order Number: %@ and order Token: %@", [result objectForKey:@"number"], [result objectForKey:@"token"]);
               [self doPostPushNotificationWithOrderNumber:[result objectForKey:@"number"] andOrderToken:[result objectForKey:@"token"]];
+              NSLog(@"Order done with result %@", result);
+              NSDictionary * dictResult = result;
+              if ([dictResult objectForKey:@"number"] != nil && [[dictResult objectForKey:@"state"] isEqual:@"complete"]) {
+                  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention" message:@"Order Placed!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                  [alert show];
+                  //Register the order log
+                  NSString * orderId = [dictResult objectForKey:@"number"];
+                  NSString * orderState = [dictResult objectForKey:@"state"];
+                  NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
+                  [dateFormat setDateFormat:@"dd-MM-yyyy HH:mm"];
+                  NSString * orderDate = [dateFormat stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[NSDate date] timeIntervalSince1970]]];
+                  for (ProductObject * tmpProductObject in arrProductsShoppingCart) {
+                      NSMutableDictionary * dictOrderLog = [[NSMutableDictionary alloc] init];
+                      [dictOrderLog setObject:orderId forKey:@"orderId"];
+                      [dictOrderLog setObject:orderState forKey:@"orderStatus"];
+                      [dictOrderLog setObject:orderDate forKey:@"orderDate"];
+                      [dictOrderLog setObject:[NSString stringWithFormat:@"%d",[[tmpProductObject masterObject] masterObject_id]] forKey:@"productId"];
+                      [dictOrderLog setObject:[[tmpProductObject masterObject] name] forKey:@"productName"];
+                      [dictOrderLog setObject:[NSString stringWithFormat:@"%d",[tmpProductObject quantity]] forKey:@"productQuantityOrdered"];
+                      [DBManager insertOrdersLog:dictOrderLog];
+                  }
+                  
+              }else{
+                  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention" message:@"Your order couldn't be proceeded" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                  [alert show];
+              }
               NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
               [defaults setObject:nil forKey:@"arrProductsInQueue"];
               [defaults synchronize];
-              UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention" message:@"Order Placed!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-              [alert show];
               [[NSNotificationCenter defaultCenter] postNotificationName:@"doSynchronizeDefaults" object:nil];
               [self.parentViewController bdb_dismissPopupViewControllerWithAnimation:BDBPopupViewHideAnimationDefault completion:nil];
 

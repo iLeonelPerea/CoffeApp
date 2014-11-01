@@ -20,5 +20,7 @@
 +(NSMutableArray *)getProductsCategory:(CategoryObject *)category;
 +(NSString*)getDBPath;
 +(void)deleteProducts;
++(void)insertOrdersLog:(NSDictionary*)dictDataOrder;
++(NSMutableArray*)getOrdersHistory:(BOOL)withPastOrders;
 
 @end
