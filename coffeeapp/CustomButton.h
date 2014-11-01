@@ -12,5 +12,6 @@
 
 @property (nonatomic, assign) int index;
 @property (nonatomic, assign) int section;
+@property (nonatomic, assign) BOOL active;
 
 @end
