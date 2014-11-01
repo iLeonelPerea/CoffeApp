@@ -84,10 +84,10 @@
     myAppDelegate.orderObject.arrLineItems = arrOrderItems; // Save the array in the orderObject
     [HUDJMProgress showInView:self.view];
     [RESTManager sendData:myAppDelegate.orderObject.getOrderPetition toService:@"checkouts" withMethod:@"POST" isTesting:NO
-          withAccessToken:nil toCallback:^(id result) {
+          withAccessToken:myAppDelegate.userObject.userSpreeToken isAccessTokenInHeader:YES toCallback:^(id result) {
               [HUDJMProgress dismissAnimated:YES];
-              [self doPostPushNotification];
-              NSLog(@"Order done with result %@", result);
+              NSLog(@"order Number: %@ and order Token: %@", [result objectForKey:@"number"], [result objectForKey:@"token"]);
+              [self doPostPushNotificationWithOrderNumber:[result objectForKey:@"number"] andOrderToken:[result objectForKey:@"token"]];
               NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
               [defaults setObject:nil forKey:@"arrProductsInQueue"];
               [defaults synchronize];
@@ -101,7 +101,7 @@
 }
 
 //post notification to coffee boy app
--(void)doPostPushNotification
+-(void)doPostPushNotificationWithOrderNumber:(NSString*)orderNumber andOrderToken:(NSString*)orderToken
 {
     // Send a notification to all devices subscribed to the "requests" channel, in this case coffee boy app.
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
@@ -111,6 +111,9 @@
     NSDictionary *data = @{
                            @"alert": strMessage,
                            @"userName": appDelegate.userObject.userName,
+                           @"userChannel": appDelegate.userObject.userChannel,
+                           @"orderNumber": orderNumber,
+                           @"orderToken": orderToken,
                            @"userPic": appDelegate.userObject.userUrlProfileImage
                            };
     PFPush *push = [[PFPush alloc] init];

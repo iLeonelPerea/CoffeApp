@@ -36,7 +36,7 @@
     [lblUserName setText:userObject.userName];
     [lblUserEmail setText:userObject.userEmail];
     NSString * userChannel = [NSString stringWithFormat:@"User_%@",userObject.userSpreeToken];
-    //[userObject setUserChannel:userChannel];
+    [userObject setUserChannel:userChannel];
     [PFPush subscribeToChannelInBackground:userChannel];
 }
 

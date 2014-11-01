@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSString *userPassword;
 @property (nonatomic, strong) NSString *userUrlProfileImage;
 @property (nonatomic, strong) NSString *userSpreeToken;
-//@property (nonatomic, strong) NSString *userChannel; // leave this here if, someday user should go for his coffee, notification may be usefull
+@property (nonatomic, strong) NSString *userChannel;
 
 //-(id)initUser:(NSString*)user withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage;
 -(id)initUser:(NSString*)user withFirstName:(NSString*)strFirstName andLastName:(NSString*)strLastName withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage;
