@@ -161,7 +161,7 @@
         } completion:^(BOOL finished) {
         }];
     }
-    [lblProductsCount setText:[NSString stringWithFormat:@"%d Products",productsCount]];
+    [lblProductsCount setText:(productsCount == 1)?[NSString stringWithFormat:@"%d Product",productsCount]:[NSString stringWithFormat:@"%d Products",productsCount]];
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
     [defaults synchronize];
 }
