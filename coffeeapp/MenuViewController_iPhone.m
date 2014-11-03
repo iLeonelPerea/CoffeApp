@@ -334,7 +334,7 @@
 {
     CustomButton * senderButton = (CustomButton*)sender;
     if (((ProductObject *)[[arrProductObjects objectAtIndex:((CustomButton *)sender).section] objectAtIndex:((CustomButton *)sender).index]).quantity==1) {
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Cantidad!" message:[NSString stringWithFormat:@"Está seguro de querer agregar a la orden %@ al ya agregado?", ((ProductObject *)[[arrProductObjects objectAtIndex:((CustomButton *)sender).section] objectAtIndex:((CustomButton *)sender).index]).name] delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Si", nil];
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Please check!" message:[NSString stringWithFormat:@"Are you sure you want to add two items to your order?"] delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
         [alert show];
         senderButton.active = YES;
     }else{
@@ -368,7 +368,7 @@
 #pragma mark -- UIAlertViewDelegate
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if([alertView.title isEqual:@"Cantidad!"])
+    if([alertView.title isEqual:@"Please check!"])
     {
         CustomButton * senderButton;
         for(UIView * cells in tblProducts.visibleCells) // Search into cells
