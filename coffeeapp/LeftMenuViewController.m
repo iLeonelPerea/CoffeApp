@@ -38,6 +38,7 @@
     {
         [imgUserProfile setImageWithResizeURL:userObject.userUrlProfileImage usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +47,11 @@
 }
 
 #pragma mark -- UITableViewDelegate
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return (NSInteger)[arrMenu count];
