@@ -172,7 +172,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 130;
+    return 150;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -183,6 +183,12 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strReusableIdentifier];
     }
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    [cell setAccessoryType:UITableViewCellAccessoryNone];
+    
+    //-------- Image product
+    UIImageView * imgProduct = [[UIImageView alloc] init];
+    [imgProduct setFrame:CGRectMake(0, 0, 200, 150)];
     ProductObject * productObject = [arrProductsShoppingCart objectAtIndex:indexPath.row];
     if(productObject.masterObject.imageObject.attachment_file_name != nil){
         NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -190,11 +196,20 @@
         [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
         NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
-        [cell.imageView setImage:[UIImage imageWithContentsOfFile:fullPath]];
+        [imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
     }else{
-        [cell.imageView setImage:[UIImage imageNamed:@"noAvail.png"]];
+        [imgProduct setImage:[UIImage imageNamed:@"noAvail.png"]];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"%@", productObject.name];
+    [cell addSubview:imgProduct];
+    
+    //-------- Product name
+    UILabel * lblProductName = [[UILabel alloc] init];
+    [lblProductName setFrame:CGRectMake(0, 0, 320, 150)];
+    [lblProductName setText:[productObject name]];
+    [lblProductName setTextAlignment:NSTextAlignmentCenter];
+    [cell addSubview:lblProductName];
+    //---------------------------------------------------
+    
     return cell;
 }
 
