@@ -23,6 +23,7 @@
 @property (nonatomic, strong) IBOutlet UITableView *tblProducts;
 @property (nonatomic, strong) NSMutableArray *arrProductsShoppingCart;
 @property (nonatomic, strong) JGProgressHUD * HUDJMProgress;
+@property (nonatomic, strong) NSTimer *tmrOrder;
 
 -(IBAction)doPlaceOrder:(id)sender;
 -(IBAction)doCancel:(id)sender;
