@@ -80,7 +80,7 @@
     NSMutableDictionary * dictMaster = [[NSMutableDictionary alloc] init];
     
     //Set the main values required
-    [dictMaster setObject:@"43" forKey:@"user_id"];
+    [dictMaster setObject:[NSString stringWithFormat:@"%d",userObject.userId] forKey:@"user_id"];
     NSMutableDictionary * dictFullOrder = [[NSMutableDictionary alloc] init];
     [dictFullOrder setObject:itemTotal forKey:@"item_total"];
     [dictFullOrder setObject:total forKey:@"total"];

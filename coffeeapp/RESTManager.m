@@ -14,14 +14,16 @@
 
 @implementation RESTManager
 
-+(void)sendData:(NSMutableDictionary *)data toService:(NSString *)service withMethod:(NSString *)method isTesting:(BOOL)testing withAccessToken:(NSString *)accessToken toCallback:(void (^)(id))callback
++(void)sendData:(NSMutableDictionary *)data toService:(NSString *)service withMethod:(NSString *)method isTesting:(BOOL)testing withAccessToken:(NSString *)accessToken isAccessTokenInHeader:(BOOL) isInHeader toCallback:(void (^)(id))callback
 {
     NSURL *url = nil;
     NSMutableURLRequest *request;
     if(![method isEqual: @"GET"])
     {
         if(testing)
+        {
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",TESTING_URL, service]];
+        }
         else
             url = [NSURL URLWithString:[NSString stringWithFormat:@"http://stage-spree-demo-store-two.herokuapp.com/api/%@", service]];
     }
@@ -37,9 +39,13 @@
     
     
     request = [NSMutableURLRequest requestWithURL:url];
-    if(accessToken && data)
+    if(accessToken)
     {
-        [data setObject:accessToken forKey:@"access_token"];
+        if (isInHeader) {
+            [request setValue:accessToken forHTTPHeaderField:@"X-Spree-Token"];
+        }else{
+            [data setObject:accessToken forKey:@"access_token"];
+        }
     }
     if(data)
     {
@@ -73,7 +79,7 @@
 }
 
 + (void)updateProducts:(NSString *)userAccessToken toCallback:(void (^)(id))callback{
-    [RESTManager sendData:nil toService:@"products" withMethod:@"GET" isTesting:NO withAccessToken:userAccessToken toCallback:^(id result){
+    [RESTManager sendData:nil toService:@"products" withMethod:@"GET" isTesting:NO withAccessToken:userAccessToken  isAccessTokenInHeader:NO toCallback:^(id result){
         //int showDays = 0;
         [DBManager deleteProducts];
         ProductObject *productObject;

@@ -84,16 +84,15 @@
     myAppDelegate.orderObject.arrLineItems = arrOrderItems; // Save the array in the orderObject
     [HUDJMProgress showInView:self.view];
     [RESTManager sendData:myAppDelegate.orderObject.getOrderPetition toService:@"checkouts" withMethod:@"POST" isTesting:NO
-          withAccessToken:nil toCallback:^(id result) {
+          withAccessToken:myAppDelegate.userObject.userSpreeToken isAccessTokenInHeader:YES toCallback:^(id result) {
               [HUDJMProgress dismissAnimated:YES];
-              [self doPostPushNotification];
+              NSLog(@"order Number: %@ and order Token: %@", [result objectForKey:@"number"], [result objectForKey:@"token"]);
+              [self doPostPushNotificationWithOrderNumber:[result objectForKey:@"number"] andOrderToken:[result objectForKey:@"token"]];
               NSLog(@"Order done with result %@", result);
-              
               NSDictionary * dictResult = result;
-              if ([dictResult objectForKey:@"number"] != nil && [[dictResult objectForKey:@"state"] isEqual:@"complete"]) {
+              if ([dictResult objectForKey:@"number"] != nil && [[dictResult objectForKey:@"state"] isEqual:@"confirm"]) {
                   UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention" message:@"Order Placed!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                   [alert show];
-                  
                   //Register the order log
                   NSString * orderId = [dictResult objectForKey:@"number"];
                   NSString * orderState = [dictResult objectForKey:@"state"];
@@ -126,7 +125,7 @@
 }
 
 //post notification to coffee boy app
--(void)doPostPushNotification
+-(void)doPostPushNotificationWithOrderNumber:(NSString*)orderNumber andOrderToken:(NSString*)orderToken
 {
     // Send a notification to all devices subscribed to the "requests" channel, in this case coffee boy app.
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
@@ -136,6 +135,9 @@
     NSDictionary *data = @{
                            @"alert": strMessage,
                            @"userName": appDelegate.userObject.userName,
+                           @"userChannel": appDelegate.userObject.userChannel,
+                           @"orderNumber": orderNumber,
+                           @"orderToken": orderToken,
                            @"userPic": appDelegate.userObject.userUrlProfileImage
                            };
     PFPush *push = [[PFPush alloc] init];

@@ -332,12 +332,18 @@
 #pragma mark -- action for + button in cell
 -(void)didSelectProduct:(id)sender
 {
-    ProductObject * selectedProduct = [ProductObject new];
     CustomButton * senderButton = (CustomButton*)sender;
-    selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
-    selectedProduct.quantity ++;
-    [self doReloadData];
-    [self synchronizeDefaults];
+    if (((ProductObject *)[[arrProductObjects objectAtIndex:((CustomButton *)sender).section] objectAtIndex:((CustomButton *)sender).index]).quantity==1) {
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Cantidad!" message:[NSString stringWithFormat:@"Está seguro de querer agregar a la orden %@ al ya agregado?", ((ProductObject *)[[arrProductObjects objectAtIndex:((CustomButton *)sender).section] objectAtIndex:((CustomButton *)sender).index]).name] delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Si", nil];
+        [alert show];
+        senderButton.active = YES;
+    }else{
+        ProductObject * selectedProduct = [ProductObject new];
+        selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
+        selectedProduct.quantity ++;
+        [self doReloadData];
+        [self synchronizeDefaults];
+    }
 }
 
 -(void)didDeselectProduct:(id)sender
@@ -357,6 +363,28 @@
     [self bdb_presentPopupViewController:shoppingCartViewController
                            withAnimation:BDBPopupViewShowAnimationDefault
                               completion:nil];
+}
+
+#pragma mark -- UIAlertViewDelegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if([alertView.title isEqual:@"Cantidad!"])
+    {
+        CustomButton * senderButton;
+        for(UIView * cells in tblProducts.visibleCells) // Search into cells
+            for(UIView * subView in cells.subviews) // Get subviews of each cell
+                if([subView isKindOfClass:[CustomButton class]]) // be sure subView is UIButton Class
+                    if (((CustomButton*)subView).active)
+                        senderButton = (CustomButton*)subView; // Save the button active
+        if (buttonIndex == 1) {
+            ProductObject * selectedProduct = [ProductObject new];
+            selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
+            selectedProduct.quantity ++;
+            [self doReloadData];
+            [self synchronizeDefaults];
+        }
+        senderButton.active = NO;
+    }
 }
 
 @end

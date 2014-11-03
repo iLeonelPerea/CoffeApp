@@ -19,7 +19,7 @@
 
 @class LoginViewController;
 
-@interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
 @property (nonatomic, strong) NSMutableArray *arrProductObjects;
 @property (nonatomic, strong) NSMutableArray *arrProductCategoriesObjects;
 @property (nonatomic, assign) BOOL isViewPlaceOrderActive;

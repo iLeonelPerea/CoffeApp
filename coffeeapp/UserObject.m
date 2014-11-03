@@ -7,9 +7,10 @@
 //
 
 #import "UserObject.h"
+#import <Parse/Parse.h>
 
 @implementation UserObject
-@synthesize userId, firstName, lastName, userName, userEmail, userPassword, userUrlProfileImage, userSpreeToken;
+@synthesize userId, firstName, lastName, userName, userEmail, userPassword, userUrlProfileImage, userSpreeToken, userChannel;
 
 //Init method set default properties values
 -(id)init
@@ -23,7 +24,7 @@
         [self setUserEmail:@""];
         [self setUserPassword:@""];
         [self setUserSpreeToken:@""];
-        //[self setUserChannel:@""];
+        [self setUserChannel:@""];
     }
     return self;
 }
@@ -45,7 +46,7 @@
         //Set the dictionary with the credentials to spree store
         NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:@{@"spree_user":@{@"email": [self userEmail], @"password": [self userPassword]}}];
         //Make the call to do Log In
-        [RESTManager sendData:jsonDict toService:@"v1/authorizations" withMethod:@"POST" isTesting:NO withAccessToken:nil toCallback:^(id result) {
+        [RESTManager sendData:jsonDict toService:@"v1/authorizations" withMethod:@"POST" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
                  NSLog(@"%@",[result objectForKey:@"error"]);
                 
@@ -53,7 +54,7 @@
                     if ([[result objectForKey:@"error"] isEqualToString:@"Record not found"]) {
                         
                         NSMutableDictionary *jsonDictRegister = [NSMutableDictionary dictionaryWithDictionary:@{@"user":@{@"email": [self userEmail], @"password": [self userPassword], @"password_confirmation": [self userPassword]}}];
-                        [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:NO withAccessToken:nil toCallback:^(id result) {
+                        [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
                             
                             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
                                 NSLog(@"%@",[result objectForKey:@"error"]);
@@ -69,6 +70,10 @@
                 }
             [self setUserId:[[[result objectForKey:@"user"] objectForKey:@"id"] intValue]];
             [self setUserSpreeToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"]];
+            NSString * customUserChannel = [NSString stringWithFormat:@"User_%@",self.userSpreeToken];
+            [self setUserChannel:customUserChannel];
+            [PFPush subscribeToChannelInBackground:customUserChannel];
+            
             //NSLog(@"I'm here now");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"initUserFinishedLoading" object:nil];
         }];
@@ -89,7 +94,7 @@
         [self setUserPassword:[coder decodeObjectForKey:@"userPassword"]];
         [self setUserUrlProfileImage:[coder decodeObjectForKey:@"userUrlProfileImage"]];
         [self setUserSpreeToken:[coder decodeObjectForKey:@"userSpreeToken"]];
-        //[self setUserChannel:[coder decodeObjectForKey:@"userChannel"]];
+        [self setUserChannel:[coder decodeObjectForKey:@"userChannel"]];
     }
     return self;
 }
@@ -104,7 +109,7 @@
     [coder encodeObject:userPassword forKey:@"userPassword"];
     [coder encodeObject:userUrlProfileImage forKey:@"userUrlProfileImage"];
     [coder encodeObject:userSpreeToken forKey:@"userSpreeToken"];
-    //[coder encodeObject:userChannel forKey:@"userChannel"];
+    [coder encodeObject:userChannel forKey:@"userChannel"];
 }
 
 @end
