@@ -161,7 +161,7 @@
         } completion:^(BOOL finished) {
         }];
     }
-    [lblProductsCount setText:[NSString stringWithFormat:@"%d Products",productsCount]];
+    [lblProductsCount setText:(productsCount == 1)?[NSString stringWithFormat:@"%d Product",productsCount]:[NSString stringWithFormat:@"%d Products",productsCount]];
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
     [defaults synchronize];
 }
@@ -285,7 +285,8 @@
     [btnAdd setEnabled:( productDayAvailable < currentDayOfWeek)? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
 
     //When a product is outstock
-    if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
+    //if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
+    if (![productObject total_on_hand] > [productObject quantity] || (productDayAvailable < currentDayOfWeek) ) {
         [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up.png"] forState:UIControlStateNormal];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down.png"] forState:UIControlStateHighlighted];
