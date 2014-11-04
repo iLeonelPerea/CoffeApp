@@ -8,6 +8,7 @@
 
 #import "UserObject.h"
 #import <Parse/Parse.h>
+#import "AppDelegate.h"
 
 @implementation UserObject
 @synthesize userId, firstName, lastName, userName, userEmail, userPassword, userUrlProfileImage, userSpreeToken, userChannel;
@@ -32,6 +33,7 @@
 //Create a custom init method which do Log In in Spree store. If the user is not registered, will be and retrieved the necesary data
 -(id)initUser:(NSString*)user withFirstName:(NSString*)strFirstName andLastName:(NSString*)strLastName withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage
 {
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     self = [super init];
     if (self) {
         [self setUserName:user];
@@ -46,7 +48,7 @@
         //Set the dictionary with the credentials to spree store
         NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:@{@"spree_user":@{@"email": [self userEmail], @"password": [self userPassword]}}];
         //Make the call to do Log In
-        [RESTManager sendData:jsonDict toService:@"v1/authorizations" withMethod:@"POST" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+        [RESTManager sendData:jsonDict toService:@"v1/authorizations" withMethod:@"POST" isTesting:appDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
                  NSLog(@"%@",[result objectForKey:@"error"]);
                 
@@ -54,7 +56,7 @@
                     if ([[result objectForKey:@"error"] isEqualToString:@"Record not found"]) {
                         
                         NSMutableDictionary *jsonDictRegister = [NSMutableDictionary dictionaryWithDictionary:@{@"user":@{@"email": [self userEmail], @"password": [self userPassword], @"password_confirmation": [self userPassword]}}];
-                        [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+                        [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:appDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
                             
                             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
                                 NSLog(@"%@",[result objectForKey:@"error"]);
