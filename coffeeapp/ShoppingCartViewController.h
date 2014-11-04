@@ -29,6 +29,4 @@
 
 -(IBAction)doPlaceOrder:(id)sender;
 -(IBAction)doCancel:(id)sender;
--(void)doSetObjectsFrameFitToScreen;
-
 @end

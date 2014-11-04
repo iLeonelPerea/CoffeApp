@@ -45,36 +45,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-// example on how to send a remote Notification
--(void)doRequestAmericano:(id)sender
-{
-    //add hud
-    HUD = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    HUD.textLabel.text = @"Sending request...";
-    [HUD showInView:self.view];
-    // Send a notification to all devices subscribed to the "requests" channel, in this case coffee boy app.
-    
-    NSString * strMessage = [NSString stringWithFormat:@"Please prepare me an Americano - %@", userObject.userName];
-    
-    NSDictionary *data = @{
-                           @"alert": strMessage,
-                           @"userPic": userObject.userUrlProfileImage, // Photo's object id
-                           @"product": @"Americano" // hardcoded kind of coffee
-                           };
-    PFPush *push = [[PFPush alloc] init];
-    [push setChannel:@"requests"];
-    [push setData:data];
-    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [HUD dismissAnimated:YES];
-        if(!succeeded)
-        {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-        [(UIButton*)sender setHidden:YES];
-    }];
-}
-
 /*
 #pragma mark - Navigation
 

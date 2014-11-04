@@ -19,7 +19,4 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblUserName;
 @property (nonatomic, strong) IBOutlet UILabel *lblUserEmail;
 @property (nonatomic, strong) JGProgressHUD * HUD;
-
-//testing notifications.
--(IBAction)doRequestAmericano:(id)sender;
 @end
