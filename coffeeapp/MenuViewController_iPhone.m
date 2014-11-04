@@ -53,11 +53,16 @@
     [HUDJMProgress showInView:[self view]];
     AppDelegate * appDelegate =  [[UIApplication sharedApplication] delegate];
     [RESTManager updateProducts:[[appDelegate userObject] userSpreeToken] toCallback:^(id resultSignUp) {
-        //Set the array prodcuts - If the there's products selected by users, they will be set here.
-        arrProductCategoriesObjects = [DBManager getCategories];
-        arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+        if ([resultSignUp isEqual:@YES]) {
+            //Set the array prodcuts - If the there's products selected by users, they will be set here.
+            arrProductCategoriesObjects = [DBManager getCategories];
+            arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+            [tblProducts reloadData];
+        }else{
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
         [HUDJMProgress dismiss];
-        [tblProducts reloadData];
     }];
     
     NSDate *now = [NSDate date];
