@@ -283,7 +283,9 @@
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down"] forState:UIControlStateHighlighted];
         [cell addSubview:btnAdd];
-    }else{
+    }
+    else
+    {
         if ([productObject quantity] > 0) {
             [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(95, 170, 200, 45):CGRectMake(20, 280, 53, 20)];
             [btnAdd setImage:[UIImage imageNamed:@"add02_btn_up"] forState:UIControlStateNormal];
@@ -299,7 +301,6 @@
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat: @"e"];
         int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
-        [btnAdd setEnabled:( productDayAvailable < currentDayOfWeek)? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
         
         //When a product is outstock
         //if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
@@ -342,6 +343,9 @@
         [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
         [cell addSubview:lblQuantity];
         //--------------------------
+        
+        //Check for the stock of the product to enable/disable the add button
+        [btnAdd setEnabled:(productDayAvailable < currentDayOfWeek || [productObject total_on_hand] <= [productObject quantity])? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
     }
     
     return cell;
