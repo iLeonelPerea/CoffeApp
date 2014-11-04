@@ -16,6 +16,7 @@
 #import <JGProgressHUD.h>
 #import "AppDelegate.h"
 #import "CustomButton.h"
+#import "RESTManager.h"
 
 @class LoginViewController;
 

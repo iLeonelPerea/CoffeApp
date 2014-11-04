@@ -103,11 +103,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userObject] forKey:@"userObject"];
     [defaults synchronize];
-    //Update prodcuts
-    [RESTManager updateProducts:userObject.userSpreeToken toCallback:^(id resultSignUp) {
-        [prgLoaging dismiss];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestSignIn" object:nil];
-    }];
+    [prgLoaging dismiss];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestSignIn" object:nil];
 }
 
 @end

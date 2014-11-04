@@ -43,9 +43,22 @@
     HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     arrProductObjects = [NSMutableArray new];
     
-    //Set the array prodcuts - If the there's products selected by users, they will be set here.
-    arrProductCategoriesObjects = [DBManager getCategories];
-    arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+    
+    //Delete content of local DB tables
+    NSArray * arrTables = [[NSArray alloc] init];
+    arrTables = @[@"CATEGORIES", @"PRODUCTS"];
+    [DBManager deleteTableContent:arrTables];
+    //Update prodcuts
+    [[HUDJMProgress textLabel] setText:@"Loading products"];
+    [HUDJMProgress showInView:[self view]];
+    AppDelegate * appDelegate =  [[UIApplication sharedApplication] delegate];
+    [RESTManager updateProducts:[[appDelegate userObject] userSpreeToken] toCallback:^(id resultSignUp) {
+        //Set the array prodcuts - If the there's products selected by users, they will be set here.
+        arrProductCategoriesObjects = [DBManager getCategories];
+        arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+        [HUDJMProgress dismiss];
+        [tblProducts reloadData];
+    }];
     
     NSDate *now = [NSDate date];
     NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
