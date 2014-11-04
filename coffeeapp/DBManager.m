@@ -231,6 +231,23 @@
     [DBManager finalizeStatements:statement withDB:appDB];
 }
 
++(void)updateStateOrderLog:(NSString*)orderId withState:(NSString*)orderState;
+{
+    //Update the order state in the orders log table
+    sqlite3 * appDB;
+    sqlite3_stmt * statement;
+    const char * dbPath = [[DBManager getDBPath] UTF8String];
+    if (sqlite3_open(dbPath, &appDB) == SQLITE_OK) {
+        NSString * sqlUpdate = [NSString stringWithFormat:@"UPDATE ORDERSLOG SET ORDER_STATUS = '%@' WHERE ORDER_ID = '%@' ",orderState, orderId];
+        const char * updateSQL = [sqlUpdate UTF8String];
+        sqlite3_prepare_v2(appDB, updateSQL, -1, &statement, NULL);
+        if (sqlite3_step(statement) != SQLITE_DONE) {
+            NSLog(@"%s", sqlite3_errmsg(appDB));
+        }
+    }
+    [DBManager finalizeStatements:statement withDB:appDB];
+}
+
 +(NSMutableArray *)getOrdersHistory:(BOOL)withPastOrders
 {
     sqlite3 * appDB;

@@ -112,8 +112,8 @@
     [dictBillingAddressAttributes setObject:@"Colima" forKey:@"city"];
     [dictBillingAddressAttributes setObject:@"312123456789" forKey:@"phone"];
     [dictBillingAddressAttributes setObject:@"28017" forKey:@"zipcode"];
-    [dictBillingAddressAttributes setObject:@"60" forKey:@"state_id"];
-    [dictBillingAddressAttributes setObject:@"38" forKey:@"country_id"];
+    [dictBillingAddressAttributes setObject:@"49" forKey:@"state_id"];
+    [dictBillingAddressAttributes setObject:@"49" forKey:@"country_id"];
     [dictFullOrder setObject:dictBillingAddressAttributes forKey:@"bill_address_attributes"];
     
     //Shipping address
@@ -126,8 +126,8 @@
     [dictAddressAttributes setObject:@"Colima" forKey:@"city"];
     [dictAddressAttributes setObject:@"312123456789" forKey:@"phone"];
     [dictAddressAttributes setObject:@"28017" forKey:@"zipcode"];
-    [dictAddressAttributes setObject:@"60" forKey:@"state_id"];
-    [dictAddressAttributes setObject:@"38" forKey:@"country_id"];
+    [dictAddressAttributes setObject:@"49" forKey:@"state_id"];
+    [dictAddressAttributes setObject:@"49" forKey:@"country_id"];
     [dictFullOrder setObject:dictAddressAttributes forKey:@"ship_address_attributes"];
     
     //Selected products
