@@ -46,7 +46,7 @@
     
     //Delete content of local DB tables
     NSArray * arrTables = [[NSArray alloc] init];
-    arrTables = @[@"CATEGORIES", @"PRODUCTS"];
+    arrTables = @[@"PRODUCT_CATEGORIES", @"PRODUCTS"];
     [DBManager deleteTableContent:arrTables];
     //Update prodcuts
     [[HUDJMProgress textLabel] setText:@"Loading products"];
