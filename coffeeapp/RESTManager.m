@@ -10,7 +10,8 @@
 #import <AsyncImageDownloader.h>
 #import <UIKit/UIKit.h>
 
-#define TESTING_URL @"http://539aac34.ngrok.com/api"
+//#define TESTING_URL @"http://539aac34.ngrok.com/api"
+#define TESTING_URL @"http://4ed3ca81.ngrok.com"
 
 @implementation RESTManager
 

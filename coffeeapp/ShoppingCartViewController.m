@@ -197,18 +197,18 @@
         //[imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
         // testing crop
         UIImage *imageToCrop = [UIImage imageWithContentsOfFile:fullPath];
-        CGRect cropRect = CGRectMake(0, 0, 240, 180);
+        CGRect cropRect = CGRectMake(0, 0, 320, 80);
         UIImage *croppedImage = [self getSubImageFrom:imageToCrop WithRect:cropRect];
         [imgProduct setImage:croppedImage];
     }else{
-        [imgProduct setImage:[UIImage imageNamed:@"noAvail.png"]];
+        [imgProduct setImage:[UIImage imageNamed:@"noAvail"]];
     }
     [cell addSubview:imgProduct];
     
     //------- Transparency image
     UIImageView * imgTransparency = [[UIImageView alloc] init];
     [imgTransparency setFrame:CGRectMake(0, 0, 320, 80)];
-    [imgTransparency setImage:[UIImage imageNamed:@"item_transparency_03.png"]];
+    [imgTransparency setImage:[UIImage imageNamed:@"item_transparency_03"]];
     [cell addSubview:imgTransparency];
     
     //-------- Product name
