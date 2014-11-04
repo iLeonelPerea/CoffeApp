@@ -25,5 +25,5 @@
 @property (nonatomic, strong) JASidePanelController * viewController;
 @property (nonatomic, strong) UserObject *userObject;
 @property (nonatomic, strong) OrderObject *orderObject;
-
+@property (nonatomic, assign) BOOL isTestingEnv;
 @end

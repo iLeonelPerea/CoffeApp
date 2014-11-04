@@ -88,7 +88,7 @@
     }
     myAppDelegate.orderObject.arrLineItems = arrOrderItems; // Save the array in the orderObject
     [HUDJMProgress showInView:self.view];
-    [RESTManager sendData:myAppDelegate.orderObject.getOrderPetition toService:@"checkouts" withMethod:@"POST" isTesting:NO
+    [RESTManager sendData:myAppDelegate.orderObject.getOrderPetition toService:@"checkouts" withMethod:@"POST" isTesting:myAppDelegate.isTestingEnv
           withAccessToken:myAppDelegate.userObject.userSpreeToken isAccessTokenInHeader:YES toCallback:^(id result) {
               [HUDJMProgress dismissAnimated:YES];
               NSLog(@"order Number: %@ and order Token: %@", [result objectForKey:@"number"], [result objectForKey:@"token"]);
