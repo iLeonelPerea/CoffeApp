@@ -31,7 +31,7 @@
 }
 
 //Create a custom init method which do Log In in Spree store. If the user is not registered, will be and retrieved the necesary data
--(id)initUser:(NSString*)user withFirstName:(NSString*)strFirstName andLastName:(NSString*)strLastName withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage
+-(id)initUser:(NSString*)user withId:(NSString*)strUserId andFirstName:(NSString*)strFirstName andLastName:(NSString*)strLastName withEmail:(NSString*)email password:(NSString*)password urlProfileImage:(NSString *)urlProfileImage
 {
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     self = [super init];
@@ -44,6 +44,9 @@
         [self setUserUrlProfileImage:[urlProfileImage stringByReplacingOccurrencesOfString:@"?sz=50"
                                                                     withString:@"?sz=90"]];
         
+        //NSString * customUserChannel = [NSString stringWithFormat:@"User_%@",self.userSpreeToken];
+        __block NSString * customUserChannel;// = [NSString stringWithFormat:@"User_%@",userEmail];
+        
         //With userEmail and userPassword do Log In in spree store to retrieve
         //Set the dictionary with the credentials to spree store
         NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:@{@"spree_user":@{@"email": [self userEmail], @"password": [self userPassword]}}];
@@ -53,9 +56,11 @@
                  NSLog(@"%@",[result objectForKey:@"error"]);
                 
                     //Attempt to register the user in spree store
-                    if ([[result objectForKey:@"error"] isEqualToString:@"Record not found"]) {
+                    if (![[result objectForKey:@"error"] isEqualToString:@""]) {
                         
-                        NSMutableDictionary *jsonDictRegister = [NSMutableDictionary dictionaryWithDictionary:@{@"user":@{@"email": [self userEmail], @"password": [self userPassword], @"password_confirmation": [self userPassword]}}];
+                        customUserChannel = [NSString stringWithFormat:@"User_%@",strUserId];
+                        
+                        NSMutableDictionary *jsonDictRegister = [NSMutableDictionary dictionaryWithDictionary:@{@"user":@{@"email": [self userEmail], @"password": [self userPassword], @"password_confirmation": [self userPassword], @"image_url":urlProfileImage, @"channel":customUserChannel}}];
                         [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:appDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
                             
                             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
@@ -64,6 +69,8 @@
                             }
                             [self setUserId:[[result objectForKey:@"id"] intValue]];
                             [self setUserSpreeToken:[result objectForKey:@"spree_api_key"]];
+                            [self setUserChannel:customUserChannel];
+                            [self setUserUrlProfileImage:[result objectForKey:@"image_url"]];
                             NSLog(@"I'm here");
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"initUserFinishedLoading" object:nil];
                         }];
@@ -72,9 +79,9 @@
                 }
             [self setUserId:[[[result objectForKey:@"user"] objectForKey:@"id"] intValue]];
             [self setUserSpreeToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"]];
-            NSString * customUserChannel = [NSString stringWithFormat:@"User_%@",self.userSpreeToken];
             [self setUserChannel:customUserChannel];
             [PFPush subscribeToChannelInBackground:customUserChannel];
+            [self setUserUrlProfileImage:[result objectForKey:@"image_url"]];
             
             //NSLog(@"I'm here now");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"initUserFinishedLoading" object:nil];
