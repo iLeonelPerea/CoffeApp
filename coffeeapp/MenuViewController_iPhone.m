@@ -226,9 +226,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"CellProduct";
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat: @"e"];
-    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell = nil;
     if (cell == nil) {
@@ -267,64 +264,80 @@
     [lblName setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:lblName];
     
+    NSDateFormatter *hour = [[NSDateFormatter alloc] init];
+    [hour setDateFormat: @"k"];
+
+    /*
+          currentDayOfWeek = ([[weekday stringFromDate:now]
+     */
     //--------- Add button
     CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
     //Check the quantity selected by user, if is more than 0, then change the size of the button on screen
-    if ([productObject quantity] > 0) {
-        [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(95, 170, 200, 45):CGRectMake(20, 280, 53, 20)];
-        [btnAdd setImage:[UIImage imageNamed:@"add02_btn_up.png"] forState:UIControlStateNormal];
-        [btnAdd setImage:[UIImage imageNamed:@"add02_btn_down.png"] forState:UIControlStateHighlighted];
-    }else{
-        [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
-        [btnAdd setImage:[UIImage imageNamed:@"add_btn_up.png"] forState:UIControlStateNormal];
-        [btnAdd  setImage:[UIImage imageNamed:@"add_btn_down.png"] forState:UIControlStateHighlighted];
-    }
-    [btnAdd setIndex:(int)indexPath.row];
-    [btnAdd setSection:(int)indexPath.section];
-    int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
-    [btnAdd setEnabled:( productDayAvailable < currentDayOfWeek)? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
-
-    //When a product is outstock
-    //if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
-    if (![productObject total_on_hand] > [productObject quantity] || (productDayAvailable < currentDayOfWeek) ) {
+    if ([[hour stringFromDate:[NSDate date]] intValue]>10 && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:indexPath.section] category_name ] isEqualToString:@"Meals"]) {
         [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up.png"] forState:UIControlStateNormal];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down.png"] forState:UIControlStateHighlighted];
-        [btnAdd setEnabled:NO];
+        [cell addSubview:btnAdd];
+    }else{
+        if ([productObject quantity] > 0) {
+            [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(95, 170, 200, 45):CGRectMake(20, 280, 53, 20)];
+            [btnAdd setImage:[UIImage imageNamed:@"add02_btn_up.png"] forState:UIControlStateNormal];
+            [btnAdd setImage:[UIImage imageNamed:@"add02_btn_down.png"] forState:UIControlStateHighlighted];
+        }else{
+            [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
+            [btnAdd setImage:[UIImage imageNamed:@"add_btn_up.png"] forState:UIControlStateNormal];
+            [btnAdd  setImage:[UIImage imageNamed:@"add_btn_down.png"] forState:UIControlStateHighlighted];
+        }
+        [btnAdd setIndex:(int)indexPath.row];
+        [btnAdd setSection:(int)indexPath.section];
+        
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat: @"e"];
+        int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
+        [btnAdd setEnabled:( productDayAvailable < currentDayOfWeek)? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
+        
+        //When a product is outstock
+        //if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
+        if (![productObject total_on_hand] > [productObject quantity] || (productDayAvailable < currentDayOfWeek) ) {
+            [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
+            [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up.png"] forState:UIControlStateNormal];
+            [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down.png"] forState:UIControlStateHighlighted];
+            [btnAdd setEnabled:NO];
+        }
+        [btnAdd addTarget:self action:@selector(didSelectProduct:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:btnAdd];
+        
+        //-------- Minus button
+        CustomButton *btnMinus = [CustomButton buttonWithType:UIButtonTypeCustom];
+        if ([productObject quantity] > 0)
+        {
+            [btnMinus setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 60, 45):CGRectMake(247, 280, 53, 20)];
+            [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_up.png"] forState:UIControlStateNormal];
+            [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_down.png"] forState:UIControlStateHighlighted];
+        }
+        [btnMinus setTitle:@"-" forState:UIControlStateNormal];
+        [btnMinus setIndex:(int)indexPath.row];
+        [btnMinus setSection:(int)indexPath.section];
+        [btnMinus setHidden:(productObject.quantity > 0)?NO:YES];
+        [btnMinus addTarget:self action:@selector(didDeselectProduct:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:btnMinus];
+        
+        //-------- Quantity selected
+        UIImageView * imgBadge = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge_ima.png"]];
+        [imgBadge setFrame:(IS_IPHONE_5)?CGRectMake(220, 10, 80, 80):CGRectMake(20, 280, 53, 20)];
+        [imgBadge setHidden:(productObject.quantity > 0)?NO:YES];
+        [cell addSubview:imgBadge];
+        
+        UILabel *lblQuantity = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(223, 10, 70, 70):CGRectMake(81, 280, 158, 21)];
+        [lblQuantity setText:[NSString stringWithFormat:@"%d Selected", productObject.quantity]];
+        [lblQuantity setTextAlignment:NSTextAlignmentCenter];
+        [lblQuantity setTextColor:[UIColor whiteColor]];
+        [lblQuantity setNumberOfLines:2];
+        [lblQuantity setFont:[UIFont fontWithName:@"Helvetica" size:15]];
+        [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
+        [cell addSubview:lblQuantity];
+        //--------------------------
     }
-    [btnAdd addTarget:self action:@selector(didSelectProduct:) forControlEvents:UIControlEventTouchUpInside];
-    [cell addSubview:btnAdd];
-
-    //-------- Minus button
-    CustomButton *btnMinus = [CustomButton buttonWithType:UIButtonTypeCustom];
-    if ([productObject quantity] > 0)
-    {
-        [btnMinus setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 60, 45):CGRectMake(247, 280, 53, 20)];
-        [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_up.png"] forState:UIControlStateNormal];
-        [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_down.png"] forState:UIControlStateHighlighted];
-    }
-    [btnMinus setTitle:@"-" forState:UIControlStateNormal];
-    [btnMinus setIndex:(int)indexPath.row];
-    [btnMinus setSection:(int)indexPath.section];
-    [btnMinus setHidden:(productObject.quantity > 0)?NO:YES];
-    [btnMinus addTarget:self action:@selector(didDeselectProduct:) forControlEvents:UIControlEventTouchUpInside];
-    [cell addSubview:btnMinus];
-    
-    //-------- Quantity selected
-    UIImageView * imgBadge = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge_ima.png"]];
-    [imgBadge setFrame:(IS_IPHONE_5)?CGRectMake(220, 10, 80, 80):CGRectMake(20, 280, 53, 20)];
-    [imgBadge setHidden:(productObject.quantity > 0)?NO:YES];
-    [cell addSubview:imgBadge];
-    
-    UILabel *lblQuantity = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(223, 10, 70, 70):CGRectMake(81, 280, 158, 21)];
-    [lblQuantity setText:[NSString stringWithFormat:@"%d Selected", productObject.quantity]];
-    [lblQuantity setTextAlignment:NSTextAlignmentCenter];
-    [lblQuantity setTextColor:[UIColor whiteColor]];
-    [lblQuantity setNumberOfLines:2];
-    [lblQuantity setFont:[UIFont fontWithName:@"Helvetica" size:15]];
-    [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
-    [cell addSubview:lblQuantity];
-    //--------------------------
     
     return cell;
 }
