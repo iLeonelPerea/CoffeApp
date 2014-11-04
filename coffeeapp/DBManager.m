@@ -310,4 +310,26 @@
     return arrToReturn;
 }
 
+#pragma mark -- Delete table content
++(void)deleteTableContent:(NSArray*)tables
+{
+    sqlite3 *appDB = nil;
+    sqlite3_stmt *statement;
+    const char *dbPath = [[DBManager getDBPath] UTF8String];
+    NSString *sqlDelete = @"";
+    const char *deleteSQL = [sqlDelete UTF8String];
+    for (NSString * strTable in tables) {
+        if (sqlite3_open(dbPath, &appDB) == SQLITE_OK) {
+            sqlDelete = [NSString stringWithFormat:@"DELETE FROM %@",strTable];
+            deleteSQL = [sqlDelete UTF8String];
+            sqlite3_prepare_v2(appDB, deleteSQL, -1, &statement, nil);
+            if (sqlite3_step(statement) != SQLITE_DONE) {
+                NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+            }
+            [DBManager finalizeStatements:statement withDB:appDB];
+        }
+    }
+}
+
+
 @end
