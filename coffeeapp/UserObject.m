@@ -71,6 +71,8 @@
                             [self setUserSpreeToken:[result objectForKey:@"spree_api_key"]];
                             [self setUserChannel:customUserChannel];
                             [self setUserUrlProfileImage:[result objectForKey:@"image_url"]];
+                            [PFPush subscribeToChannelInBackground:customUserChannel];
+                            [PFPush subscribeToChannelInBackground:@"general_messages"];
                             NSLog(@"I'm here");
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"initUserFinishedLoading" object:nil];
                         }];
@@ -81,8 +83,8 @@
             [self setUserSpreeToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"]];
             [self setUserChannel:customUserChannel];
             [PFPush subscribeToChannelInBackground:customUserChannel];
+            [PFPush subscribeToChannelInBackground:@"general_messages"];
             [self setUserUrlProfileImage:[result objectForKey:@"image_url"]];
-            
             //NSLog(@"I'm here now");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"initUserFinishedLoading" object:nil];
         }];
