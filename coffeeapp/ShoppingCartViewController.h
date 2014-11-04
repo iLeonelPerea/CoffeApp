@@ -17,6 +17,8 @@
 
 @interface ShoppingCartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 
+@property (nonatomic, strong) IBOutlet UIImageView * imgTitle;
+@property (nonatomic, strong) IBOutlet UIImageView * imgBottomBar;
 @property (nonatomic, strong) IBOutlet UIButton *btnCheckOut;
 @property (nonatomic, strong) IBOutlet UIButton *btnEmptyShoppingCart;
 @property (nonatomic, strong) IBOutlet UILabel *lblDate;
