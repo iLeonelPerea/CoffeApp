@@ -79,12 +79,13 @@
                     }
                 return;
                 }
+            customUserChannel = [NSString stringWithFormat:@"User_%@",strUserId];
             [self setUserId:[[[result objectForKey:@"user"] objectForKey:@"id"] intValue]];
             [self setUserSpreeToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"]];
             [self setUserChannel:customUserChannel];
             [PFPush subscribeToChannelInBackground:customUserChannel];
             [PFPush subscribeToChannelInBackground:@"general_messages"];
-            [self setUserUrlProfileImage:[result objectForKey:@"image_url"]];
+            [self setUserUrlProfileImage:[[result objectForKey:@"user"] objectForKey:@"image_url"]];
             //NSLog(@"I'm here now");
             [[NSNotificationCenter defaultCenter] postNotificationName:@"initUserFinishedLoading" object:nil];
         }];
