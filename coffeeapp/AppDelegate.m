@@ -17,7 +17,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize userObject, orderObject;
+@synthesize userObject, orderObject, isTestingEnv;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -28,6 +28,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     PFACL * defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    
+    // set to YES to test on local computers
+    isTestingEnv = YES;
 
     //Set app's client ID for GPPSignIn and GPPShare
     [[GPPSignIn sharedInstance] setClientID:kClientID];

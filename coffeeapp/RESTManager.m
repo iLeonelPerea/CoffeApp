@@ -9,8 +9,9 @@
 #import "RESTManager.h"
 #import <AsyncImageDownloader.h>
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-#define TESTING_URL @"http://539aac34.ngrok.com/api"
+#define TESTING_URL @"http://4ed3ca81.ngrok.com/api"
 
 @implementation RESTManager
 
@@ -79,7 +80,8 @@
 }
 
 + (void)updateProducts:(NSString *)userAccessToken toCallback:(void (^)(id))callback{
-    [RESTManager sendData:nil toService:@"products" withMethod:@"GET" isTesting:NO withAccessToken:userAccessToken  isAccessTokenInHeader:NO toCallback:^(id result){
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    [RESTManager sendData:nil toService:@"products" withMethod:@"GET" isTesting:appDelegate.isTestingEnv withAccessToken:userAccessToken  isAccessTokenInHeader:NO toCallback:^(id result){
         //int showDays = 0;
         [DBManager deleteProducts];
         ProductObject *productObject;

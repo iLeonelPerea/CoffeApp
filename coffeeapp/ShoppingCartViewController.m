@@ -19,7 +19,7 @@
 
 @implementation ShoppingCartViewController
 
-@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder;
+@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder, imgBottomBar, imgTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,9 +37,11 @@
     
     // create order details
     [self setTitle:@"Place Order"];
+    //Set label date
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, LLLL d, yyyy"];
     [lblDate setText: [dateFormatter stringFromDate:[NSDate date]]];
+    //Extract data from user defaults
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:@"arrProductsInQueue"];
     arrProductsShoppingCart = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -54,7 +56,9 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [self doSetObjectsFrameFitToScreen];
+    //Set image to Place order button
+    [btnCheckOut setImage:[UIImage imageNamed:@"plceorder_btn_up"] forState:UIControlStateNormal];
+    [imgBottomBar setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f alpha:1.0f]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,15 +72,8 @@
     [self.parentViewController bdb_dismissPopupViewControllerWithAnimation:BDBPopupViewHideAnimationDefault completion:nil];
 }
 
-#pragma mark -- Set objects frame for fit to screen
--(void)doSetObjectsFrameFitToScreen
-{
-    //Set frame for screen objects between 3.5 and 4 inches
-    [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 183, 320, 287):CGRectMake(0, 183, 320, 210)];
-    [btnEmptyShoppingCart setFrame:(IS_IPHONE_5)?CGRectMake(20, 520, 148, 30):CGRectMake(20, 440, 148, 30)];
-    [btnCheckOut setFrame:(IS_IPHONE_5)?CGRectMake(234, 520, 66, 30):CGRectMake(234, 440, 66, 30)];
-}
 
+#pragma mark -- Place order
 -(IBAction)doPlaceOrder:(id)sender{
     AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
     NSMutableArray * arrOrderItems = [NSMutableArray new];
@@ -91,7 +88,7 @@
     }
     myAppDelegate.orderObject.arrLineItems = arrOrderItems; // Save the array in the orderObject
     [HUDJMProgress showInView:self.view];
-    [RESTManager sendData:myAppDelegate.orderObject.getOrderPetition toService:@"checkouts" withMethod:@"POST" isTesting:NO
+    [RESTManager sendData:myAppDelegate.orderObject.getOrderPetition toService:@"checkouts" withMethod:@"POST" isTesting:myAppDelegate.isTestingEnv
           withAccessToken:myAppDelegate.userObject.userSpreeToken isAccessTokenInHeader:YES toCallback:^(id result) {
               [HUDJMProgress dismissAnimated:YES];
               NSLog(@"order Number: %@ and order Token: %@", [result objectForKey:@"number"], [result objectForKey:@"token"]);
@@ -172,7 +169,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    return 80;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -186,31 +183,64 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     
+    ProductObject * productObject = [arrProductsShoppingCart objectAtIndex:[indexPath row]];
+    
     //-------- Image product
-    UIImageView * imgProduct = [[UIImageView alloc] init];
-    [imgProduct setFrame:CGRectMake(0, 0, 200, 150)];
-    ProductObject * productObject = [arrProductsShoppingCart objectAtIndex:indexPath.row];
+    UIImageView * imgProduct = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+    //[imgProduct setFrame:CGRectMake(0, 0, 180, 90)];
     if(productObject.masterObject.imageObject.attachment_file_name != nil){
         NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
         [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
         NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
-        [imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
+        //[imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
+        // testing crop
+        UIImage *imageToCrop = [UIImage imageWithContentsOfFile:fullPath];
+        CGRect cropRect = CGRectMake(0, 0, 240, 180);
+        UIImage *croppedImage = [self getSubImageFrom:imageToCrop WithRect:cropRect];
+        [imgProduct setImage:croppedImage];
     }else{
         [imgProduct setImage:[UIImage imageNamed:@"noAvail.png"]];
     }
     [cell addSubview:imgProduct];
     
+    //------- Transparency image
+    UIImageView * imgTransparency = [[UIImageView alloc] init];
+    [imgTransparency setFrame:CGRectMake(0, 0, 320, 80)];
+    [imgTransparency setImage:[UIImage imageNamed:@"item_transparency_03.png"]];
+    [cell addSubview:imgTransparency];
+    
     //-------- Product name
     UILabel * lblProductName = [[UILabel alloc] init];
-    [lblProductName setFrame:CGRectMake(0, 0, 320, 150)];
+    [lblProductName setFrame:CGRectMake(0, 0, 320, 90)];
     [lblProductName setText:[productObject name]];
+    [lblProductName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18]];
+    [lblProductName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblProductName setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:lblProductName];
     //---------------------------------------------------
     
     return cell;
+}
+
+
+// crop image method
+- (UIImage*) getSubImageFrom: (UIImage*) img WithRect: (CGRect) rect {
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    // translated rectangle for drawing sub image
+    //CGRect drawRect = CGRectMake(-rect.origin.x, -rect.origin.y, img.size.width, img.size.height);
+    CGRect drawRect = CGRectMake(0, 0, img.size.width, img.size.height);
+    // clip to the bounds of the image context
+    // not strictly necessary as it will get clipped anyway?
+    CGContextClipToRect(context, CGRectMake(0, 0, rect.size.width, rect.size.height));
+    // draw image
+    [img drawInRect:drawRect];
+    // grab image
+    UIImage* subImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return subImage;
 }
 
 @end

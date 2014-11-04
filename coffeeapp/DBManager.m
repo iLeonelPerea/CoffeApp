@@ -243,7 +243,8 @@
     //Get the distincts orders (incoming/past)
     if (sqlite3_open(dbPath, &appDB) ==  SQLITE_OK) {
         NSDateFormatter *dtFormat =[[NSDateFormatter alloc] init];
-        [dtFormat setDateFormat:@"dd-MM-yyyy HH:mm"];
+        [dtFormat setDateFormat:@"EEEE, LLLL d, yyyy"];
+        //[dtFormat setDateFormat:@"dd-MM-yyyy HH:mm"];
         
         if (withPastOrders) {
             sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_STATUS = \"complete\"  ORDER BY ORDER_DATE DESC"];
