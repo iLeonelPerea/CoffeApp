@@ -10,7 +10,7 @@
 
 @implementation CustomButton
 
-@synthesize index, section, active;
+@synthesize index, section, selected;
 
 /*
 // Only override drawRect: if you perform custom drawing.
