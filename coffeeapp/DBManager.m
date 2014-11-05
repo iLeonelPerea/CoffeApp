@@ -290,9 +290,9 @@
             [dtFormat setDateFormat:@"dd-MM-yyyy HH:mm"];
             
             if (withPastOrders) {
-                sqlSelect = [NSString stringWithFormat:@"SELECT PRODUCT_ID, PRODUCT_NAME FROM ORDERSLOG WHERE ORDER_ID = '%@' ORDER BY ORDER_DATE DESC", [dictDetailOrder objectForKey:@"ORDER_ID"]];
+                sqlSelect = [NSString stringWithFormat:@"SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_QUANTITY_ORDERED FROM ORDERSLOG WHERE ORDER_ID = '%@' ORDER BY ORDER_DATE DESC", [dictDetailOrder objectForKey:@"ORDER_ID"]];
             }else{
-                sqlSelect = [NSString stringWithFormat:@"SELECT PRODUCT_ID, PRODUCT_NAME FROM ORDERSLOG WHERE ORDER_ID = '%@' ORDER BY ORDER_DATE DESC", [dictDetailOrder objectForKey:@"ORDER_ID"]];
+                sqlSelect = [NSString stringWithFormat:@"SELECT PRODUCT_ID, PRODUCT_NAME, PRODUCT_QUANTITY_ORDERED FROM ORDERSLOG WHERE ORDER_ID = '%@' ORDER BY ORDER_DATE DESC", [dictDetailOrder objectForKey:@"ORDER_ID"]];
             }
             const char *select_stmt = [sqlSelect UTF8String];
             sqlite3_prepare_v2(appDB, select_stmt, -1, &statement, nil);
@@ -300,6 +300,7 @@
                 NSMutableDictionary *dictDetail = [[NSMutableDictionary alloc] init];
                 [dictDetail setObject:[NSString stringWithFormat:@"%d",sqlite3_column_int(statement, 0)] forKey:@"PRODUCT_ID"];
                 [dictDetail setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 1)] forKey:@"PRODUCT_NAME"];
+                [dictDetail setObject:[NSString stringWithFormat:@"%d",sqlite3_column_int(statement, 2)] forKey:@"PRODUCT_QUANTITY_ORDERED"];
                 [arrOrderDetail addObject:dictDetail];
             }
             [dictDetailOrder setObject:arrOrderDetail forKey:@"ORDER_DETAIL"];

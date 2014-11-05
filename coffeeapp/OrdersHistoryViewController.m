@@ -104,7 +104,7 @@
     
     //--------- Product name
     UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 23)];
-    [lblName setText:[[arrOrdersDetail objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_NAME"]];
+    [lblName setText:[NSString stringWithFormat:@"%@ %@",[[arrOrdersDetail objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"],[[arrOrdersDetail objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_NAME"]]];
     [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:15]];
     [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblName setTextAlignment:NSTextAlignmentLeft];
