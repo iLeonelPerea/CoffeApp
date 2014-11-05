@@ -304,6 +304,9 @@
     }
     else
     {
+        // Disable button if quantity more than stock
+        [btnAdd setActive:([productObject total_on_hand] == [productObject quantity])?NO:YES];
+        
         if ([productObject quantity] > 0) {
             [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(95, 170, 200, 45):CGRectMake(20, 280, 53, 20)];
             [btnAdd setImage:[UIImage imageNamed:@"add02_btn_up"] forState:UIControlStateNormal];

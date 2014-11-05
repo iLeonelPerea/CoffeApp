@@ -92,10 +92,15 @@
         NSArray * arrKeys = [result allKeys]; //get all keys from result (since keys are dates)
         for(NSString * strKey in arrKeys)
         {
+            NSDateFormatter * dtFormat = [[NSDateFormatter alloc] init];
+            [dtFormat setDateFormat:@"yyyy-MM-dd"];
+            //NSString * strCurrentDate = [dtFormat stringFromDate:[NSDate date]];
+            
             if([strKey isEqual:@"exception"]) {
                 callback(@NO);
                 break;
             }else if(![strKey isEqual:@"total_count"] && ![strKey isEqual:@"menu_id"] && ![strKey isEqual:@"categories"]) // in result there is a key named total_count to retrieve how many images we are going to download
+            //else if([strKey isEqual:[dtFormat stringFromDate:[NSDate date]]])
             {
                 NSArray * arrMenu = [result objectForKey:strKey];
                 for(NSDictionary * dictFinalProduct in arrMenu)
