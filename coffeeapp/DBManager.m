@@ -260,7 +260,7 @@
     //Get the distincts orders (incoming/past)
     if (sqlite3_open(dbPath, &appDB) ==  SQLITE_OK) {
         NSDateFormatter *dtFormat =[[NSDateFormatter alloc] init];
-        [dtFormat setDateFormat:@"EEEE, LLLL d, yyyy"];
+        [dtFormat setDateFormat:@"EEEE, LLLL d, yyyy, HH:mm"];
         //[dtFormat setDateFormat:@"dd-MM-yyyy HH:mm"];
         
         if (withPastOrders) {
