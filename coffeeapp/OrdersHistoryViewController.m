@@ -73,6 +73,12 @@
     [lblSectionTitle setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [headerView addSubview:lblSectionTitle];
     
+    if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"attending"]) {
+        UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:CGRectMake(250, 0, 70, 70)];
+        [imgLabel setImage:[UIImage imageNamed:@"label.png"]];
+        [headerView addSubview:imgLabel];
+    }
+    
     /*
     UILabel * lblProductsNumber = [[UILabel alloc] init];
     [lblProductsNumber setFrame:CGRectMake(200, 0, 100, 50)];

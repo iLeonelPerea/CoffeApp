@@ -267,7 +267,7 @@
             sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_STATUS = \"complete\"  ORDER BY ORDER_DATE DESC"];
             //sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_DATE < %f ORDER BY ORDER_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
         }else{
-            sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_STATUS = \"confirm\"  ORDER BY ORDER_DATE DESC"];
+            sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_STATUS = \"confirm\" OR ORDER_STATUS = \"attending\" ORDER BY ORDER_DATE DESC"];
             //sqlSelect = [NSString stringWithFormat:@"SELECT DISTINCT ORDER_ID, ORDER_DATE, ORDER_STATUS FROM ORDERSLOG WHERE ORDER_DATE >= %f ORDER BY ORDER_DATE DESC", (double)[[NSDate date] timeIntervalSince1970]];
         }
         const char *select_stmt = [sqlSelect UTF8String];

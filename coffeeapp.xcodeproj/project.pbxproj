@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		22536D09CF9C58200B049A39 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EAE09A761A7211E49B6549 /* libPods.a */; };
+		2329A9161A09B08600E93ABB /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = 2329A9151A09B08600E93ABB /* label.png */; };
 		2354C3D11A0310FB00729A84 /* history_btn_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2354C3D01A0310FB00729A84 /* history_btn_selected.png */; };
 		2354C3D31A03110900729A84 /* history_btn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 2354C3D21A03110900729A84 /* history_btn_up.png */; };
 		2354C3D51A03111F00729A84 /* neworders_btn_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2354C3D41A03111F00729A84 /* neworders_btn_selected.png */; };
@@ -79,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2329A9151A09B08600E93ABB /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
 		2354C3D01A0310FB00729A84 /* history_btn_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history_btn_selected.png; sourceTree = "<group>"; };
 		2354C3D21A03110900729A84 /* history_btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history_btn_up.png; sourceTree = "<group>"; };
 		2354C3D41A03111F00729A84 /* neworders_btn_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neworders_btn_selected.png; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		C869B7231A001ED800F12C57 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				2329A9151A09B08600E93ABB /* label.png */,
 				23B3B8101A08365E00800204 /* plceorder_btn_down.png */,
 				23B3B8111A08365E00800204 /* plceorder_btn_up.png */,
 				23B3B80E1A0812BF00800204 /* item_transparency_03.png */,
@@ -470,6 +473,7 @@
 				C8B7CC5519F1D76600AEBA27 /* Images.xcassets in Resources */,
 				236FCB8C1A005C460021E2ED /* badge_ima.png in Resources */,
 				236FCB7E1A0051760021E2ED /* add_btn_up.png in Resources */,
+				2329A9161A09B08600E93ABB /* label.png in Resources */,
 				2354C3D11A0310FB00729A84 /* history_btn_selected.png in Resources */,
 				236FCB881A0058E70021E2ED /* subtract_btn_down.png in Resources */,
 				7DEE7EF119F610590081BCEC /* ProductCellTableViewCell.xib in Resources */,
