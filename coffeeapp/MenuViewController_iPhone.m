@@ -56,6 +56,7 @@
             //Set the array prodcuts - If the there's products selected by users, they will be set here.
             arrProductCategoriesObjects = [DBManager getCategories];
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+            [self synchronizeDefaults];
             [tblProducts reloadData];
         }else{
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -95,6 +96,25 @@
     }else{
         [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 90, 320, 333)];
     }
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray * arrProductsInQueue = [NSMutableArray new];
+    
+    int productsCount = 0;
+    for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
+        for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
+        {
+            if (tmpObject.quantity != 0) {
+                productsCount += tmpObject.quantity;
+                [arrProductsInQueue addObject:tmpObject];
+            }
+        }
+    }
+    
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
+    [defaults synchronize];
 }
 
 #pragma mark -- setQuantitySelectedProducts delegate
@@ -143,16 +163,12 @@
 #pragma mark -- Synchronize defaults
 -(void)synchronizeDefaults
 {
-    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray * arrProductsInQueue = [NSMutableArray new];
-    
     int productsCount = 0;
     for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
         for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
         {
             if (tmpObject.quantity != 0) {
                 productsCount += tmpObject.quantity;
-                [arrProductsInQueue addObject:tmpObject];
             }
         }
     }
@@ -179,8 +195,6 @@
         }];
     }
     [lblProductsCount setText:(productsCount == 1)?[NSString stringWithFormat:@"%d Product",productsCount]:[NSString stringWithFormat:@"%d Products",productsCount]];
-    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
-    [defaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -400,6 +414,23 @@
 
 #pragma mark -- button place Order
 - (IBAction)doPlaceOrder:(id)sender{
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray * arrProductsInQueue = [NSMutableArray new];
+    
+    int productsCount = 0;
+    for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
+        for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
+        {
+            if (tmpObject.quantity != 0) {
+                productsCount += tmpObject.quantity;
+                [arrProductsInQueue addObject:tmpObject];
+            }
+        }
+    }
+    
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
+    [defaults synchronize];
+    
     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
     ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
     [self bdb_presentPopupViewController:shoppingCartViewController
