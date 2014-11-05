@@ -263,12 +263,12 @@
         [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
         NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
-        //[imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
+        [imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
         // testing crop
-        UIImage *imageToCrop = [UIImage imageWithContentsOfFile:fullPath];
+        /*UIImage *imageToCrop = [UIImage imageWithContentsOfFile:fullPath];
         CGRect cropRect = CGRectMake(0, 0, 120, 100);
         UIImage *croppedImage = [self getSubImageFrom:imageToCrop WithRect:cropRect];
-        [imgProduct setImage:croppedImage];
+        [imgProduct setImage:croppedImage];*/
     }else{
         [imgProduct setImage:[UIImage imageNamed:@"noAvail"]];
     }

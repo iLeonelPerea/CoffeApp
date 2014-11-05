@@ -97,6 +97,7 @@
     //Clean userObject data stored in user defaults
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:@"userObject"];
+    [defaults setObject:nil forKey:@"arrProductsInQueue"];
     [defaults synchronize];
     //Calls to set the main view controller to display
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestSignOut" object:nil];

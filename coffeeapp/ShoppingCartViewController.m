@@ -154,8 +154,7 @@
                            @"userChannel": appDelegate.userObject.userChannel,
                            @"orderNumber": orderNumber,
                            @"orderToken": orderToken,
-                           @"userPic": appDelegate.userObject.userUrlProfileImage,
-                           @"orderState": @"attending"
+                           @"userPic": appDelegate.userObject.userUrlProfileImage
                            };
     PFPush *push = [[PFPush alloc] init];
     [push setChannel:@"requests"];
