@@ -34,7 +34,9 @@
 @property (nonatomic, strong) ProductObject *productObject;
 @property (nonatomic, assign) int currentDayOfWeek;
 
-- (void)synchronizeDefaults;
-- (NSMutableArray*)setQuantitySelectedProducts:(NSMutableArray*)arrMenuProducts;
-- (IBAction)doPlaceOrder:(id)sender;
+-(void)synchronizeDefaults;
+-(NSMutableArray*)setQuantitySelectedProducts:(NSMutableArray*)arrMenuProducts;
+-(void)doShowPlaceOrderBottomBar:(int)productsCount;
+-(IBAction)doPlaceOrder:(id)sender;
+
 @end

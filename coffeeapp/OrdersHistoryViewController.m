@@ -60,7 +60,6 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSLog(@"Section %d",[arrOrders count]);
     return [arrOrders count]; // Save the count of sections
 }
 
