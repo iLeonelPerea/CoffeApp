@@ -30,7 +30,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
     
     // set to YES to test on local computers
-    isTestingEnv = YES;
+    isTestingEnv = NO;
 
     //Set app's client ID for GPPSignIn and GPPShare
     [[GPPSignIn sharedInstance] setClientID:kClientID];
