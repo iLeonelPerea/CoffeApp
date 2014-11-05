@@ -83,9 +83,13 @@
     [newProductObject setMasterObject:masterObject];
     CategoryObject * newCategoryObject = [[CategoryObject alloc] init];
     NSMutableArray * arrCategory = [dictProduct objectForKey:@"categories"];
-    NSMutableDictionary * dictCategory = [arrCategory objectAtIndex:0];
-    [newCategoryObject setCategory_id:([dictCategory objectForKey:@"id"] != [NSNull null])?[[dictCategory objectForKey:@"id"] intValue]:0];
-    [newCategoryObject setCategory_name:([dictCategory objectForKey:@"name"] != [NSNull null])?[dictCategory objectForKey:@"name"]:@"N/A"];
+    if ([arrCategory count]!=0) {
+        NSMutableDictionary * dictCategory = [arrCategory objectAtIndex:0];
+        [newCategoryObject setCategory_id:([dictCategory objectForKey:@"id"] != [NSNull null])?[[dictCategory objectForKey:@"id"] intValue]:0];
+        [newCategoryObject setCategory_name:([dictCategory objectForKey:@"name"] != [NSNull null])?[dictCategory objectForKey:@"name"]:@"N/A"];
+    }else{
+        [newCategoryObject setCategory_id:0];
+    }
     [newProductObject setCategoryObject:newCategoryObject];
     [newProductObject setName:([dictProduct objectForKey:@"name"] != [NSNull null])?[dictProduct objectForKey:@"name"]:@"N/A"];
     [newProductObject setPrice:([dictProduct objectForKey:@"price"] != [NSNull null])?[dictProduct objectForKey:@"price"]:@"N/A"];

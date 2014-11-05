@@ -19,7 +19,7 @@
 
 @implementation ShoppingCartViewController
 
-@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder, imgBottomBar, imgTitle;
+@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, lblProductsCount, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder, imgBottomBar, imgTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +52,17 @@
     
     //Set the timer
     tmrOrder = [NSTimer scheduledTimerWithTimeInterval:1200.0f target:self selector:@selector(doDismissShoppingCart:) userInfo:nil repeats:NO];
+    
+    //Set requested products
+    int productsCount = 0;
+    for(ProductObject * tmpObject in arrProductsShoppingCart)
+    {
+        if (tmpObject.quantity != 0) {
+            productsCount += tmpObject.quantity;
+        }
+    }
+    
+    [lblProductsCount setText:(productsCount == 1)?[NSString stringWithFormat:@"%d Product Requested",productsCount]:[NSString stringWithFormat:@"%d Products Requested",productsCount]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
