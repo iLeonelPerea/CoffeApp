@@ -12,6 +12,7 @@
                 <outlet property="imgBottomBar" destination="zID-gU-n2v" id="4sg-pV-qeV"/>
                 <outlet property="imgTitle" destination="AS1-AV-Aee" id="Xfw-Gj-dTZ"/>
                 <outlet property="lblDate" destination="FI9-ku-sA3" id="G0H-jI-BQn"/>
+                <outlet property="lblProductsCount" destination="aYO-y3-4i7" id="sXW-MN-ayt"/>
                 <outlet property="tblProducts" destination="cQK-9E-939" id="3N7-lI-2vy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -64,6 +65,12 @@
                         <action selector="doPlaceOrder:" destination="-1" eventType="touchUpInside" id="CZj-cS-5Xb"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYO-y3-4i7">
+                    <rect key="frame" x="35" y="473" width="250" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <nil key="simulatedStatusBarMetrics"/>

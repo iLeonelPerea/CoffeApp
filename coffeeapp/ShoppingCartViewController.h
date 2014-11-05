@@ -22,6 +22,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnCheckOut;
 @property (nonatomic, strong) IBOutlet UIButton *btnEmptyShoppingCart;
 @property (nonatomic, strong) IBOutlet UILabel *lblDate;
+@property (nonatomic, strong) IBOutlet UILabel *lblProductsCount;
 @property (nonatomic, strong) IBOutlet UITableView *tblProducts;
 @property (nonatomic, strong) NSMutableArray *arrProductsShoppingCart;
 @property (nonatomic, strong) JGProgressHUD * HUDJMProgress;

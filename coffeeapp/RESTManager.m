@@ -27,7 +27,7 @@
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",TESTING_URL, service]];
         }
         else
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"http://stage-spree-demo-store-two.herokuapp.com/api/%@", service]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"https://stage-spree-demo-store-two.herokuapp.com/api/%@", service]];
     }
     else
     {
@@ -35,7 +35,7 @@
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@.json", TESTING_URL, service]];
         else
         {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"http://stage-spree-demo-store-two.herokuapp.com/api/%@.json", service]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"https://stage-spree-demo-store-two.herokuapp.com/api/%@.json", service]];
         }
     }
     
@@ -104,41 +104,43 @@
                     [dictProduct setObject:strKey forKey:@"available_on"];
                     productObject = [[ProductObject alloc] init];
                     productObject = [productObject assignProductObject:dictProduct];
-                    // Image download to local storage.
-                    NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-                    NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
-                    [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-                    NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
-                    NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
-                    NSArray * arrUrl = [productObject.masterObject.imageObject.product_url componentsSeparatedByString:@"?"];
-                    NSString * url;
-                    if([arrUrl count] > 1)
-                    {
-                        url = [arrUrl objectAtIndex:0];
+                    if (productObject.categoryObject.category_id != 0) {
+                        // Image download to local storage.
+                        NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                        NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
+                        [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+                        NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
+                        NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
+                        NSArray * arrUrl = [productObject.masterObject.imageObject.product_url componentsSeparatedByString:@"?"];
+                        NSString * url;
+                        if([arrUrl count] > 1)
+                        {
+                            url = [arrUrl objectAtIndex:0];
+                        }
+                        else
+                        {
+                            url = productObject.masterObject.imageObject.product_url;
+                        }
+                        if(url != nil)
+                        {
+                            [[[AsyncImageDownloader alloc] initWithFileURL:url successBlock:^(NSData *data) {
+                                NSData * dataPic = [NSData dataWithData:UIImageJPEGRepresentation([UIImage imageWithData:data], 1.0f)];
+                                [dataPic writeToFile:fullPath atomically:YES];
+                                totalImages --;
+                                if(totalImages == 0)
+                                {
+                                    callback(@YES);
+                                }
+                            } failBlock:^(NSError *errro) {
+                                NSLog(@"Failed to download the image to local storage");
+                                totalImages --;
+                                if(totalImages == 0)
+                                    callback(@YES);
+                            }] startDownload];
+                        }
+                        [DBManager insertProduct:productObject];
+                        [DBManager insertProductCategory:productObject];
                     }
-                    else
-                    {
-                        url = productObject.masterObject.imageObject.product_url;
-                    }
-                    if(url != nil)
-                    {
-                        [[[AsyncImageDownloader alloc] initWithFileURL:url successBlock:^(NSData *data) {
-                            NSData * dataPic = [NSData dataWithData:UIImageJPEGRepresentation([UIImage imageWithData:data], 1.0f)];
-                            [dataPic writeToFile:fullPath atomically:YES];
-                            totalImages --;
-                            if(totalImages == 0)
-                            {
-                                callback(@YES);
-                            }
-                        } failBlock:^(NSError *errro) {
-                            NSLog(@"Failed to download the image to local storage");
-                            totalImages --;
-                            if(totalImages == 0)
-                                callback(@YES);
-                        }] startDownload];
-                    }
-                    [DBManager insertProduct:productObject];
-                    [DBManager insertProductCategory:productObject];
                 }
             }
         }
