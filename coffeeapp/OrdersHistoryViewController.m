@@ -13,7 +13,7 @@
 @end
 
 @implementation OrdersHistoryViewController
-@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, arrOrdersDetail;
+@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, arrOrdersDetail, isPendingOrdersSelected;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,11 +32,25 @@
     //Get orders information, init with new orders
     [lblTitle setText:@"PENDING ORDERS"];
     arrOrders = [DBManager getOrdersHistory:NO];
+    isPendingOrdersSelected = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doRefreshOrdersHistory:) name:@"doRefreshOrdersHistory" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -- Refresh orders history after push notification
+-(void)doRefreshOrdersHistory:(id)sender
+{
+    if (isPendingOrdersSelected) {
+        arrOrders = [DBManager getOrdersHistory:NO];
+    }else{
+        arrOrders = [DBManager getOrdersHistory:YES];
+    }
+    [tblOrders reloadData];
 }
 
 #pragma mark -- Table view delegate
@@ -123,6 +137,7 @@
     [lblTitle setText:@"PAST ORDERS"];
     [btnIncomingOrders setImage:[UIImage imageNamed:@"neworders_btn_up.png"] forState:UIControlStateNormal];
     [btnPastOrders setImage:[UIImage imageNamed:@"history_btn_selected.png"] forState:UIControlStateNormal];
+    isPendingOrdersSelected = NO;
 }
 
 -(void)doShowPendingOrders:(id)sender
@@ -134,6 +149,7 @@
     [lblTitle setText:@"PENDING ORDERS"];
     [btnIncomingOrders setImage:[UIImage imageNamed:@"neworders_btn_selected.png"] forState:UIControlStateNormal];
     [btnPastOrders setImage:[UIImage imageNamed:@"history_btn_up.png"] forState:UIControlStateNormal];
+    isPendingOrdersSelected = YES;
 }
 
 @end
