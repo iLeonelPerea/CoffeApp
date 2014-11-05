@@ -43,7 +43,6 @@
     HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     arrProductObjects = [NSMutableArray new];
     
-    
     //Delete content of local DB tables
     NSArray * arrTables = [[NSArray alloc] init];
     arrTables = @[@"PRODUCT_CATEGORIES", @"PRODUCTS"];
@@ -305,7 +304,7 @@
     else
     {
         // Disable button if quantity more than stock
-        [btnAdd setActive:([productObject total_on_hand] == [productObject quantity])?NO:YES];
+        [btnAdd setEnabled:([productObject total_on_hand] == [productObject quantity])?NO:YES];
         
         if ([productObject quantity] > 0) {
             [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(95, 170, 200, 45):CGRectMake(20, 280, 53, 20)];
@@ -379,7 +378,7 @@
     if (((ProductObject *)[[arrProductObjects objectAtIndex:((CustomButton *)sender).section] objectAtIndex:((CustomButton *)sender).index]).quantity==1) {
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Please check!" message:[NSString stringWithFormat:@"Are you sure you want to add two items to your order?"] delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
         [alert show];
-        senderButton.active = YES;
+        senderButton.selected = YES;
     }else{
         ProductObject * selectedProduct = [ProductObject new];
         selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
@@ -417,7 +416,7 @@
         for(UIView * cells in tblProducts.visibleCells) // Search into cells
             for(UIView * subView in cells.subviews) // Get subviews of each cell
                 if([subView isKindOfClass:[CustomButton class]]) // be sure subView is UIButton Class
-                    if (((CustomButton*)subView).active)
+                    if (((CustomButton*)subView).selected)
                         senderButton = (CustomButton*)subView; // Save the button active
         if (buttonIndex == 1) {
             ProductObject * selectedProduct = [ProductObject new];
@@ -426,7 +425,7 @@
             [self doReloadData];
             [self synchronizeDefaults];
         }
-        senderButton.active = NO;
+        senderButton.selected = NO;
     }
 }
 
