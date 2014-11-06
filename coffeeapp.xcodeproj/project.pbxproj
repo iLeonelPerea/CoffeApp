@@ -34,6 +34,16 @@
 		23B3B8131A08365E00800204 /* plceorder_btn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 23B3B8111A08365E00800204 /* plceorder_btn_up.png */; };
 		23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176B919F47FB3009F82A3 /* RESTManager.m */; };
 		23C176BE19F48474009F82A3 /* UserObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 23C176BD19F48474009F82A3 /* UserObject.m */; };
+		23F400A11A0BCDF6009F09EE /* Lato-Bla.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F400971A0BCDF6009F09EE /* Lato-Bla.ttf */; };
+		23F400A21A0BCDF6009F09EE /* Lato-BlaIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F400981A0BCDF6009F09EE /* Lato-BlaIta.ttf */; };
+		23F400A31A0BCDF6009F09EE /* Lato-Bol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F400991A0BCDF6009F09EE /* Lato-Bol.ttf */; };
+		23F400A41A0BCDF6009F09EE /* Lato-BolIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F4009A1A0BCDF6009F09EE /* Lato-BolIta.ttf */; };
+		23F400A51A0BCDF6009F09EE /* Lato-Hai.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F4009B1A0BCDF6009F09EE /* Lato-Hai.ttf */; };
+		23F400A61A0BCDF6009F09EE /* Lato-HaiIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F4009C1A0BCDF6009F09EE /* Lato-HaiIta.ttf */; };
+		23F400A71A0BCDF6009F09EE /* Lato-Lig.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F4009D1A0BCDF6009F09EE /* Lato-Lig.ttf */; };
+		23F400A81A0BCDF6009F09EE /* Lato-LigIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F4009E1A0BCDF6009F09EE /* Lato-LigIta.ttf */; };
+		23F400A91A0BCDF6009F09EE /* Lato-Reg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F4009F1A0BCDF6009F09EE /* Lato-Reg.ttf */; };
+		23F400AA1A0BCDF6009F09EE /* Lato-RegIta.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 23F400A01A0BCDF6009F09EE /* Lato-RegIta.ttf */; };
 		7D0C6D0A19FEB05B00677DAF /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0C6D0919FEB05B00677DAF /* CustomButton.m */; };
 		7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D17919D19F6B4FF00696B91 /* DBManager.m */; };
 		7D1791A019F6CDD000696B91 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D17919F19F6CDD000696B91 /* libsqlite3.dylib */; };
@@ -109,6 +119,16 @@
 		23C176B919F47FB3009F82A3 /* RESTManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESTManager.m; sourceTree = "<group>"; };
 		23C176BC19F48474009F82A3 /* UserObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserObject.h; sourceTree = "<group>"; };
 		23C176BD19F48474009F82A3 /* UserObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserObject.m; sourceTree = "<group>"; };
+		23F400971A0BCDF6009F09EE /* Lato-Bla.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bla.ttf"; sourceTree = "<group>"; };
+		23F400981A0BCDF6009F09EE /* Lato-BlaIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BlaIta.ttf"; sourceTree = "<group>"; };
+		23F400991A0BCDF6009F09EE /* Lato-Bol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bol.ttf"; sourceTree = "<group>"; };
+		23F4009A1A0BCDF6009F09EE /* Lato-BolIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-BolIta.ttf"; sourceTree = "<group>"; };
+		23F4009B1A0BCDF6009F09EE /* Lato-Hai.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Hai.ttf"; sourceTree = "<group>"; };
+		23F4009C1A0BCDF6009F09EE /* Lato-HaiIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-HaiIta.ttf"; sourceTree = "<group>"; };
+		23F4009D1A0BCDF6009F09EE /* Lato-Lig.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Lig.ttf"; sourceTree = "<group>"; };
+		23F4009E1A0BCDF6009F09EE /* Lato-LigIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-LigIta.ttf"; sourceTree = "<group>"; };
+		23F4009F1A0BCDF6009F09EE /* Lato-Reg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Reg.ttf"; sourceTree = "<group>"; };
+		23F400A01A0BCDF6009F09EE /* Lato-RegIta.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-RegIta.ttf"; sourceTree = "<group>"; };
 		39EAE09A761A7211E49B6549 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D0C6D0819FEB05B00677DAF /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		7D0C6D0919FEB05B00677DAF /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
@@ -220,6 +240,31 @@
 			name = VO;
 			sourceTree = "<group>";
 		};
+		23F400951A0BCD9D009F09EE /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				23F400961A0BCDD1009F09EE /* Lato */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		23F400961A0BCDD1009F09EE /* Lato */ = {
+			isa = PBXGroup;
+			children = (
+				23F400971A0BCDF6009F09EE /* Lato-Bla.ttf */,
+				23F400981A0BCDF6009F09EE /* Lato-BlaIta.ttf */,
+				23F400991A0BCDF6009F09EE /* Lato-Bol.ttf */,
+				23F4009A1A0BCDF6009F09EE /* Lato-BolIta.ttf */,
+				23F4009B1A0BCDF6009F09EE /* Lato-Hai.ttf */,
+				23F4009C1A0BCDF6009F09EE /* Lato-HaiIta.ttf */,
+				23F4009D1A0BCDF6009F09EE /* Lato-Lig.ttf */,
+				23F4009E1A0BCDF6009F09EE /* Lato-LigIta.ttf */,
+				23F4009F1A0BCDF6009F09EE /* Lato-Reg.ttf */,
+				23F400A01A0BCDF6009F09EE /* Lato-RegIta.ttf */,
+			);
+			name = Lato;
+			sourceTree = "<group>";
+		};
 		7D0C6D0719FEB03300677DAF /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -232,6 +277,7 @@
 		C869B7231A001ED800F12C57 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				23F400951A0BCD9D009F09EE /* Fonts */,
 				2329A9151A09B08600E93ABB /* label.png */,
 				23B3B8101A08365E00800204 /* plceorder_btn_down.png */,
 				23B3B8111A08365E00800204 /* plceorder_btn_up.png */,
@@ -460,24 +506,30 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7C196A1A00B4670072E46E /* ShoppingCartViewController.xib in Resources */,
+				23F400A71A0BCDF6009F09EE /* Lato-Lig.ttf in Resources */,
 				23B3B80F1A0812BF00800204 /* item_transparency_03.png in Resources */,
 				236FCB801A00519B0021E2ED /* add02_btn_down.png in Resources */,
 				23B3B8121A08365E00800204 /* plceorder_btn_down.png in Resources */,
+				23F400A11A0BCDF6009F09EE /* Lato-Bla.ttf in Resources */,
 				23A8E8B719FAAF050041D30F /* OrdersHistoryViewController.xib in Resources */,
 				235975DF1A01736E0070E914 /* menu_btn.png in Resources */,
 				2354C3D51A03111F00729A84 /* neworders_btn_selected.png in Resources */,
+				23F400A61A0BCDF6009F09EE /* Lato-HaiIta.ttf in Resources */,
 				C8B7CC5819F1D76600AEBA27 /* LaunchScreen.xib in Resources */,
 				23A5E1421A0293E400590509 /* logout_btn_up.png in Resources */,
 				2354C3D31A03110900729A84 /* history_btn_up.png in Resources */,
+				23F400A41A0BCDF6009F09EE /* Lato-BolIta.ttf in Resources */,
 				236FCB7C1A0051610021E2ED /* add_btn_down.png in Resources */,
 				C8B7CC5519F1D76600AEBA27 /* Images.xcassets in Resources */,
 				236FCB8C1A005C460021E2ED /* badge_ima.png in Resources */,
 				236FCB7E1A0051760021E2ED /* add_btn_up.png in Resources */,
+				23F400A81A0BCDF6009F09EE /* Lato-LigIta.ttf in Resources */,
 				2329A9161A09B08600E93ABB /* label.png in Resources */,
 				2354C3D11A0310FB00729A84 /* history_btn_selected.png in Resources */,
 				236FCB881A0058E70021E2ED /* subtract_btn_down.png in Resources */,
 				7DEE7EF119F610590081BCEC /* ProductCellTableViewCell.xib in Resources */,
 				C839FA4519F5923500BC01D5 /* UserProfileController.xib in Resources */,
+				23F400A31A0BCDF6009F09EE /* Lato-Bol.ttf in Resources */,
 				7DEE7EF919F611D50081BCEC /* MenuViewController_iPhone.xib in Resources */,
 				C8F5FACE19F86F7600BAFEA0 /* LeftMenuViewController.xib in Resources */,
 				C89ED5BB1A0023ED004441A3 /* login_btn_up.png in Resources */,
@@ -485,12 +537,16 @@
 				236FCB861A0058880021E2ED /* outstock_btn_up.png in Resources */,
 				235975DD1A01518D0070E914 /* patron_01.png in Resources */,
 				C869B7251A001EF900F12C57 /* splash_ima.png in Resources */,
+				23F400A51A0BCDF6009F09EE /* Lato-Hai.ttf in Resources */,
 				23A5E1411A0293E400590509 /* logout_btn_down.png in Resources */,
 				23B3B8131A08365E00800204 /* plceorder_btn_up.png in Resources */,
 				236FCB821A0051A50021E2ED /* add02_btn_up.png in Resources */,
+				23F400A91A0BCDF6009F09EE /* Lato-Reg.ttf in Resources */,
 				C89ED5BA1A0023ED004441A3 /* login_btn_down.png in Resources */,
 				236FCB841A00587A0021E2ED /* outstock_btn_down.png in Resources */,
 				C8B7CC7219F1D7BF00AEBA27 /* LoginViewController.xib in Resources */,
+				23F400AA1A0BCDF6009F09EE /* Lato-RegIta.ttf in Resources */,
+				23F400A21A0BCDF6009F09EE /* Lato-BlaIta.ttf in Resources */,
 				236FCB8A1A0058FB0021E2ED /* subtract_btn_up.png in Resources */,
 				236FCB8E1A00688F0021E2ED /* item_transparency.png in Resources */,
 			);

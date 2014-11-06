@@ -25,12 +25,13 @@
     UILabel * lblControllerTitle = [[UILabel alloc] init];
     [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
-    [lblControllerTitle setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
+    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
     
     //Get orders information, init with new orders
     [lblTitle setText:@"PENDING ORDERS"];
+    [lblTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     arrOrders = [DBManager getOrdersHistory:NO];
     isPendingOrdersSelected = YES;
     
@@ -82,7 +83,7 @@
     UILabel * lblSectionTitle = [[UILabel alloc] init];
     [lblSectionTitle setFrame:CGRectMake(20, 15, 280, 30)];
     [lblSectionTitle setText:[dictOrderHeader objectForKey:@"ORDER_DATE"]];
-    [lblSectionTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:18]];
+    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:18]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [headerView addSubview:lblSectionTitle];
     
@@ -109,7 +110,7 @@
     UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 23)];
     [[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"];
     [lblName setText:[NSString stringWithFormat:@"%@ %@",[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"],[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_NAME"]]];
-    [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:15]];
+    [lblName setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
     [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblName setTextAlignment:NSTextAlignmentLeft];
     [cell addSubview:lblName];

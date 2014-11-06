@@ -19,7 +19,7 @@
 
 @implementation ShoppingCartViewController
 
-@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, lblProductsCount, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder, imgBottomBar, imgTitle;
+@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder, imgBottomBar, imgTitle, lblDisclaimer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,7 +40,10 @@
     //Set label date
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, LLLL d, yyyy"];
+    [lblDate setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [lblDate setText: [dateFormatter stringFromDate:[NSDate date]]];
+    //Set the style for disclaimer message
+    [lblDisclaimer setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     //Extract data from user defaults
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:@"arrProductsInQueue"];
@@ -61,8 +64,6 @@
             productsCount += tmpObject.quantity;
         }
     }
-    
-    [lblProductsCount setText:(productsCount == 1)?[NSString stringWithFormat:@"%d Product Requested",productsCount]:[NSString stringWithFormat:@"%d Products Requested",productsCount]];
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -225,8 +226,8 @@
     //-------- Product name
     UILabel * lblProductName = [[UILabel alloc] init];
     [lblProductName setFrame:CGRectMake(0, 0, 320, 90)];
-    [lblProductName setText:[productObject name]];
-    [lblProductName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18]];
+    [lblProductName setText:[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]]];
+    [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
     [lblProductName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblProductName setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:lblProductName];

@@ -10,7 +10,7 @@
 // that used to do that, was putted in the synchronizeDefaults. That was the cause of some behavior issues in the menu view controller.
 // Also were removed a lot of calls to synchronizeDefaults, which were unnecessary. The method doSynchronizeDefaults
 // was modified to optimize the code, now is called doCleanMenuAfterOrderPlaced .
-// -- Franciso Flores --x
+// -- Franciso Flores --
 
 #import "MenuViewController_iPhone.h"
 #import "DBManager.h"
@@ -91,9 +91,12 @@
     UILabel * lblControllerTitle = [[UILabel alloc] init];
     [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
-    [lblControllerTitle setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
+    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
+    
+    //Create observer to update products stock without call the spree service
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doUpdateProductsStockAfterNotification:) name:@"doUpdateProductsStockAfterNotification" object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -107,7 +110,7 @@
     [lblProductsCount setFrame:CGRectMake(20, 0, 100, 60)];
     [lblProductsCount setTextAlignment:NSTextAlignmentLeft];
     [btnPlaceOrder setFrame:CGRectMake(175, 0, 120, 60)];
-    [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18]];
+    [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
     [[btnPlaceOrder titleLabel] setTextAlignment:NSTextAlignmentRight];
     [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
 }
@@ -139,6 +142,28 @@
     //Call the method that determines if the bottom bar is displayed or not
     [self doShowPlaceOrderBottomBar:[arrOrderSelectedProducts count]];
     return arrMenuProducts;
+}
+
+-(void)doUpdateProductsStockAfterNotification:(NSNotification *)notification
+{
+    //Extract the data from user defaults
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSData * data = [defaults objectForKey:@"dataCompleteNotification"];
+    NSMutableArray * arrProductsStock = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+
+    //Update the stock in local DB
+    for (NSMutableDictionary * dictProduct in arrProductsStock) {
+        [DBManager updateProductStock:[[dictProduct objectForKey:@"master_id"] intValue] withStock:[[dictProduct objectForKey:@"total_on_hand"]intValue]];
+    }
+
+    //Set again the products array
+    arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+    [tblProducts reloadData];
+    
+    //Reset the values in user defaults
+    [defaults setObject:nil forKey:@"dataCompleteNotification"];
+    [defaults setObject:nil forKey:@"msg"];
+    [defaults synchronize];
 }
 
 -(void)doCleanMenuAfterOrderPlaced:(NSNotification*)notification
@@ -242,7 +267,7 @@
     UILabel * lblSectionTitle = [[UILabel alloc] init];
     [lblSectionTitle setFrame:CGRectMake(20, 0, 200, 50)];
     [lblSectionTitle setText:[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:section] category_name ]];
-    [lblSectionTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20]];
+    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:255]];
     [headerView addSubview:lblSectionTitle];
     
@@ -251,7 +276,7 @@
     [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:@"1 Product"];
     [lblProductsNumber setTextAlignment:NSTextAlignmentRight];
     [lblProductsNumber setTextColor:[UIColor colorWithRed:146.0f/255.0f green:142.0f/255.0f blue:140.0f/255.0f alpha:1.0f]];
-    [lblProductsNumber setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
+    [lblProductsNumber setFont:[UIFont fontWithName:@"Lato-Light" size:15]];
     [headerView addSubview:lblProductsNumber];
     
     return headerView;
@@ -298,7 +323,7 @@
     //--------- Product name
     UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 145, 280, 21):CGRectMake(20, 10, 280, 21)];
     [lblName setText: [productObject name]];
-    [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:15]];
+    [lblName setFont:[UIFont fontWithName:@"Lato-Bold" size:15]];
     [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblName setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:lblName];
@@ -370,10 +395,12 @@
         [lblQuantity setTextAlignment:NSTextAlignmentCenter];
         [lblQuantity setTextColor:[UIColor whiteColor]];
         [lblQuantity setNumberOfLines:2];
-        [lblQuantity setFont:[UIFont fontWithName:@"Helvetica" size:15]];
+        [lblQuantity setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
         [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
         [cell addSubview:lblQuantity];
         //--------------------------
+        
+        NSLog(@"%d %@ %d",[productObject.masterObject masterObject_id],[productObject name],[productObject total_on_hand]);
         
         //Check for the stock of the product to enable/disable the add button
         [btnAdd setEnabled:(productDayAvailable < currentDayOfWeek || [productObject total_on_hand] <= [productObject quantity])? NO:YES]; // Disable if the ProductAvailable is lower than currentDay

@@ -24,5 +24,6 @@
 +(NSMutableArray*)getOrdersHistory:(BOOL)withPastOrders;
 +(void)updateStateOrderLog:(NSString*)orderId withState:(NSString*)orderState;
 +(void)deleteTableContent:(NSArray*)tables;
++(void)updateProductStock:(int)productId withStock:(int)stock;
 
 @end

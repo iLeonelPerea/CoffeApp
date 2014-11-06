@@ -332,5 +332,24 @@
     }
 }
 
+#pragma mark -- Update product stock
++(void)updateProductStock:(int)productId withStock:(int)stock;
+{
+    sqlite3 *appDB = nil;
+    sqlite3_stmt *statement;
+    const char *dbPath = [[DBManager getDBPath] UTF8String];
+    NSString *sqlUpdate = @"";
+    const char *updateSQL = [sqlUpdate UTF8String];
+        if (sqlite3_open(dbPath, &appDB) == SQLITE_OK) {
+            sqlUpdate = [NSString stringWithFormat:@"UPDATE PRODUCTS SET PRODUCT_TOTAL_ON_HAND = %d WHERE PRODUCT_MASTER_MASTEROBJECT_ID = %d",stock,productId];
+            updateSQL = [sqlUpdate UTF8String];
+            sqlite3_prepare_v2(appDB, updateSQL, -1, &statement, nil);
+            if (sqlite3_step(statement) != SQLITE_DONE) {
+                NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+            }
+            [DBManager finalizeStatements:statement withDB:appDB];
+        }
+}
+
 
 @end
