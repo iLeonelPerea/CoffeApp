@@ -17,7 +17,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize userObject, orderObject, isTestingEnv;
+@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -31,7 +31,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     
     // set to YES to test on local computers
     isTestingEnv = NO;
-
+    
     //Set app's client ID for GPPSignIn and GPPShare
     [[GPPSignIn sharedInstance] setClientID:kClientID];
     //Initialize an empty UserObject instance
@@ -159,10 +159,14 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     
     if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]) {
         [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:[userInfo objectForKey:@"state"]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
     }
-    
     if (application.applicationState == UIApplicationStateInactive) {
         [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+        //Store the user info to update the order status when the app become active
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userInfo] forKey:@"userInfo"];
+        [defaults synchronize];
     }
 }
 
@@ -206,6 +210,15 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSData * data = [defaults objectForKey:@"userInfo"];
+    NSMutableDictionary * dictUserInfo = [[NSMutableDictionary alloc] init];
+    dictUserInfo = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    //Update the order status
+    [DBManager updateStateOrderLog:[dictUserInfo objectForKey:@"orderId"] withState:[dictUserInfo objectForKey:@"state"]];
+    [defaults setObject:nil forKey:@"userInfo"];
+    [defaults synchronize];
+    dictUserInfo = nil;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

@@ -133,7 +133,7 @@
               NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
               [defaults setObject:nil forKey:@"arrProductsInQueue"];
               [defaults synchronize];
-              [[NSNotificationCenter defaultCenter] postNotificationName:@"doSynchronizeDefaults" object:nil];
+              [[NSNotificationCenter defaultCenter] postNotificationName:@"doCleanMenuAfterOrderPlaced" object:nil];
               [self.parentViewController bdb_dismissPopupViewControllerWithAnimation:BDBPopupViewHideAnimationDefault completion:nil];
 
           }];

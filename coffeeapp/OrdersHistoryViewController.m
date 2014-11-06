@@ -13,7 +13,7 @@
 @end
 
 @implementation OrdersHistoryViewController
-@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, arrOrdersDetail;
+@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, isPendingOrdersSelected;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,11 +32,25 @@
     //Get orders information, init with new orders
     [lblTitle setText:@"PENDING ORDERS"];
     arrOrders = [DBManager getOrdersHistory:NO];
+    isPendingOrdersSelected = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doRefreshOrdersHistory:) name:@"doRefreshOrdersHistory" object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark -- Refresh orders history after push notification
+-(void)doRefreshOrdersHistory:(id)sender
+{
+    if (isPendingOrdersSelected) {
+        arrOrders = [DBManager getOrdersHistory:NO];
+    }else{
+        arrOrders = [DBManager getOrdersHistory:YES];
+    }
+    [tblOrders reloadData];
 }
 
 #pragma mark -- Table view delegate
@@ -50,8 +64,7 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    arrOrdersDetail = [[arrOrders objectAtIndex:section] objectForKey:@"ORDER_DETAIL"];
-    return [arrOrdersDetail count];
+    return [[[arrOrders objectAtIndex:section] objectForKey:@"ORDER_DETAIL"] count];
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -78,16 +91,6 @@
         [imgLabel setImage:[UIImage imageNamed:@"label.png"]];
         [headerView addSubview:imgLabel];
     }
-    
-    /*
-    UILabel * lblProductsNumber = [[UILabel alloc] init];
-    [lblProductsNumber setFrame:CGRectMake(200, 0, 100, 50)];
-    [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:@"1 Product"];
-    [lblProductsNumber setTextAlignment:NSTextAlignmentRight];
-    [lblProductsNumber setTextColor:[UIColor colorWithRed:146.0f/255.0f green:142.0f/255.0f blue:140.0f/255.0f alpha:1.0f]];
-    [lblProductsNumber setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
-    [headerView addSubview:lblProductsNumber];
-    */
     return headerView;
 }
 
@@ -104,7 +107,8 @@
     
     //--------- Product name
     UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 23)];
-    [lblName setText:[NSString stringWithFormat:@"%@ %@",[[arrOrdersDetail objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"],[[arrOrdersDetail objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_NAME"]]];
+    [[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"];
+    [lblName setText:[NSString stringWithFormat:@"%@ %@",[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"],[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_NAME"]]];
     [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:15]];
     [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblName setTextAlignment:NSTextAlignmentLeft];
@@ -123,6 +127,7 @@
     [lblTitle setText:@"PAST ORDERS"];
     [btnIncomingOrders setImage:[UIImage imageNamed:@"neworders_btn_up.png"] forState:UIControlStateNormal];
     [btnPastOrders setImage:[UIImage imageNamed:@"history_btn_selected.png"] forState:UIControlStateNormal];
+    isPendingOrdersSelected = NO;
 }
 
 -(void)doShowPendingOrders:(id)sender
@@ -134,6 +139,7 @@
     [lblTitle setText:@"PENDING ORDERS"];
     [btnIncomingOrders setImage:[UIImage imageNamed:@"neworders_btn_selected.png"] forState:UIControlStateNormal];
     [btnPastOrders setImage:[UIImage imageNamed:@"history_btn_up.png"] forState:UIControlStateNormal];
+    isPendingOrdersSelected = YES;
 }
 
 @end

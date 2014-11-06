@@ -5,7 +5,12 @@
 //  Created by Omar Guzmán on 8/21/14.
 //  Copyright (c) 2014 CrowdInt. All rights reserved.
 //
-// Todo: Try to load everything on a single UITableView, instead 7
+// ViewDidDisappear was removed. synchronizeDefaults was modified to -really- synchronize the values of user defaults
+// An method called doShowPlaceOrderBottomBar was created to detemine if the bottom bar has to be displayed or not. Because the code
+// that used to do that, was putted in the synchronizeDefaults. That was the cause of some behavior issues in the menu view controller.
+// Also were removed a lot of calls to synchronizeDefaults, which were unnecessary. The method doSynchronizeDefaults
+// was modified to optimize the code, now is called doCleanMenuAfterOrderPlaced .
+// -- Franciso Flores --x
 
 #import "MenuViewController_iPhone.h"
 #import "DBManager.h"
@@ -70,14 +75,22 @@
     currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue]; // Get the current date
     
     //Create a notification that reload data
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSynchronizeDefaults:) name:@"doSynchronizeDefaults" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doCleanMenuAfterOrderPlaced:) name:@"doCleanMenuAfterOrderPlaced" object:nil];
     UILabel * lblControllerTitle = [[UILabel alloc] init];
     [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
     [lblControllerTitle setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
-    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    //Set objects to fit screen between 3.5 and 4
+    if (isViewPlaceOrderActive) {
+        [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 510):CGRectMake(0, 90, 320, 333)];
+    }else{
+        [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 90, 320, 333)];
+    }
     //Set the elementos on the placeHolder view
     [lblProductsCount setFrame:CGRectMake(20, 0, 100, 60)];
     [lblProductsCount setTextAlignment:NSTextAlignmentLeft];
@@ -85,16 +98,6 @@
     [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18]];
     [[btnPlaceOrder titleLabel] setTextAlignment:NSTextAlignmentRight];
     [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    //Set objects to fit screen between 3.5 and 4 inches
-    [self synchronizeDefaults];
-    if (isViewPlaceOrderActive) {
-        [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 510):CGRectMake(0, 90, 320, 333)];
-    }else{
-        [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 90, 320, 333)];
-    }
 }
 
 #pragma mark -- setQuantitySelectedProducts delegate
@@ -121,28 +124,22 @@
             }
         }
     }
+    //Call the method that determines if the bottom bar is displayed or not
+    [self doShowPlaceOrderBottomBar:[arrOrderSelectedProducts count]];
     return arrMenuProducts;
 }
 
-#pragma mark -- NSNotificationCenter
--(void)doSynchronizeDefaults:(NSNotification *)notification{ //Called when ShoppingViewController was dissmised
+-(void)doCleanMenuAfterOrderPlaced:(NSNotification*)notification
+{
+    //Set again the products array
     arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
     [tblProducts reloadData];
-    isViewPlaceOrderActive = false;
-    [UIView animateWithDuration:0.5f animations:^{
-        [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 90, 320, 333)];
-        [UIView animateWithDuration:1.0f animations:^{
-            // Increase the frame.origin.y
-            [viewPlaceOrder setFrame:CGRectMake(0, viewPlaceOrder.frame.origin.y+viewPlaceOrder.frame.size.height, viewPlaceOrder.frame.size.width, viewPlaceOrder.frame.size.height)];
-        }];
-    } completion:^(BOOL finished) {
-    }];
 }
-
 
 #pragma mark -- Synchronize defaults
 -(void)synchronizeDefaults
 {
+    //Update the information of selected products in user defaults
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray * arrProductsInQueue = [NSMutableArray new];
     
@@ -156,6 +153,16 @@
             }
         }
     }
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
+    [defaults synchronize];
+    
+    //Call the method to determine if the bottom bar is displayed
+    [self doShowPlaceOrderBottomBar:productsCount];
+}
+
+#pragma mark -- Show place order bottom bar
+-(void)doShowPlaceOrderBottomBar:(int)productsCount
+{
     // If found products in shoppingCart && is not visible the viewPlaceOrder
     if (productsCount>0 && !isViewPlaceOrderActive) {
         isViewPlaceOrderActive = true;
@@ -179,8 +186,6 @@
         }];
     }
     [lblProductsCount setText:(productsCount == 1)?[NSString stringWithFormat:@"%d Product",productsCount]:[NSString stringWithFormat:@"%d Products",productsCount]];
-    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
-    [defaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -197,7 +202,7 @@
 #pragma mark -- Table view data delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (IS_IPHONE_5)?230.0f:340.0f;
+    return 230.0f;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -400,6 +405,23 @@
 
 #pragma mark -- button place Order
 - (IBAction)doPlaceOrder:(id)sender{
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSMutableArray * arrProductsInQueue = [NSMutableArray new];
+    
+    int productsCount = 0;
+    for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
+        for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
+        {
+            if (tmpObject.quantity != 0) {
+                productsCount += tmpObject.quantity;
+                [arrProductsInQueue addObject:tmpObject];
+            }
+        }
+    }
+    
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
+    [defaults synchronize];
+    
     [self.navigationController dismissViewControllerAnimated:NO completion:nil];
     ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
     [self bdb_presentPopupViewController:shoppingCartViewController

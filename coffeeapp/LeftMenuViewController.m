@@ -101,5 +101,9 @@
     [defaults synchronize];
     //Calls to set the main view controller to display
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestSignOut" object:nil];
+    //Delete content of local DB tables
+    NSArray * arrTables = [[NSArray alloc] init];
+    arrTables = @[@"PRODUCT_CATEGORIES", @"PRODUCTS",@"ORDERSLOG",@"SHOPPINGCART"];
+    [DBManager deleteTableContent:arrTables];
 }
 @end
