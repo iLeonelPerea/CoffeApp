@@ -10,7 +10,7 @@
 // that used to do that, was putted in the synchronizeDefaults. That was the cause of some behavior issues in the menu view controller.
 // Also were removed a lot of calls to synchronizeDefaults, which were unnecessary. The method doSynchronizeDefaults
 // was modified to optimize the code, now is called doCleanMenuAfterOrderPlaced .
-// -- Franciso Flores --x
+// -- Franciso Flores --
 
 #import "MenuViewController_iPhone.h"
 #import "DBManager.h"
@@ -82,6 +82,9 @@
     [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
+    
+    //Create observer to update products stock without call the spree service
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doUpdateProductsStockAfterNotification:) name:@"doUpdateProductsStockAfterNotification" object:nil];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -127,6 +130,28 @@
     //Call the method that determines if the bottom bar is displayed or not
     [self doShowPlaceOrderBottomBar:[arrOrderSelectedProducts count]];
     return arrMenuProducts;
+}
+
+-(void)doUpdateProductsStockAfterNotification:(NSNotification *)notification
+{
+    //Extract the data from user defaults
+    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    NSData * data = [defaults objectForKey:@"dataCompleteNotification"];
+    NSMutableArray * arrProductsStock = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+
+    //Update the stock in local DB
+    for (NSMutableDictionary * dictProduct in arrProductsStock) {
+        [DBManager updateProductStock:[[dictProduct objectForKey:@"master_id"] intValue] withStock:[[dictProduct objectForKey:@"total_on_hand"]intValue]];
+    }
+
+    //Set again the products array
+    arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+    [tblProducts reloadData];
+    
+    //Reset the values in user defaults
+    [defaults setObject:nil forKey:@"dataCompleteNotification"];
+    [defaults setObject:nil forKey:@"msg"];
+    [defaults synchronize];
 }
 
 -(void)doCleanMenuAfterOrderPlaced:(NSNotification*)notification
@@ -368,6 +393,8 @@
         [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
         [cell addSubview:lblQuantity];
         //--------------------------
+        
+        NSLog(@"%d %@ %d",[productObject.masterObject masterObject_id],[productObject name],[productObject total_on_hand]);
         
         //Check for the stock of the product to enable/disable the add button
         [btnAdd setEnabled:(productDayAvailable < currentDayOfWeek || [productObject total_on_hand] <= [productObject quantity])? NO:YES]; // Disable if the ProductAvailable is lower than currentDay

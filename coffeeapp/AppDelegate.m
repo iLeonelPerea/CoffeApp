@@ -161,12 +161,34 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:[userInfo objectForKey:@"state"]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
     }
+    if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
+        //Extract the data of order products
+        NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProducts] forKey:@"dataCompleteNotification"];
+        [defaults setObject:@"complete notification" forKey:@"msg"];
+        [defaults synchronize];
+        //Post a local notificatino
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateProductsStockAfterNotification" object:nil];
+    }
+    
+    //Listener for when the app is inactive
     if (application.applicationState == UIApplicationStateInactive) {
         [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
-        //Store the user info to update the order status when the app become active
-        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userInfo] forKey:@"userInfo"];
-        [defaults synchronize];
+        //if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]){
+            //Store the user info to update the order status when the app become active
+            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userInfo] forKey:@"userInfo"];
+            [defaults synchronize];
+        //}
+        /*if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
+            //Extract the data of order products
+            NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
+            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProducts] forKey:@"dataCompleteNotification"];
+            [defaults setObject:@"complete notification" forKey:@"msg"];
+            [defaults synchronize];
+        }*/
     }
 }
 
@@ -214,9 +236,19 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     NSData * data = [defaults objectForKey:@"userInfo"];
     NSMutableDictionary * dictUserInfo = [[NSMutableDictionary alloc] init];
     dictUserInfo = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"%@",dictUserInfo);
     //Update the order status
     [DBManager updateStateOrderLog:[dictUserInfo objectForKey:@"orderId"] withState:[dictUserInfo objectForKey:@"state"]];
     [defaults setObject:nil forKey:@"userInfo"];
+    
+    //Check if the order is complete to update products stock
+    NSData * dataProducts = [defaults objectForKey:@"dataCompleteNotification"];
+    NSMutableArray * arrProductsStock = [NSKeyedUnarchiver unarchiveObjectWithData:dataProducts];
+    if ( [arrProductsStock count] > 0) {
+        //Post a local notification
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateProductsStockAfterNotification" object:nil];
+    }
+    
     [defaults synchronize];
     dictUserInfo = nil;
 }
