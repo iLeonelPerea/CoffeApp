@@ -79,7 +79,7 @@
     UILabel * lblControllerTitle = [[UILabel alloc] init];
     [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
-    [lblControllerTitle setFont:[UIFont fontWithName:@"HelveticaNeue" size:20]];
+    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
 }
@@ -95,7 +95,7 @@
     [lblProductsCount setFrame:CGRectMake(20, 0, 100, 60)];
     [lblProductsCount setTextAlignment:NSTextAlignmentLeft];
     [btnPlaceOrder setFrame:CGRectMake(175, 0, 120, 60)];
-    [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:18]];
+    [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
     [[btnPlaceOrder titleLabel] setTextAlignment:NSTextAlignmentRight];
     [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
 }
@@ -230,7 +230,7 @@
     UILabel * lblSectionTitle = [[UILabel alloc] init];
     [lblSectionTitle setFrame:CGRectMake(20, 0, 200, 50)];
     [lblSectionTitle setText:[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:section] category_name ]];
-    [lblSectionTitle setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:20]];
+    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:255]];
     [headerView addSubview:lblSectionTitle];
     
@@ -239,7 +239,7 @@
     [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:@"1 Product"];
     [lblProductsNumber setTextAlignment:NSTextAlignmentRight];
     [lblProductsNumber setTextColor:[UIColor colorWithRed:146.0f/255.0f green:142.0f/255.0f blue:140.0f/255.0f alpha:1.0f]];
-    [lblProductsNumber setFont:[UIFont fontWithName:@"HelveticaNeue-Light" size:15]];
+    [lblProductsNumber setFont:[UIFont fontWithName:@"Lato-Light" size:15]];
     [headerView addSubview:lblProductsNumber];
     
     return headerView;
@@ -286,7 +286,7 @@
     //--------- Product name
     UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 145, 280, 21):CGRectMake(20, 10, 280, 21)];
     [lblName setText: [productObject name]];
-    [lblName setFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:15]];
+    [lblName setFont:[UIFont fontWithName:@"Lato-Bold" size:15]];
     [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblName setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:lblName];
@@ -364,7 +364,7 @@
         [lblQuantity setTextAlignment:NSTextAlignmentCenter];
         [lblQuantity setTextColor:[UIColor whiteColor]];
         [lblQuantity setNumberOfLines:2];
-        [lblQuantity setFont:[UIFont fontWithName:@"Helvetica" size:15]];
+        [lblQuantity setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
         [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
         [cell addSubview:lblQuantity];
         //--------------------------
