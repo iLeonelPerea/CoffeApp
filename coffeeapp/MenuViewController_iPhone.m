@@ -23,7 +23,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder;
+@synthesize arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,6 +41,18 @@
     arrWeekDays = [[NSArray alloc] initWithObjects:@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
     
     isViewPlaceOrderActive = false;
+    // check if meals are available based on server time
+    [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+        NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
+        if([strHr intValue] > 10)
+        {
+            areMealsAvailable = NO;
+        }
+        else
+        {
+            areMealsAvailable = YES;
+        }
+    }];
    
     //Setting up tableview delegates and datasources
     [tblProducts setDelegate:self];
@@ -291,16 +303,10 @@
     [lblName setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:lblName];
     
-    NSDateFormatter *hour = [[NSDateFormatter alloc] init];
-    [hour setDateFormat: @"k"];
-
-    /*
-          currentDayOfWeek = ([[weekday stringFromDate:now]
-     */
     //--------- Add button
     CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
     //Check the quantity selected by user, if is more than 0, then change the size of the button on screen
-    if ([[hour stringFromDate:[NSDate date]] intValue]>10 && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:indexPath.section] category_name ] isEqualToString:@"Meals"]) {
+    if (!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:indexPath.section] category_name ] isEqualToString:@"Meals"]) {
         [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down"] forState:UIControlStateHighlighted];
