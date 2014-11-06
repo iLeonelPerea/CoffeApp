@@ -7,3 +7,5 @@ pod 'AsyncImageDownloader', '~> 1.0.0'
 pod 'Parse', '~> 1.4.2'
 pod 'JASidePanels', '~> 1.3.2'
 pod 'BDBPopupViewController', '~> 1.1'
+pod 'LMAlertView', '~> 1.1.0'
+
