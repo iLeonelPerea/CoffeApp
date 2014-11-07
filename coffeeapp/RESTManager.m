@@ -111,6 +111,14 @@
                 NSArray * arrMenu = [result objectForKey:strKey];
                 totalImages = (int)[arrMenu count]; // know how many images do we have in our products array
                 NSMutableArray * arrCategories = [DBManager getCategories];
+                for(NSDictionary * dictFinalProduct in arrMenu){
+                    NSMutableDictionary * dictProduct = [dictFinalProduct mutableCopy];
+                    productObject = [[ProductObject alloc] init];
+                    productObject = [productObject assignProductObject:dictProduct];
+                    if (productObject.categoryObject.category_id != 0) {
+                        totalImages --;
+                    }
+                }
                 for(NSDictionary * dictFinalProduct in arrMenu)
                 {
                     NSMutableDictionary * dictProduct = [dictFinalProduct mutableCopy]; //create a mutable NSDictionary to set our key (date) as filter on 'available_on'
@@ -120,7 +128,7 @@
                     
                     for (CategoryObject *categoryObject in arrCategories) {
                         if (productObject.categoryObject.category_id == categoryObject.category_id) {
-
+                            
                             productObject.categoryObject.category_id = categoryObject.category_id;
                             productObject.categoryObject.category_name = categoryObject.category_name;
                             
@@ -152,15 +160,10 @@
                                 }] startDownload];
                             }
                             [DBManager insertProduct:productObject];
-                        }else{
-                            totalImages --;
-                        }
-                        if(totalImages == 0)
-                        {
-                            callback(@YES);
                         }
                     }
                 }
+                callback(@YES);
             }
         }
     }];

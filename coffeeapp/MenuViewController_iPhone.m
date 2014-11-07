@@ -34,36 +34,6 @@
     return self;
 }
 
--(NSMutableArray *)sortCategories:(NSMutableArray *)arrCategory withProducts:(NSMutableArray *)arrProducts{
-    NSMutableArray * newArrCategory = [[NSMutableArray alloc] init];
-    NSMutableArray * newArrProducts = [[NSMutableArray alloc] init];
-    for (int dimentionArrCategory; [arrCategory count]; dimentionArrCategory++) {
-        for (CategoryObject *newCategory in arrCategory[dimentionArrCategory]) {
-            if ([newCategory.category_name isEqualToString:@"Desayuno"]) {
-                [newArrCategory addObject:newCategory];
-                for (CategoryObject *category in arrCategory) {
-                    if (![newCategory.category_name isEqualToString:@"Desayuno"]){
-                        [newArrCategory addObject:category];
-                    }
-                }
-            }
-        }
-    }
-    
-    
-    for (CategoryObject *newCategory in arrCategory) {
-        if ([newCategory.category_name isEqualToString:@"Desayuno"]) {
-            [newArrCategory addObject:newCategory];
-            for (CategoryObject *category in arrCategory) {
-                if (![newCategory.category_name isEqualToString:@"Desayuno"]){
-                    [newArrCategory addObject:category];
-                }
-            }
-        }
-    }
-    return newArrCategory;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
