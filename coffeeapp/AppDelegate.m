@@ -12,6 +12,10 @@
 #import <JASidePanelController.h>
 #import "LeftMenuViewController.h"
 #import "RESTManager.h"
+#import <LMAlertView.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate ()
 
@@ -29,6 +33,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     PFACL * defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+    [Fabric with:@[CrashlyticsKit]];
     
     // set to YES to test on local computers
     isTestingEnv = NO;
@@ -158,6 +163,25 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
     if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]) {
+        
+        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Thanks" otherButtonTitles:nil];
+        [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+        
+        // Add your subviews here to customise
+        UIView *contentView = alertView.contentView;
+        [contentView setBackgroundColor:[UIColor clearColor]];
+        [alertView setBackgroundColor:[UIColor clearColor]];
+        
+        UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
+        [imgV setImage:([[userInfo objectForKey:@"state"] isEqual:@"attending"])?[UIImage imageNamed:@"illustration_01"]:[UIImage imageNamed:@"illustration_02"]];
+        [contentView addSubview:imgV];
+        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 200, 120)];
+        lblStatus.numberOfLines = 2;
+        lblStatus.text = [NSString stringWithFormat:@"%@ Your order it's %@", userObject.firstName, [userInfo objectForKey:@"state"]];
+        [contentView addSubview:lblStatus];
+        [alertView show];
+        
+        
         [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:[userInfo objectForKey:@"state"]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
     }
