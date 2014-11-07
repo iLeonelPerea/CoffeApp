@@ -297,7 +297,7 @@
     productObject = [[arrProductObjects objectAtIndex:indexPath.section] objectAtIndex:(NSInteger)indexPath.row];
     
     //--------- Product image
-    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 230):CGRectMake(50, 43, 224, 154)];
+    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 217):CGRectMake(50, 43, 320, 217)];
     if(productObject.masterObject.imageObject.attachment_file_name != nil){
         NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
@@ -305,24 +305,22 @@
         NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
         [imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
-        // testing crop
-        /*UIImage *imageToCrop = [UIImage imageWithContentsOfFile:fullPath];
-        CGRect cropRect = CGRectMake(0, 0, 120, 100);
-        UIImage *croppedImage = [self getSubImageFrom:imageToCrop WithRect:cropRect];
-        [imgProduct setImage:croppedImage];*/
+        
+        [imgProduct setImage:[self getSubImageFrom:[UIImage imageWithContentsOfFile:fullPath] WithRect:CGRectMake(0, 0, 320, 217)]];
     }else{
         [imgProduct setImage:[UIImage imageNamed:@"noAvail"]];
     }
     [cell addSubview:imgProduct];
     
     UIImageView * imgTransparent = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"item_transparency"]];
-    [imgTransparent setFrame:(IS_IPHONE_5)?CGRectMake(20, 140, 280, 80):CGRectMake(20, 280, 53, 20)];
+    [imgTransparent setFrame:(IS_IPHONE_5)?CGRectMake(20, 136, 280, 88):CGRectMake(20, 0, 280, 88)];
     [cell addSubview:imgTransparent];
     
     //--------- Product name
-    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 145, 280, 21):CGRectMake(20, 10, 280, 21)];
+    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 136, 280, 36):CGRectMake(20, 0, 280, 36)];
     [lblName setText: [productObject name]];
     [lblName setFont:[UIFont fontWithName:@"Lato-Bold" size:15]];
+    [lblName setTextAlignment:NSTextAlignmentCenter];
     [lblName setNumberOfLines:2];
     [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblName setTextAlignment:NSTextAlignmentCenter];
@@ -332,7 +330,7 @@
     CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
     //Check the quantity selected by user, if is more than 0, then change the size of the button on screen
     if (!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:indexPath.section] category_name ] isEqualToString:@"Meals"]) {
-        [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
+        [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 174, 270, 45):CGRectMake(25, 0, 270, 45)];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down"] forState:UIControlStateHighlighted];
         [cell addSubview:btnAdd];
@@ -343,11 +341,11 @@
         [btnAdd setEnabled:([productObject total_on_hand] == [productObject quantity])?NO:YES];
         
         if ([productObject quantity] > 0) {
-            [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(95, 170, 200, 45):CGRectMake(20, 280, 53, 20)];
+            [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(95, 174, 200, 45):CGRectMake(95, 0, 200, 45)];
             [btnAdd setImage:[UIImage imageNamed:@"add02_btn_up"] forState:UIControlStateNormal];
             [btnAdd setImage:[UIImage imageNamed:@"add02_btn_down"] forState:UIControlStateHighlighted];
         }else{
-            [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
+            [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 174, 270, 45):CGRectMake(25, 0, 270, 45)];
             [btnAdd setImage:[UIImage imageNamed:@"add_btn_up"] forState:UIControlStateNormal];
             [btnAdd  setImage:[UIImage imageNamed:@"add_btn_down"] forState:UIControlStateHighlighted];
         }
@@ -361,7 +359,7 @@
         //When a product is outstock
         //if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
         if (![productObject total_on_hand] > [productObject quantity] || (productDayAvailable < currentDayOfWeek) ) {
-            [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 270, 45):CGRectMake(20, 280, 53, 20)];
+            [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 174, 270, 45):CGRectMake(25, 0, 270, 45)];
             [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
             [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down"] forState:UIControlStateHighlighted];
             [btnAdd setEnabled:NO];
@@ -373,7 +371,7 @@
         CustomButton *btnMinus = [CustomButton buttonWithType:UIButtonTypeCustom];
         if ([productObject quantity] > 0)
         {
-            [btnMinus setFrame:(IS_IPHONE_5)?CGRectMake(25, 170, 60, 45):CGRectMake(247, 280, 53, 20)];
+            [btnMinus setFrame:(IS_IPHONE_5)?CGRectMake(25, 174, 60, 45):CGRectMake(25, 0, 60, 45)];
             [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_up"] forState:UIControlStateNormal];
             [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_down"] forState:UIControlStateHighlighted];
         }
