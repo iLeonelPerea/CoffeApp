@@ -361,6 +361,24 @@
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down"] forState:UIControlStateHighlighted];
         [cell addSubview:btnAdd];
+        
+        if (productObject.quantity > 0) {
+            //-------- Quantity selected
+            UIImageView * imgBadge = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge_ima"]];
+            [imgBadge setFrame:(IS_IPHONE_5)?CGRectMake(220, 10, 80, 80):CGRectMake(20, 280, 53, 20)];
+            [imgBadge setHidden:(productObject.quantity > 0)?NO:YES];
+            [cell addSubview:imgBadge];
+            
+            UILabel *lblQuantity = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(223, 10, 70, 70):CGRectMake(81, 280, 158, 21)];
+            [lblQuantity setText:[NSString stringWithFormat:@"%d Selected", productObject.quantity]];
+            [lblQuantity setTextAlignment:NSTextAlignmentCenter];
+            [lblQuantity setTextColor:[UIColor whiteColor]];
+            [lblQuantity setNumberOfLines:2];
+            [lblQuantity setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
+            [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
+            [cell addSubview:lblQuantity];
+            //--------------------------
+        }
     }
     else
     {
@@ -463,28 +481,57 @@
 
 #pragma mark -- button place Order
 - (IBAction)doPlaceOrder:(id)sender{
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray * arrProductsInQueue = [NSMutableArray new];
     
+    BOOL isPlaceOrder = YES;
     int productsCount = 0;
     for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
         for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
         {
             if (tmpObject.quantity != 0) {
-                productsCount += tmpObject.quantity;
-                [arrProductsInQueue addObject:tmpObject];
+                if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"]) {
+                    tmpObject.quantity = 0;
+                    LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Algo ha pasado" otherButtonTitles:nil];
+                    [alertView setSize:CGSizeMake(250.0f, 320.0f)];
+                    
+                    // Add your subviews here to customise
+                    UIView *contentView = alertView.contentView;
+                    [contentView setBackgroundColor:[UIColor clearColor]];
+                    [alertView setBackgroundColor:[UIColor clearColor]];
+                    
+                    UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(60.0f, 10.0f, 129.0f, 200.0f)];
+                    [imgV setImage:[UIImage imageNamed:@"illustration_03_360"]];
+                    [contentView addSubview:imgV];
+                    UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, 230, 120)];
+                    [lblStatus setTextAlignment:NSTextAlignmentCenter];
+                    lblStatus.numberOfLines = 3;
+                    lblStatus.text = [NSString stringWithFormat:@"%@ Ha Terminado El Periodo Para Pedir Desayuno", appDelegate.userObject.firstName];
+                    [contentView addSubview:lblStatus];
+                    [alertView show];
+                    [self synchronizeDefaults];
+                    isPlaceOrder = NO;
+                    [tblProducts reloadData];
+                    break;
+                }else{
+                    productsCount += tmpObject.quantity;
+                    [arrProductsInQueue addObject:tmpObject];
+                }
             }
         }
     }
     
-    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
-    [defaults synchronize];
-    
-    [self.navigationController dismissViewControllerAnimated:NO completion:nil];
-    ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
-    [self bdb_presentPopupViewController:shoppingCartViewController
-                           withAnimation:BDBPopupViewShowAnimationDefault
+    if (isPlaceOrder) {
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
+        [defaults synchronize];
+        
+        [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+        ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
+        [self bdb_presentPopupViewController:shoppingCartViewController
+                               withAnimation:BDBPopupViewShowAnimationDefault
                               completion:nil];
+    }
 }
 
 #pragma mark -- UIAlertViewDelegate
