@@ -44,7 +44,7 @@
     // check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
-        if([strHr intValue] > 10)
+        if([strHr intValue] > 23)
         {
             areMealsAvailable = NO;
         }
@@ -62,8 +62,6 @@
     
     //Delete content of local DB tables
     NSArray * arrTables = [[NSArray alloc] init];
-    arrTables = @[@"PRODUCT_CATEGORIES", @"PRODUCTS"];
-    [DBManager deleteTableContent:arrTables];
     //Update prodcuts
     [[HUDJMProgress textLabel] setText:@"Loading products"];
     [HUDJMProgress showInView:[self view]];
@@ -239,7 +237,7 @@
 #pragma mark -- Table view data delegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 230.0f;
+    return 240.0f;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -273,7 +271,7 @@
     
     UILabel * lblProductsNumber = [[UILabel alloc] init];
     [lblProductsNumber setFrame:CGRectMake(200, 0, 100, 50)];
-    [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:@"1 Product"];
+    [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:@"0 Product"];
     [lblProductsNumber setTextAlignment:NSTextAlignmentRight];
     [lblProductsNumber setTextColor:[UIColor colorWithRed:146.0f/255.0f green:142.0f/255.0f blue:140.0f/255.0f alpha:1.0f]];
     [lblProductsNumber setFont:[UIFont fontWithName:@"Lato-Light" size:15]];
@@ -297,7 +295,7 @@
     productObject = [[arrProductObjects objectAtIndex:indexPath.section] objectAtIndex:(NSInteger)indexPath.row];
     
     //--------- Product image
-    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 217):CGRectMake(50, 43, 320, 217)];
+    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(0, 0, 320, 240):CGRectMake(50, 43, 320, 240)];
     if(productObject.masterObject.imageObject.attachment_file_name != nil){
         NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
@@ -306,7 +304,7 @@
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
         [imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
         
-        [imgProduct setImage:[self getSubImageFrom:[UIImage imageWithContentsOfFile:fullPath] WithRect:CGRectMake(0, 0, 320, 217)]];
+        [imgProduct setImage:[self getSubImageFrom:[UIImage imageWithContentsOfFile:fullPath] WithRect:CGRectMake(0, 0, 320, 240)]];
     }else{
         [imgProduct setImage:[UIImage imageNamed:@"noAvail"]];
     }
@@ -329,7 +327,7 @@
     //--------- Add button
     CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
     //Check the quantity selected by user, if is more than 0, then change the size of the button on screen
-    if (!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:indexPath.section] category_name ] isEqualToString:@"Meals"]) {
+    if (!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:indexPath.section] category_name ] isEqualToString:@"Desayuno"]) {
         [btnAdd setFrame:(IS_IPHONE_5)?CGRectMake(25, 174, 270, 45):CGRectMake(25, 0, 270, 45)];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down"] forState:UIControlStateHighlighted];

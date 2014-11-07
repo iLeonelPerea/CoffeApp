@@ -15,6 +15,7 @@
 +(BOOL)checkOrCreateDataBase;
 +(void)insertProduct:(ProductObject *)product;
 +(void)insertProductCategory:(ProductObject *)product;
++(void)insertCategory:(NSDictionary *)category;
 +(NSMutableArray *)getCategories;
 +(NSMutableArray*)getProducts;
 +(NSMutableArray *)getProductsCategory:(CategoryObject *)category;

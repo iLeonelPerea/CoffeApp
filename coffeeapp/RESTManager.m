@@ -90,6 +90,12 @@
         __block int totalImages = [[result objectForKey:@"total_count"] intValue]; // define __block var, to be used inside async block, in this case AsyncImageDownloader method
         // this is to control callback dispatch, once all images have been downloaded.
         NSArray * arrKeys = [result allKeys]; //get all keys from result (since keys are dates)
+        NSArray * arrCategories = [result objectForKey:@"categories"];
+        [DBManager deleteTableContent:@[@"PRODUCT_CATEGORIES", @"PRODUCTS"]];
+        for(NSDictionary * dictCategory in arrCategories)
+        {
+            [DBManager insertCategory:dictCategory];
+        }
         for(NSString * strKey in arrKeys)
         {
             NSDateFormatter * dtFormat = [[NSDateFormatter alloc] init];
@@ -103,48 +109,56 @@
             //else if([strKey isEqual:[dtFormat stringFromDate:[NSDate date]]])
             {
                 NSArray * arrMenu = [result objectForKey:strKey];
+                totalImages = (int)[arrMenu count]; // know how many images do we have in our products array
+                NSMutableArray * arrCategories = [DBManager getCategories];
                 for(NSDictionary * dictFinalProduct in arrMenu)
                 {
                     NSMutableDictionary * dictProduct = [dictFinalProduct mutableCopy]; //create a mutable NSDictionary to set our key (date) as filter on 'available_on'
                     [dictProduct setObject:strKey forKey:@"available_on"];
                     productObject = [[ProductObject alloc] init];
                     productObject = [productObject assignProductObject:dictProduct];
-                    if (productObject.categoryObject.category_id != 0) {
-                        // Image download to local storage.
-                        NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-                        NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
-                        [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
-                        NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
-                        NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
-                        NSArray * arrUrl = [productObject.masterObject.imageObject.product_url componentsSeparatedByString:@"?"];
-                        NSString * url;
-                        if([arrUrl count] > 1)
-                        {
-                            url = [arrUrl objectAtIndex:0];
+                    
+                    for (CategoryObject *categoryObject in arrCategories) {
+                        if (productObject.categoryObject.category_id == categoryObject.category_id) {
+
+                            productObject.categoryObject.category_id = categoryObject.category_id;
+                            productObject.categoryObject.category_name = categoryObject.category_name;
+                            
+                            // Image download to local storage.
+                            NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+                            NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
+                            [[NSFileManager defaultManager] createDirectoryAtPath:filePathAndDirectory withIntermediateDirectories:YES attributes:nil error:nil];
+                            NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
+                            NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
+                            NSArray * arrUrl = [productObject.masterObject.imageObject.product_url componentsSeparatedByString:@"?"];
+                            NSString * url;
+                            if([arrUrl count] > 1)
+                            {
+                                url = [arrUrl objectAtIndex:0];
+                            }
+                            else
+                            {
+                                url = productObject.masterObject.imageObject.product_url;
+                            }
+                            if(url != nil)
+                            {
+                                [[[AsyncImageDownloader alloc] initWithFileURL:url successBlock:^(NSData *data) {
+                                    NSData * dataPic = [NSData dataWithData:UIImageJPEGRepresentation([UIImage imageWithData:data], 1.0f)];
+                                    [dataPic writeToFile:fullPath atomically:YES];
+                                    totalImages --;
+                                } failBlock:^(NSError *errro) {
+                                    NSLog(@"Failed to download the image to local storage");
+                                    totalImages --;
+                                }] startDownload];
+                            }
+                            [DBManager insertProduct:productObject];
+                        }else{
+                            totalImages --;
                         }
-                        else
+                        if(totalImages == 0)
                         {
-                            url = productObject.masterObject.imageObject.product_url;
+                            callback(@YES);
                         }
-                        if(url != nil)
-                        {
-                            [[[AsyncImageDownloader alloc] initWithFileURL:url successBlock:^(NSData *data) {
-                                NSData * dataPic = [NSData dataWithData:UIImageJPEGRepresentation([UIImage imageWithData:data], 1.0f)];
-                                [dataPic writeToFile:fullPath atomically:YES];
-                                totalImages --;
-                                if(totalImages == 0)
-                                {
-                                    callback(@YES);
-                                }
-                            } failBlock:^(NSError *errro) {
-                                NSLog(@"Failed to download the image to local storage");
-                                totalImages --;
-                                if(totalImages == 0)
-                                    callback(@YES);
-                            }] startDownload];
-                        }
-                        [DBManager insertProduct:productObject];
-                        [DBManager insertProductCategory:productObject];
                     }
                 }
             }

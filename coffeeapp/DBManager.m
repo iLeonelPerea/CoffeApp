@@ -185,6 +185,22 @@
     [DBManager finalizeStatements:statement withDB:inventoryDB];
 }
 
++(void)insertCategory:(NSDictionary *)category
+{
+    sqlite3 *inventoryDB = nil;
+    sqlite3_stmt *statement;
+    const char *dbpath = [[DBManager getDBPath] UTF8String];
+    if (sqlite3_open(dbpath, &inventoryDB) == SQLITE_OK) {
+        NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO PRODUCT_CATEGORIES (ID, CATEGORY_NAME) VALUES (\"%d\", \"%@\")", [[category objectForKey:@"id"] intValue], [category objectForKey:@"name"]];
+        const char *insert_stmt = [insertSQL UTF8String];
+        sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
+        if (sqlite3_step(statement) != SQLITE_DONE) {
+            NSLog(@"fiel error... %s - %@", sqlite3_errmsg(inventoryDB),[category objectForKey:@"name"]);
+        }
+    }
+    [DBManager finalizeStatements:statement withDB:inventoryDB];
+}
+
 +(NSMutableArray *)getCategories{
     sqlite3 * inventoryDB;
     sqlite3_stmt * statement;
