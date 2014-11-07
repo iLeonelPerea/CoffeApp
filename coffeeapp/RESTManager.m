@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 
-#define TESTING_URL @"http://4ed3ca81.ngrok.com/api"
+#define TESTING_URL @"http://36b9d303.ngrok.com/api"
 
 @implementation RESTManager
 
