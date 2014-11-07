@@ -502,7 +502,7 @@
                     [alertView setBackgroundColor:[UIColor clearColor]];
                     
                     UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(60.0f, 10.0f, 129.0f, 200.0f)];
-                    [imgV setImage:[UIImage imageNamed:@"illustration_03_360"]];
+                    [imgV setImage:[UIImage imageNamed:@"illustration_03"]];
                     [contentView addSubview:imgV];
                     UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, 230, 120)];
                     [lblStatus setTextAlignment:NSTextAlignmentCenter];
