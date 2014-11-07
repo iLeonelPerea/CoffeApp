@@ -34,6 +34,36 @@
     return self;
 }
 
+-(NSMutableArray *)sortCategories:(NSMutableArray *)arrCategory withProducts:(NSMutableArray *)arrProducts{
+    NSMutableArray * newArrCategory = [[NSMutableArray alloc] init];
+    NSMutableArray * newArrProducts = [[NSMutableArray alloc] init];
+    for (int dimentionArrCategory; [arrCategory count]; dimentionArrCategory++) {
+        for (CategoryObject *newCategory in arrCategory[dimentionArrCategory]) {
+            if ([newCategory.category_name isEqualToString:@"Desayuno"]) {
+                [newArrCategory addObject:newCategory];
+                for (CategoryObject *category in arrCategory) {
+                    if (![newCategory.category_name isEqualToString:@"Desayuno"]){
+                        [newArrCategory addObject:category];
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    for (CategoryObject *newCategory in arrCategory) {
+        if ([newCategory.category_name isEqualToString:@"Desayuno"]) {
+            [newArrCategory addObject:newCategory];
+            for (CategoryObject *category in arrCategory) {
+                if (![newCategory.category_name isEqualToString:@"Desayuno"]){
+                    [newArrCategory addObject:category];
+                }
+            }
+        }
+    }
+    return newArrCategory;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -44,7 +74,8 @@
     // check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
-        if([strHr intValue] > 10 || [strHr intValue] < 8)
+        NSLog(@"Hora: %@",strHr);
+        if([strHr intValue] < 7 || [strHr intValue] > 10)
         {
             areMealsAvailable = NO;
         }
@@ -394,7 +425,7 @@
         [cell addSubview:lblQuantity];
         //--------------------------
         
-        NSLog(@"%d %@ %d",[productObject.masterObject masterObject_id],[productObject name],[productObject total_on_hand]);
+        //NSLog(@"%d %@ %d",[productObject.masterObject masterObject_id],[productObject name],[productObject total_on_hand]);
         
         //Check for the stock of the product to enable/disable the add button
         [btnAdd setEnabled:(productDayAvailable < currentDayOfWeek || [productObject total_on_hand] <= [productObject quantity])? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
