@@ -271,7 +271,7 @@
     
     UILabel * lblProductsNumber = [[UILabel alloc] init];
     [lblProductsNumber setFrame:CGRectMake(200, 0, 100, 50)];
-    [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:@"0 Product"];
+    [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:[NSString stringWithFormat:@"%d Product",(int)[[arrProductObjects objectAtIndex:section] count]]];
     [lblProductsNumber setTextAlignment:NSTextAlignmentRight];
     [lblProductsNumber setTextColor:[UIColor colorWithRed:146.0f/255.0f green:142.0f/255.0f blue:140.0f/255.0f alpha:1.0f]];
     [lblProductsNumber setFont:[UIFont fontWithName:@"Lato-Light" size:15]];
