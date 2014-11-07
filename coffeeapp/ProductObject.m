@@ -89,6 +89,7 @@
         [newCategoryObject setCategory_name:([dictCategory objectForKey:@"name"] != [NSNull null])?[dictCategory objectForKey:@"name"]:@"N/A"];
     }else{
         [newCategoryObject setCategory_id:0];
+        [newCategoryObject setCategory_name:@"N/A"];
     }
     [newProductObject setCategoryObject:newCategoryObject];
     [newProductObject setName:([dictProduct objectForKey:@"name"] != [NSNull null])?[dictProduct objectForKey:@"name"]:@"N/A"];
