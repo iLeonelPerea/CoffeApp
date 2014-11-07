@@ -44,7 +44,7 @@
     // check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
-        if([strHr intValue] > 23)
+        if([strHr intValue] > 10 || [strHr intValue] < 8)
         {
             areMealsAvailable = NO;
         }
@@ -60,8 +60,6 @@
     HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     arrProductObjects = [NSMutableArray new];
     
-    //Delete content of local DB tables
-    NSArray * arrTables = [[NSArray alloc] init];
     //Update prodcuts
     [[HUDJMProgress textLabel] setText:@"Loading products"];
     [HUDJMProgress showInView:[self view]];
