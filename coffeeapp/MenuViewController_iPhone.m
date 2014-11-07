@@ -288,7 +288,6 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell = nil;
     if (cell == nil) {
-        //cell = [[NSBundle mainBundle] loadNibNamed:@"ProductCellTableViewCell" owner:self options:nil][0];
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
@@ -324,6 +323,7 @@
     UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_5)?CGRectMake(20, 145, 280, 21):CGRectMake(20, 10, 280, 21)];
     [lblName setText: [productObject name]];
     [lblName setFont:[UIFont fontWithName:@"Lato-Bold" size:15]];
+    [lblName setNumberOfLines:2];
     [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblName setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:lblName];

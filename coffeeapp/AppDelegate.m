@@ -64,6 +64,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 
     //Navigation bar customization
     [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:4.0f/255.0f green:130.0f/255.0f blue:118.0f/255.0f alpha:1.0f]];
+
+    //set navigation buttom color, set back button color, set back button arrow color
+    [[UINavigationBar appearanceWhenContainedIn:[UINavigationController class], nil] setTintColor:[UIColor whiteColor]];
     
     //Check if the user is logged to set the root view controller. If is true, show the menu with the left side panel, in other case, show Login view controller
     if ([[userObject userSpreeToken] isEqual:@""]) {
