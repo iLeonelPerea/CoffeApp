@@ -79,7 +79,15 @@
                     }
                 return;
                 }
+            // check if user is without channel, if so, then update with customUserChannel
             customUserChannel = [NSString stringWithFormat:@"User_%@",strUserId];
+            if([[[result objectForKey:@"user"] objectForKey:@"channel"] isEqual:[NSNull null]])
+            {
+                NSMutableDictionary *jsonDictUpdate = [NSMutableDictionary dictionaryWithDictionary:@{@"user":@{@"email": [self userEmail], @"password": [self userPassword], @"password_confirmation": [self userPassword], @"image_url":urlProfileImage, @"channel":customUserChannel}}];
+                [RESTManager sendData:jsonDictUpdate toService:[NSString stringWithFormat:@"users/%@", [[result objectForKey:@"user"] objectForKey:@"id"]] withMethod:@"PUT" isTesting:appDelegate.isTestingEnv withAccessToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"] isAccessTokenInHeader:YES toCallback:^(id updateUserResult) {
+                    NSLog(@"user must be added to a channel now...");
+                }];
+            }
             [self setUserId:[[[result objectForKey:@"user"] objectForKey:@"id"] intValue]];
             [self setUserSpreeToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"]];
             [self setUserChannel:customUserChannel];

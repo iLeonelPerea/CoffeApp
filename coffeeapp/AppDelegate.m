@@ -165,6 +165,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
+    
     if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]) {
         
         LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Thanks" otherButtonTitles:nil];
@@ -197,6 +198,30 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [defaults synchronize];
         //Post a local notificatino
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateProductsStockAfterNotification" object:nil];
+    }
+    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"YES"]){
+        [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+    }
+    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"]){
+        NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
+        [defaults setObject:nil forKey:@"arrProductsInQueue"];
+        [defaults synchronize];
+        [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+    }
+    if ([userInfo objectForKey:@"productMessage"]){
+        NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
+        NSData *data = [defaults objectForKey:@"arrProductsInQueue"];
+        NSMutableArray *arrOrderSelectedProducts = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        //Check is there's prodcuts selected by user.
+        NSMutableArray *newArrOrderSelectedProducts = [[NSMutableArray alloc] init];
+        for (ProductObject *orderSelectedProduct in arrOrderSelectedProducts) {
+            if (orderSelectedProduct.product_id != [[userInfo objectForKey:@"productMessage"]integerValue] ) {
+                [newArrOrderSelectedProducts addObject:orderSelectedProduct];
+            }
+        }
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:newArrOrderSelectedProducts] forKey:@"arrProductsInQueue"];
+        [defaults synchronize];
+        [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
     }
 /* commented Paco's code
     //Listener for when the app is inactive
