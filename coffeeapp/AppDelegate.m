@@ -13,8 +13,6 @@
 #import "LeftMenuViewController.h"
 #import "RESTManager.h"
 #import <LMAlertView.h>
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 
 
 @interface AppDelegate ()
@@ -22,7 +20,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification;
+@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, canOrderBeCancelled, currentOrderNumber;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -33,11 +31,11 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     PFACL * defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
-    [Fabric with:@[CrashlyticsKit]];
     
     // set to YES to test on local computers
     isTestingEnv = NO;
     
+    canOrderBeCancelled = NO;
     //Set app's client ID for GPPSignIn and GPPShare
     [[GPPSignIn sharedInstance] setClientID:kClientID];
     //Initialize an empty UserObject instance
@@ -175,6 +173,11 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         UIView *contentView = alertView.contentView;
         [contentView setBackgroundColor:[UIColor clearColor]];
         [alertView setBackgroundColor:[UIColor clearColor]];
+        if([[userInfo objectForKey:@"state"] isEqual:@"attending"])
+        {
+            canOrderBeCancelled = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"userCanNotCancelCurrentOrder" object:nil];
+        }
         
         UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
         [imgV setImage:([[userInfo objectForKey:@"state"] isEqual:@"attending"])?[UIImage imageNamed:@"illustration_01"]:[UIImage imageNamed:@"illustration_02"]];

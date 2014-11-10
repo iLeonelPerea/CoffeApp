@@ -65,8 +65,6 @@
 		C869B7251A001EF900F12C57 /* splash_ima.png in Resources */ = {isa = PBXBuildFile; fileRef = C869B7241A001EF900F12C57 /* splash_ima.png */; };
 		C88352E91A0C4BA0001F3AA0 /* illustration_01.png in Resources */ = {isa = PBXBuildFile; fileRef = C88352E71A0C4BA0001F3AA0 /* illustration_01.png */; };
 		C88352EA1A0C4BA0001F3AA0 /* illustration_02.png in Resources */ = {isa = PBXBuildFile; fileRef = C88352E81A0C4BA0001F3AA0 /* illustration_02.png */; };
-		C88352EE1A0C59DA001F3AA0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C88352EC1A0C59DA001F3AA0 /* Crashlytics.framework */; };
-		C88352EF1A0C59DA001F3AA0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C88352ED1A0C59DA001F3AA0 /* Fabric.framework */; };
 		C89ED5BA1A0023ED004441A3 /* login_btn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = C89ED5B81A0023ED004441A3 /* login_btn_down.png */; };
 		C89ED5BB1A0023ED004441A3 /* login_btn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = C89ED5B91A0023ED004441A3 /* login_btn_up.png */; };
 		C8B7CC4A19F1D76600AEBA27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC4919F1D76600AEBA27 /* main.m */; };
@@ -168,8 +166,6 @@
 		C869B7241A001EF900F12C57 /* splash_ima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_ima.png; sourceTree = "<group>"; };
 		C88352E71A0C4BA0001F3AA0 /* illustration_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_01.png; sourceTree = "<group>"; };
 		C88352E81A0C4BA0001F3AA0 /* illustration_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_02.png; sourceTree = "<group>"; };
-		C88352EC1A0C59DA001F3AA0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		C88352ED1A0C59DA001F3AA0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C89ED5B81A0023ED004441A3 /* login_btn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_btn_down.png; sourceTree = "<group>"; };
 		C89ED5B91A0023ED004441A3 /* login_btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_btn_up.png; sourceTree = "<group>"; };
 		C8B7CC4419F1D76600AEBA27 /* coffeeapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coffeeapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,10 +198,8 @@
 			files = (
 				C8FB66A319F6F88C00CBED84 /* CoreData.framework in Frameworks */,
 				C8FB66A119F6F87C00CBED84 /* UIKit.framework in Frameworks */,
-				C88352EE1A0C59DA001F3AA0 /* Crashlytics.framework in Frameworks */,
 				C8FB66A019F6F86E00CBED84 /* CoreGraphics.framework in Frameworks */,
 				C8FB669E19F6F86000CBED84 /* MessageUI.framework in Frameworks */,
-				C88352EF1A0C59DA001F3AA0 /* Fabric.framework in Frameworks */,
 				7D845F0219F6DB24006C7B0E /* Foundation.framework in Frameworks */,
 				7D1791A019F6CDD000696B91 /* libsqlite3.dylib in Frameworks */,
 				22536D09CF9C58200B049A39 /* libPods.a in Frameworks */,
@@ -416,8 +410,6 @@
 		E1D64AD1A07F8D544705FCE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C88352EC1A0C59DA001F3AA0 /* Crashlytics.framework */,
-				C88352ED1A0C59DA001F3AA0 /* Fabric.framework */,
 				C8FB66A219F6F88C00CBED84 /* CoreData.framework */,
 				C8FB669F19F6F86E00CBED84 /* CoreGraphics.framework */,
 				C8FB669D19F6F86000CBED84 /* MessageUI.framework */,
@@ -450,7 +442,6 @@
 				C8B7CC4119F1D76600AEBA27 /* Frameworks */,
 				C8B7CC4219F1D76600AEBA27 /* Resources */,
 				893B7B625F1479EB12AD232F /* Copy Pods Resources */,
-				C88352EB1A0C5990001F3AA0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -612,19 +603,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		C88352EB1A0C5990001F3AA0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run 2b766c438adde6491a5bc9e58514f8b834ccea69 5b23e4bade7a0d273348d90cc8cc7d55b66f00cd43cfa4a55bb6fa4ef972cc7c";
 		};
 /* End PBXShellScriptBuildPhase section */
 
