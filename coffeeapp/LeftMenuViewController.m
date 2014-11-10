@@ -7,6 +7,7 @@
 //
 
 #import "LeftMenuViewController.h"
+#import <Parse/Parse.h>
 
 @interface LeftMenuViewController ()
 
@@ -18,15 +19,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    if(appDelegate.canOrderBeCancelled)
+        arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", @"Cancel Order", nil];
+    else
+        arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
     [tblMenu setDelegate:self];
     [tblMenu setDataSource:self];
     [tblMenu reloadData];
     //Set the current user name from userObject located at AppDelegate
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     UserObject * userObject = [[UserObject alloc] init];
     userObject = [appDelegate userObject];
     [lblUser setText:[userObject userName]];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCanCancelCurrentOrder:) name:@"userCanCancelCurrentOrder" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCanNotCancelCurrentOrder:) name:@"userCanNotCancelCurrentOrder" object:nil];
     if([(NSString*) userObject.userUrlProfileImage rangeOfString:@"?"].location != NSNotFound)
     {
         NSArray * arrStrPic = [[NSArray alloc] init];
@@ -39,6 +45,18 @@
         [imgUserProfile setImageWithResizeURL:userObject.userUrlProfileImage usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
 
+}
+
+-(void)userCanCancelCurrentOrder:(NSNotification*)notification
+{
+    arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", @"Cancel Order", nil];
+    [tblMenu reloadData];
+}
+
+-(void)userCanNotCancelCurrentOrder:(NSNotification*)notification
+{
+    arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
+    [tblMenu reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +83,11 @@
             break;
         case 1:
             [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestOrders" object:nil];
+            break;
+        case 2:
+            //todo: call cancel order
+            NSLog(@"cancel order...");
+            [self doCancelOrder];
             break;
         default:
             break;
@@ -105,5 +128,29 @@
     NSArray * arrTables = [[NSArray alloc] init];
     arrTables = @[@"PRODUCT_CATEGORIES", @"PRODUCTS",@"ORDERSLOG",@"SHOPPINGCART"];
     [DBManager deleteTableContent:arrTables];
+}
+
+-(void)doCancelOrder
+{
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    NSDictionary *data = @{
+                           @"sound": @"default",
+                           @"orderNumber": appDelegate.currentOrderNumber,
+                           @"action": @"cancelOrder"
+                           };
+    PFPush *push = [[PFPush alloc] init];
+    [push setChannel:@"requests"];
+    [push setData:data];
+    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
+        [tblMenu reloadData];
+        appDelegate.currentOrderNumber = nil;
+        appDelegate.canOrderBeCancelled = NO;
+        if(!succeeded)
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+    }];
 }
 @end

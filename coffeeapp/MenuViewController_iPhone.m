@@ -45,7 +45,7 @@
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
         NSLog(@"Hora: %@",strHr);
-        if([strHr intValue] < 7 || [strHr intValue] > 10)
+        if([strHr intValue] > 7 || [strHr intValue] < 10)
         {
             areMealsAvailable = NO;
         }
