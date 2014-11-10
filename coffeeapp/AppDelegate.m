@@ -158,13 +158,14 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    //[PFPush handlePush:userInfo];
+    
     if (application.applicationState == UIApplicationStateInactive) {
         [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
         if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]){
             //Store the user info to update the order status when the app become active
             NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userInfo] forKey:@"userInfo"];
-            
             [defaults synchronize];
         }
         if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
@@ -176,70 +177,70 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
             [defaults synchronize];
         }
     }
-    else
-    {
-        //[PFPush handlePush:userInfo]; // to avoid native alert to appear
-        if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]) {
-            LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Thanks" otherButtonTitles:nil];
-            [alertView setSize:CGSizeMake(200.0f, 320.0f)];
-            
-            // Add your subviews here to customise
-            UIView *contentView = alertView.contentView;
-            [contentView setBackgroundColor:[UIColor clearColor]];
-            [alertView setBackgroundColor:[UIColor clearColor]];
-            if([[userInfo objectForKey:@"state"] isEqual:@"attending"])
-            {
-                canOrderBeCancelled = NO;
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"userCanNotCancelCurrentOrder" object:nil];
+    
+    if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]) {
+        
+        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Thanks" otherButtonTitles:nil];
+        [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+        
+        // Add your subviews here to customise
+        UIView *contentView = alertView.contentView;
+        [contentView setBackgroundColor:[UIColor clearColor]];
+        [alertView setBackgroundColor:[UIColor clearColor]];
+        if([[userInfo objectForKey:@"state"] isEqual:@"attending"])
+        {
+            canOrderBeCancelled = NO;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"userCanNotCancelCurrentOrder" object:nil];
+        }
+        
+        UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
+        [imgV setImage:([[userInfo objectForKey:@"state"] isEqual:@"attending"])?[UIImage imageNamed:@"illustration_01"]:[UIImage imageNamed:@"illustration_02"]];
+        [contentView addSubview:imgV];
+        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
+        lblStatus.numberOfLines = 2;
+        [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
+        [lblStatus setTextAlignment:NSTextAlignmentCenter];
+        lblStatus.text = [NSString stringWithFormat:@"%@ Your order it's %@", userObject.firstName, [userInfo objectForKey:@"state"]];
+        [contentView addSubview:lblStatus];
+        [alertView show];
+        
+        
+        [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:[userInfo objectForKey:@"state"]];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
+    }
+    if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
+        //Extract the data of order products
+        NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProducts] forKey:@"dataCompleteNotification"];
+        [defaults setObject:@"complete notification" forKey:@"msg"];
+        [defaults synchronize];
+        //Post a local notificatino
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateProductsStockAfterNotification" object:nil];
+    }
+    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"YES"]){
+        [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+    }
+    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"]){
+        NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
+        [defaults setObject:nil forKey:@"arrProductsInQueue"];
+        [defaults synchronize];
+        [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+    }
+    if ([userInfo objectForKey:@"productMessage"]){
+        NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
+        NSData *data = [defaults objectForKey:@"arrProductsInQueue"];
+        NSMutableArray *arrOrderSelectedProducts = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        //Check is there's prodcuts selected by user.
+        NSMutableArray *newArrOrderSelectedProducts = [[NSMutableArray alloc] init];
+        for (ProductObject *orderSelectedProduct in arrOrderSelectedProducts) {
+            if (orderSelectedProduct.product_id != [[userInfo objectForKey:@"productMessage"]integerValue] ) {
+                [newArrOrderSelectedProducts addObject:orderSelectedProduct];
             }
-            
-            UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
-            [imgV setImage:([[userInfo objectForKey:@"state"] isEqual:@"attending"])?[UIImage imageNamed:@"illustration_01"]:[UIImage imageNamed:@"illustration_02"]];
-            [contentView addSubview:imgV];
-            UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 200, 120)];
-            lblStatus.numberOfLines = 2;
-            lblStatus.text = [NSString stringWithFormat:@"%@ Your order it's %@", userObject.firstName, [userInfo objectForKey:@"state"]];
-            [contentView addSubview:lblStatus];
-            [alertView show];
-            
-            
-            [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:[userInfo objectForKey:@"state"]];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
         }
-        if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
-            //Extract the data of order products
-            NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
-            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProducts] forKey:@"dataCompleteNotification"];
-            [defaults setObject:@"complete notification" forKey:@"msg"];
-            [defaults synchronize];
-            //Post a local notificatino
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateProductsStockAfterNotification" object:nil];
-        }
-        if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"YES"]){
-            [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
-        }
-        if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"]){
-            NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
-            [defaults setObject:nil forKey:@"arrProductsInQueue"];
-            [defaults synchronize];
-            [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
-        }
-        if ([userInfo objectForKey:@"productMessage"]){
-            NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
-            NSData *data = [defaults objectForKey:@"arrProductsInQueue"];
-            NSMutableArray *arrOrderSelectedProducts = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-            //Check is there's prodcuts selected by user.
-            NSMutableArray *newArrOrderSelectedProducts = [[NSMutableArray alloc] init];
-            for (ProductObject *orderSelectedProduct in arrOrderSelectedProducts) {
-                if (orderSelectedProduct.product_id != [[userInfo objectForKey:@"productMessage"]integerValue] ) {
-                    [newArrOrderSelectedProducts addObject:orderSelectedProduct];
-                }
-            }
-            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:newArrOrderSelectedProducts] forKey:@"arrProductsInQueue"];
-            [defaults synchronize];
-            [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
-        }
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:newArrOrderSelectedProducts] forKey:@"arrProductsInQueue"];
+        [defaults synchronize];
+        [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
     }
 }
 
