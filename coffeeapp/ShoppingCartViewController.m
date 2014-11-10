@@ -231,6 +231,7 @@
     UILabel * lblProductName = [[UILabel alloc] init];
     [lblProductName setFrame:CGRectMake(0, 0, 320, 90)];
     [lblProductName setText:[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]]];
+    [lblProductName setNumberOfLines:2];
     [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
     [lblProductName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblProductName setTextAlignment:NSTextAlignmentCenter];
