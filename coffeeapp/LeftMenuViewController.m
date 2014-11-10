@@ -144,6 +144,11 @@
     [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
         [tblMenu reloadData];
+        //Delete the order from local DB
+        [DBManager deleteOrderLog:appDelegate.currentOrderNumber];
+        //Post a local notification to refresh the OrderViewController if the user is in that controller
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
+        //Reset values
         appDelegate.currentOrderNumber = nil;
         appDelegate.canOrderBeCancelled = NO;
         if(!succeeded)
@@ -151,6 +156,7 @@
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
         }
+
     }];
 }
 @end

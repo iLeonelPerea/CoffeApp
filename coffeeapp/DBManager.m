@@ -327,6 +327,25 @@
     return arrToReturn;
 }
 
++(void)deleteOrderLog:(NSString *)orderId
+{
+    sqlite3 *appDB = nil;
+    sqlite3_stmt *statement;
+    const char *dbPath = [[DBManager getDBPath] UTF8String];
+    NSString *sqlDelete = @"";
+    const char *deleteSQL = [sqlDelete UTF8String];
+
+    if (sqlite3_open(dbPath, &appDB) == SQLITE_OK) {
+        sqlDelete = [NSString stringWithFormat:@"DELETE FROM ORDERSLOG WHERE ORDER_ID = \"%@\" ",orderId];
+        deleteSQL = [sqlDelete UTF8String];
+        sqlite3_prepare_v2(appDB, deleteSQL, -1, &statement, nil);
+        if (sqlite3_step(statement) != SQLITE_DONE) {
+            NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+        }
+        [DBManager finalizeStatements:statement withDB:appDB];
+    }
+}
+
 #pragma mark -- Delete table content
 +(void)deleteTableContent:(NSArray*)tables
 {

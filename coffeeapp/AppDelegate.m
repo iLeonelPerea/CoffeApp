@@ -164,6 +164,24 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     [PFPush handlePush:userInfo];
     
+    if (application.applicationState == UIApplicationStateInactive) {
+        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+        if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]){
+            //Store the user info to update the order status when the app become active
+            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userInfo] forKey:@"userInfo"];
+            [defaults synchronize];
+        }
+        if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
+            //Extract the data of order products
+            NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
+            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProducts] forKey:@"dataCompleteNotification"];
+            [defaults setObject:@"complete notification" forKey:@"msg"];
+            [defaults synchronize];
+        }
+    }
+    
     if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]) {
         
         LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Thanks" otherButtonTitles:nil];
@@ -228,6 +246,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [defaults synchronize];
         [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
     }
+        
+    
 /* commented Paco's code
     //Listener for when the app is inactive
     if (application.applicationState == UIApplicationStateInactive) {

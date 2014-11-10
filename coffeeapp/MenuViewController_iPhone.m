@@ -413,7 +413,7 @@
         [cell addSubview:lblQuantity];
         //--------------------------
         
-        //NSLog(@"%d %@ %d",[productObject.masterObject masterObject_id],[productObject name],[productObject total_on_hand]);
+        NSLog(@"%d %@ %d",[productObject.masterObject masterObject_id],[productObject name],[productObject total_on_hand]);
         
         //Check for the stock of the product to enable/disable the add button
         [btnAdd setEnabled:(productDayAvailable < currentDayOfWeek || [productObject total_on_hand] <= [productObject quantity])? NO:YES]; // Disable if the ProductAvailable is lower than currentDay

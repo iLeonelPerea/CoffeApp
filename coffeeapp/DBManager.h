@@ -24,6 +24,7 @@
 +(void)insertOrdersLog:(NSDictionary*)dictDataOrder;
 +(NSMutableArray*)getOrdersHistory:(BOOL)withPastOrders;
 +(void)updateStateOrderLog:(NSString*)orderId withState:(NSString*)orderState;
++(void)deleteOrderLog:(NSString *)orderId;
 +(void)deleteTableContent:(NSArray*)tables;
 +(void)updateProductStock:(int)productId withStock:(int)stock;
 
