@@ -38,6 +38,7 @@
     NSString * userChannel = [NSString stringWithFormat:@"User_%@",userObject.userSpreeToken];
     [userObject setUserChannel:userChannel];
     [PFPush subscribeToChannelInBackground:userChannel];
+    [PFPush subscribeToChannelInBackground:@"general_messages"];
 }
 
 - (void)didReceiveMemoryWarning {
