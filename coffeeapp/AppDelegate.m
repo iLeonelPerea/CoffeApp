@@ -79,7 +79,6 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     }
     [self.window makeKeyAndVisible];
     
-    
     if (application.applicationState != UIApplicationStateBackground) {
         // Track an app open here if we launch with a push, unless
         // "content_available" was used to trigger a background push (introduced in iOS 7).
@@ -104,9 +103,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     } else
 #endif
     {
-        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
-                                                         UIRemoteNotificationTypeAlert |
-                                                         UIRemoteNotificationTypeSound)];
+        [application registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert |UIRemoteNotificationTypeSound)];
     }
     
     //Add the notifications for menu's options
@@ -149,7 +146,6 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
     [PFPush storeDeviceToken:newDeviceToken];
-    //[PFPush subscribeToChannelInBackground:@"" target:self selector:@selector(subscribeFinished:error:)];
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
@@ -162,7 +158,25 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    [PFPush handlePush:userInfo];
+    //[PFPush handlePush:userInfo];
+    
+    if (application.applicationState == UIApplicationStateInactive) {
+        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
+        if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]){
+            //Store the user info to update the order status when the app become active
+            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userInfo] forKey:@"userInfo"];
+            [defaults synchronize];
+        }
+        if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
+            //Extract the data of order products
+            NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
+            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProducts] forKey:@"dataCompleteNotification"];
+            [defaults setObject:@"complete notification" forKey:@"msg"];
+            [defaults synchronize];
+        }
+    }
     
     if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]) {
         
@@ -182,8 +196,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
         [imgV setImage:([[userInfo objectForKey:@"state"] isEqual:@"attending"])?[UIImage imageNamed:@"illustration_01"]:[UIImage imageNamed:@"illustration_02"]];
         [contentView addSubview:imgV];
-        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 200, 120)];
+        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
         lblStatus.numberOfLines = 2;
+        [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
+        [lblStatus setTextAlignment:NSTextAlignmentCenter];
         lblStatus.text = [NSString stringWithFormat:@"%@ Your order it's %@", userObject.firstName, [userInfo objectForKey:@"state"]];
         [contentView addSubview:lblStatus];
         [alertView show];
@@ -226,44 +242,6 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [defaults synchronize];
         [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
     }
-/* commented Paco's code
-    //Listener for when the app is inactive
-    if (application.applicationState == UIApplicationStateInactive) {
-        [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
-        if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]){
-            //Store the user info to update the order status when the app become active
-            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userInfo] forKey:@"userInfo"];
-            [defaults synchronize];
-        }
-        if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
-            //Extract the data of order products
-            NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
-            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProducts] forKey:@"dataCompleteNotification"];
-            [defaults setObject:@"complete notification" forKey:@"msg"];
-            [defaults synchronize];
-        }
-    }
-    else
-    {
-        [PFPush handlePush:userInfo];
-        if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]) {
-            [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:[userInfo objectForKey:@"state"]];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
-        }
-        if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
-            //Extract the data of order products
-            NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
-            NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProducts] forKey:@"dataCompleteNotification"];
-            [defaults setObject:@"complete notification" forKey:@"msg"];
-            [defaults synchronize];
-            //Post a local notificatino
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateProductsStockAfterNotification" object:nil];
-        }
-    }
- */
 }
 
 ///////////////////////////////////////////////////////////

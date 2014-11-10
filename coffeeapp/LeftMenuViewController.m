@@ -14,7 +14,7 @@
 @end
 
 @implementation LeftMenuViewController
-@synthesize tblMenu, arrMenu, isUserLogged, btnSignOut, lblUser, imgUserProfile, HUD;
+@synthesize tblMenu, arrMenu, isUserLogged, btnSignOut, lblUser, imgUserProfile, HUD, lblOptions;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,7 +30,10 @@
     //Set the current user name from userObject located at AppDelegate
     UserObject * userObject = [[UserObject alloc] init];
     userObject = [appDelegate userObject];
+    [lblUser setFont:[UIFont fontWithName:@"Lato-Regular" size:20]];
     [lblUser setText:[userObject userName]];
+    [lblUser setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
+    [lblOptions setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCanCancelCurrentOrder:) name:@"userCanCancelCurrentOrder" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCanNotCancelCurrentOrder:) name:@"userCanNotCancelCurrentOrder" object:nil];
     if([(NSString*) userObject.userUrlProfileImage rangeOfString:@"?"].location != NSNotFound)
@@ -102,6 +105,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:identifier];
     }
     
+    [[cell textLabel] setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
+    [[cell textLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:24]];
     [[cell textLabel] setText:[arrMenu objectAtIndex:[indexPath row]]];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     return cell;
@@ -144,6 +149,11 @@
     [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
         [tblMenu reloadData];
+        //Delete the order from local DB
+        [DBManager deleteOrderLog:appDelegate.currentOrderNumber];
+        //Post a local notification to refresh the OrderViewController if the user is in that controller
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
+        //Reset values
         appDelegate.currentOrderNumber = nil;
         appDelegate.canOrderBeCancelled = NO;
         if(!succeeded)
@@ -151,6 +161,7 @@
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
             [alert show];
         }
+
     }];
 }
 @end

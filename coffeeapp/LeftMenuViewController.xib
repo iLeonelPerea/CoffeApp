@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="btnSignOut" destination="lHG-US-FIx" id="MeC-dh-arX"/>
                 <outlet property="imgUserProfile" destination="IME-2k-mjG" id="8eF-sf-Hek"/>
+                <outlet property="lblOptions" destination="3fu-My-eeT" id="nIt-CR-ygk"/>
                 <outlet property="lblUser" destination="89g-hS-fHi" id="vgf-fW-IBK"/>
                 <outlet property="tblMenu" destination="Xg5-KJ-uzH" id="6ky-VZ-d0G"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
