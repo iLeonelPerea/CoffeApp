@@ -179,8 +179,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
         [imgV setImage:([[userInfo objectForKey:@"state"] isEqual:@"attending"])?[UIImage imageNamed:@"illustration_01"]:[UIImage imageNamed:@"illustration_02"]];
         [contentView addSubview:imgV];
-        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 200, 120)];
+        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
         lblStatus.numberOfLines = 2;
+        [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
+        [lblStatus setTextAlignment:NSTextAlignmentCenter];
         lblStatus.text = [NSString stringWithFormat:@"%@ Your order it's %@", userObject.firstName, [userInfo objectForKey:@"state"]];
         [contentView addSubview:lblStatus];
         [alertView show];
