@@ -18,10 +18,13 @@
 #import "CustomButton.h"
 #import "RESTManager.h"
 #import <LMAlertView.h>
+#import <MapKit/MapKit.h>
 
 @class LoginViewController;
 
-@interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate>
+@interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate>
+@property (strong, nonatomic) IBOutlet MKMapView *mapKitView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 @property (nonatomic, strong) NSMutableArray *arrProductObjects;
 @property (nonatomic, strong) NSMutableArray *arrProductCategoriesObjects;
 @property (nonatomic, assign) BOOL isViewPlaceOrderActive;
