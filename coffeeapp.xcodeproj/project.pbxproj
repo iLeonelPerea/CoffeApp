@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		22536D09CF9C58200B049A39 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EAE09A761A7211E49B6549 /* libPods.a */; };
+		231293B41A1271D6003A5856 /* login_btn_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231293B21A1271D6003A5856 /* login_btn_down@3x.png */; };
+		231293B51A1271D6003A5856 /* login_btn_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231293B31A1271D6003A5856 /* login_btn_up@3x.png */; };
 		2329A9161A09B08600E93ABB /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = 2329A9151A09B08600E93ABB /* label.png */; };
 		234BCE1F1A0D804200BA4074 /* crowdchef_iphone_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 234BCE1D1A0D804200BA4074 /* crowdchef_iphone_120.png */; };
 		234BCE201A0D804200BA4074 /* crowdchef_iphone_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 234BCE1E1A0D804200BA4074 /* crowdchef_iphone_180.png */; };
@@ -67,8 +69,8 @@
 		C869B7251A001EF900F12C57 /* splash_ima.png in Resources */ = {isa = PBXBuildFile; fileRef = C869B7241A001EF900F12C57 /* splash_ima.png */; };
 		C88352E91A0C4BA0001F3AA0 /* illustration_01.png in Resources */ = {isa = PBXBuildFile; fileRef = C88352E71A0C4BA0001F3AA0 /* illustration_01.png */; };
 		C88352EA1A0C4BA0001F3AA0 /* illustration_02.png in Resources */ = {isa = PBXBuildFile; fileRef = C88352E81A0C4BA0001F3AA0 /* illustration_02.png */; };
-		C89ED5BA1A0023ED004441A3 /* login_btn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = C89ED5B81A0023ED004441A3 /* login_btn_down.png */; };
-		C89ED5BB1A0023ED004441A3 /* login_btn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = C89ED5B91A0023ED004441A3 /* login_btn_up.png */; };
+		C89ED5BA1A0023ED004441A3 /* login_btn_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C89ED5B81A0023ED004441A3 /* login_btn_down@2x.png */; };
+		C89ED5BB1A0023ED004441A3 /* login_btn_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C89ED5B91A0023ED004441A3 /* login_btn_up@2x.png */; };
 		C8B7CC4A19F1D76600AEBA27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC4919F1D76600AEBA27 /* main.m */; };
 		C8B7CC4D19F1D76600AEBA27 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC4C19F1D76600AEBA27 /* AppDelegate.m */; };
 		C8B7CC5519F1D76600AEBA27 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C8B7CC5419F1D76600AEBA27 /* Images.xcassets */; };
@@ -95,6 +97,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		231293B21A1271D6003A5856 /* login_btn_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_down@3x.png"; sourceTree = "<group>"; };
+		231293B31A1271D6003A5856 /* login_btn_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_up@3x.png"; sourceTree = "<group>"; };
 		2329A9151A09B08600E93ABB /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
 		234BCE1D1A0D804200BA4074 /* crowdchef_iphone_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowdchef_iphone_120.png; sourceTree = "<group>"; };
 		234BCE1E1A0D804200BA4074 /* crowdchef_iphone_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowdchef_iphone_180.png; sourceTree = "<group>"; };
@@ -170,8 +174,8 @@
 		C869B7241A001EF900F12C57 /* splash_ima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_ima.png; sourceTree = "<group>"; };
 		C88352E71A0C4BA0001F3AA0 /* illustration_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_01.png; sourceTree = "<group>"; };
 		C88352E81A0C4BA0001F3AA0 /* illustration_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_02.png; sourceTree = "<group>"; };
-		C89ED5B81A0023ED004441A3 /* login_btn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_btn_down.png; sourceTree = "<group>"; };
-		C89ED5B91A0023ED004441A3 /* login_btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_btn_up.png; sourceTree = "<group>"; };
+		C89ED5B81A0023ED004441A3 /* login_btn_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_down@2x.png"; sourceTree = "<group>"; };
+		C89ED5B91A0023ED004441A3 /* login_btn_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_up@2x.png"; sourceTree = "<group>"; };
 		C8B7CC4419F1D76600AEBA27 /* coffeeapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coffeeapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8B7CC4819F1D76600AEBA27 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C8B7CC4919F1D76600AEBA27 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -287,6 +291,8 @@
 		C869B7231A001ED800F12C57 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				231293B21A1271D6003A5856 /* login_btn_down@3x.png */,
+				231293B31A1271D6003A5856 /* login_btn_up@3x.png */,
 				234BCE1D1A0D804200BA4074 /* crowdchef_iphone_120.png */,
 				234BCE1E1A0D804200BA4074 /* crowdchef_iphone_180.png */,
 				23F400951A0BCD9D009F09EE /* Fonts */,
@@ -315,8 +321,8 @@
 				236FCB7F1A00519B0021E2ED /* add02_btn_down.png */,
 				236FCB7D1A0051760021E2ED /* add_btn_up.png */,
 				236FCB7B1A0051610021E2ED /* add_btn_down.png */,
-				C89ED5B81A0023ED004441A3 /* login_btn_down.png */,
-				C89ED5B91A0023ED004441A3 /* login_btn_up.png */,
+				C89ED5B81A0023ED004441A3 /* login_btn_down@2x.png */,
+				C89ED5B91A0023ED004441A3 /* login_btn_up@2x.png */,
 				C869B7241A001EF900F12C57 /* splash_ima.png */,
 			);
 			name = assets;
@@ -487,7 +493,7 @@
 				TargetAttributes = {
 					C8B7CC4319F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
-						DevelopmentTeam = JZ2JGK7NJ9;
+						DevelopmentTeam = D7848S8M4T;
 					};
 					C8B7CC5C19F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -522,6 +528,7 @@
 			files = (
 				7D7C196A1A00B4670072E46E /* ShoppingCartViewController.xib in Resources */,
 				23F400A71A0BCDF6009F09EE /* Lato-Lig.ttf in Resources */,
+				231293B41A1271D6003A5856 /* login_btn_down@3x.png in Resources */,
 				23B3B80F1A0812BF00800204 /* item_transparency_03.png in Resources */,
 				236FCB801A00519B0021E2ED /* add02_btn_down.png in Resources */,
 				23B3B8121A08365E00800204 /* plceorder_btn_down.png in Resources */,
@@ -551,7 +558,7 @@
 				23F400A31A0BCDF6009F09EE /* Lato-Bol.ttf in Resources */,
 				7DEE7EF919F611D50081BCEC /* MenuViewController_iPhone.xib in Resources */,
 				C8F5FACE19F86F7600BAFEA0 /* LeftMenuViewController.xib in Resources */,
-				C89ED5BB1A0023ED004441A3 /* login_btn_up.png in Resources */,
+				C89ED5BB1A0023ED004441A3 /* login_btn_up@2x.png in Resources */,
 				2354C3D71A03113B00729A84 /* neworders_btn_up.png in Resources */,
 				236FCB861A0058880021E2ED /* outstock_btn_up.png in Resources */,
 				235975DD1A01518D0070E914 /* patron_01.png in Resources */,
@@ -561,7 +568,7 @@
 				23B3B8131A08365E00800204 /* plceorder_btn_up.png in Resources */,
 				236FCB821A0051A50021E2ED /* add02_btn_up.png in Resources */,
 				23F400A91A0BCDF6009F09EE /* Lato-Reg.ttf in Resources */,
-				C89ED5BA1A0023ED004441A3 /* login_btn_down.png in Resources */,
+				C89ED5BA1A0023ED004441A3 /* login_btn_down@2x.png in Resources */,
 				236FCB841A00587A0021E2ED /* outstock_btn_down.png in Resources */,
 				234BCE201A0D804200BA4074 /* crowdchef_iphone_180.png in Resources */,
 				C8B7CC7219F1D7BF00AEBA27 /* LoginViewController.xib in Resources */,
@@ -569,6 +576,7 @@
 				23F400A21A0BCDF6009F09EE /* Lato-BlaIta.ttf in Resources */,
 				236FCB8A1A0058FB0021E2ED /* subtract_btn_up.png in Resources */,
 				236FCB8E1A00688F0021E2ED /* item_transparency.png in Resources */,
+				231293B51A1271D6003A5856 /* login_btn_up@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,8 +759,8 @@
 			baseConfigurationReference = E60F9533A1FEE1282C1CFB72 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/Parse\"",
 					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
@@ -767,7 +775,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -776,8 +784,8 @@
 			baseConfigurationReference = D3031F617E2B201F1E3F8C63 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(PODS_ROOT)/Parse\"",
 					"\"$(PODS_ROOT)/google-plus-ios-sdk/google-plus-ios-sdk-1.7.1\"",
@@ -792,7 +800,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "df667f1c-a4bd-4844-8741-912d20255741";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

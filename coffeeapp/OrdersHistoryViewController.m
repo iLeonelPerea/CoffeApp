@@ -8,6 +8,11 @@
 
 #import "OrdersHistoryViewController.h"
 
+//Macros to identify size screen
+#define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON)
+#define IS_IPHONE_6 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)667) < DBL_EPSILON)
+#define IS_IPHONE_6_PLUS (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)736) < DBL_EPSILON)
+
 @interface OrdersHistoryViewController ()
 
 @end
@@ -36,6 +41,14 @@
     isPendingOrdersSelected = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doRefreshOrdersHistory:) name:@"doRefreshOrdersHistory" object:nil];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    //Fit to screen size
+    [btnIncomingOrders setFrame:(IS_IPHONE_5)?CGRectMake(0, 520, 160, 48):CGRectMake(0, 432, 160, 48)];
+    [btnPastOrders setFrame:(IS_IPHONE_5)?CGRectMake(161, 520, 159, 48):CGRectMake(161, 432, 159, 48)];
+    [tblOrders setFrame:(IS_IPHONE_5)?CGRectMake(0, 110, 320, 410):CGRectMake(0, 110, 320, 362)];
 }
 
 - (void)didReceiveMemoryWarning {

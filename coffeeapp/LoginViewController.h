@@ -19,6 +19,7 @@
 @interface LoginViewController : UIViewController <GPPSignInDelegate>
 
 @property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton;
+@property (strong, nonatomic) IBOutlet UIImageView * imgSplashScreen;
 @property (nonatomic, strong) UserObject *userObject;
 @property (nonatomic, strong) JGProgressHUD *prgLoaging;
 

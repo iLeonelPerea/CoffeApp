@@ -9,6 +9,11 @@
 #import "LeftMenuViewController.h"
 #import <Parse/Parse.h>
 
+//Macros to identify size screen
+#define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON)
+#define IS_IPHONE_6 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)667) < DBL_EPSILON)
+#define IS_IPHONE_6_PLUS (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)736) < DBL_EPSILON)
+
 @interface LeftMenuViewController ()
 
 @end
@@ -50,6 +55,14 @@
 
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [tblMenu setFrame:(IS_IPHONE_5)?CGRectMake(0, 70, 320, 240):CGRectMake(0, 70, 320, 150)];
+    [imgUserProfile setFrame:(IS_IPHONE_5)?CGRectMake(20, 341, 90, 90):CGRectMake(20, 250, 90, 90)];
+    [lblUser setFrame:(IS_IPHONE_5)?CGRectMake(20, 439, 240, 60):CGRectMake(20, 350, 240, 60)];
+    [btnSignOut setFrame:(IS_IPHONE_5)?CGRectMake(20, 507, 200, 40):CGRectMake(20, 420, 200, 40)];
+}
+
 -(void)userCanCancelCurrentOrder:(NSNotification*)notification
 {
     arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", @"Cancel Order", nil];
@@ -70,7 +83,7 @@
 #pragma mark -- UITableViewDelegate
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return (IS_IPHONE_5)?80:50;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

@@ -10,12 +10,17 @@
 #import <GooglePlus/GooglePlus.h>
 #import <GoogleOpenSource/GoogleOpenSource.h>
 
+//Macros to identify size screen
+#define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON)
+#define IS_IPHONE_6 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)667) < DBL_EPSILON)
+#define IS_IPHONE_6_PLUS (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)736) < DBL_EPSILON)
+
 @interface LoginViewController ()
 
 @end
 
 @implementation LoginViewController
-@synthesize signInButton, userObject, prgLoaging;
+@synthesize signInButton, userObject, prgLoaging, imgSplashScreen;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -47,8 +52,12 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [signInButton setImage:[UIImage imageNamed:@"login_btn_up"] forState:UIControlStateNormal];
-    [signInButton setImage:[UIImage imageNamed:@"login_btn_down"] forState:UIControlStateHighlighted];
+    //Fit to screen
+    [signInButton setFrame:(IS_IPHONE_5)?CGRectMake(20, 508, 280, 50):CGRectMake(20, 420, 280, 50)];
+    [imgSplashScreen setFrame:(IS_IPHONE_5)?CGRectMake(57, 78, 206, 351):CGRectMake(57, 48, 206, 351)];
+
+    [signInButton setImage:[UIImage imageNamed:@"login_btn_up@2x"] forState:UIControlStateNormal];
+    [signInButton setImage:[UIImage imageNamed:@"login_btn_down@2x"] forState:UIControlStateHighlighted];
 }
 
 #pragma mark -- GPPSignIn delegate
