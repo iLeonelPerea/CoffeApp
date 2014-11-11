@@ -54,6 +54,7 @@
 		7D7C19701A0179180072E46E /* OrderObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7C196F1A0179180072E46E /* OrderObject.m */; };
 		7D7D137119FAD81900B3FAE3 /* CategoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D137019FAD81900B3FAE3 /* CategoryObject.m */; };
 		7D845F0219F6DB24006C7B0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D845F0119F6DB24006C7B0E /* Foundation.framework */; };
+		7DE6F4571A127EAC001EE3B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE6F4561A127EAC001EE3B9 /* MapKit.framework */; };
 		7DEE7EE619F60D190081BCEC /* ImageObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EE319F60D190081BCEC /* ImageObject.m */; };
 		7DEE7EE719F60D190081BCEC /* MasterObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EE519F60D190081BCEC /* MasterObject.m */; };
 		7DEE7EF019F610590081BCEC /* ProductCellTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7DEE7EEE19F610590081BCEC /* ProductCellTableViewCell.m */; };
@@ -63,7 +64,7 @@
 		7DEE7EF919F611D50081BCEC /* MenuViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7DEE7EF719F611D50081BCEC /* MenuViewController_iPhone.xib */; };
 		C839FA4419F5923500BC01D5 /* UserProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = C839FA4219F5923500BC01D5 /* UserProfileController.m */; };
 		C839FA4519F5923500BC01D5 /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C839FA4319F5923500BC01D5 /* UserProfileController.xib */; };
-		C8653E4D1A0D5DF900A9F958 /* illustration_03_360.png in Resources */ = {isa = PBXBuildFile; fileRef = C8653E4C1A0D5DF900A9F958 /* illustration_03_360.png */; };
+		C8653E4D1A0D5DF900A9F958 /* illustration_03.png in Resources */ = {isa = PBXBuildFile; fileRef = C8653E4C1A0D5DF900A9F958 /* illustration_03.png */; };
 		C869B7251A001EF900F12C57 /* splash_ima.png in Resources */ = {isa = PBXBuildFile; fileRef = C869B7241A001EF900F12C57 /* splash_ima.png */; };
 		C88352E91A0C4BA0001F3AA0 /* illustration_01.png in Resources */ = {isa = PBXBuildFile; fileRef = C88352E71A0C4BA0001F3AA0 /* illustration_01.png */; };
 		C88352EA1A0C4BA0001F3AA0 /* illustration_02.png in Resources */ = {isa = PBXBuildFile; fileRef = C88352E81A0C4BA0001F3AA0 /* illustration_02.png */; };
@@ -151,6 +152,7 @@
 		7D7D137019FAD81900B3FAE3 /* CategoryObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryObject.m; sourceTree = "<group>"; };
 		7D845F0119F6DB24006C7B0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7D845F0519F6DBF7006C7B0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		7DE6F4561A127EAC001EE3B9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7DEE7EE219F60D190081BCEC /* ImageObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageObject.h; sourceTree = "<group>"; };
 		7DEE7EE319F60D190081BCEC /* ImageObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageObject.m; sourceTree = "<group>"; };
 		7DEE7EE419F60D190081BCEC /* MasterObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MasterObject.h; sourceTree = "<group>"; };
@@ -166,7 +168,7 @@
 		C839FA4119F5923500BC01D5 /* UserProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileController.h; sourceTree = "<group>"; };
 		C839FA4219F5923500BC01D5 /* UserProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileController.m; sourceTree = "<group>"; };
 		C839FA4319F5923500BC01D5 /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
-		C8653E4C1A0D5DF900A9F958 /* illustration_03_360.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_03_360.png; sourceTree = "<group>"; };
+		C8653E4C1A0D5DF900A9F958 /* illustration_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_03.png; sourceTree = "<group>"; };
 		C869B7241A001EF900F12C57 /* splash_ima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_ima.png; sourceTree = "<group>"; };
 		C88352E71A0C4BA0001F3AA0 /* illustration_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_01.png; sourceTree = "<group>"; };
 		C88352E81A0C4BA0001F3AA0 /* illustration_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_02.png; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7DE6F4571A127EAC001EE3B9 /* MapKit.framework in Frameworks */,
 				C8FB66A319F6F88C00CBED84 /* CoreData.framework in Frameworks */,
 				C8FB66A119F6F87C00CBED84 /* UIKit.framework in Frameworks */,
 				C8FB66A019F6F86E00CBED84 /* CoreGraphics.framework in Frameworks */,
@@ -293,7 +296,7 @@
 				2329A9151A09B08600E93ABB /* label.png */,
 				C88352E71A0C4BA0001F3AA0 /* illustration_01.png */,
 				C88352E81A0C4BA0001F3AA0 /* illustration_02.png */,
-				C8653E4C1A0D5DF900A9F958 /* illustration_03_360.png */,
+				C8653E4C1A0D5DF900A9F958 /* illustration_03.png */,
 				23B3B8101A08365E00800204 /* plceorder_btn_down.png */,
 				23B3B8111A08365E00800204 /* plceorder_btn_up.png */,
 				23B3B80E1A0812BF00800204 /* item_transparency_03.png */,
@@ -416,6 +419,7 @@
 		E1D64AD1A07F8D544705FCE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7DE6F4561A127EAC001EE3B9 /* MapKit.framework */,
 				C8FB66A219F6F88C00CBED84 /* CoreData.framework */,
 				C8FB669F19F6F86E00CBED84 /* CoreGraphics.framework */,
 				C8FB669D19F6F86000CBED84 /* MessageUI.framework */,
@@ -543,7 +547,7 @@
 				236FCB7E1A0051760021E2ED /* add_btn_up.png in Resources */,
 				23F400A81A0BCDF6009F09EE /* Lato-LigIta.ttf in Resources */,
 				2329A9161A09B08600E93ABB /* label.png in Resources */,
-				C8653E4D1A0D5DF900A9F958 /* illustration_03_360.png in Resources */,
+				C8653E4D1A0D5DF900A9F958 /* illustration_03.png in Resources */,
 				2354C3D11A0310FB00729A84 /* history_btn_selected.png in Resources */,
 				236FCB881A0058E70021E2ED /* subtract_btn_down.png in Resources */,
 				7DEE7EF119F610590081BCEC /* ProductCellTableViewCell.xib in Resources */,

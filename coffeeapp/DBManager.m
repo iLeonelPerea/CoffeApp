@@ -47,7 +47,7 @@
     dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     docsDir = [dirPaths objectAtIndex:0];
     databasePath = [[NSString alloc] initWithString:[docsDir stringByAppendingPathComponent:@"CoffeDB.sqlite3"]];
-    NSLog(@"docsDir: %@",docsDir);
+    //NSLog(@"docsDir: %@",docsDir);
     return databasePath;
 }
 

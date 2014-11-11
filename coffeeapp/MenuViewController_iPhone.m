@@ -23,7 +23,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable;
+@synthesize mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,7 +44,6 @@
     // check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
-        NSLog(@"Hora: %@",strHr);
         if([strHr intValue] > 7 || [strHr intValue] < 10)
         {
             areMealsAvailable = NO;
@@ -94,6 +93,22 @@
     
     //Create observer to update products stock without call the spree service
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doUpdateProductsStockAfterNotification:) name:@"doUpdateProductsStockAfterNotification" object:nil];
+    
+    // Create a location manager
+    locationManager = [[CLLocationManager alloc] init];
+    // Set a delegate to receive location callbacks
+    locationManager.delegate = self;
+    // Start the location manager
+    [locationManager startUpdatingLocation];
+    
+    if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+        [locationManager requestWhenInUseAuthorization];
+    }
+    [locationManager startUpdatingLocation];
+    
+    // initialice mapkit
+    mapKitView.delegate = self;
+    [mapKitView setShowsUserLocation:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -413,8 +428,6 @@
         [cell addSubview:lblQuantity];
         //--------------------------
         
-        NSLog(@"%d %@ %d",[productObject.masterObject masterObject_id],[productObject name],[productObject total_on_hand]);
-        
         //Check for the stock of the product to enable/disable the add button
         [btnAdd setEnabled:(productDayAvailable < currentDayOfWeek || [productObject total_on_hand] <= [productObject quantity])? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
     }
@@ -452,55 +465,75 @@
 #pragma mark -- button place Order
 - (IBAction)doPlaceOrder:(id)sender{
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray * arrProductsInQueue = [NSMutableArray new];
-    
-    BOOL isPlaceOrder = YES;
-    int productsCount = 0;
-    for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
-        for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
-        {
-            if (tmpObject.quantity != 0) {
-                if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"]) {
-                    tmpObject.quantity = 0;
-                    LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Algo ha pasado" otherButtonTitles:nil];
-                    [alertView setSize:CGSizeMake(250.0f, 320.0f)];
-                    
-                    // Add your subviews here to customise
-                    UIView *contentView = alertView.contentView;
-                    [contentView setBackgroundColor:[UIColor clearColor]];
-                    [alertView setBackgroundColor:[UIColor clearColor]];
-                    
-                    UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(60.0f, 10.0f, 129.0f, 200.0f)];
-                    [imgV setImage:[UIImage imageNamed:@"illustration_03"]];
-                    [contentView addSubview:imgV];
-                    UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, 230, 120)];
-                    [lblStatus setTextAlignment:NSTextAlignmentCenter];
-                    lblStatus.numberOfLines = 3;
-                    lblStatus.text = [NSString stringWithFormat:@"%@ Ha Terminado El Periodo Para Pedir Desayuno", appDelegate.userObject.firstName];
-                    [contentView addSubview:lblStatus];
-                    [alertView show];
-                    [self synchronizeDefaults];
-                    isPlaceOrder = NO;
-                    [tblProducts reloadData];
-                    break;
-                }else{
-                    productsCount += tmpObject.quantity;
-                    [arrProductsInQueue addObject:tmpObject];
+    if ([self updateDistanceToAnnotation]>1000) {
+        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ohh, Algo ha pasado" otherButtonTitles:nil];
+        [alertView setSize:CGSizeMake(250.0f, 320.0f)];
+        
+        // Add your subviews here to customise
+        UIView *contentView = alertView.contentView;
+        [contentView setBackgroundColor:[UIColor clearColor]];
+        [alertView setBackgroundColor:[UIColor clearColor]];
+        
+        UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(60.0f, 10.0f, 129.0f, 200.0f)];
+        [imgV setImage:[UIImage imageNamed:@"illustration_03"]];
+        [contentView addSubview:imgV];
+        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, 230, 120)];
+        [lblStatus setTextAlignment:NSTextAlignmentCenter];
+        lblStatus.numberOfLines = 3;
+        lblStatus.text = [NSString stringWithFormat:@"%@ Demaciado lejos para pedir una orden", appDelegate.userObject.firstName];
+        [contentView addSubview:lblStatus];
+        [alertView show];
+    }else{
+        NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        NSMutableArray * arrProductsInQueue = [NSMutableArray new];
+        
+        BOOL isPlaceOrder = YES;
+        int productsCount = 0;
+        for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
+            for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
+            {
+                if (tmpObject.quantity != 0) {
+                    if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"]) {
+                        tmpObject.quantity = 0;
+                        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Algo ha pasado" otherButtonTitles:nil];
+                        [alertView setSize:CGSizeMake(250.0f, 320.0f)];
+                        
+                        // Add your subviews here to customise
+                        UIView *contentView = alertView.contentView;
+                        [contentView setBackgroundColor:[UIColor clearColor]];
+                        [alertView setBackgroundColor:[UIColor clearColor]];
+                        
+                        UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(60.0f, 10.0f, 129.0f, 200.0f)];
+                        [imgV setImage:[UIImage imageNamed:@"illustration_03"]];
+                        [contentView addSubview:imgV];
+                        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, 230, 120)];
+                        [lblStatus setTextAlignment:NSTextAlignmentCenter];
+                        lblStatus.numberOfLines = 3;
+                        lblStatus.text = [NSString stringWithFormat:@"%@ Ha Terminado El Periodo Para Pedir Desayuno", appDelegate.userObject.firstName];
+                        [contentView addSubview:lblStatus];
+                        [alertView show];
+                        [self synchronizeDefaults];
+                        isPlaceOrder = NO;
+                        [tblProducts reloadData];
+                        break;
+                    }else{
+                        productsCount += tmpObject.quantity;
+                        [arrProductsInQueue addObject:tmpObject];
+                    }
                 }
             }
         }
-    }
-    
-    if (isPlaceOrder) {
-        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
-        [defaults synchronize];
         
-        [self.navigationController dismissViewControllerAnimated:NO completion:nil];
-        ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
-        [self bdb_presentPopupViewController:shoppingCartViewController
-                               withAnimation:BDBPopupViewShowAnimationDefault
-                              completion:nil];
+        if (isPlaceOrder) {
+            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
+            [defaults synchronize];
+            
+            [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+            ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
+            [self bdb_presentPopupViewController:shoppingCartViewController
+                                   withAnimation:BDBPopupViewShowAnimationDefault
+                                  completion:nil];
+        }
     }
 }
 
@@ -526,7 +559,7 @@
     }
 }
 
-// crop image
+#pragma mark -- CropImage
 - (UIImage*) getSubImageFrom: (UIImage*) img WithRect: (CGRect) rect {
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -542,6 +575,33 @@
     UIImage* subImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return subImage;
+}
+
+#pragma mark -- MapKit Delegates
+-(double)updateDistanceToAnnotation{
+    // Location to Reference
+    CLLocation *pinLocation = [[CLLocation alloc]
+                               initWithLatitude:+19.26506377
+                               longitude:-103.71073774];
+    
+    CLLocation *userLocation = [[CLLocation alloc]
+                                initWithLatitude:mapKitView.userLocation.coordinate.latitude
+                                longitude:mapKitView.userLocation.coordinate.longitude];
+    
+    CLLocationDistance distance = [pinLocation distanceFromLocation:userLocation];
+    
+    NSLog(@"Distance to point %4.0f m.", distance);
+    return distance;
+}
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    MKCoordinateRegion mapRegion;
+    mapRegion.center = mapView.userLocation.coordinate;
+    mapRegion.span.latitudeDelta = 0.002;
+    mapRegion.span.longitudeDelta = 0.002;
+    
+    [mapKitView setRegion:mapRegion animated: YES];
 }
 
 @end
