@@ -466,7 +466,7 @@
 - (IBAction)doPlaceOrder:(id)sender{
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     if ([self updateDistanceToAnnotation]>1000) {
-        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ohh, Algo ha pasado" otherButtonTitles:nil];
+        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ooh, Something happens!" otherButtonTitles:nil];
         [alertView setSize:CGSizeMake(250.0f, 320.0f)];
         
         // Add your subviews here to customise
@@ -475,12 +475,12 @@
         [alertView setBackgroundColor:[UIColor clearColor]];
         
         UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(60.0f, 10.0f, 129.0f, 200.0f)];
-        [imgV setImage:[UIImage imageNamed:@"illustration_03"]];
+        [imgV setImage:[UIImage imageNamed:@"illustration_04"]];
         [contentView addSubview:imgV];
         UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, 230, 120)];
         [lblStatus setTextAlignment:NSTextAlignmentCenter];
         lblStatus.numberOfLines = 3;
-        lblStatus.text = [NSString stringWithFormat:@"%@ Demaciado lejos para pedir una orden", appDelegate.userObject.firstName];
+        lblStatus.text = [NSString stringWithFormat:@"%@ you are out of range to request an order!", appDelegate.userObject.firstName];
         [contentView addSubview:lblStatus];
         [alertView show];
     }else{
