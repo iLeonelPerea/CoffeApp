@@ -115,7 +115,7 @@
                     NSMutableDictionary * dictProduct = [dictFinalProduct mutableCopy];
                     productObject = [[ProductObject alloc] init];
                     productObject = [productObject assignProductObject:dictProduct];
-                    if (productObject.categoryObject.category_id != 0) {
+                    if (productObject.categoryObject.category_id == 0) {
                         totalImages --;
                     }
                 }
@@ -154,16 +154,19 @@
                                     NSData * dataPic = [NSData dataWithData:UIImageJPEGRepresentation([UIImage imageWithData:data], 1.0f)];
                                     [dataPic writeToFile:fullPath atomically:YES];
                                     totalImages --;
+                                    if(totalImages == 0)
+                                        callback(@YES);
                                 } failBlock:^(NSError *errro) {
                                     NSLog(@"Failed to download the image to local storage");
                                     totalImages --;
+                                    if(totalImages == 0)
+                                        callback(@YES);
                                 }] startDownload];
                             }
                             [DBManager insertProduct:productObject];
                         }
                     }
                 }
-                callback(@YES);
             }
         }
     }];
