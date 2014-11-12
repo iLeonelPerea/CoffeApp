@@ -53,7 +53,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     //fit to screen
-    [tblMenu setFrame:(IS_IPHONE_6 || IS_IPHONE_5)?CGRectMake(0, 70, 320, 240):CGRectMake(0, 70, 320, 150)];
+    [tblMenu setFrame:(IS_IPHONE_6 || IS_IPHONE_5)?CGRectMake(0, 70, 320, 160):CGRectMake(0, 70, 320, 100)];
     [imgUserProfile setFrame:(IS_IPHONE_6)?CGRectMake(20, 441, 90, 90):(IS_IPHONE_5)?CGRectMake(20, 341, 90, 90):CGRectMake(20, 250, 90, 90)];
     [lblUser setFrame:(IS_IPHONE_6)?CGRectMake(20, 539, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 439, 240, 60):CGRectMake(20, 350, 240, 60)];
     [btnSignOut setFrame:(IS_IPHONE_6)?CGRectMake(20, 610, 200, 40):(IS_IPHONE_5)?CGRectMake(20, 507, 200, 40):CGRectMake(20, 420, 200, 40)];

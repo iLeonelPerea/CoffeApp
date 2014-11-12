@@ -221,17 +221,17 @@
     // If found products in shoppingCart && is not visible the viewPlaceOrder
     if (productsCount>0 && !isViewPlaceOrderActive) {
         isViewPlaceOrderActive = YES;
-        [UIView animateWithDuration:1.0f animations:^{
+        [UIView animateWithDuration:0.4f animations:^{
             // Decrease
             [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height-60, viewPlaceOrder.frame.size.width, 60)];
         } completion:^(BOOL finished) {
             [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 64, 375, 545):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 446):CGRectMake(0, 64, 320, 358)];
         }];
-
+        
     }else if(productsCount==0 && isViewPlaceOrderActive){
         isViewPlaceOrderActive = NO;
         [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 603):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 504):CGRectMake(0, 64, 320, 416)];
-        [UIView animateWithDuration:1.0f animations:^{
+        [UIView animateWithDuration:0.4f animations:^{
             // Increase
             [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height+60, viewPlaceOrder.frame.size.width, 60)];
         }];
