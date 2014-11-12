@@ -26,7 +26,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection;
+@synthesize mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -42,7 +42,7 @@
     [super viewDidLoad];
     //Arrays data init
     arrWeekDays = [[NSArray alloc] initWithObjects:@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
-
+    areLocationServicesAvailable = YES;
     //Set the elementos on the placeHolder view
     [[self view] setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 667):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 0, 320, 480)];
     [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height+60, self.view.frame.size.width, 60)];
@@ -453,7 +453,7 @@
 #pragma mark -- button place Order
 - (IBAction)doPlaceOrder:(id)sender{
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    if ([self updateDistanceToAnnotation] > 1000) {
+    if ([self updateDistanceToAnnotation]>1000 && areLocationServicesAvailable) {
         LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ooh, Something happens!" otherButtonTitles:nil];
         [alertView setSize:CGSizeMake(250.0f, 320.0f)];
         
@@ -574,6 +574,16 @@
     
     NSLog(@"Distance to point %4.0f m.", distance);
     return distance;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
+{
+    areLocationServicesAvailable = NO;
+}
+
+-(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    areLocationServicesAvailable = YES;
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation

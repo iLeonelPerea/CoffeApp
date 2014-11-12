@@ -97,6 +97,7 @@
     
     UILabel * lblSectionTitle = [[UILabel alloc] init];
     [lblSectionTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 15, 335, 30):CGRectMake(20, 15, 280, 30)];
+    [lblSectionTitle setNumberOfLines:2];
     [lblSectionTitle setText:[dictOrderHeader objectForKey:@"ORDER_DATE"]];
     [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:18]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
@@ -108,7 +109,9 @@
         [headerView addSubview:imgLabel];
     }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"]) {
         UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 0, 0):CGRectMake(250, 0, 50, 50)];
-        [btnCancel setTitle:@"X" forState:UIControlStateNormal];
+        [btnCancel setTitle:@"Cancelar" forState:UIControlStateNormal];
+        [btnCancel setBackgroundColor:[UIColor blackColor]];
+        [[btnCancel titleLabel] setTextColor:[UIColor blackColor]];
         [headerView addSubview:btnCancel];
         
         [btnCancel addTarget:self action:@selector(doCancelOrder:) forControlEvents:UIControlEventTouchUpInside];
@@ -147,7 +150,29 @@
     //Extract the information from the arrOrders
     UIButton * senderButton = (UIButton *)sender;
     NSMutableDictionary * dictOrder = [arrOrders objectAtIndex:[senderButton tag]];
-    NSLog(@"%@",dictOrder);
+
+    NSDictionary *data = @{
+                           @"sound": @"default",
+                           @"orderNumber": [dictOrder objectForKey:@"ORDER_ID"],
+                           @"action": @"cancelOrder"
+                           };
+    PFPush *push = [[PFPush alloc] init];
+    [push setChannel:@"requests"];
+    [push setData:data];
+    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        //Delete the order from local DB
+        [DBManager deleteOrderLog:[dictOrder objectForKey:@"ORDER_ID"]];
+        //Post a local notification to refresh the OrderViewController if the user is in that controller
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
+        //Reset values
+        if(!succeeded)
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+    }];
+
 }
 
 #pragma mark -- Buttons actions
