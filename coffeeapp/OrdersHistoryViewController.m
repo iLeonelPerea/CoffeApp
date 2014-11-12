@@ -99,7 +99,7 @@
     [lblSectionTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 15, 335, 30):CGRectMake(20, 15, 280, 30)];
     [lblSectionTitle setNumberOfLines:2];
     [lblSectionTitle setText:[dictOrderHeader objectForKey:@"ORDER_DATE"]];
-    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:18]];
+    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:(IS_IPHONE_6)?17:15]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [headerView addSubview:lblSectionTitle];
     
@@ -108,10 +108,9 @@
         [imgLabel setImage:[UIImage imageNamed:@"label.png"]];
         [headerView addSubview:imgLabel];
     }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"]) {
-        UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 0, 0):CGRectMake(250, 0, 50, 50)];
-        [btnCancel setTitle:@"Cancelar" forState:UIControlStateNormal];
-        [btnCancel setBackgroundColor:[UIColor blackColor]];
-        [[btnCancel titleLabel] setTextColor:[UIColor blackColor]];
+        UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(330, 9, 40, 40):CGRectMake(275, 9, 40, 40)];
+        [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_up"] forState:UIControlStateNormal];
+        [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_down"] forState:UIControlStateHighlighted];
         [headerView addSubview:btnCancel];
         
         [btnCancel addTarget:self action:@selector(doCancelOrder:) forControlEvents:UIControlEventTouchUpInside];
