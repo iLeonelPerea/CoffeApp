@@ -26,7 +26,6 @@
 @property (nonatomic, strong) UserObject *userObject;
 @property (nonatomic, strong) OrderObject *orderObject;
 @property (nonatomic, assign) BOOL isTestingEnv;
-@property (nonatomic, assign) BOOL canOrderBeCancelled;
 @property (nonatomic, strong) NSMutableDictionary * dictOrderNotification;
 @property (nonatomic, strong) NSString * currentOrderNumber;
 @end

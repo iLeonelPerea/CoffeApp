@@ -122,10 +122,7 @@
               if ([dictResult objectForKey:@"number"] != nil && [[dictResult objectForKey:@"state"] isEqual:@"confirm"]) {
                   UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention" message:@"Order Placed!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                   [alert show];
-                  //User can cancel order
-                  myAppDelegate.canOrderBeCancelled = YES;
                   myAppDelegate.currentOrderNumber = [result objectForKey:@"number"];
-                  [[NSNotificationCenter defaultCenter] postNotificationName:@"userCanCancelCurrentOrder" object:nil];
                   //Register the order log
                   NSString * orderId = [dictResult objectForKey:@"number"];
                   NSString * orderState = [dictResult objectForKey:@"state"];

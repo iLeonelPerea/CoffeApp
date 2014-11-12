@@ -25,10 +25,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    if(appDelegate.canOrderBeCancelled)
-        arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", @"Cancel Order", nil];
-    else
-        arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
+    arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
     [tblMenu setDelegate:self];
     [tblMenu setDataSource:self];
     [tblMenu reloadData];
@@ -39,8 +36,6 @@
     [lblUser setText:[userObject userName]];
     [lblUser setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblOptions setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCanCancelCurrentOrder:) name:@"userCanCancelCurrentOrder" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userCanNotCancelCurrentOrder:) name:@"userCanNotCancelCurrentOrder" object:nil];
     if([(NSString*) userObject.userUrlProfileImage rangeOfString:@"?"].location != NSNotFound)
     {
         NSArray * arrStrPic = [[NSArray alloc] init];
@@ -62,18 +57,6 @@
     [imgUserProfile setFrame:(IS_IPHONE_6)?CGRectMake(20, 441, 90, 90):(IS_IPHONE_5)?CGRectMake(20, 341, 90, 90):CGRectMake(20, 250, 90, 90)];
     [lblUser setFrame:(IS_IPHONE_6)?CGRectMake(20, 539, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 439, 240, 60):CGRectMake(20, 350, 240, 60)];
     [btnSignOut setFrame:(IS_IPHONE_6)?CGRectMake(20, 610, 200, 40):(IS_IPHONE_5)?CGRectMake(20, 507, 200, 40):CGRectMake(20, 420, 200, 40)];
-}
-
--(void)userCanCancelCurrentOrder:(NSNotification*)notification
-{
-    arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", @"Cancel Order", nil];
-    [tblMenu reloadData];
-}
-
--(void)userCanNotCancelCurrentOrder:(NSNotification*)notification
-{
-    arrMenu = [[NSMutableArray alloc] initWithObjects:@"Menu", @"My Orders", nil];
-    [tblMenu reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,11 +83,6 @@
             break;
         case 1:
             [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestOrders" object:nil];
-            break;
-        case 2:
-            //todo: call cancel order
-            NSLog(@"cancel order...");
-            [self doCancelOrder];
             break;
         default:
             break;
@@ -169,7 +147,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
         //Reset values
         appDelegate.currentOrderNumber = nil;
-        appDelegate.canOrderBeCancelled = NO;
         if(!succeeded)
         {
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
