@@ -26,7 +26,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable;
+@synthesize mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -445,6 +445,8 @@
     if (((ProductObject *)[[arrProductObjects objectAtIndex:((CustomButton *)sender).section] objectAtIndex:((CustomButton *)sender).index]).quantity==1) {
         senderButton.selected = YES;
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Please check!" message:[NSString stringWithFormat:@"Are you sure you want to add two items to your order?"] delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
+        currentSection = ((CustomButton*)sender).section;
+        [alert setTag:((CustomButton*)sender).index];
         [alert show];
         //to-do: check the way how find the object to assign the quantity
     }else{
@@ -546,25 +548,14 @@
 {
     if([alertView.title isEqual:@"Please check!"])
     {
-        CustomButton * senderButton;
-        for(UIView * cells in tblProducts.visibleCells){ // Search into cells
-            for(UIView * subView in cells.subviews){ // Get subviews of each cell
-                NSLog(@"subView content: %@", cells.subviews);
-                if([subView isKindOfClass:[CustomButton class]]){ // be sure subView is UIButton Class
-                    if (((CustomButton*)subView).selected){
-                        senderButton = (CustomButton*)subView; // Save the button active
-                    }
-                }
-            }
-        }
         if (buttonIndex == 1) {
             ProductObject * selectedProduct = [ProductObject new];
-            selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
+            selectedProduct = [[arrProductObjects objectAtIndex:currentSection] objectAtIndex:alertView.tag];
+            currentSection = 0;
             selectedProduct.quantity ++;
             [self doReloadData];
             [self synchronizeDefaults];
         }
-        senderButton.selected = NO;
     }
 }
 

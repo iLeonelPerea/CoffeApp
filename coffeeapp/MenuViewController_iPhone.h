@@ -38,6 +38,7 @@
 @property (nonatomic, strong) ProductObject *productObject;
 @property (nonatomic, assign) int currentDayOfWeek;
 @property (nonatomic, assign) BOOL areMealsAvailable;
+@property (nonatomic, assign) int currentSection;
 -(void)synchronizeDefaults;
 -(NSMutableArray*)setQuantitySelectedProducts:(NSMutableArray*)arrMenuProducts;
 -(void)doShowPlaceOrderBottomBar:(int)productsCount;
