@@ -53,8 +53,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 -(void)viewDidAppear:(BOOL)animated
 {
     //Fit to screen
-    [signInButton setFrame:(IS_IPHONE_5)?CGRectMake(20, 508, 280, 50):CGRectMake(20, 420, 280, 50)];
-    [imgSplashScreen setFrame:(IS_IPHONE_5)?CGRectMake(57, 78, 206, 351):CGRectMake(57, 48, 206, 351)];
+    [signInButton setFrame:(IS_IPHONE_6)?CGRectMake(47, 600, 280, 50):(IS_IPHONE_5)?CGRectMake(20, 508, 280, 50):CGRectMake(20, 420, 280, 50)];
+    [imgSplashScreen setFrame:(IS_IPHONE_6)?CGRectMake(84, 100, 206, 351):(IS_IPHONE_5)?CGRectMake(57, 78, 206, 351):CGRectMake(57, 48, 206, 351)];
 
     [signInButton setImage:[UIImage imageNamed:@"login_btn_up@2x"] forState:UIControlStateNormal];
     [signInButton setImage:[UIImage imageNamed:@"login_btn_down@2x"] forState:UIControlStateHighlighted];
