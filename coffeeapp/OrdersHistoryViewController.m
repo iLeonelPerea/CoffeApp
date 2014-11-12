@@ -97,8 +97,9 @@
     
     UILabel * lblSectionTitle = [[UILabel alloc] init];
     [lblSectionTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 15, 335, 30):CGRectMake(20, 15, 280, 30)];
+    [lblSectionTitle setNumberOfLines:2];
     [lblSectionTitle setText:[dictOrderHeader objectForKey:@"ORDER_DATE"]];
-    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:18]];
+    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:(IS_IPHONE_6)?17:15]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [headerView addSubview:lblSectionTitle];
     
@@ -106,7 +107,16 @@
         UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(305, 0, 70, 70):CGRectMake(250, 0, 70, 70)];
         [imgLabel setImage:[UIImage imageNamed:@"label.png"]];
         [headerView addSubview:imgLabel];
+    }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"]) {
+        UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(330, 9, 40, 40):CGRectMake(275, 9, 40, 40)];
+        [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_up"] forState:UIControlStateNormal];
+        [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_down"] forState:UIControlStateHighlighted];
+        [headerView addSubview:btnCancel];
+        
+        [btnCancel addTarget:self action:@selector(doCancelOrder:) forControlEvents:UIControlEventTouchUpInside];
+        [btnCancel setTag:section];
     }
+    
     return headerView;
 }
 
@@ -131,6 +141,37 @@
     [cell addSubview:lblName];
     
     return cell;
+}
+
+#pragma mark -- Cancel order action
+-(void)doCancelOrder:(id)sender
+{
+    //Extract the information from the arrOrders
+    UIButton * senderButton = (UIButton *)sender;
+    NSMutableDictionary * dictOrder = [arrOrders objectAtIndex:[senderButton tag]];
+
+    NSDictionary *data = @{
+                           @"sound": @"default",
+                           @"orderNumber": [dictOrder objectForKey:@"ORDER_ID"],
+                           @"action": @"cancelOrder"
+                           };
+    PFPush *push = [[PFPush alloc] init];
+    [push setChannel:@"requests"];
+    [push setData:data];
+    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        //Delete the order from local DB
+        [DBManager deleteOrderLog:[dictOrder objectForKey:@"ORDER_ID"]];
+        //Post a local notification to refresh the OrderViewController if the user is in that controller
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
+        //Reset values
+        if(!succeeded)
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        
+    }];
+
 }
 
 #pragma mark -- Buttons actions
