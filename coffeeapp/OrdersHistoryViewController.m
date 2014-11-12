@@ -106,7 +106,15 @@
         UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(305, 0, 70, 70):CGRectMake(250, 0, 70, 70)];
         [imgLabel setImage:[UIImage imageNamed:@"label.png"]];
         [headerView addSubview:imgLabel];
+    }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"]) {
+        UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 0, 0):CGRectMake(250, 0, 50, 50)];
+        [btnCancel setTitle:@"X" forState:UIControlStateNormal];
+        [headerView addSubview:btnCancel];
+        
+        [btnCancel addTarget:self action:@selector(doCancelOrder:) forControlEvents:UIControlEventTouchUpInside];
+        [btnCancel setTag:section];
     }
+    
     return headerView;
 }
 
@@ -131,6 +139,15 @@
     [cell addSubview:lblName];
     
     return cell;
+}
+
+#pragma mark -- Cancel order action
+-(void)doCancelOrder:(id)sender
+{
+    //Extract the information from the arrOrders
+    UIButton * senderButton = (UIButton *)sender;
+    NSMutableDictionary * dictOrder = [arrOrders objectAtIndex:[senderButton tag]];
+    NSLog(@"%@",dictOrder);
 }
 
 #pragma mark -- Buttons actions

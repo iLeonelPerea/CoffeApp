@@ -453,7 +453,7 @@
 #pragma mark -- button place Order
 - (IBAction)doPlaceOrder:(id)sender{
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    if ([self updateDistanceToAnnotation]>1000) {
+    if ([self updateDistanceToAnnotation] > 1000) {
         LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ooh, Something happens!" otherButtonTitles:nil];
         [alertView setSize:CGSizeMake(250.0f, 320.0f)];
         
