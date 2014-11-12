@@ -38,6 +38,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    //Fit to screen values
+    [lblDate setFrame:(IS_IPHONE_6)?CGRectMake(0, 20, 375, 50):CGRectMake(0, 20, 320, 50)];
+    [imgTitle setFrame:(IS_IPHONE_6)?CGRectMake(0, 20, 375, 50):CGRectMake(0, 20, 430, 50)];
+    [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 70, 375, 430):(IS_IPHONE_5)?CGRectMake(0, 70, 320, 320):CGRectMake(0, 70, 320, 270)];
+    [lblDisclaimer setFrame:(IS_IPHONE_6)?CGRectMake(0, 500, 375, 90):(IS_IPHONE_5)?CGRectMake(0, 400, 320, 90):CGRectMake(0, 330, 320, 90)];
+    [imgBottomBar setFrame:(IS_IPHONE_6)?CGRectMake(0, 607, 375, 60):(IS_IPHONE_5)?CGRectMake(0, 508, 320, 60):CGRectMake(0, 420, 320, 60)];
+    [btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(20, 620, 48, 30):(IS_IPHONE_5)?CGRectMake(20, 525, 48, 30):CGRectMake(20, 437, 48, 30)];
+    [btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(230, 620, 130, 30):(IS_IPHONE_5)?CGRectMake(170, 525, 130, 30):CGRectMake(170, 437, 130, 30)];
+    
     // create order details
     [self setTitle:@"Place Order"];
     //Set label date
@@ -74,13 +83,6 @@
     //Set image to Place order button
     [btnCheckOut setImage:[UIImage imageNamed:@"plceorder_btn_up"] forState:UIControlStateNormal];
     [imgBottomBar setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f alpha:1.0f]];
-    
-    //Fit to screen values
-    [tblProducts setFrame:(IS_IPHONE_5)?CGRectMake(0, 70, 320, 320):CGRectMake(0, 70, 320, 270)];
-    [lblDisclaimer setFrame:(IS_IPHONE_5)?CGRectMake(0, 400, 320, 90):CGRectMake(0, 330, 320, 90)];
-    [imgBottomBar setFrame:(IS_IPHONE_5)?CGRectMake(0, 508, 320, 60):CGRectMake(0, 420, 320, 60)];
-    [btnEmptyShoppingCart setFrame:(IS_IPHONE_5)?CGRectMake(20, 525, 48, 30):CGRectMake(20, 437, 48, 30)];
-    [btnCheckOut setFrame:(IS_IPHONE_5)?CGRectMake(170, 525, 130, 30):CGRectMake(170, 437, 130, 30)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -195,7 +197,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return (IS_IPHONE_6)?94:80;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -212,7 +214,7 @@
     ProductObject * productObject = [arrProductsShoppingCart objectAtIndex:[indexPath row]];
     
     //-------- Image product
-    UIImageView * imgProduct = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 80)];
+    UIImageView * imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
     if(productObject.masterObject.imageObject.attachment_file_name != nil){
         NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
@@ -222,7 +224,7 @@
         //[imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
         // testing crop
         UIImage *imageToCrop = [UIImage imageWithContentsOfFile:fullPath];
-        CGRect cropRect = CGRectMake(0, 0, 320, 80);
+        CGRect cropRect = (IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80);
         UIImage *croppedImage = [self getSubImageFrom:imageToCrop WithRect:cropRect];
         [imgProduct setImage:croppedImage];
     }else{
@@ -232,13 +234,13 @@
     
     //------- Transparency image
     UIImageView * imgTransparency = [[UIImageView alloc] init];
-    [imgTransparency setFrame:CGRectMake(0, 0, 320, 80)];
+    [imgTransparency setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
     [imgTransparency setImage:[UIImage imageNamed:@"item_transparency_03"]];
     [cell addSubview:imgTransparency];
     
     //-------- Product name
     UILabel * lblProductName = [[UILabel alloc] init];
-    [lblProductName setFrame:CGRectMake(0, 0, 320, 90)];
+    [lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
     [lblProductName setText:[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]]];
     [lblProductName setNumberOfLines:2];
     [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];

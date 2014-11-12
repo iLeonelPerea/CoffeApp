@@ -46,9 +46,11 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     //Fit to screen size
-    [btnIncomingOrders setFrame:(IS_IPHONE_5)?CGRectMake(0, 520, 160, 48):CGRectMake(0, 432, 160, 48)];
-    [btnPastOrders setFrame:(IS_IPHONE_5)?CGRectMake(161, 520, 159, 48):CGRectMake(161, 432, 159, 48)];
-    [tblOrders setFrame:(IS_IPHONE_5)?CGRectMake(0, 110, 320, 410):CGRectMake(0, 110, 320, 362)];
+    [imgPatron setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 50):CGRectMake(0, 64, 320, 50)];
+    [lblTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 64, 375, 50):CGRectMake(20, 64, 320, 50)];
+    [btnIncomingOrders setFrame:(IS_IPHONE_6)?CGRectMake(0, 611, 188, 56):(IS_IPHONE_5)?CGRectMake(0, 520, 160, 48):CGRectMake(0, 432, 160, 48)];
+    [btnPastOrders setFrame:(IS_IPHONE_6)?CGRectMake(189, 611, 188, 56):(IS_IPHONE_5)?CGRectMake(161, 520, 159, 48):CGRectMake(161, 432, 159, 48)];
+    [tblOrders setFrame:(IS_IPHONE_6)?CGRectMake(0, 110, 375, 501):(IS_IPHONE_5)?CGRectMake(0, 110, 320, 410):CGRectMake(0, 110, 320, 362)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,14 +96,14 @@
     NSMutableDictionary * dictOrderHeader = [arrOrders objectAtIndex:section];
     
     UILabel * lblSectionTitle = [[UILabel alloc] init];
-    [lblSectionTitle setFrame:CGRectMake(20, 15, 280, 30)];
+    [lblSectionTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 15, 335, 30):CGRectMake(20, 15, 280, 30)];
     [lblSectionTitle setText:[dictOrderHeader objectForKey:@"ORDER_DATE"]];
     [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:18]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [headerView addSubview:lblSectionTitle];
     
     if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"attending"]) {
-        UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:CGRectMake(250, 0, 70, 70)];
+        UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(305, 0, 70, 70):CGRectMake(250, 0, 70, 70)];
         [imgLabel setImage:[UIImage imageNamed:@"label.png"]];
         [headerView addSubview:imgLabel];
     }
@@ -120,7 +122,7 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     //--------- Product name
-    UILabel *lblName = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 280, 23)];
+    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(20, 0, 335, 23):CGRectMake(20, 0, 280, 23)];
     [[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"];
     [lblName setText:[NSString stringWithFormat:@"%@ %@",[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"],[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_NAME"]]];
     [lblName setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
