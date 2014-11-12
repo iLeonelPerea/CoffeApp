@@ -150,28 +150,34 @@
     UIButton * senderButton = (UIButton *)sender;
     NSMutableDictionary * dictOrder = [arrOrders objectAtIndex:[senderButton tag]];
 
-    NSDictionary *data = @{
-                           @"sound": @"default",
-                           @"orderNumber": [dictOrder objectForKey:@"ORDER_ID"],
-                           @"action": @"cancelOrder"
-                           };
-    PFPush *push = [[PFPush alloc] init];
-    [push setChannel:@"requests"];
-    [push setData:data];
-    [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        //Delete the order from local DB
-        [DBManager deleteOrderLog:[dictOrder objectForKey:@"ORDER_ID"]];
-        //Post a local notification to refresh the OrderViewController if the user is in that controller
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
-        //Reset values
-        if(!succeeded)
-        {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-        
-    }];
-
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    //Call spree to cancel the order
+    [RESTManager sendData:nil toService:[NSString stringWithFormat:@"orders/%@/cancel",[dictOrder objectForKey:@"ORDER_ID"]] withMethod:@"PUT" isTesting:[appDelegate isTestingEnv]
+          withAccessToken:[[appDelegate userObject] userSpreeToken] isAccessTokenInHeader:YES toCallback:^(id result) {
+              NSLog(@"%@",result);
+              //Check if the result retrieve state cancel... actually is result answer right
+              if ([[result objectForKey:@"state"] isEqual:@"canceled"]) {
+                  //Send the a push notification to CoffeeBoy App
+                  NSDictionary *data = @{
+                                         @"sound": @"default",
+                                         @"action": @"cancelOrder"
+                                         };
+                  PFPush *push = [[PFPush alloc] init];
+                  [push setChannel:@"requests"];
+                  [push setData:data];
+                  [push sendPushInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                      if(!succeeded)
+                      {
+                          UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Error in Push Notification" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                          [alert show];
+                      }
+                  }];
+                  //Delete the order from local DB
+                  [DBManager deleteOrderLog:[dictOrder objectForKey:@"ORDER_ID"]];
+                  //Post a local notification to refresh the OrderViewController if the user is in that controller
+                  [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
+              }
+        }];
 }
 
 #pragma mark -- Buttons actions

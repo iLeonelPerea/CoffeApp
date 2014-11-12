@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "DBManager.h"
 #import <Parse/Parse.h>
+#import "RESTManager.h"
+#import "AppDelegate.h"
 
 @interface OrdersHistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
