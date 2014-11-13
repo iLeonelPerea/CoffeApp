@@ -57,13 +57,13 @@
     // check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
-        if([strHr intValue] > 7 || [strHr intValue] < 10)
+        if([strHr intValue] > 7 && [strHr intValue] < 11)
         {
-            areMealsAvailable = NO;
+            areMealsAvailable = YES;
         }
         else
         {
-            areMealsAvailable = YES;
+            areMealsAvailable = NO;
         }
     }];
    
