@@ -13,6 +13,7 @@
 		2329A9161A09B08600E93ABB /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = 2329A9151A09B08600E93ABB /* label.png */; };
 		232D03581A13F45B008791A4 /* delete_order_btn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 232D03561A13F45B008791A4 /* delete_order_btn_down.png */; };
 		232D03591A13F45B008791A4 /* delete_order_btn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 232D03571A13F45B008791A4 /* delete_order_btn_up.png */; };
+		233158EF1A168B0F006104C4 /* illustration_00.png in Resources */ = {isa = PBXBuildFile; fileRef = 233158EE1A168B0F006104C4 /* illustration_00.png */; };
 		234BCE1F1A0D804200BA4074 /* crowdchef_iphone_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 234BCE1D1A0D804200BA4074 /* crowdchef_iphone_120.png */; };
 		234BCE201A0D804200BA4074 /* crowdchef_iphone_180.png in Resources */ = {isa = PBXBuildFile; fileRef = 234BCE1E1A0D804200BA4074 /* crowdchef_iphone_180.png */; };
 		2354C3D11A0310FB00729A84 /* history_btn_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2354C3D01A0310FB00729A84 /* history_btn_selected.png */; };
@@ -106,6 +107,7 @@
 		2329A9151A09B08600E93ABB /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
 		232D03561A13F45B008791A4 /* delete_order_btn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_order_btn_down.png; sourceTree = "<group>"; };
 		232D03571A13F45B008791A4 /* delete_order_btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_order_btn_up.png; sourceTree = "<group>"; };
+		233158EE1A168B0F006104C4 /* illustration_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_00.png; sourceTree = "<group>"; };
 		234BCE1D1A0D804200BA4074 /* crowdchef_iphone_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowdchef_iphone_120.png; sourceTree = "<group>"; };
 		234BCE1E1A0D804200BA4074 /* crowdchef_iphone_180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = crowdchef_iphone_180.png; sourceTree = "<group>"; };
 		2354C3D01A0310FB00729A84 /* history_btn_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history_btn_selected.png; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 		C869B7231A001ED800F12C57 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				233158EE1A168B0F006104C4 /* illustration_00.png */,
 				232D03561A13F45B008791A4 /* delete_order_btn_down.png */,
 				232D03571A13F45B008791A4 /* delete_order_btn_up.png */,
 				231293B21A1271D6003A5856 /* login_btn_down@3x.png */,
@@ -565,6 +568,7 @@
 				236FCB7E1A0051760021E2ED /* add_btn_up.png in Resources */,
 				23F400A81A0BCDF6009F09EE /* Lato-LigIta.ttf in Resources */,
 				232D03591A13F45B008791A4 /* delete_order_btn_up.png in Resources */,
+				233158EF1A168B0F006104C4 /* illustration_00.png in Resources */,
 				2329A9161A09B08600E93ABB /* label.png in Resources */,
 				C8653E4D1A0D5DF900A9F958 /* illustration_03.png in Resources */,
 				2354C3D11A0310FB00729A84 /* history_btn_selected.png in Resources */,

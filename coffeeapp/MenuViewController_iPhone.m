@@ -372,8 +372,8 @@
         int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
         
         //When a product is outstock
-        //if (!productObject.total_on_hand > productObject.quantity && [btnAdd isEnabled]) {
-        if (![productObject total_on_hand] > [productObject quantity] || (productDayAvailable < currentDayOfWeek) ) {
+        //if ((!productObject.total_on_hand > productObject.quantity || produc )&& [btnAdd isEnabled]) {
+        if (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek) ) {
             [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(52, 197, 270, 45):CGRectMake(25, 174, 270, 45)];
             [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
             [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down"] forState:UIControlStateHighlighted];

@@ -161,7 +161,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     
     if (application.applicationState == UIApplicationStateInactive) {
         [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
-        if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]){
+        if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"] || [[userInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"]){
             //Store the user info to update the order status when the app become active
             NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userInfo] forKey:@"userInfo"];
@@ -177,7 +177,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         }
     }
     
-    if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"]) {
+    if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"] || [[userInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"]) {
         
         LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Thanks" otherButtonTitles:nil];
         [alertView setSize:CGSizeMake(200.0f, 320.0f)];
@@ -187,18 +187,18 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [contentView setBackgroundColor:[UIColor clearColor]];
         [alertView setBackgroundColor:[UIColor clearColor]];        
         UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
-        [imgV setImage:([[userInfo objectForKey:@"state"] isEqual:@"attending"])?[UIImage imageNamed:@"illustration_01"]:[UIImage imageNamed:@"illustration_02"]];
+        [imgV setImage:([[userInfo objectForKey:@"state"] isEqual:@"attending"])?[UIImage imageNamed:@"illustration_01"]:([[userInfo objectForKey:@"state"] isEqual:@"complete"])?[UIImage imageNamed:@"illustration_02"]:[UIImage imageNamed:@"illustration_00"]];
         [contentView addSubview:imgV];
         UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
-        lblStatus.numberOfLines = 2;
+        lblStatus.numberOfLines = 3;
         [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
         [lblStatus setTextAlignment:NSTextAlignmentCenter];
-        lblStatus.text = [NSString stringWithFormat:@"%@ Your order it's %@", userObject.firstName, [userInfo objectForKey:@"state"]];
+        lblStatus.text = ([[userInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"])?[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]:[NSString stringWithFormat:@"%@ Your order it's %@", userObject.firstName, [userInfo objectForKey:@"state"]];
         [contentView addSubview:lblStatus];
         [alertView show];
         
         
-        [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:[userInfo objectForKey:@"state"]];
+        [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:([[userInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"])?@"complete":[userInfo objectForKey:@"state"]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
     }
     if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
@@ -282,9 +282,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     NSMutableDictionary * dictUserInfo = [[NSMutableDictionary alloc] init];
     dictUserInfo = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
-    if ([[dictUserInfo objectForKey:@"state"] isEqual:@"attending"] || [[dictUserInfo objectForKey:@"state"] isEqual:@"complete"]){
+    if ([[dictUserInfo objectForKey:@"state"] isEqual:@"attending"] || [[dictUserInfo objectForKey:@"state"] isEqual:@"complete"] || [[dictUserInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"]){
         //Update the order status
-        [DBManager updateStateOrderLog:[dictUserInfo objectForKey:@"orderId"] withState:[dictUserInfo objectForKey:@"state"]];
+        [DBManager updateStateOrderLog:[dictUserInfo objectForKey:@"orderId"] withState:([[dictUserInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"])?@"complete":[dictUserInfo objectForKey:@"state"]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
         [defaults setObject:nil forKey:@"userInfo"];
     }
