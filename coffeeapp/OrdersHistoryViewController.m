@@ -18,11 +18,13 @@
 @end
 
 @implementation OrdersHistoryViewController
-@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, isPendingOrdersSelected;
+@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, isPendingOrdersSelected, prgLoading;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    prgLoading = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    [[prgLoading textLabel] setText:@"Cancelling..."];
     
     [tblOrders setDelegate:self];
     [tblOrders setDataSource:self];
@@ -146,6 +148,12 @@
 #pragma mark -- Cancel order action
 -(void)doCancelOrder:(id)sender
 {
+    //Show an HUD
+    dispatch_async(dispatch_get_main_queue(),^{
+        [(UIButton*)sender setEnabled:NO];
+        [prgLoading showInView:[self view]];
+    });
+    
     //Extract the information from the arrOrders
     UIButton * senderButton = (UIButton *)sender;
     NSMutableDictionary * dictOrder = [arrOrders objectAtIndex:[senderButton tag]];
@@ -175,6 +183,7 @@
                   //Delete the order from local DB
                   [DBManager deleteOrderLog:[dictOrder objectForKey:@"ORDER_ID"]];
                   //Post a local notification to refresh the OrderViewController if the user is in that controller
+                  [prgLoading dismiss];
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
               }
         }];

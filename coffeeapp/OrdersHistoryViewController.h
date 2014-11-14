@@ -11,6 +11,7 @@
 #import <Parse/Parse.h>
 #import "RESTManager.h"
 #import "AppDelegate.h"
+#import <JGProgressHUD.h>
 
 @interface OrdersHistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
@@ -21,6 +22,7 @@
 @property (nonatomic, strong) IBOutlet UIButton * btnPastOrders;
 @property (nonatomic, strong) NSMutableArray * arrOrders;
 @property (nonatomic, assign) BOOL isPendingOrdersSelected;
+@property (nonatomic, strong) JGProgressHUD * prgLoading;
 
 -(IBAction)doShowPendingOrders:(id)sender;
 -(IBAction)doShowPastOrders:(id)sender;
