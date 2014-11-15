@@ -157,7 +157,22 @@
             }
         }
     }
-    //Call the method that determines if the bottom bar is displayed or not
+    
+    NSArray * arrProductsOutstock = [[NSArray alloc] initWithArray:[DBManager getProductsInConfirm]];
+    if ([arrProductsOutstock count] > 0) {
+        for (NSArray * arrTmpProducts in arrMenuProducts) {
+            for (ProductObject *tmpProductObject in arrTmpProducts) {
+                //Loop for set the temporally stock to products
+                for (NSDictionary * dictTmpProduct in arrProductsOutstock) {
+                    if ([tmpProductObject.masterObject masterObject_id] == [[dictTmpProduct objectForKey:@"PRODUCT_ID"] intValue]) {
+                        [tmpProductObject setTotal_on_hand:0];
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+        //Call the method that determines if the bottom bar is displayed or not
     [self doShowPlaceOrderBottomBar:(int)[arrOrderSelectedProducts count]];
     return arrMenuProducts;
 }

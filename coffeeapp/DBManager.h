@@ -27,5 +27,6 @@
 +(void)deleteOrderLog:(NSString *)orderId;
 +(void)deleteTableContent:(NSArray*)tables;
 +(void)updateProductStock:(int)productId withStock:(int)stock;
++(NSMutableArray *)getProductsInConfirm;
 
 @end
