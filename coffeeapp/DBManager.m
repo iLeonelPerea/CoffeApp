@@ -379,7 +379,7 @@
             sqlUpdate = [NSString stringWithFormat:@"UPDATE PRODUCTS SET PRODUCT_TOTAL_ON_HAND = %d WHERE PRODUCT_MASTER_MASTEROBJECT_ID = %d",stock,productId];
             updateSQL = [sqlUpdate UTF8String];
             sqlite3_prepare_v2(appDB, updateSQL, -1, &statement, nil);
-            if (sqlite3_step(statement) != SQLITE_DONE) {
+            if (sqlite3_step(statement) == SQLITE_DONE) {
                 NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
             }
             [DBManager finalizeStatements:statement withDB:appDB];
@@ -394,19 +394,18 @@
     const char * dbpath = [[DBManager getDBPath] UTF8String];
     NSMutableArray * arrToReturn = [[NSMutableArray alloc] init];
     
-    NSString * selectSQL = [NSString stringWithFormat: @"SELECT PRODUCT_ID, SUM(PRODUCT_QUANTITY_ORDERED)AS TOTAL FROM ORDERSLOG WHERE ORDER_STATUS = 'confirm' OR ORDER_STATUS = 'attending'"];
+    NSString * selectSQL = [NSString stringWithFormat: @"SELECT A.PRODUCT_ID, A.TOTAL FROM (SELECT PRODUCT_ID, SUM(PRODUCT_QUANTITY_ORDERED)AS TOTAL FROM ORDERSLOG WHERE ORDER_STATUS = 'confirm' OR ORDER_STATUS = 'attending') AS A WHERE A.TOTAL > 0"];
     const char * select_stmt = [selectSQL UTF8String];
     if (sqlite3_open(dbpath, &appDB) == SQLITE_OK) {
-        if(sqlite3_prepare_v2(appDB, select_stmt, -1, &statement, NULL) == SQLITE_OK){
-            while (sqlite3_step(statement) == SQLITE_ROW) {
-                NSMutableDictionary * dictProduct = [[NSMutableDictionary alloc] init];
-                [dictProduct setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 0)] forKey:@"PRODUCT_ID"];
-                [dictProduct setObject:[NSString stringWithFormat:@"%d",sqlite3_column_int(statement, 1)] forKey:@"TOTAL"];
-                [arrToReturn addObject:dictProduct];
-            }
-            [DBManager finalizeStatements:statement withDB:appDB];
+        sqlite3_prepare_v2(appDB, select_stmt, -1, &statement, nil);
+        while (sqlite3_step(statement) != SQLITE_DONE) {
+            NSMutableDictionary * dictProduct = [[NSMutableDictionary alloc] init];
+            [dictProduct setObject:[NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 0)] forKey:@"PRODUCT_ID"];
+            [dictProduct setObject:[NSString stringWithFormat:@"%d",sqlite3_column_int(statement, 1)] forKey:@"TOTAL"];
+            [arrToReturn addObject:dictProduct];
         }
     }
+    [DBManager finalizeStatements:statement withDB:appDB];
     
     return arrToReturn;
 }
