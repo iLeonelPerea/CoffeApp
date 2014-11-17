@@ -168,7 +168,7 @@
                         //Check the stock and the quantity ordered
                         //Sustract the ordered quantity to total on hand. If more than 0, update the stock to a new temporally stock, in other way, the stock is set to 0
                         int productStock = [tmpProductObject total_on_hand] - [[dictTmpProduct objectForKey:@"TOTAL"] intValue];
-                        (productStock > 0)?[productObject setTotal_on_hand:productStock]:[tmpProductObject setTotal_on_hand:0];
+                        (productStock > 0)?[tmpProductObject setTotal_on_hand:productStock]:[tmpProductObject setTotal_on_hand:0];
                         NSLog(@"%d", [tmpProductObject total_on_hand]);
                         continue;
                     }
