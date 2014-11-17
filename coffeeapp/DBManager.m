@@ -394,7 +394,7 @@
     const char * dbpath = [[DBManager getDBPath] UTF8String];
     NSMutableArray * arrToReturn = [[NSMutableArray alloc] init];
     
-    NSString * selectSQL = [NSString stringWithFormat: @"SELECT A.PRODUCT_ID, A.TOTAL FROM (SELECT PRODUCT_ID, SUM(PRODUCT_QUANTITY_ORDERED)AS TOTAL FROM ORDERSLOG WHERE ORDER_STATUS = 'confirm' OR ORDER_STATUS = 'attending') AS A WHERE A.TOTAL > 0"];
+    NSString * selectSQL = [NSString stringWithFormat: @"SELECT A.PRODUCT_ID, A.TOTAL FROM (SELECT PRODUCT_ID, SUM(PRODUCT_QUANTITY_ORDERED)AS TOTAL FROM ORDERSLOG WHERE ORDER_STATUS = 'confirm' OR ORDER_STATUS = 'attending' GROUP BY PRODUCT_ID) AS A WHERE A.TOTAL > 0"];
     const char * select_stmt = [selectSQL UTF8String];
     if (sqlite3_open(dbpath, &appDB) == SQLITE_OK) {
         sqlite3_prepare_v2(appDB, select_stmt, -1, &statement, nil);

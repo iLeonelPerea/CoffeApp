@@ -158,14 +158,18 @@
         }
     }
     
-    NSArray * arrProductsOutstock = [[NSArray alloc] initWithArray:[DBManager getProductsInConfirm]];
-    if ([arrProductsOutstock count] > 0) {
+    NSArray * arrProductsOrdered = [[NSArray alloc] initWithArray:[DBManager getProductsInConfirm]];
+    if ([arrProductsOrdered count] > 0) {
         for (NSArray * arrTmpProducts in arrMenuProducts) {
             for (ProductObject *tmpProductObject in arrTmpProducts) {
                 //Loop for set the temporally stock to products
-                for (NSDictionary * dictTmpProduct in arrProductsOutstock) {
+                for (NSDictionary * dictTmpProduct in arrProductsOrdered) {
                     if ([tmpProductObject.masterObject masterObject_id] == [[dictTmpProduct objectForKey:@"PRODUCT_ID"] intValue]) {
-                        [tmpProductObject setTotal_on_hand:0];
+                        //Check the stock and the quantity ordered
+                        //Sustract the ordered quantity to total on hand. If more than 0, update the stock to a new temporally stock, in other way, the stock is set to 0
+                        int productStock = [tmpProductObject total_on_hand] - [[dictTmpProduct objectForKey:@"TOTAL"] intValue];
+                        (productStock > 0)?[productObject setTotal_on_hand:productStock]:[tmpProductObject setTotal_on_hand:0];
+                        NSLog(@"%d", [tmpProductObject total_on_hand]);
                         continue;
                     }
                 }
