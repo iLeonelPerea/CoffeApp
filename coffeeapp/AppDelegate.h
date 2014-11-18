@@ -28,4 +28,6 @@
 @property (nonatomic, assign) BOOL isTestingEnv;
 @property (nonatomic, strong) NSMutableDictionary * dictOrderNotification;
 @property (nonatomic, strong) NSString * currentOrderNumber;
+@property (nonatomic, assign) BOOL isShoppingCart;
+
 @end

@@ -38,6 +38,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    // set isShoppingCart to stop entry push notifications
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setIsShoppingCart:YES];
+    
     //Fit to screen values
     [lblDate setFrame:(IS_IPHONE_6)?CGRectMake(0, 20, 375, 50):CGRectMake(0, 20, 320, 50)];
     [imgTitle setFrame:(IS_IPHONE_6)?CGRectMake(0, 20, 375, 50):CGRectMake(0, 20, 430, 50)];
@@ -76,6 +80,13 @@
             productsCount += tmpObject.quantity;
         }
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    // set isShoppingCart to reactive entry push notification
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setIsShoppingCart:NO];
 }
 
 -(void)viewDidAppear:(BOOL)animated

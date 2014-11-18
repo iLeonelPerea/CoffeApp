@@ -20,7 +20,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber;
+@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber, isShoppingCart;
 
 //Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -34,6 +34,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     
     // set to YES to test on local computers
     isTestingEnv = NO;
+    // set to No the variable to identify the ShoppingCartViewController
+    isShoppingCart = NO;
     
     //Set app's client ID for GPPSignIn and GPPShare
     [[GPPSignIn sharedInstance] setClientID:kClientID];
@@ -158,7 +160,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     //[PFPush handlePush:userInfo];
-    
+        
     if (application.applicationState == UIApplicationStateInactive) {
         [PFAnalytics trackAppOpenedWithRemoteNotificationPayload:userInfo];
         if ([[userInfo objectForKey:@"state"] isEqual:@"attending"] || [[userInfo objectForKey:@"state"] isEqual:@"complete"] || [[userInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"]){
@@ -201,7 +203,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:([[userInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"])?@"complete":[userInfo objectForKey:@"state"]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
     }
-    if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"]){
+    if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"] && !isShoppingCart){
         //Extract the data of order products
         NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -211,7 +213,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         //Post a local notificatino
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateProductsStockAfterNotification" object:nil];
     }
-    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"YES"]){
+    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"YES"] && !isShoppingCart){
         [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
     }
     if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"]){
@@ -220,7 +222,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [defaults synchronize];
         [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
     }
-    if ([userInfo objectForKey:@"productMessage"]){
+    if ([userInfo objectForKey:@"productMessage"] && !isShoppingCart){
         NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
         NSData *data = [defaults objectForKey:@"arrProductsInQueue"];
         NSMutableArray *arrOrderSelectedProducts = [NSKeyedUnarchiver unarchiveObjectWithData:data];
