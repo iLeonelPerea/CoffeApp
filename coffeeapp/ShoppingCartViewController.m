@@ -126,6 +126,12 @@
     [RESTManager sendData:myAppDelegate.orderObject.getOrderPetition toService:@"checkouts" withMethod:@"POST" isTesting:myAppDelegate.isTestingEnv
           withAccessToken:myAppDelegate.userObject.userSpreeToken isAccessTokenInHeader:YES toCallback:^(id result) {
               [HUDJMProgress dismissAnimated:YES];
+              if([[result objectForKey:@"success"] isEqual:@NO])
+              {
+                  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                  [alert show];
+                  return;
+              }
               NSLog(@"order Number: %@ and order Token: %@", [result objectForKey:@"number"], [result objectForKey:@"token"]);
               [self doPostPushNotificationWithOrderNumber:[result objectForKey:@"number"] andOrderToken:[result objectForKey:@"token"]];
               NSLog(@"Order done with result %@", result);

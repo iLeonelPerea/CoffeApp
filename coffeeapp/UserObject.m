@@ -52,6 +52,12 @@
         NSMutableDictionary *jsonDict = [NSMutableDictionary dictionaryWithDictionary:@{@"spree_user":@{@"email": [self userEmail], @"password": [self userPassword]}}];
         //Make the call to do Log In
         [RESTManager sendData:jsonDict toService:@"v1/authorizations" withMethod:@"POST" isTesting:appDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+            if([[result objectForKey:@"success"] isEqual:@NO])
+            {
+                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                [alert show];
+                return;
+            }
             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
                  NSLog(@"%@",[result objectForKey:@"error"]);
                 
@@ -62,6 +68,12 @@
                         
                         NSMutableDictionary *jsonDictRegister = [NSMutableDictionary dictionaryWithDictionary:@{@"user":@{@"email": [self userEmail], @"password": [self userPassword], @"password_confirmation": [self userPassword], @"image_url":urlProfileImage, @"channel":customUserChannel}}];
                         [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:appDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+                            if([[result objectForKey:@"success"] isEqual:@NO])
+                            {
+                                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                                [alert show];
+                                return;
+                            }
                             
                             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
                                 NSLog(@"%@",[result objectForKey:@"error"]);
@@ -85,6 +97,12 @@
             {
                 NSMutableDictionary *jsonDictUpdate = [NSMutableDictionary dictionaryWithDictionary:@{@"user":@{@"email": [self userEmail], @"password": [self userPassword], @"password_confirmation": [self userPassword], @"image_url":urlProfileImage, @"channel":customUserChannel}}];
                 [RESTManager sendData:jsonDictUpdate toService:[NSString stringWithFormat:@"users/%@", [[result objectForKey:@"user"] objectForKey:@"id"]] withMethod:@"PUT" isTesting:appDelegate.isTestingEnv withAccessToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"] isAccessTokenInHeader:YES toCallback:^(id updateUserResult) {
+                    if([[result objectForKey:@"success"] isEqual:@NO])
+                    {
+                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                        [alert show];
+                        return;
+                    }
                     NSLog(@"user must be added to a channel now...");
                 }];
             }

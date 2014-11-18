@@ -75,7 +75,18 @@
         }
         else
         {
-            callback(nil);
+            if(error)
+            {
+                NSMutableDictionary * dictErrorDetails = [NSMutableDictionary new];
+                [dictErrorDetails setObject:@NO forKey:@"success"];
+                NSString * strErr = [error.userInfo objectForKey:@"NSLocalizedDescription"];
+                [dictErrorDetails setObject:strErr forKey:@"message"];
+                callback(dictErrorDetails);
+            }
+            else
+            {
+                callback(nil);
+            }
         }
     }];
 }
@@ -84,6 +95,12 @@
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     [RESTManager sendData:nil toService:@"products" withMethod:@"GET" isTesting:appDelegate.isTestingEnv withAccessToken:userAccessToken  isAccessTokenInHeader:NO toCallback:^(id result){
         //int showDays = 0;
+        if([[result objectForKey:@"success"] isEqual:@NO])
+        {
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+            [alert show];
+            return;
+        }
         [DBManager deleteProducts];
         ProductObject *productObject;
         //first time loading fix

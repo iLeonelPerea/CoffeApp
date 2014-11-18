@@ -56,6 +56,13 @@
     isViewPlaceOrderActive = NO;
     // check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+        if([[result objectForKey:@"success"] isEqual:@NO])
+        {
+            if (HUDJMProgress) {
+                [HUDJMProgress dismissAnimated:YES];
+            }
+            return;
+        }
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
         if([strHr intValue] > 7 && [strHr intValue] < 11)
         {

@@ -162,6 +162,14 @@
     //Call spree to cancel the order
     [RESTManager sendData:nil toService:[NSString stringWithFormat:@"orders/%@/cancel",[dictOrder objectForKey:@"ORDER_ID"]] withMethod:@"PUT" isTesting:[appDelegate isTestingEnv]
           withAccessToken:[[appDelegate userObject] userSpreeToken] isAccessTokenInHeader:YES toCallback:^(id result) {
+              if([[result objectForKey:@"success"] isEqual:@NO])
+              {
+                  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                  [alert show];
+                  if(prgLoading)
+                     [prgLoading dismissAnimated:YES];
+                  return;
+              }
               NSLog(@"%@",result);
               //Check if the result retrieve state cancel... actually is result answer right
               if ([[result objectForKey:@"state"] isEqual:@"canceled"]) {
