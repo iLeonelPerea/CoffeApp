@@ -164,7 +164,8 @@
               NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
               [defaults setObject:nil forKey:@"arrProductsInQueue"];
               [defaults synchronize];
-              [[NSNotificationCenter defaultCenter] postNotificationName:@"doCleanMenuAfterOrderPlaced" object:nil];
+              //* Post a notification to update the information in the menu after the order is placed
+              [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
               [self.parentViewController bdb_dismissPopupViewControllerWithAnimation:BDBPopupViewHideAnimationDefault completion:nil];
 
           }];

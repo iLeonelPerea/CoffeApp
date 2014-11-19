@@ -9,7 +9,7 @@
 // An method called doShowPlaceOrderBottomBar was created to detemine if the bottom bar has to be displayed or not. Because the code
 // that used to do that, was putted in the synchronizeDefaults. That was the cause of some behavior issues in the menu view controller.
 // Also were removed a lot of calls to synchronizeDefaults, which were unnecessary. The method doSynchronizeDefaults
-// was modified to optimize the code, now is called doCleanMenuAfterOrderPlaced .
+// was modified to optimize the code, now is called doUpdateMenu .
 // -- Franciso Flores --
 
 #import "MenuViewController_iPhone.h"
@@ -103,7 +103,7 @@
     currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue]; // Get the current date
     
     //Create a notification that reload data
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doCleanMenuAfterOrderPlaced:) name:@"doCleanMenuAfterOrderPlaced" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doUpdateMenu:) name:@"doUpdateMenu" object:nil];
     UILabel * lblControllerTitle = [[UILabel alloc] init];
     [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
@@ -210,7 +210,7 @@
     [defaults synchronize];
 }
 
--(void)doCleanMenuAfterOrderPlaced:(NSNotification*)notification
+-(void)doUpdateMenu:(NSNotification*)notification
 {
     //Update prodcuts
     [[HUDJMProgress textLabel] setText:@"Loading products"];
@@ -228,10 +228,6 @@
         }
         [HUDJMProgress dismiss];
     }];
-
-    //Set again the products array
-    arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
-    [tblProducts reloadData];
 }
 
 #pragma mark -- Synchronize defaults

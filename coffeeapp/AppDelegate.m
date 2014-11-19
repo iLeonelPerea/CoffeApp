@@ -216,7 +216,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"YES"] && !isShoppingCart){
         [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
     }
-    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"]){
+    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"] && !isShoppingCart){
         NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
         [defaults setObject:nil forKey:@"arrProductsInQueue"];
         [defaults synchronize];
@@ -273,6 +273,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
+    //Post a notification to update the information in the menu
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -306,6 +308,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    //Set a flag to indicate that the app was in brackground when become active
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:NO forKey:@"isFromBackground"];
+    [userDefaults synchronize];
 }
 
 #pragma mark - ()
