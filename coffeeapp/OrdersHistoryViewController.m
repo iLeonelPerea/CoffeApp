@@ -23,6 +23,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    //Clean Orderslog table from local DB, delete orders in confirm or attending status from days before the current date
+    [DBManager deleteUnattendedOrders];
+    
     prgLoading = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     [[prgLoading textLabel] setText:@"Cancelling..."];
     

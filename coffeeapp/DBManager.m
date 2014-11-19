@@ -411,5 +411,27 @@
 }
 
 
+#pragma mark -- Delete orders in confirm o attending status of past days
++(void)deleteUnattendedOrders
+{
+    sqlite3 * appDB;
+    sqlite3_stmt * statement;
+    const char * dbPath = [[DBManager getDBPath] UTF8String];
+    
+    NSDateFormatter * dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"dd-MM-yyyy 00:00"];
+    NSString * currentDate = [dateFormat stringFromDate:[NSDate dateWithTimeIntervalSince1970:[[NSDate date] timeIntervalSince1970]]];
+    
+    NSString * deleteSQL = [NSString stringWithFormat:@"DELETE FROM ORDERSLOG WHERE ORDER_DATE < %f  AND (ORDER_STATUS = 'confirm' OR ORDER_STATUS = 'attending') ", (double)[[dateFormat dateFromString:currentDate] timeIntervalSince1970]];
+    const char * deleteStmt = [deleteSQL UTF8String];
+    if (sqlite3_open(dbPath, &appDB) == SQLITE_OK) {
+        sqlite3_prepare_v2(appDB, deleteStmt, -1, &statement, nil);
+        if (sqlite3_step(statement) != SQLITE_DONE) {
+            NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+        }
+    }
+    [DBManager finalizeStatements:statement withDB:appDB];
+}
+
 
 @end

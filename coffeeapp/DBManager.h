@@ -28,5 +28,6 @@
 +(void)deleteTableContent:(NSArray*)tables;
 +(void)updateProductStock:(int)productId withStock:(int)stock;
 +(NSMutableArray *)getProductsInConfirm;
++(void)deleteUnattendedOrders;
 
 @end
