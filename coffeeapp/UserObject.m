@@ -54,8 +54,23 @@
         [RESTManager sendData:jsonDict toService:@"v1/authorizations" withMethod:@"POST" isTesting:appDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
             if([[result objectForKey:@"success"] isEqual:@NO])
             {
-                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                [alert show];
+                LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Service Error!" otherButtonTitles:nil];
+                [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+                
+                // Add your subviews here to customise
+                UIView *contentView = alertView.contentView;
+                [contentView setBackgroundColor:[UIColor clearColor]];
+                [alertView setBackgroundColor:[UIColor clearColor]];
+                UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
+                [imgV setImage:[UIImage imageNamed:@"illustration_05"]];
+                [contentView addSubview:imgV];
+                UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
+                lblStatus.numberOfLines = 3;
+                [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
+                [lblStatus setTextAlignment:NSTextAlignmentCenter];
+                lblStatus.text = [result objectForKey:@"message"];
+                [contentView addSubview:lblStatus];
+                [alertView show];
                 return;
             }
             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
@@ -70,8 +85,23 @@
                         [RESTManager sendData:jsonDictRegister toService:@"users" withMethod:@"POST" isTesting:appDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
                             if([[result objectForKey:@"success"] isEqual:@NO])
                             {
-                                UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                                [alert show];
+                                LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Service Error!" otherButtonTitles:nil];
+                                [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+                                
+                                // Add your subviews here to customise
+                                UIView *contentView = alertView.contentView;
+                                [contentView setBackgroundColor:[UIColor clearColor]];
+                                [alertView setBackgroundColor:[UIColor clearColor]];
+                                UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
+                                [imgV setImage:[UIImage imageNamed:@"illustration_05"]];
+                                [contentView addSubview:imgV];
+                                UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
+                                lblStatus.numberOfLines = 3;
+                                [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
+                                [lblStatus setTextAlignment:NSTextAlignmentCenter];
+                                lblStatus.text = [result objectForKey:@"message"];
+                                [contentView addSubview:lblStatus];
+                                [alertView show];
                                 return;
                             }
                             
@@ -99,8 +129,23 @@
                 [RESTManager sendData:jsonDictUpdate toService:[NSString stringWithFormat:@"users/%@", [[result objectForKey:@"user"] objectForKey:@"id"]] withMethod:@"PUT" isTesting:appDelegate.isTestingEnv withAccessToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"] isAccessTokenInHeader:YES toCallback:^(id updateUserResult) {
                     if([[result objectForKey:@"success"] isEqual:@NO])
                     {
-                        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-                        [alert show];
+                        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Service Error!" otherButtonTitles:nil];
+                        [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+                        
+                        // Add your subviews here to customise
+                        UIView *contentView = alertView.contentView;
+                        [contentView setBackgroundColor:[UIColor clearColor]];
+                        [alertView setBackgroundColor:[UIColor clearColor]];
+                        UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
+                        [imgV setImage:[UIImage imageNamed:@"illustration_05"]];
+                        [contentView addSubview:imgV];
+                        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
+                        lblStatus.numberOfLines = 3;
+                        [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
+                        [lblStatus setTextAlignment:NSTextAlignmentCenter];
+                        lblStatus.text = [result objectForKey:@"message"];
+                        [contentView addSubview:lblStatus];
+                        [alertView show];
                         return;
                     }
                     NSLog(@"user must be added to a channel now...");

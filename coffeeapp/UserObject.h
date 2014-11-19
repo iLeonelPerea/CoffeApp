@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "RESTManager.h"
+#import <LMAlertView.h>
 
 @interface UserObject : NSObject
 

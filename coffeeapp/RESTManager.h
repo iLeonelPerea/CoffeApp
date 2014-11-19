@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ProductObject.h"
 #import "DBManager.h"
+#import <LMAlertView.h>
 
 @interface RESTManager : NSObject
 

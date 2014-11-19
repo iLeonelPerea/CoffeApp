@@ -14,6 +14,7 @@
 #import "ProductObject.h"
 #import "RESTManager.h"
 #import "AppDelegate.h"
+#import <LMAlertView.h>
 
 @interface ShoppingCartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate>
 

@@ -54,6 +54,7 @@
 		7D0C6D0A19FEB05B00677DAF /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D0C6D0919FEB05B00677DAF /* CustomButton.m */; };
 		7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D17919D19F6B4FF00696B91 /* DBManager.m */; };
 		7D1791A019F6CDD000696B91 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D17919F19F6CDD000696B91 /* libsqlite3.dylib */; };
+		7D2A60611A1D5B8000BB0132 /* illustration_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D2A60601A1D5B8000BB0132 /* illustration_05.png */; };
 		7D7C19691A00B4670072E46E /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7C19671A00B4670072E46E /* ShoppingCartViewController.m */; };
 		7D7C196A1A00B4670072E46E /* ShoppingCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C19681A00B4670072E46E /* ShoppingCartViewController.xib */; };
 		7D7C19701A0179180072E46E /* OrderObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7C196F1A0179180072E46E /* OrderObject.m */; };
@@ -154,6 +155,7 @@
 		7D17919C19F6B4FF00696B91 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		7D17919D19F6B4FF00696B91 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		7D17919F19F6CDD000696B91 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		7D2A60601A1D5B8000BB0132 /* illustration_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_05.png; sourceTree = "<group>"; };
 		7D7C19661A00B4670072E46E /* ShoppingCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewController.h; sourceTree = "<group>"; };
 		7D7C19671A00B4670072E46E /* ShoppingCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewController.m; sourceTree = "<group>"; };
 		7D7C19681A00B4670072E46E /* ShoppingCartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartViewController.xib; sourceTree = "<group>"; };
@@ -302,6 +304,7 @@
 		C869B7231A001ED800F12C57 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				7D2A60601A1D5B8000BB0132 /* illustration_05.png */,
 				233158EE1A168B0F006104C4 /* illustration_00.png */,
 				232D03561A13F45B008791A4 /* delete_order_btn_down.png */,
 				232D03571A13F45B008791A4 /* delete_order_btn_up.png */,
@@ -586,6 +589,7 @@
 				23F400A51A0BCDF6009F09EE /* Lato-Hai.ttf in Resources */,
 				23A5E1411A0293E400590509 /* logout_btn_down.png in Resources */,
 				23B3B8131A08365E00800204 /* plceorder_btn_up.png in Resources */,
+				7D2A60611A1D5B8000BB0132 /* illustration_05.png in Resources */,
 				236FCB821A0051A50021E2ED /* add02_btn_up.png in Resources */,
 				23F400A91A0BCDF6009F09EE /* Lato-Reg.ttf in Resources */,
 				C89ED5BA1A0023ED004441A3 /* login_btn_down@2x.png in Resources */,

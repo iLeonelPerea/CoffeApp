@@ -97,8 +97,23 @@
         //int showDays = 0;
         if([[result objectForKey:@"success"] isEqual:@NO])
         {
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Service Error!" message:[result objectForKey:@"message"] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-            [alert show];
+            LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Service Error!" otherButtonTitles:nil];
+            [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+            
+            // Add your subviews here to customise
+            UIView *contentView = alertView.contentView;
+            [contentView setBackgroundColor:[UIColor clearColor]];
+            [alertView setBackgroundColor:[UIColor clearColor]];
+            UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
+            [imgV setImage:[UIImage imageNamed:@"illustration_05"]];
+            [contentView addSubview:imgV];
+            UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
+            lblStatus.numberOfLines = 3;
+            [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
+            [lblStatus setTextAlignment:NSTextAlignmentCenter];
+            lblStatus.text = [result objectForKey:@"message"];
+            [contentView addSubview:lblStatus];
+            [alertView show];
             return;
         }
         [DBManager deleteProducts];
