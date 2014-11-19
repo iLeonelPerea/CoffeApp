@@ -216,7 +216,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"YES"] && !isShoppingCart){
         [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
     }
-    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"]){
+    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"] && !isShoppingCart){
         NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
         [defaults setObject:nil forKey:@"arrProductsInQueue"];
         [defaults synchronize];
