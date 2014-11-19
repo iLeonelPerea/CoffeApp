@@ -38,10 +38,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    // set isShoppingCart to stop entry push notifications
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate setIsShoppingCart:YES];
-    
     //Fit to screen values
     [lblDate setFrame:(IS_IPHONE_6)?CGRectMake(0, 20, 375, 50):CGRectMake(0, 20, 320, 50)];
     [imgTitle setFrame:(IS_IPHONE_6)?CGRectMake(0, 20, 375, 50):CGRectMake(0, 20, 430, 50)];
@@ -82,18 +78,18 @@
     }
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    // set isShoppingCart to reactive entry push notification
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate setIsShoppingCart:NO];
-}
-
 -(void)viewDidAppear:(BOOL)animated
 {
     //Set image to Place order button
     [btnCheckOut setImage:[UIImage imageNamed:@"plceorder_btn_up"] forState:UIControlStateNormal];
     [imgBottomBar setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f alpha:1.0f]];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    //Set isMenuViewController flag to YES in AppDelegate
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setIsMenuViewController:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -201,6 +197,8 @@
 }
 
 -(IBAction)doCancel:(id)sender{
+    //Post a local notification to update the menu
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
     [self.parentViewController bdb_dismissPopupViewControllerWithAnimation:BDBPopupViewHideAnimationDefault completion:nil];
 }
 

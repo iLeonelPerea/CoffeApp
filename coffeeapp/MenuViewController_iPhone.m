@@ -40,6 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //Set isMenuViewController flag to YES in the AppDelegate
+    AppDelegate * initialAppDelegate = [[UIApplication sharedApplication] delegate];
+    [initialAppDelegate setIsMenuViewController:YES];
+    
     //Arrays data init
     arrWeekDays = [[NSArray alloc] initWithObjects:@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
     areLocationServicesAvailable = YES;
@@ -140,6 +144,13 @@
     }
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    //Set isMenuViewController to No in the AppDelegate
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setIsMenuViewController:NO];
+}
+
 #pragma mark -- setQuantitySelectedProducts delegate
 -(NSMutableArray*)setQuantitySelectedProducts:(NSMutableArray *)arrMenuProducts
 {
@@ -212,6 +223,9 @@
 
 -(void)doUpdateMenu:(NSNotification*)notification
 {
+    //Update the array temporally to clean it from selected products and display clean the menu
+    arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+    [tblProducts reloadData];
     //Update prodcuts
     [[HUDJMProgress textLabel] setText:@"Loading products"];
     [HUDJMProgress showInView:[self view]];
@@ -554,6 +568,9 @@
         if (isPlaceOrder) {
             [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
             [defaults synchronize];
+            
+            //Set isMenuViewController flag to No in the AppDelegate
+            [appDelegate setIsMenuViewController:NO];
             
             [self.navigationController dismissViewControllerAnimated:NO completion:nil];
             ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
