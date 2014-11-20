@@ -173,7 +173,6 @@
                      [prgLoading dismissAnimated:YES];
                   return;
               }
-              NSLog(@"%@",result);
               //Check if the result retrieve state cancel... actually is result answer right
               if ([[result objectForKey:@"state"] isEqual:@"canceled"]) {
                   //Send the a push notification to CoffeeBoy App
