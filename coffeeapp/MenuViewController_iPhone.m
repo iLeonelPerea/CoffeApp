@@ -343,15 +343,18 @@
     return 50;
 }
 
+/// Draw the content of each section of the table view.
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    //to-do:refactor this for other screen size
+    /// Create a view that will contain all the elements of the section.
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 50)];
     
+    /// Create and set and image view to display the background of the section.
     UIImageView * imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 50)];
     [imgBackground setImage:[UIImage imageNamed:@"patron_01"]];
     [headerView addSubview:imgBackground];
     
+    /// Create and set a label to display the title of the sections.
     UILabel * lblSectionTitle = [[UILabel alloc] init];
     [lblSectionTitle setFrame:CGRectMake(20, 0, 200, 50)];
     [lblSectionTitle setText:[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:section] category_name ]];
@@ -359,6 +362,7 @@
     [lblSectionTitle setTextColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:255]];
     [headerView addSubview:lblSectionTitle];
     
+    /// Create and set a label to display the number of elements in the section.
     UILabel * lblProductsNumber = [[UILabel alloc] init];
     [lblProductsNumber setFrame:(IS_IPHONE_6)?CGRectMake(250, 0, 100, 50):CGRectMake(200, 0, 100, 50)];
     [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:[NSString stringWithFormat:@"%d Product",(int)[[arrProductObjects objectAtIndex:section] count]]];
@@ -370,9 +374,11 @@
     return headerView;
 }
 
+///Draw the content of each row of the table view.
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"CellProduct";
     
+    /// Create the cell will contain all the elements.
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     cell = nil;
     if (cell == nil) {
@@ -381,10 +387,11 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.accessoryType = UITableViewCellAccessoryNone;
     
+    /// Create a product object and
     productObject = [[ProductObject alloc] init];
     productObject = [[arrProductObjects objectAtIndex:indexPath.section] objectAtIndex:(NSInteger)indexPath.row];
     
-    //--------- Product image
+    /// --------- Product image
     UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 280):CGRectMake(0, 0, 320, 240)];
     if(productObject.masterObject.imageObject.attachment_file_name != nil){
         NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
@@ -393,18 +400,17 @@
         NSString *fileName = [NSString stringWithFormat:@"%@", productObject.masterObject.imageObject.attachment_file_name];
         NSString *fullPath = [NSString stringWithFormat:@"%@/%@",filePathAndDirectory, fileName];
         [imgProduct setImage:[UIImage imageWithContentsOfFile:fullPath]];
-        
-        //[imgProduct setImage:[self getSubImageFrom:[UIImage imageWithContentsOfFile:fullPath] WithRect:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 280):CGRectMake(0, 0, 320, 240)]];
     }else{
         [imgProduct setImage:[UIImage imageNamed:@"noAvail"]];
     }
     [cell addSubview:imgProduct];
     
+    /// --------- Transparent background
     UIImageView * imgTransparent = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"item_transparency"]];
     [imgTransparent setFrame:(IS_IPHONE_6)?CGRectMake(47, 159, 280, 88):CGRectMake(20, 136, 280, 88)];
     [cell addSubview:imgTransparent];
     
-    //--------- Product name
+    /// --------- Product name
     UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(47, 159, 280, 36):CGRectMake(20, 136, 280, 36)];
     [lblName setText: [productObject name]];
     [lblName setFont:[UIFont fontWithName:@"Lato-Bold" size:15]];
@@ -414,9 +420,10 @@
     [lblName setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:lblName];
     
-    //Creat add button
+    /// --------- Add button
     CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
     
+    /// Check if the flag for meals category availability. If it is not avalaible, set add button image to no available.
     if (!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:indexPath.section] category_name ] isEqualToString:@"Desayuno"]) {
         //Button outstock
         [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(52, 197, 270, 45):CGRectMake(25, 174, 270, 45)];
@@ -426,7 +433,7 @@
     }
     else
     {
-        // Disable button if quantity more than stock
+        /// Disable the button if quantity is more than stock
         [btnAdd setEnabled:([productObject total_on_hand] == [productObject quantity])?NO:YES];
         
         if ([productObject quantity] > 0) {
