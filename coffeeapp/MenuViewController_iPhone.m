@@ -228,7 +228,9 @@
     [tblProducts reloadData];
     //Update prodcuts
     [[HUDJMProgress textLabel] setText:@"Loading products"];
-    [HUDJMProgress showInView:[self view]];
+    if (HUDJMProgress.visible != YES) {
+        [HUDJMProgress showInView:[self view]];
+    }
     AppDelegate * appDelegate =  [[UIApplication sharedApplication] delegate];
     [RESTManager updateProducts:[[appDelegate userObject] userSpreeToken] toCallback:^(id resultSignUp) {
         if ([resultSignUp isEqual:@YES]) {
