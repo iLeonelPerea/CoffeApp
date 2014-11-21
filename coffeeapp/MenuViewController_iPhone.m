@@ -16,7 +16,7 @@
 #import "DBManager.h"
 #import "RESTManager.h"
 
-//Macros to identify size screen
+/// Macros to identify size screen
 #define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON) 
 #define IS_IPHONE_6 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)667) < DBL_EPSILON) 
 #define IS_IPHONE_6_PLUS (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)736) < DBL_EPSILON)
@@ -26,7 +26,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, lblCurrentDay, arrWeekDays, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable;
+@synthesize mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,10 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //Arrays data init
-    arrWeekDays = [[NSArray alloc] initWithObjects:@"Monday", @"Tuesday", @"Wednesday", @"Thursday", @"Friday", @"Saturday", @"Sunday", nil];
+    /// Set the default value to flag for location services.
     areLocationServicesAvailable = YES;
-    //Set the elementos on the placeHolder view
+    
+    /// Set the constraints for the elements on the view.
     [[self view] setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 667):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 0, 320, 480)];
     [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height+60, self.view.frame.size.width, 60)];
     [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
@@ -53,17 +53,22 @@
     [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
     [[btnPlaceOrder titleLabel] setTextAlignment:NSTextAlignmentRight];
     
+    /// Set the default value to the flag for bottom bar.
     isViewPlaceOrderActive = NO;
-    // check if meals are available based on server time
+    
+    /// Check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         if([[result objectForKey:@"success"] isEqual:@NO])
         {
+            /// Dismiss the HUD for loading, if it is active.
             if (HUDJMProgress) {
                 [HUDJMProgress dismissAnimated:YES];
             }
             return;
         }
+        /// Extract the hour value from the server time
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
+        /// Check if the hour is between the valid range of time for meals category
         if([strHr intValue] > 7 && [strHr intValue] < 11)
         {
             areMealsAvailable = YES;
@@ -74,19 +79,22 @@
         }
     }];
    
-    //Setting up tableview delegates and datasources
+    /// Setting up tableview delegates and datasources
     [tblProducts setDelegate:self];
     [tblProducts setDataSource:self];
     HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    
+    ///Iniliatize the arrays to store the products.
     arrProductObjects = [NSMutableArray new];
     
-    //Update prodcuts
+    /// Set the HUD for loading message
     [[HUDJMProgress textLabel] setText:@"Loading products"];
     [HUDJMProgress showInView:[self view]];
     AppDelegate * appDelegate =  [[UIApplication sharedApplication] delegate];
+    /// Make a request to spree to get all the elements of the menu.
     [RESTManager updateProducts:[[appDelegate userObject] userSpreeToken] toCallback:^(id resultSignUp) {
         if ([resultSignUp isEqual:@YES]) {
-            //Set the array prodcuts - If the there's products selected by users, they will be set here.
+            /// Set the array prodcuts - If the there's products selected by users, they will be set here.
             arrProductCategoriesObjects = [DBManager getCategories];
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
             [tblProducts reloadData];
@@ -97,12 +105,13 @@
         [HUDJMProgress dismiss];
     }];
     
+    /// Get the current day of the week.
     NSDate *now = [NSDate date];
     NSDateFormatter *weekday = [[NSDateFormatter alloc] init];
     [weekday setDateFormat: @"e"];
-    currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue]; // Get the current date
+    currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue];
     
-    //Create a notification that reload data
+    /// Create a notification that reload data
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doCleanMenuAfterOrderPlaced:) name:@"doCleanMenuAfterOrderPlaced" object:nil];
     UILabel * lblControllerTitle = [[UILabel alloc] init];
     [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
@@ -111,14 +120,14 @@
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
     
-    //Create observer to update products stock without call the spree service
+    /// Create observer to update products stock without call the spree service
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doUpdateProductsStockAfterNotification:) name:@"doUpdateProductsStockAfterNotification" object:nil];
     
-    // Create a location manager
+    /// Create a location manager
     locationManager = [[CLLocationManager alloc] init];
     // Set a delegate to receive location callbacks
     locationManager.delegate = self;
-    // Start the location manager
+    /// Start the location manager
     [locationManager startUpdatingLocation];
     
     if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
@@ -126,13 +135,14 @@
     }
     [locationManager startUpdatingLocation];
     
-    // initialice mapkit
+    /// Initialice mapkit
     mapKitView.delegate = self;
     [mapKitView setShowsUserLocation:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
-    //Set objects to fit screen
+    
+    /// Check if the bottom bar is active, to set the size of tblProducts.
     if (isViewPlaceOrderActive) {
         [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 64, 375, 545):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 446):CGRectMake(0, 64, 320, 358)];
     }else{
@@ -143,19 +153,20 @@
 #pragma mark -- setQuantitySelectedProducts delegate
 -(NSMutableArray*)setQuantitySelectedProducts:(NSMutableArray *)arrMenuProducts
 {
+    /// Extract from user defaults arrProductsInQueue, which contains the selected products by user.
     NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:@"arrProductsInQueue"];
     NSMutableArray *arrOrderSelectedProducts = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
-    //Check is there's prodcuts selected by user.
+    /// Check is there's prodcuts selected by user.
     if ([arrOrderSelectedProducts count] > 0) {
         for (int arrayDimention=0; arrayDimention<arrMenuProducts.count; arrayDimention++) {
             for(ProductObject *prodObject in [arrMenuProducts objectAtIndex:arrayDimention]){
                 MasterObject *masterObject = [prodObject masterObject];
-                //Loop for the array that contains the selected products by user
+                /// Loop for the array that contains the selected products by user.
                 for (ProductObject *orderSelectedProduct in arrOrderSelectedProducts) {
                     MasterObject *orderMasterProduct = [orderSelectedProduct masterObject];
-                    //if the id from selected product is equal to id from menu product, aasign the quantity to display.
+                    /// If the id from selected product is equal to id from menu product, aasign the quantity to display.
                     if ([orderMasterProduct masterObject_id] == [masterObject masterObject_id]) {
                         [prodObject setQuantity:[orderSelectedProduct quantity]];
                         continue;
@@ -165,46 +176,48 @@
         }
     }
     
+    /// Extract the products that are in orders with status in "confirm" o "attending".Then, they are stored in arrProductsOrdered.
     NSArray * arrProductsOrdered = [[NSArray alloc] initWithArray:[DBManager getProductsInConfirm]];
+    /// Check if arrProductsOrdered has elements to check with arrMenuProducts
     if ([arrProductsOrdered count] > 0) {
         for (NSArray * arrTmpProducts in arrMenuProducts) {
             for (ProductObject *tmpProductObject in arrTmpProducts) {
-                //Loop for set the temporally stock to products
+                /// Loop for set the temporally stock to products
                 for (NSDictionary * dictTmpProduct in arrProductsOrdered) {
                     if ([tmpProductObject.masterObject masterObject_id] == [[dictTmpProduct objectForKey:@"PRODUCT_ID"] intValue]) {
-                        //Check the stock and the quantity ordered
-                        //Sustract the ordered quantity to total on hand. If more than 0, update the stock to a new temporally stock, in other way, the stock is set to 0
+                        /// Check the stock and the quantity ordered
+                        /// Sustract the ordered quantity to total on hand. If more than 0, update the stock to a new temporally stock, in other way, the stock is set to 0
                         int productStock = [tmpProductObject total_on_hand] - [[dictTmpProduct objectForKey:@"TOTAL"] intValue];
                         (productStock > 0)?[tmpProductObject setTotal_on_hand:productStock]:[tmpProductObject setTotal_on_hand:0];
-                        NSLog(@"%d", [tmpProductObject total_on_hand]);
                         continue;
                     }
                 }
             }
         }
     }
-        //Call the method that determines if the bottom bar is displayed or not
+    
+    //Call the method that determines if the bottom bar is displayed or not
     [self doShowPlaceOrderBottomBar:(int)[arrOrderSelectedProducts count]];
     return arrMenuProducts;
 }
 
 -(void)doUpdateProductsStockAfterNotification:(NSNotification *)notification
 {
-    //Extract the data from user defaults
+    /// Extract the data from user defaults
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSData * data = [defaults objectForKey:@"dataCompleteNotification"];
     NSMutableArray * arrProductsStock = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 
-    //Update the stock in local DB
+    /// Update the stock in local DB
     for (NSMutableDictionary * dictProduct in arrProductsStock) {
         [DBManager updateProductStock:[[dictProduct objectForKey:@"master_id"] intValue] withStock:[[dictProduct objectForKey:@"total_on_hand"]intValue]];
     }
 
-    //Set again the products array
+    /// Set again the products array
     arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
     [tblProducts reloadData];
     
-    //Reset the values in user defaults
+    /// Reset the values in user defaults
     [defaults setObject:nil forKey:@"dataCompleteNotification"];
     [defaults setObject:nil forKey:@"msg"];
     [defaults synchronize];
@@ -212,24 +225,27 @@
 
 -(void)doCleanMenuAfterOrderPlaced:(NSNotification*)notification
 {
-    //Update prodcuts
+    /// Set and display de HUD for loading message.
     [[HUDJMProgress textLabel] setText:@"Loading products"];
     [HUDJMProgress showInView:[self view]];
     AppDelegate * appDelegate =  [[UIApplication sharedApplication] delegate];
+    /// Request to spree for the products of the current menu.
     [RESTManager updateProducts:[[appDelegate userObject] userSpreeToken] toCallback:^(id resultSignUp) {
         if ([resultSignUp isEqual:@YES]) {
-            //Set the array prodcuts - If the there's products selected by users, they will be set here.
+            /// Set the array prodcuts - If the there's products selected by users, they will be set here.
             arrProductCategoriesObjects = [DBManager getCategories];
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+            /// Reload the table view to display de changes.
             [tblProducts reloadData];
         }else{
+            /// Create an alert view to inform that there's no menu available.
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
         }
         [HUDJMProgress dismiss];
     }];
 
-    //Set again the products array
+    /// Set again the products array
     arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
     [tblProducts reloadData];
 }
@@ -237,33 +253,39 @@
 #pragma mark -- Synchronize defaults
 -(void)synchronizeDefaults
 {
-    //Update the information of selected products in user defaults
+    /// Create an instance of user defaults.
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+    /// Create a mutable array to store the selected products by user.
     NSMutableArray * arrProductsInQueue = [NSMutableArray new];
     
+    /// Loop to check all the elements of the menu stored in arrProductsObjects.
     int productsCount = 0;
     for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
         for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
         {
+            /// Check if the product has been selected.
             if (tmpObject.quantity != 0) {
                 productsCount += tmpObject.quantity;
                 [arrProductsInQueue addObject:tmpObject];
             }
         }
     }
+    /// Archive the array arrProductsInQueue with the selected products by user.
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
     [defaults synchronize];
     
-    //Call the method to determine if the bottom bar is displayed
+    /// Call the method to determine if the bottom bar is displayed.
     [self doShowPlaceOrderBottomBar:productsCount];
 }
 
 #pragma mark -- Show place order bottom bar
 -(void)doShowPlaceOrderBottomBar:(int)productsCount
 {
-    // If found products in shoppingCart && is not visible the viewPlaceOrder
+    // Check for the quantity of selected products && if place order is not active.
     if (productsCount>0 && !isViewPlaceOrderActive) {
+        /// Set flag in YES.
         isViewPlaceOrderActive = YES;
+        /// Make an animation to hide the place order bottom bar.
         [UIView animateWithDuration:0.4f animations:^{
             // Decrease
             [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height-60, viewPlaceOrder.frame.size.width, 60)];
@@ -272,41 +294,50 @@
         }];
         
     }else if(productsCount==0 && isViewPlaceOrderActive){
+        /// Set flag in NO.
         isViewPlaceOrderActive = NO;
         [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 603):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 504):CGRectMake(0, 64, 320, 416)];
+        /// Create an animation to shoe the place order bottom bar.
         [UIView animateWithDuration:0.4f animations:^{
             // Increase
             [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height+60, viewPlaceOrder.frame.size.width, 60)];
         }];
     }
+    /// Set the label which display the number of selected products by user.
     [lblProductsCount setText:(productsCount == 1)?[NSString stringWithFormat:@"%d Product",productsCount]:[NSString stringWithFormat:@"%d Products",productsCount]];
 }
 
+/// System method.
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+/// Reload tblProducts table view.
 -(void)doReloadData
 {
     [tblProducts reloadData];
 }
 
 #pragma mark -- Table view data delegate
+/// Define the height for a each row, based on which device is -iPhone 6 or another-.
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return (IS_IPHONE_6)?280.0f:240.0f;
 }
 
+/// Return the number of sections based on the element that contains array arrProductObjects.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return [arrProductObjects count]; // Save the count of sections
 }
 
+/// Return the number of rows for each section. Is determined by the number of elements in each sub-array stored in the main array arrProducObjects.
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [[arrProductObjects objectAtIndex:section] count];
 }
 
+/// Define the height for the header section.
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 50;
