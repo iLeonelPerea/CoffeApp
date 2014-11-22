@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		230C5D131A1E641A006B9DB9 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 230C5D161A1E641A006B9DB9 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				230C5D171A1E642B006B9DB9 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		22536D09CF9C58200B049A39 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EAE09A761A7211E49B6549 /* libPods.a */; };
 		231293B41A1271D6003A5856 /* login_btn_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231293B21A1271D6003A5856 /* login_btn_down@3x.png */; };
@@ -510,6 +524,9 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = crowdint;
 				TargetAttributes = {
+					230C5D131A1E641A006B9DB9 = {
+						CreatedOnToolsVersion = 6.1;
+					};
 					C8B7CC4319F1D76600AEBA27 = {
 						CreatedOnToolsVersion = 6.0.1;
 						DevelopmentTeam = D7848S8M4T;
@@ -536,6 +553,7 @@
 			targets = (
 				C8B7CC4319F1D76600AEBA27 /* coffeeapp */,
 				C8B7CC5C19F1D76600AEBA27 /* coffeeappTests */,
+				230C5D131A1E641A006B9DB9 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -614,6 +632,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		230C5D171A1E642B006B9DB9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"ACME\";\ncompanyID=\"com.ACME\";\ncompanyURL=\"http://ACME.com\";\ntarget=\"iphoneos\";\n#target=\"macosx\";\noutputPath=\"${PROJECT_DIR}/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n--ignore \"Pods\" \\\n\"${PROJECT_DIR}\"";
+		};
 		70F178DB10269BB968E08FCA /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -702,6 +733,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		230C5D141A1E641A006B9DB9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		230C5D151A1E641A006B9DB9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		C8B7CC6519F1D76600AEBA27 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -865,6 +910,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		230C5D161A1E641A006B9DB9 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				230C5D141A1E641A006B9DB9 /* Debug */,
+				230C5D151A1E641A006B9DB9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		C8B7CC3F19F1D76600AEBA27 /* Build configuration list for PBXProject "coffeeapp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
