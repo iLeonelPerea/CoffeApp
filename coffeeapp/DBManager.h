@@ -18,9 +18,44 @@
  
     This method is used every time the app is launched. If the database doesn't exists, is created.
     The tables of the structure are:
-        - PRODUCTS. Store all the products of the current menu.
-        - PRODUCT_CATEGORIES. Store the categories for the products of the current menu.
-        - ORDERSLOG. Log of the orders. The data of this table is used in the "My Orders" option of the app and to calculate the virtual stock of the products.
+        - PRODUCTS. Store all the products of the current menu. Fields of the table:
+            - ID INTEGER
+            - PRODUCT_DESCRIPTION TEXT 
+            - PRODUCT_DISPLAY_PRICE TEXT 
+            - PRODUCT_PRODUCT_ID INTEGER 
+            - PRODUCT_MASTER_COST_PRICE TEXT 
+            - PRODUCT_MASTER_DESCRIPTION TEXT 
+            - PRODUCT_MASTER_DISPLAY_PRICE TEXT 
+            - PRODUCT_MASTER_MASTEROBJECT_ID INTEGER 
+            - PRODUCT_MASTER_IN_STOCK INTEGER 
+            - PRODUCT_MASTER_NAME TEXT 
+            - PRODUCT_MASTER_PRICE TEXT 
+            - PRODUCT_MASTER_SKU TEXT 
+            - PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME TEXT 
+            - PRODUCT_MASTER_IMAGE_IMAGE_ID INTEGER 
+            - PRODUCT_MASTER_IMAGE_LARGE_URL TEXT 
+            - PRODUCT_MASTER_IMAGE_MINI_URL TEXT 
+            - PRODUCT_MASTER_IMAGE_PRODUCT_URL TEXT 
+            - PRODUCT_MASTER_IMAGE_SMALL_URL TEXT 
+            - PRODUCT_CATEGORY_ID INTEGER 
+            - PRODUCT_NAME TEXT 
+            - PRODUCT_PRICE TEXT 
+            - PRODUCT_SLUG TEXT 
+            - PRODUCT_TOTAL_ON_HAND INTEGER 
+            - PRODUCT_SHOW_DAYS INTEGER 
+            - DATE_AVAILABLE INTEGER
+        - PRODUCT_CATEGORIES. Store the categories for the products of the current menu. Fields of the table:
+            - ID INTEGER 
+            - CATEGORY_NAME TEXT 
+            - INTERNAL_ID INTEGER
+        - ORDERSLOG. Log of the orders. The data of this table is used in the "My Orders" option of the app and to calculate the virtual stock of the products. Fields of the table:
+            - ID INTEGER 
+            - ORDER_ID TEXT 
+            - ORDER_STATUS TEXT 
+            - ORDER_DATE INTEGER 
+            - PRODUCT_ID INTEGER 
+            - PRODUCT_NAME TEXT 
+            - PRODUCT_QUANTITY_ORDERED INTEGER
  */
 +(BOOL)checkOrCreateDataBase;
 
