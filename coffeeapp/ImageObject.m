@@ -12,7 +12,7 @@
 
 @synthesize attachment_file_name, image_id, large_url, mini_url, product_url, small_url;
 
-
+/// Create a custom init to code the object properties.
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
@@ -28,6 +28,7 @@
     return self;
 }
 
+/// Create a custom init to decode the object properties.
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     [coder encodeObject:attachment_file_name forKey:@"attachment_file_name"];

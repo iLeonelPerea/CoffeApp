@@ -11,7 +11,7 @@
 @implementation OrderObject
 @synthesize itemTotal, total, shipTotal, state, adjustmentTotal, email, channel, currency, totalQuantity, displayTotal, displayShipTotal, arrLineItems, orderNumber, userObject;
 
-//Set defaults values when init an instance object
+/// Set defaults values when init an instance object
 -(id)init
 {
     self = [super init];
@@ -34,7 +34,7 @@
     return self;
 }
 
-//Code and encode methos to store object into user defaults
+/// Code and encode methos to store object into user defaults
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
@@ -75,11 +75,11 @@
 #pragma mark -- Get order petition method
 -(NSMutableDictionary *)getOrderPetition
 {
-    //This method set all the data into the structure required to make a Spree order
-    //Iniatilaze the master dictionary to store petition order data
+    /// This method set all the data into the structure required to make a Spree order
+    /// Iniatilaze the master dictionary to store petition order data
     NSMutableDictionary * dictMaster = [[NSMutableDictionary alloc] init];
     
-    //Set the main values required
+    /// Set the main values required
     [dictMaster setObject:[NSString stringWithFormat:@"%d",userObject.userId] forKey:@"user_id"];
     NSMutableDictionary * dictFullOrder = [[NSMutableDictionary alloc] init];
     [dictFullOrder setObject:itemTotal forKey:@"item_total"];
@@ -94,15 +94,15 @@
     [dictFullOrder setObject:displayTotal forKey:@"display_total"];
     [dictFullOrder setObject:displayShipTotal forKey:@"display_ship_total"];
     
-    //Checkout steps
+    /// Checkout steps.
     [dictFullOrder setObject:@[@"address", @"delivery", @"complete"] forKey:@"checkout_steps"];
     
-    //Permissions
+    /// Permissions.
     NSMutableDictionary * dictPermissions = [[NSMutableDictionary alloc] init];
     [dictPermissions setObject:@"true" forKey:@"can_update"];
     [dictFullOrder setObject:dictPermissions forKey:@"permissions"];
     
-    //Billing address
+    /// Billing address.
     NSMutableDictionary * dictBillingAddressAttributes = [[NSMutableDictionary alloc] init];
     /*[dictBillingAddressAttributes setObject:@"Crowd" forKey:@"firstname"];
     [dictBillingAddressAttributes setObject:@"Interactive" forKey:@"lastname"];*/
@@ -116,7 +116,7 @@
     [dictBillingAddressAttributes setObject:@"49" forKey:@"country_id"];
     [dictFullOrder setObject:dictBillingAddressAttributes forKey:@"bill_address_attributes"];
     
-    //Shipping address
+    /// Shipping address.
     NSMutableDictionary * dictAddressAttributes = [[NSMutableDictionary alloc] init];
     /*[dictAddressAttributes setObject:@"Crowd" forKey:@"firstname"];
     [dictAddressAttributes setObject:@"Interactive" forKey:@"lastname"];*/
@@ -130,17 +130,17 @@
     [dictAddressAttributes setObject:@"49" forKey:@"country_id"];
     [dictFullOrder setObject:dictAddressAttributes forKey:@"ship_address_attributes"];
     
-    //Selected products
+    /// Selected products.
     [dictFullOrder setObject:arrLineItems forKey:@"line_items"];
     
-    //Payment method
+    /// Payment method.
     NSMutableArray * arrPaymentsAttributes = [[NSMutableArray alloc] init];
     NSMutableDictionary * dictPaymentMethod = [[NSMutableDictionary alloc] init];
     [dictPaymentMethod setObject:@"6" forKey:@"payment_method_id"];
     [arrPaymentsAttributes addObject:dictPaymentMethod];
     [dictFullOrder setObject:arrPaymentsAttributes forKey:@"payments_attributes"];
     
-    //Shipments
+    /// Shipments.
     NSMutableArray * arrShipments = [[NSMutableArray alloc] init];
     NSMutableDictionary * dictShipping = [[NSMutableDictionary alloc] init];
     [dictShipping setObject:@"1" forKey:@"selected_shipping_rate_id"];
@@ -148,7 +148,7 @@
     [arrShipments addObject:dictShipping];
     [dictFullOrder setObject:arrShipments forKey:@"shipments"];
     
-    //Credit card info
+    /// Credit card info.
     NSMutableDictionary * dictPaymentSource = [[NSMutableDictionary alloc] init];
     NSMutableDictionary * dictPaymentSourceInfo = [[NSMutableDictionary alloc] init];
     [dictPaymentSourceInfo setObject:@"5454545454545454" forKey:@"number"];
@@ -159,7 +159,7 @@
     //[dictPaymentSourceInfo setObject:@"Crowd Interactive" forKey:@"name"];
     [dictPaymentSource setObject:dictPaymentSourceInfo forKey:@"1"];
     
-    //Inser into master dictionay all data
+    /// Insert into master dictionay all data
     [dictMaster setObject:dictPaymentSource forKey:@"payment_source"];
     [dictMaster setObject:dictFullOrder forKey:@"order"];
     [dictMaster setObject:orderNumber forKey:@"orderNumber"];

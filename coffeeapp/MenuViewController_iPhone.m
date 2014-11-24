@@ -10,7 +10,7 @@
 // that used to do that, was putted in the synchronizeDefaults. That was the cause of some behavior issues in the menu view controller.
 // Also were removed a lot of calls to synchronizeDefaults, which were unnecessary. The method doSynchronizeDefaults
 // was modified to optimize the code, now is called doCleanMenuAfterOrderPlaced .
-// -- Franciso Flores --
+// -- Francisco Flores --
 
 #import "MenuViewController_iPhone.h"
 #import "DBManager.h"
@@ -203,7 +203,7 @@
 
 -(void)doUpdateProductsStockAfterNotification:(NSNotification *)notification
 {
-    /// Extract the data from user defaults
+    /// Extract the data from user defaults.
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     NSData * data = [defaults objectForKey:@"dataCompleteNotification"];
     NSMutableArray * arrProductsStock = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -281,7 +281,7 @@
 #pragma mark -- Show place order bottom bar
 -(void)doShowPlaceOrderBottomBar:(int)productsCount
 {
-    // Check for the quantity of selected products && if place order is not active.
+    /// Check for the quantity of selected products && if place order is not active.
     if (productsCount>0 && !isViewPlaceOrderActive) {
         /// Set flag in YES.
         isViewPlaceOrderActive = YES;
@@ -433,9 +433,10 @@
     }
     else
     {
-        /// Disable the button if quantity is more than stock
+        /// Check if the quantity is equal to total on hand, if it is, then set enabled property in NO.
         [btnAdd setEnabled:([productObject total_on_hand] == [productObject quantity])?NO:YES];
         
+        /// Check if the quantity -selected product- is more than zero to modify the aspect of the add button.
         if ([productObject quantity] > 0) {
             [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(122, 197, 200, 45):CGRectMake(95, 174, 200, 45)];
             [btnAdd setImage:[UIImage imageNamed:@"add02_btn_up"] forState:UIControlStateNormal];
@@ -448,12 +449,13 @@
         [btnAdd setIndex:(int)indexPath.row];
         [btnAdd setSection:(int)indexPath.section];
         
+        /// Create a date formatter
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat: @"e"];
+        /// Set integer variable productDayAvailable based on product's date available. The value can be between 1 and 8.
         int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
         
-        //When a product is outstock
-        //if ((!productObject.total_on_hand > productObject.quantity || produc )&& [btnAdd isEnabled]) {
+        /// Check is the total on hand is not more than product quantity or if the total on hand is less than zero or if the value of productDayAvailable is less than the currentDayOfWeek value. If one those statements are true, the add button image is setted to out of stock.
         if (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek) ) {
             [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(52, 197, 270, 45):CGRectMake(25, 174, 270, 45)];
             [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
@@ -463,7 +465,7 @@
         [btnAdd addTarget:self action:@selector(didSelectProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnAdd];
         
-        //-------- Minus button
+        /// -------- Minus button
         CustomButton *btnMinus = [CustomButton buttonWithType:UIButtonTypeCustom];
         if ([productObject quantity] > 0)
         {
@@ -478,7 +480,7 @@
         [btnMinus addTarget:self action:@selector(didDeselectProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnMinus];
         
-        //-------- Quantity selected
+        /// -------- Quantity selected
         UIImageView * imgBadge = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge_ima"]];
         [imgBadge setFrame:(IS_IPHONE_6)?CGRectMake(247, 20, 80, 80):CGRectMake(220, 10, 80, 80)];
         [imgBadge setHidden:(productObject.quantity > 0)?NO:YES];
@@ -492,9 +494,9 @@
         [lblQuantity setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
         [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
         [cell addSubview:lblQuantity];
-        //--------------------------
+        /// --------------------------
         
-        //Check for the stock of the product to enable/disable the add button
+        /// Check for the stock of the product to enable/disable the add button
         [btnAdd setEnabled:(productDayAvailable < currentDayOfWeek || [productObject total_on_hand] <= [productObject quantity])? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
     }
     
@@ -504,15 +506,17 @@
 #pragma mark -- action for + button in cell
 -(void)didSelectProduct:(id)sender
 {
+    /// Extract the content of the sender param and create a custom button
     CustomButton * senderButton = (CustomButton*)sender;
+    /// Check if the product quantity is equal to one, then display an alert view to ask the user if he wants to add more items to his selection.
     if (((ProductObject *)[[arrProductObjects objectAtIndex:((CustomButton *)sender).section] objectAtIndex:((CustomButton *)sender).index]).quantity==1) {
         senderButton.selected = YES;
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Please check!" message:[NSString stringWithFormat:@"Are you sure you want to add two items to your order?"] delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
         currentSection = ((CustomButton*)sender).section;
         [alert setTag:((CustomButton*)sender).index];
         [alert show];
-        //to-do: check the way how find the object to assign the quantity
     }else{
+        /// Add one more to product quantity
         ProductObject * selectedProduct = [ProductObject new];
         selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
         selectedProduct.quantity ++;
@@ -523,8 +527,11 @@
 
 -(void)didDeselectProduct:(id)sender
 {
+    /// Create a product object variable.
     ProductObject * selectedProduct = [ProductObject new];
+    /// Extract the content of sender param.
     CustomButton * senderButton = (CustomButton*)sender;
+    /// Set product object with the reference of the selected product stored in arrProductObjects.
     selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
     selectedProduct.quantity --;
     [self doReloadData];
@@ -534,18 +541,23 @@
 #pragma mark -- button place Order
 - (IBAction)doPlaceOrder:(id)sender{
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    /// Check if the location service are available and if the user`s location is under 1,000 meters.
+    /// In case of false, a custom alert view is displayed to inform the user about.
     if ([self updateDistanceToAnnotation]>1000 && areLocationServicesAvailable) {
+        /// Create the custom alert.
         LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ooh, Something happens!" otherButtonTitles:nil];
         [alertView setSize:CGSizeMake(250.0f, 320.0f)];
         
-        // Add your subviews here to customise
+        /// Create an UIView that will contain all the elements of the alert.
         UIView *contentView = alertView.contentView;
         [contentView setBackgroundColor:[UIColor clearColor]];
         [alertView setBackgroundColor:[UIColor clearColor]];
         
+        /// Create an UIImageView and set the proper illustration for the case.
         UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(60.0f, 10.0f, 129.0f, 200.0f)];
         [imgV setImage:[UIImage imageNamed:@"illustration_04"]];
         [contentView addSubview:imgV];
+        /// Create a UILaberl to display the message.
         UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, 230, 120)];
         [lblStatus setTextAlignment:NSTextAlignmentCenter];
         lblStatus.numberOfLines = 3;
@@ -553,32 +565,43 @@
         [contentView addSubview:lblStatus];
         [alertView show];
     }else{
+        /// Create an instance of user defaults.
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
+        /// Create an array to store the array of products in queue from user defaults.
         NSMutableArray * arrProductsInQueue = [NSMutableArray new];
         
+        /// Set flag isPlaceOrder in YES.
         BOOL isPlaceOrder = YES;
+        /// Set variable productsCount in zero.
         int productsCount = 0;
+        /// Look for the products in the arrProductObjects.
         for (int arrayDimention=0; arrayDimention<arrProductObjects.count; arrayDimention++) {
             for(ProductObject * tmpObject in [arrProductObjects objectAtIndex:arrayDimention])
             {
+                /// Check if the quantity selected is more than zero
                 if (tmpObject.quantity != 0) {
+                    /// Check if the category of the product is equal to "Desayuno" and if the meals category is available.
                     if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"]) {
+                        /// Set the quantity of the product in zero.
                         tmpObject.quantity = 0;
-                        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Algo ha pasado" otherButtonTitles:nil];
+                        /// Create a custom alert view.
+                        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ok, Something happened." otherButtonTitles:nil];
                         [alertView setSize:CGSizeMake(250.0f, 320.0f)];
                         
-                        // Add your subviews here to customise
+                        /// Create an UIView to store all the elements of the custom alert view.
                         UIView *contentView = alertView.contentView;
                         [contentView setBackgroundColor:[UIColor clearColor]];
                         [alertView setBackgroundColor:[UIColor clearColor]];
                         
+                        /// Create an UIImageView to set the proper illustration.
                         UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(60.0f, 10.0f, 129.0f, 200.0f)];
                         [imgV setImage:[UIImage imageNamed:@"illustration_03"]];
                         [contentView addSubview:imgV];
+                        /// Create an UILabel to set the message of the alert view.
                         UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 175, 230, 120)];
                         [lblStatus setTextAlignment:NSTextAlignmentCenter];
                         lblStatus.numberOfLines = 3;
-                        lblStatus.text = [NSString stringWithFormat:@"%@ Ha Terminado El Periodo Para Pedir Desayuno", appDelegate.userObject.firstName];
+                        lblStatus.text = [NSString stringWithFormat:@"%@ The period to make an order it's over.", appDelegate.userObject.firstName];
                         [contentView addSubview:lblStatus];
                         [alertView show];
                         [self synchronizeDefaults];
@@ -586,6 +609,7 @@
                         [tblProducts reloadData];
                         break;
                     }else{
+                        /// Add the productsCount variable.
                         productsCount += tmpObject.quantity;
                         [arrProductsInQueue addObject:tmpObject];
                     }
@@ -593,11 +617,15 @@
             }
         }
         
+        /// Check the flag isPlaceOrder.
         if (isPlaceOrder) {
+            /// Archive the arrProductsInQueue array in user defaults.
             [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
             [defaults synchronize];
             
+            /// Dismiss the current view controller.
             [self.navigationController dismissViewControllerAnimated:NO completion:nil];
+            /// Create an instance of ShoppingCartViewController.
             ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];
             [self bdb_presentPopupViewController:shoppingCartViewController
                                    withAnimation:BDBPopupViewShowAnimationDefault
@@ -607,10 +635,13 @@
 }
 
 #pragma mark -- UIAlertViewDelegate
+/// Alert view delegate. Add the quantity to a specific product when the user select more than one.
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    /// Check is the title of the alert view is "Please check!"
     if([alertView.title isEqual:@"Please check!"])
     {
+        /// If the button index is one, create an ProductObject object and is setted with the one from arrProductsObjects.
         if (buttonIndex == 1) {
             ProductObject * selectedProduct = [ProductObject new];
             selectedProduct = [[arrProductObjects objectAtIndex:currentSection] objectAtIndex:alertView.tag];
@@ -623,6 +654,7 @@
 }
 
 #pragma mark -- CropImage
+/// Crop a image sended to the method.
 - (UIImage*) getSubImageFrom: (UIImage*) img WithRect: (CGRect) rect {
     UIGraphicsBeginImageContext(rect.size);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -641,34 +673,38 @@
 }
 
 #pragma mark -- MapKit Delegates
+/// Update the distance between the user position and the destination point.
 -(double)updateDistanceToAnnotation{
-    // Location to Reference
+    /// Set the location of the destiny point.
     CLLocation *pinLocation = [[CLLocation alloc]
                                initWithLatitude:+19.26506377
                                longitude:-103.71073774];
-    
+    /// Set the current location of the user.
     CLLocation *userLocation = [[CLLocation alloc]
                                 initWithLatitude:mapKitView.userLocation.coordinate.latitude
                                 longitude:mapKitView.userLocation.coordinate.longitude];
-    
+    /// Calculate the distance between the points.
     CLLocationDistance distance = [pinLocation distanceFromLocation:userLocation];
     
-    NSLog(@"Distance to point %4.0f m.", distance);
     return distance;
 }
 
+/// Set the flag areLocationServicesAvailable in NO when the location services are off.
 -(void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     areLocationServicesAvailable = NO;
 }
 
+/// Set the flag areLocationServicesAvailable in YES when the location services are on.
 -(void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     areLocationServicesAvailable = YES;
 }
 
+/// Refresh the map after the user location was updated.
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
+    /// Draw the user position.
     MKCoordinateRegion mapRegion;
     mapRegion.center = mapView.userLocation.coordinate;
     mapRegion.span.latitudeDelta = 0.002;
