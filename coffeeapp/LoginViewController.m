@@ -22,7 +22,7 @@
 @implementation LoginViewController
 @synthesize signInButton, userObject, prgLoaging, imgSplashScreen;
 
-//Google App client ID. Created specifically for CoffeeApp
+/// Google App client ID. Created specifically for CoffeeApp.
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
 
 - (void)viewDidLoad {
