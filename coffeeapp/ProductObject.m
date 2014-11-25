@@ -53,7 +53,7 @@
     [coder encodeFloat:date_available forKey:@"date_available"];
 }
 
-
+/// Assign the properties of the product object based on a dictionary.
 -(ProductObject*)assignProductObject:(NSDictionary*)dictProduct{
     ProductObject *newProductObject = [ProductObject new];
     masterObject = [MasterObject new];
@@ -106,6 +106,7 @@
     return newProductObject;
 }
 
+/// Assign the product object properties based on a dictionary with data from the local DB.
 -(ProductObject*)assignProductObjectDB:(NSDictionary*)dictProduct{
     ProductObject *newProductObject = [[ProductObject alloc]init];
     masterObject = [[MasterObject alloc] init];

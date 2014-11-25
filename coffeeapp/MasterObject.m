@@ -12,6 +12,8 @@
 
 @synthesize cost_price, description, display_price, masterObject_id, in_stock, name, price, sku, imageObject;
 
+
+/// Create a custom init to code the object properties.
 - (id)initWithCoder:(NSCoder *)coder
 {
     self = [super init];
@@ -30,6 +32,7 @@
     return self;
 }
 
+/// Create a custom init to decode the object properties.
 - (void)encodeWithCoder:(NSCoder *)coder
 {
     [coder encodeObject:cost_price forKey:@"cost_price"];

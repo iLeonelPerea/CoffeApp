@@ -54,28 +54,56 @@
 @property (nonatomic, strong) JGProgressHUD * prgLoading;
 
 /** Get and display all the orders in status "confirm" or "attendig".
-    
+
+    @param (id)sender In this case this param is unused.
+ 
     - Calls the method getOrdersHistory of the DBManager. When this method is called,
         the only param -withPastOrders- that it's required, is setted to NO.
     - Once the information is ready and stored in arrOrders, the table view is reloaded to display the data. 
     - The corresponding button is setted active.
     - The screen title is setted to "Pending Orders".
     - The flag isPendingOrdersSelected is setted in YES.
- 
-    @param (id)sender In this case this param is unused.
  */
 -(IBAction)doShowPendingOrders:(id)sender;
 
 /** Get and display all the orders in status "complete".
+ 
+    @param (id)sender In this case this param is unused.
  
     - Calls the method getOrdersHistory of the DBManager. In this case, the required param -withPastOrders- is setted in YES.
     - Once the information is ready and stored in arrOrders, the table view is reloaded to display the data.
     - The corresponding button is setted active.
     - The screen title is setted to "Past Orders".
     - The flag isPendingOrdersSelected is setted in No.
- 
-    @param (id)sender In this case this param is unused.
- */
+*/
 -(IBAction)doShowPastOrders:(id)sender;
+
+/** Refresh the table view controller
+
+    @param (id)sender In this case this param is unused.
+ 
+    When a push notificationis received to infrom about and update on the order status. This method refresh the content of the table view.
+    First check the value of the flag isPendingOrdersSelected to determine the param to call DBManager's getOrdersHistory.
+    Once the information is ready, the tableview is refreshed to display the updated information.
+ 
+*/
+-(IBAction)doRefreshOrdersHistory:(id)sender;
+
+/** Cancel order
+ 
+    @param  (id)sender Receives a UIButton element.
+ 
+    - Only orders with status in "confirm" can be canceled.
+    - Whith the value received on sender, takes the tag value as a index for arrOrders.
+    - Create a dictionary based on the array index.
+    - Send a request via RESTManager to spree, Send thr ORDER_ID stored in the dictionary to service "/cancel"
+    - When spree response. Check for error in the request. If it is an error create a custom alert to display and return to normal app flow.
+    - In the case of non negative response, check for canceled state in result dictionary. Create a push notification to be sended to the CoffeeBoy,
+        with action setted in "cancelOrder" and sound in "default".
+    - Call to DBManager's method deleteOrderLog, sending as parameter the "ORDER_ID" value stored in dictOrder.
+    - Dismiss the HUD element and return to the normal app flow.
+ 
+ */
+-(IBAction)doCancelOrder:(id)sender;
 
 @end
