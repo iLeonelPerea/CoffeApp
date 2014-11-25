@@ -12,7 +12,7 @@
 +(BOOL)checkOrCreateDataBase{
     /// Boolean flag.
     BOOL isDbOk;
-    sqlite3 *inventoryDB
+    sqlite3 *inventoryDB;
     /// Create a file manager object.
     NSFileManager *filemgr = [NSFileManager defaultManager];
     NSLog(@"%@",[DBManager getDBPath]);

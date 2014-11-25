@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 crowdint. All rights reserved.
 //
 
+/** @name AppDelegate
+ */
+
 #import <UIKit/UIKit.h>
 #import <GooglePlus/GooglePlus.h>
 #import "UserObject.h"
@@ -20,14 +23,32 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+/** Navigation controller. */
 @property (nonatomic, strong) UINavigationController * navigationController;
+
+/** Login view controller. */
 @property (nonatomic, strong) LoginViewController * mainViewController;
+
+/** Lateral menu -view controller-. */
 @property (nonatomic, strong) JASidePanelController * viewController;
+
+/** User object, to store the data of the user logged in the app. */
 @property (nonatomic, strong) UserObject *userObject;
+
+/** Order object. */
 @property (nonatomic, strong) OrderObject *orderObject;
+
+/** Boolean flag to know is the requests will be sended to testing or production server. */
 @property (nonatomic, assign) BOOL isTestingEnv;
+
+/** Dictionary to store the data of the push notifications. */
 @property (nonatomic, strong) NSMutableDictionary * dictOrderNotification;
+
+/** Current order number. */
 @property (nonatomic, strong) NSString * currentOrderNumber;
+
+/** Boolean flag to know if the ShoppingCartViewController is active. */
 @property (nonatomic, assign) BOOL isShoppingCart;
 
 @end
