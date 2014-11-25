@@ -9,7 +9,7 @@
 // An method called doShowPlaceOrderBottomBar was created to detemine if the bottom bar has to be displayed or not. Because the code
 // that used to do that, was putted in the synchronizeDefaults. That was the cause of some behavior issues in the menu view controller.
 // Also were removed a lot of calls to synchronizeDefaults, which were unnecessary. The method doSynchronizeDefaults
-// was modified to optimize the code, now is called doCleanMenuAfterOrderPlaced .
+// was modified to optimize the code, now is called doUpdateMenu .
 // -- Francisco Flores --
 
 #import "MenuViewController_iPhone.h"
@@ -40,6 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    /// Set isMenuViewController flag to YES in the AppDelegate.
+    AppDelegate * initialAppDelegate = [[UIApplication sharedApplication] delegate];
+    [initialAppDelegate setIsMenuViewController:YES];
+
     /// Set the default value to flag for location services.
     areLocationServicesAvailable = YES;
     
@@ -111,8 +115,9 @@
     [weekday setDateFormat: @"e"];
     currentDayOfWeek = ([[weekday stringFromDate:now] intValue] == 1)? 8:[[weekday stringFromDate:now] intValue];
     
-    /// Create a notification that reload data
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doCleanMenuAfterOrderPlaced:) name:@"doCleanMenuAfterOrderPlaced" object:nil];
+    /// Create a notification that reload data.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doUpdateMenu:) name:@"doUpdateMenu" object:nil];
+
     UILabel * lblControllerTitle = [[UILabel alloc] init];
     [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
@@ -148,6 +153,13 @@
     }else{
         [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 603):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 504):CGRectMake(0, 64, 320, 416)];
     }
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    //Set isMenuViewController to No in the AppDelegate
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setIsMenuViewController:NO];
 }
 
 #pragma mark -- setQuantitySelectedProducts delegate
@@ -223,11 +235,17 @@
     [defaults synchronize];
 }
 
--(void)doCleanMenuAfterOrderPlaced:(NSNotification*)notification
+-(void)doUpdateMenu:(NSNotification*)notification
 {
+    /// Update the array temporally to clean it from selected products and display clean the menu.
+    arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+    [tblProducts reloadData];
+
     /// Set and display de HUD for loading message.
     [[HUDJMProgress textLabel] setText:@"Loading products"];
-    [HUDJMProgress showInView:[self view]];
+    if (HUDJMProgress.visible != YES) {
+        [HUDJMProgress showInView:[self view]];
+    }
     AppDelegate * appDelegate =  [[UIApplication sharedApplication] delegate];
     /// Request to spree for the products of the current menu.
     [RESTManager updateProducts:[[appDelegate userObject] userSpreeToken] toCallback:^(id resultSignUp) {
@@ -244,10 +262,6 @@
         }
         [HUDJMProgress dismiss];
     }];
-
-    /// Set again the products array
-    arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
-    [tblProducts reloadData];
 }
 
 #pragma mark -- Synchronize defaults
@@ -623,7 +637,9 @@
             [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsInQueue] forKey:@"arrProductsInQueue"];
             [defaults synchronize];
             
-            /// Dismiss the current view controller.
+            /// Set isMenuViewController flag to No in the AppDelegate
+            [appDelegate setIsMenuViewController:NO];
+            
             [self.navigationController dismissViewControllerAnimated:NO completion:nil];
             /// Create an instance of ShoppingCartViewController.
             ShoppingCartViewController *shoppingCartViewController = [[ShoppingCartViewController alloc] init];

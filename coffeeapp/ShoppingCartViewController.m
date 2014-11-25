@@ -38,10 +38,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    /// set isShoppingCart to stop entry push notifications
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate setIsShoppingCart:YES];
-    
     /// Set the screen elements to fit on the screen depending on the device.
     [lblDate setFrame:(IS_IPHONE_6)?CGRectMake(0, 20, 375, 50):CGRectMake(0, 20, 320, 50)];
     [imgTitle setFrame:(IS_IPHONE_6)?CGRectMake(0, 20, 375, 50):CGRectMake(0, 20, 430, 50)];
@@ -86,13 +82,6 @@
     }
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    /// Set isShoppingCart to reactive entry push notification
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate setIsShoppingCart:NO];
-}
-
 /// Operations to be done when the view appear.
 -(void)viewDidAppear:(BOOL)animated
 {
@@ -102,6 +91,13 @@
 }
 
 /// System method.
+-(void)viewWillDisappear:(BOOL)animated
+{
+    /// Set isMenuViewController flag to YES in AppDelegate.
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setIsMenuViewController:YES];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -203,9 +199,8 @@
               NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
               [defaults setObject:nil forKey:@"arrProductsInQueue"];
               [defaults synchronize];
-              /// Post a local notification to update the current menu on the MeneViewController_iPhone
-              [[NSNotificationCenter defaultCenter] postNotificationName:@"doCleanMenuAfterOrderPlaced" object:nil];
-              /// Dismiss the ShoppingCartViewController.
+              /// Post a notification to update the information in the menu after the order is placed
+              [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
               [self.parentViewController bdb_dismissPopupViewControllerWithAnimation:BDBPopupViewHideAnimationDefault completion:nil];
 
           }];
@@ -243,6 +238,8 @@
 }
 
 -(IBAction)doCancel:(id)sender{
+    //Post a local notification to update the menu
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
     /// Dismiss the ShoppingCartViewController and cancelling the checkout proccess.
     [self.parentViewController bdb_dismissPopupViewControllerWithAnimation:BDBPopupViewHideAnimationDefault completion:nil];
 }

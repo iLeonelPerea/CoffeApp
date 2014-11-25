@@ -96,7 +96,16 @@
                 /// Set the dictionary with the values of the error message.
                 NSMutableDictionary * dictErrorDetails = [NSMutableDictionary new];
                 [dictErrorDetails setObject:@NO forKey:@"success"];
-                NSString * strErr = [error.userInfo objectForKey:@"NSLocalizedDescription"];
+                NSString * strErr;
+                if([error.userInfo objectForKey:@"NSLocalizedDescription"])
+                {
+                    NSLog(@"%@",[error.userInfo objectForKey:@"NSLocalizedDescription"]);
+                    strErr = [error.userInfo objectForKey:@"NSLocalizedDescription"];
+                }
+                else
+                {
+                    strErr = @"No Info Available!";
+                }
                 [dictErrorDetails setObject:strErr forKey:@"message"];
                 callback(dictErrorDetails);
             }

@@ -108,12 +108,12 @@
     @param notification A NSNotification param, in this case it's not used.
  
     Request to spree the current menu, update the local DB and set again the array arrProductObjects. This method is called in the next cases:
-    - After an order is maked by the user.
+    - After an order is maded by the user.
     - A category is added/removed/updated from the current menu.
     - A product is added/removed/updated from the current menu.
     - The app returns from the background.
  */
--(void)doCleanMenuAfterOrderPlaced:(NSNotification*)notification;
+-(void)doUpdateMenu:(NSNotification*)notification;
 
 /** Synchronize the array arrProductsInQueue in the user defaults. */
 -(void)synchronizeDefaults;

@@ -48,7 +48,8 @@
 /** Current order number. */
 @property (nonatomic, strong) NSString * currentOrderNumber;
 
-/** Boolean flag to know if the ShoppingCartViewController is active. */
-@property (nonatomic, assign) BOOL isShoppingCart;
+/** Boolean flag to know if the MenuViewController_iPhone is active. */
+@property (nonatomic, assign) BOOL isMenuViewController;
+
 
 @end

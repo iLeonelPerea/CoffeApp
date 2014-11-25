@@ -20,7 +20,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber, isShoppingCart;
+@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber, isMenuViewController;
 
 /// Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -35,7 +35,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     // set to YES to test on local computers
     isTestingEnv = NO;
     // set to No the variable to identify the ShoppingCartViewController
-    isShoppingCart = NO;
+    isMenuViewController = NO;
     
     //Set app's client ID for GPPSignIn and GPPShare
     [[GPPSignIn sharedInstance] setClientID:kClientID];
@@ -203,26 +203,29 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [DBManager updateStateOrderLog:[userInfo objectForKey:@"orderId"] withState:([[userInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"])?@"complete":[userInfo objectForKey:@"state"]];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
     }
-    if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"] && !isShoppingCart){
+    if([[userInfo objectForKey:@"msg"] isEqual:@"complete notification"] && isMenuViewController){
         //Extract the data of order products
         NSArray * arrProducts = [[NSArray alloc] initWithArray:[userInfo objectForKey:@"data"]];
         NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProducts] forKey:@"dataCompleteNotification"];
         [defaults setObject:@"complete notification" forKey:@"msg"];
         [defaults synchronize];
-        //Post a local notificatino
+        //Post a local notification to update products stock after an order is served.
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateProductsStockAfterNotification" object:nil];
     }
-    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"YES"] && !isShoppingCart){
-        [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"YES"] && isMenuViewController){
+        //Post a local notification to update the menu without loading menu view controller
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
     }
-    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"] && !isShoppingCart){
+
+    if ([[userInfo objectForKey:@"categoryMessage"] isEqual:@"DELETE"] && isMenuViewController){
         NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
         [defaults setObject:nil forKey:@"arrProductsInQueue"];
         [defaults synchronize];
-        [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+        //Post a local notification to update the menu without loading menu view controller
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
     }
-    if ([userInfo objectForKey:@"productMessage"] && !isShoppingCart){
+    if ([userInfo objectForKey:@"productMessage"] && isMenuViewController){
         NSUserDefaults *defaults =  [NSUserDefaults standardUserDefaults];
         NSData *data = [defaults objectForKey:@"arrProductsInQueue"];
         NSMutableArray *arrOrderSelectedProducts = [NSKeyedUnarchiver unarchiveObjectWithData:data];
@@ -235,7 +238,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         }
         [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:newArrOrderSelectedProducts] forKey:@"arrProductsInQueue"];
         [defaults synchronize];
-        [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
+        //Post a local notification to update the menu without loading menu view controller
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
     }
 }
 
@@ -273,6 +277,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
+    //Post a notification to update the information in the menu
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -306,6 +312,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    //Set a flag to indicate that the app was in brackground when become active
+    NSUserDefaults * userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setBool:NO forKey:@"isFromBackground"];
+    [userDefaults synchronize];
 }
 
 #pragma mark - ()

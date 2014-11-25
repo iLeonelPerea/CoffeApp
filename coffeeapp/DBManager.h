@@ -181,5 +181,6 @@
         - TOTAL.
  */
 +(NSMutableArray *)getProductsInConfirm;
++(void)deleteUnattendedOrders;
 
 @end
