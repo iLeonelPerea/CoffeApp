@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/OrderObject.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/OrderObject</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+            
+			
+			<NodeRef refid="9"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setItemTotal:</TokenIdentifier>
+			<Abstract type="html">Total number of items on the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *itemTotal</Declaration>
+			
+			
+			<Anchor>//api/name/itemTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/itemTotal</TokenIdentifier>
+			<Abstract type="html">Total number of items on the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *itemTotal</Declaration>
+			
+			
+			<Anchor>//api/name/itemTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/itemTotal</TokenIdentifier>
+			<Abstract type="html">Total number of items on the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *itemTotal</Declaration>
+			
+			
+			<Anchor>//api/name/itemTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setTotal:</TokenIdentifier>
+			<Abstract type="html">Total amount of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *total</Declaration>
+			
+			
+			<Anchor>//api/name/total</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/total</TokenIdentifier>
+			<Abstract type="html">Total amount of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *total</Declaration>
+			
+			
+			<Anchor>//api/name/total</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/total</TokenIdentifier>
+			<Abstract type="html">Total amount of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *total</Declaration>
+			
+			
+			<Anchor>//api/name/total</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setShipTotal:</TokenIdentifier>
+			<Abstract type="html">Total amount of the ship of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *shipTotal</Declaration>
+			
+			
+			<Anchor>//api/name/shipTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/shipTotal</TokenIdentifier>
+			<Abstract type="html">Total amount of the ship of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *shipTotal</Declaration>
+			
+			
+			<Anchor>//api/name/shipTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/shipTotal</TokenIdentifier>
+			<Abstract type="html">Total amount of the ship of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *shipTotal</Declaration>
+			
+			
+			<Anchor>//api/name/shipTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setState:</TokenIdentifier>
+			<Abstract type="html">State of the order. Could be &quot;cart&quot;, &quot;confirm&quot; or &quot;complete&quot;.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *state</Declaration>
+			
+			
+			<Anchor>//api/name/state</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/state</TokenIdentifier>
+			<Abstract type="html">State of the order. Could be &quot;cart&quot;, &quot;confirm&quot; or &quot;complete&quot;.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *state</Declaration>
+			
+			
+			<Anchor>//api/name/state</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/state</TokenIdentifier>
+			<Abstract type="html">State of the order. Could be &quot;cart&quot;, &quot;confirm&quot; or &quot;complete&quot;.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *state</Declaration>
+			
+			
+			<Anchor>//api/name/state</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setAdjustmentTotal:</TokenIdentifier>
+			<Abstract type="html">Total of the adjustment of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *adjustmentTotal</Declaration>
+			
+			
+			<Anchor>//api/name/adjustmentTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/adjustmentTotal</TokenIdentifier>
+			<Abstract type="html">Total of the adjustment of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *adjustmentTotal</Declaration>
+			
+			
+			<Anchor>//api/name/adjustmentTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/adjustmentTotal</TokenIdentifier>
+			<Abstract type="html">Total of the adjustment of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *adjustmentTotal</Declaration>
+			
+			
+			<Anchor>//api/name/adjustmentTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setEmail:</TokenIdentifier>
+			<Abstract type="html">Email of the user that is sending the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/email</TokenIdentifier>
+			<Abstract type="html">Email of the user that is sending the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/email</TokenIdentifier>
+			<Abstract type="html">Email of the user that is sending the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *email</Declaration>
+			
+			
+			<Anchor>//api/name/email</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setChannel:</TokenIdentifier>
+			<Abstract type="html">Channel of the user to listen push notifications.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *channel</Declaration>
+			
+			
+			<Anchor>//api/name/channel</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/channel</TokenIdentifier>
+			<Abstract type="html">Channel of the user to listen push notifications.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *channel</Declaration>
+			
+			
+			<Anchor>//api/name/channel</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/channel</TokenIdentifier>
+			<Abstract type="html">Channel of the user to listen push notifications.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *channel</Declaration>
+			
+			
+			<Anchor>//api/name/channel</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setCurrency:</TokenIdentifier>
+			<Abstract type="html">Currency used in the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/currency</TokenIdentifier>
+			<Abstract type="html">Currency used in the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/currency</TokenIdentifier>
+			<Abstract type="html">Currency used in the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *currency</Declaration>
+			
+			
+			<Anchor>//api/name/currency</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setTotalQuantity:</TokenIdentifier>
+			<Abstract type="html">Total quantity of products of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *totalQuantity</Declaration>
+			
+			
+			<Anchor>//api/name/totalQuantity</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/totalQuantity</TokenIdentifier>
+			<Abstract type="html">Total quantity of products of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *totalQuantity</Declaration>
+			
+			
+			<Anchor>//api/name/totalQuantity</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/totalQuantity</TokenIdentifier>
+			<Abstract type="html">Total quantity of products of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *totalQuantity</Declaration>
+			
+			
+			<Anchor>//api/name/totalQuantity</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setDisplayTotal:</TokenIdentifier>
+			<Abstract type="html">Total displayed of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *displayTotal</Declaration>
+			
+			
+			<Anchor>//api/name/displayTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/displayTotal</TokenIdentifier>
+			<Abstract type="html">Total displayed of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *displayTotal</Declaration>
+			
+			
+			<Anchor>//api/name/displayTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/displayTotal</TokenIdentifier>
+			<Abstract type="html">Total displayed of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *displayTotal</Declaration>
+			
+			
+			<Anchor>//api/name/displayTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setDisplayShipTotal:</TokenIdentifier>
+			<Abstract type="html">Total displayed of the shipment of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *displayShipTotal</Declaration>
+			
+			
+			<Anchor>//api/name/displayShipTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/displayShipTotal</TokenIdentifier>
+			<Abstract type="html">Total displayed of the shipment of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *displayShipTotal</Declaration>
+			
+			
+			<Anchor>//api/name/displayShipTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/displayShipTotal</TokenIdentifier>
+			<Abstract type="html">Total displayed of the shipment of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *displayShipTotal</Declaration>
+			
+			
+			<Anchor>//api/name/displayShipTotal</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setArrLineItems:</TokenIdentifier>
+			<Abstract type="html">Array to store the prodcuts of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrLineItems</Declaration>
+			
+			
+			<Anchor>//api/name/arrLineItems</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/arrLineItems</TokenIdentifier>
+			<Abstract type="html">Array to store the prodcuts of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrLineItems</Declaration>
+			
+			
+			<Anchor>//api/name/arrLineItems</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/arrLineItems</TokenIdentifier>
+			<Abstract type="html">Array to store the prodcuts of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrLineItems</Declaration>
+			
+			
+			<Anchor>//api/name/arrLineItems</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setOrderNumber:</TokenIdentifier>
+			<Abstract type="html">Order number of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *orderNumber</Declaration>
+			
+			
+			<Anchor>//api/name/orderNumber</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/orderNumber</TokenIdentifier>
+			<Abstract type="html">Order number of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *orderNumber</Declaration>
+			
+			
+			<Anchor>//api/name/orderNumber</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/orderNumber</TokenIdentifier>
+			<Abstract type="html">Order number of the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *orderNumber</Declaration>
+			
+			
+			<Anchor>//api/name/orderNumber</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/setUserObject:</TokenIdentifier>
+			<Abstract type="html">Object of UserObject to store data of the user.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UserObject *userObject</Declaration>
+			
+			
+			<Anchor>//api/name/userObject</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/userObject</TokenIdentifier>
+			<Abstract type="html">Object of UserObject to store data of the user.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UserObject *userObject</Declaration>
+			
+			
+			<Anchor>//api/name/userObject</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrderObject/userObject</TokenIdentifier>
+			<Abstract type="html">Object of UserObject to store data of the user.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UserObject *userObject</Declaration>
+			
+			
+			<Anchor>//api/name/userObject</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/init</TokenIdentifier>
+			<Abstract type="html">Set defaults values when init an instance object.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>- (id)init</Declaration>
+			
+			
+			<Anchor>//api/name/init</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/initWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to code the object.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithCoder:</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/encodeWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to decode the object properties.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>- (void)encodeWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/encodeWithCoder:</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrderObject/getOrderPetition</TokenIdentifier>
+			<Abstract type="html">Method that returns the dictionary required to make the order.</Abstract>
+			<DeclaredIn>OrderObject.h</DeclaredIn>
+			
+			<Declaration>- (NSMutableDictionary *)getOrderPetition</Declaration>
+			
+			
+			<Anchor>//api/name/getOrderPetition</Anchor>
+            <NodeRef refid="9"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

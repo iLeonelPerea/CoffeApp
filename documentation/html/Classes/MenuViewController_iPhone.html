@@ -1,0 +1,2196 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>MenuViewController_iPhone Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">coffeeapp </a></h1>
+				<a id="developerHome" href="../index.html">CROWDINT</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">MenuViewController_iPhone Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/HUDJMProgress">&nbsp;&nbsp;&nbsp;&nbsp;HUDJMProgress</option>
+	
+	<option value="//api/name/areLocationServicesAvailable">&nbsp;&nbsp;&nbsp;&nbsp;areLocationServicesAvailable</option>
+	
+	<option value="//api/name/areMealsAvailable">&nbsp;&nbsp;&nbsp;&nbsp;areMealsAvailable</option>
+	
+	<option value="//api/name/arrProductCategoriesObjects">&nbsp;&nbsp;&nbsp;&nbsp;arrProductCategoriesObjects</option>
+	
+	<option value="//api/name/arrProductObjects">&nbsp;&nbsp;&nbsp;&nbsp;arrProductObjects</option>
+	
+	<option value="//api/name/btnPlaceOrder">&nbsp;&nbsp;&nbsp;&nbsp;btnPlaceOrder</option>
+	
+	<option value="//api/name/currentDayOfWeek">&nbsp;&nbsp;&nbsp;&nbsp;currentDayOfWeek</option>
+	
+	<option value="//api/name/currentSection">&nbsp;&nbsp;&nbsp;&nbsp;currentSection</option>
+	
+	<option value="//api/name/isViewPlaceOrderActive">&nbsp;&nbsp;&nbsp;&nbsp;isViewPlaceOrderActive</option>
+	
+	<option value="//api/name/lblProductsCount">&nbsp;&nbsp;&nbsp;&nbsp;lblProductsCount</option>
+	
+	<option value="//api/name/locationManager">&nbsp;&nbsp;&nbsp;&nbsp;locationManager</option>
+	
+	<option value="//api/name/mapKitView">&nbsp;&nbsp;&nbsp;&nbsp;mapKitView</option>
+	
+	<option value="//api/name/productObject">&nbsp;&nbsp;&nbsp;&nbsp;productObject</option>
+	
+	<option value="//api/name/tblProducts">&nbsp;&nbsp;&nbsp;&nbsp;tblProducts</option>
+	
+	<option value="//api/name/viewPlaceOrder">&nbsp;&nbsp;&nbsp;&nbsp;viewPlaceOrder</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/alertView:clickedButtonAtIndex:">&nbsp;&nbsp;&nbsp;&nbsp;- alertView:clickedButtonAtIndex:</option>
+	
+	<option value="//api/name/didDeselectProduct:">&nbsp;&nbsp;&nbsp;&nbsp;- didDeselectProduct:</option>
+	
+	<option value="//api/name/didReceiveMemoryWarning">&nbsp;&nbsp;&nbsp;&nbsp;- didReceiveMemoryWarning</option>
+	
+	<option value="//api/name/didSelectProduct:">&nbsp;&nbsp;&nbsp;&nbsp;- didSelectProduct:</option>
+	
+	<option value="//api/name/doPlaceOrder:">&nbsp;&nbsp;&nbsp;&nbsp;- doPlaceOrder:</option>
+	
+	<option value="//api/name/doReloadData">&nbsp;&nbsp;&nbsp;&nbsp;- doReloadData</option>
+	
+	<option value="//api/name/doShowPlaceOrderBottomBar:">&nbsp;&nbsp;&nbsp;&nbsp;- doShowPlaceOrderBottomBar:</option>
+	
+	<option value="//api/name/doUpdateMenu:">&nbsp;&nbsp;&nbsp;&nbsp;- doUpdateMenu:</option>
+	
+	<option value="//api/name/doUpdateProductsStockAfterNotification:">&nbsp;&nbsp;&nbsp;&nbsp;- doUpdateProductsStockAfterNotification:</option>
+	
+	<option value="//api/name/getSubImageFrom:WithRect:">&nbsp;&nbsp;&nbsp;&nbsp;- getSubImageFrom:WithRect:</option>
+	
+	<option value="//api/name/locationManager:didFailWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- locationManager:didFailWithError:</option>
+	
+	<option value="//api/name/locationManager:didUpdateLocations:">&nbsp;&nbsp;&nbsp;&nbsp;- locationManager:didUpdateLocations:</option>
+	
+	<option value="//api/name/mapView:didUpdateUserLocation:">&nbsp;&nbsp;&nbsp;&nbsp;- mapView:didUpdateUserLocation:</option>
+	
+	<option value="//api/name/numberOfSectionsInTableView:">&nbsp;&nbsp;&nbsp;&nbsp;- numberOfSectionsInTableView:</option>
+	
+	<option value="//api/name/setQuantitySelectedProducts:">&nbsp;&nbsp;&nbsp;&nbsp;- setQuantitySelectedProducts:</option>
+	
+	<option value="//api/name/synchronizeDefaults">&nbsp;&nbsp;&nbsp;&nbsp;- synchronizeDefaults</option>
+	
+	<option value="//api/name/tableView:cellForRowAtIndexPath:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:cellForRowAtIndexPath:</option>
+	
+	<option value="//api/name/tableView:heightForHeaderInSection:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:heightForHeaderInSection:</option>
+	
+	<option value="//api/name/tableView:heightForRowAtIndexPath:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:heightForRowAtIndexPath:</option>
+	
+	<option value="//api/name/tableView:numberOfRowsInSection:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:numberOfRowsInSection:</option>
+	
+	<option value="//api/name/tableView:viewForHeaderInSection:">&nbsp;&nbsp;&nbsp;&nbsp;- tableView:viewForHeaderInSection:</option>
+	
+	<option value="//api/name/updateDistanceToAnnotation">&nbsp;&nbsp;&nbsp;&nbsp;- updateDistanceToAnnotation</option>
+	
+	<option value="//api/name/viewDidAppear:">&nbsp;&nbsp;&nbsp;&nbsp;- viewDidAppear:</option>
+	
+	<option value="//api/name/viewWillDisappear:">&nbsp;&nbsp;&nbsp;&nbsp;- viewWillDisappear:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/HUDJMProgress">HUDJMProgress</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/areLocationServicesAvailable">areLocationServicesAvailable</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/areMealsAvailable">areMealsAvailable</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/arrProductCategoriesObjects">arrProductCategoriesObjects</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/arrProductObjects">arrProductObjects</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/btnPlaceOrder">btnPlaceOrder</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentDayOfWeek">currentDayOfWeek</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentSection">currentSection</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isViewPlaceOrderActive">isViewPlaceOrderActive</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/lblProductsCount">lblProductsCount</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/locationManager">locationManager</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mapKitView">mapKitView</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/productObject">productObject</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tblProducts">tblProducts</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/viewPlaceOrder">viewPlaceOrder</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/alertView:clickedButtonAtIndex:">alertView:clickedButtonAtIndex:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didDeselectProduct:">didDeselectProduct:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didReceiveMemoryWarning">didReceiveMemoryWarning</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/didSelectProduct:">didSelectProduct:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doPlaceOrder:">doPlaceOrder:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doReloadData">doReloadData</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doShowPlaceOrderBottomBar:">doShowPlaceOrderBottomBar:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doUpdateMenu:">doUpdateMenu:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/doUpdateProductsStockAfterNotification:">doUpdateProductsStockAfterNotification:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getSubImageFrom:WithRect:">getSubImageFrom:WithRect:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/locationManager:didFailWithError:">locationManager:didFailWithError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/locationManager:didUpdateLocations:">locationManager:didUpdateLocations:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mapView:didUpdateUserLocation:">mapView:didUpdateUserLocation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/numberOfSectionsInTableView:">numberOfSectionsInTableView:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/setQuantitySelectedProducts:">setQuantitySelectedProducts:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/synchronizeDefaults">synchronizeDefaults</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:cellForRowAtIndexPath:">tableView:cellForRowAtIndexPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:heightForHeaderInSection:">tableView:heightForHeaderInSection:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:heightForRowAtIndexPath:">tableView:heightForRowAtIndexPath:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:numberOfRowsInSection:">tableView:numberOfRowsInSection:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/tableView:viewForHeaderInSection:">tableView:viewForHeaderInSection:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateDistanceToAnnotation">updateDistanceToAnnotation</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/viewDidAppear:">viewDidAppear:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/viewWillDisappear:">viewWillDisappear:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="MenuViewController_iPhone Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">MenuViewController_iPhone Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">UIViewController</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">CLLocationManagerDelegate<br />MKMapViewDelegate<br />UIAlertViewDelegate<br />UITableViewDataSource<br />UITableViewDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">MenuViewController_iPhone.h<br />MenuViewController_iPhone.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<pre><code>This controller display the current menu
+
+The user can do:
+- Browse the menu.
+- Select items -add/remove- for his order.
+</code></pre>
+
+<p>Macros to identify size screen</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/mapKitView">&nbsp;&nbsp;mapKitView</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/locationManager">&nbsp;&nbsp;locationManager</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/arrProductObjects">&nbsp;&nbsp;arrProductObjects</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/arrProductCategoriesObjects">&nbsp;&nbsp;arrProductCategoriesObjects</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isViewPlaceOrderActive">&nbsp;&nbsp;isViewPlaceOrderActive</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tblProducts">&nbsp;&nbsp;tblProducts</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/viewPlaceOrder">&nbsp;&nbsp;viewPlaceOrder</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/lblProductsCount">&nbsp;&nbsp;lblProductsCount</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/btnPlaceOrder">&nbsp;&nbsp;btnPlaceOrder</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/HUDJMProgress">&nbsp;&nbsp;HUDJMProgress</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/productObject">&nbsp;&nbsp;productObject</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentDayOfWeek">&nbsp;&nbsp;currentDayOfWeek</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/areMealsAvailable">&nbsp;&nbsp;areMealsAvailable</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentSection">&nbsp;&nbsp;currentSection</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/areLocationServicesAvailable">&nbsp;&nbsp;areLocationServicesAvailable</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/setQuantitySelectedProducts:">&ndash;&nbsp;setQuantitySelectedProducts:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doUpdateProductsStockAfterNotification:">&ndash;&nbsp;doUpdateProductsStockAfterNotification:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doUpdateMenu:">&ndash;&nbsp;doUpdateMenu:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/synchronizeDefaults">&ndash;&nbsp;synchronizeDefaults</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doShowPlaceOrderBottomBar:">&ndash;&nbsp;doShowPlaceOrderBottomBar:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didSelectProduct:">&ndash;&nbsp;didSelectProduct:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didDeselectProduct:">&ndash;&nbsp;didDeselectProduct:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doPlaceOrder:">&ndash;&nbsp;doPlaceOrder:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/viewDidAppear:">&ndash;&nbsp;viewDidAppear:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/viewWillDisappear:">&ndash;&nbsp;viewWillDisappear:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/didReceiveMemoryWarning">&ndash;&nbsp;didReceiveMemoryWarning</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/doReloadData">&ndash;&nbsp;doReloadData</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:heightForRowAtIndexPath:">&ndash;&nbsp;tableView:heightForRowAtIndexPath:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/numberOfSectionsInTableView:">&ndash;&nbsp;numberOfSectionsInTableView:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:numberOfRowsInSection:">&ndash;&nbsp;tableView:numberOfRowsInSection:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:heightForHeaderInSection:">&ndash;&nbsp;tableView:heightForHeaderInSection:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:viewForHeaderInSection:">&ndash;&nbsp;tableView:viewForHeaderInSection:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/tableView:cellForRowAtIndexPath:">&ndash;&nbsp;tableView:cellForRowAtIndexPath:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/alertView:clickedButtonAtIndex:">&ndash;&nbsp;alertView:clickedButtonAtIndex:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getSubImageFrom:WithRect:">&ndash;&nbsp;getSubImageFrom:WithRect:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateDistanceToAnnotation">&ndash;&nbsp;updateDistanceToAnnotation</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/locationManager:didFailWithError:">&ndash;&nbsp;locationManager:didFailWithError:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/locationManager:didUpdateLocations:">&ndash;&nbsp;locationManager:didUpdateLocations:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/mapView:didUpdateUserLocation:">&ndash;&nbsp;mapView:didUpdateUserLocation:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/HUDJMProgress" title="HUDJMProgress"></a>
+	<h3 class="subsubtitle method-title">HUDJMProgress</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Outlet for the HUD used to display loading while some proccess is active</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) JGProgressHUD *HUDJMProgress</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/areLocationServicesAvailable" title="areLocationServicesAvailable"></a>
+	<h3 class="subsubtitle method-title">areLocationServicesAvailable</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Boolean flag to determine is the location service are available on the device. If they&rsquo;re not, the geolocalization limitant is disable.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL areLocationServicesAvailable</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/areMealsAvailable" title="areMealsAvailable"></a>
+	<h3 class="subsubtitle method-title">areMealsAvailable</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Boolean flag to determine if the category meals is available according to a time schedule.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL areMealsAvailable</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/arrProductCategoriesObjects" title="arrProductCategoriesObjects"></a>
+	<h3 class="subsubtitle method-title">arrProductCategoriesObjects</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Array to store only the categories.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSMutableArray *arrProductCategoriesObjects</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/arrProductObjects" title="arrProductObjects"></a>
+	<h3 class="subsubtitle method-title">arrProductObjects</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Array to store all the elements of the menu -Categories and Products-.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSMutableArray *arrProductObjects</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/btnPlaceOrder" title="btnPlaceOrder"></a>
+	<h3 class="subsubtitle method-title">btnPlaceOrder</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Outlet for the button to place order -display the shopping cart controller-.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) IBOutlet UIButton *btnPlaceOrder</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentDayOfWeek" title="currentDayOfWeek"></a>
+	<h3 class="subsubtitle method-title">currentDayOfWeek</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Variable to store the current day of the week in integer value, which can be between 0 and 6.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) int currentDayOfWeek</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/currentSection" title="currentSection"></a>
+	<h3 class="subsubtitle method-title">currentSection</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Variable to store the number of the current -displayed on screen- section.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) int currentSection</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isViewPlaceOrderActive" title="isViewPlaceOrderActive"></a>
+	<h3 class="subsubtitle method-title">isViewPlaceOrderActive</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Boolean flag to determine if the bottom bar for place the order is active.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isViewPlaceOrderActive</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/lblProductsCount" title="lblProductsCount"></a>
+	<h3 class="subsubtitle method-title">lblProductsCount</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Outlet for the label that display the total amount of selected products by user.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) IBOutlet UILabel *lblProductsCount</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/locationManager" title="locationManager"></a>
+	<h3 class="subsubtitle method-title">locationManager</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Use to set and calculate the distance between the client -iPhone App- and the administrator -iPad App-.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) CLLocationManager *locationManager</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/mapKitView" title="mapKitView"></a>
+	<h3 class="subsubtitle method-title">mapKitView</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Outlet to enable the use of geolocalization through MapKit.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (strong, nonatomic) IBOutlet MKMapView *mapKitView</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/productObject" title="productObject"></a>
+	<h3 class="subsubtitle method-title">productObject</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>A variable of <a href="../Classes/ProductObject.html">ProductObject</a> kind.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) ProductObject *productObject</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tblProducts" title="tblProducts"></a>
+	<h3 class="subsubtitle method-title">tblProducts</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Outlet for the table view element, where the menu is displayed.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) IBOutlet UITableView *tblProducts</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/viewPlaceOrder" title="viewPlaceOrder"></a>
+	<h3 class="subsubtitle method-title">viewPlaceOrder</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Outlet for the view used as bottom bar to place the order.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) IBOutlet UIView *viewPlaceOrder</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/alertView:clickedButtonAtIndex:" title="alertView:clickedButtonAtIndex:"></a>
+	<h3 class="subsubtitle method-title">alertView:clickedButtonAtIndex:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Alert view delegate. Add the quantity to a specific product when the user select more than one.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)alertView:(UIAlertView *)<em>alertView</em> clickedButtonAtIndex:(NSInteger)<em>buttonIndex</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didDeselectProduct:" title="didDeselectProduct:"></a>
+	<h3 class="subsubtitle method-title">didDeselectProduct:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Sustract the quantity of the selected product.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)didDeselectProduct:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>(id)sender</em></dt>
+			<dd><p>Contains the reference of the minus button of the current selected product.</p>
+
+<pre><code>- Create a product object variable.
+- Extract the content of sender param.
+- Set product object with the reference of the selected product stored in arrProductObjects.
+- Update the quantity of the product.
+- Reload the table view tblProducts.
+</code></pre></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didReceiveMemoryWarning" title="didReceiveMemoryWarning"></a>
+	<h3 class="subsubtitle method-title">didReceiveMemoryWarning</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>System method.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)didReceiveMemoryWarning</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/didSelectProduct:" title="didSelectProduct:"></a>
+	<h3 class="subsubtitle method-title">didSelectProduct:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add the quantity of the selected product.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)didSelectProduct:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>(id)sender</em></dt>
+			<dd><p>Contains the reference of the add button of the current selected product.</p>
+
+<pre><code>- Create a product object variable.
+- Extract the content of sender param.
+- Set product object with the reference of the selected product stored in arrProductObjects.
+- Update the quantity of the product.
+- Reload the table view tblProducts.
+</code></pre></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doPlaceOrder:" title="doPlaceOrder:"></a>
+	<h3 class="subsubtitle method-title">doPlaceOrder:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Display the <a href="../Classes/ShoppingCartViewController.html">ShoppingCartViewController</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (IBAction)doPlaceOrder:(id)<em>sender</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>(id)sender</em></dt>
+			<dd><p>In this case it&rsquo;s not used.</p>
+
+<pre><code>To display de shopping cart, it is neccesary:
+- Check if the location service are available and if the user`s location is under 1,000 meters. In case of false, a custom alert view is displayed to inform the user about.
+- Check if the category of the product is equal to "Desayuno" and if the meals category is available.
+</code></pre></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doReloadData" title="doReloadData"></a>
+	<h3 class="subsubtitle method-title">doReloadData</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Reload <a href="#//api/name/tblProducts">tblProducts</a> table view.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)doReloadData</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doShowPlaceOrderBottomBar:" title="doShowPlaceOrderBottomBar:"></a>
+	<h3 class="subsubtitle method-title">doShowPlaceOrderBottomBar:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Show or hide the bottom bar with the button to place the order and the select items count.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)doShowPlaceOrderBottomBar:(int)<em>productsCount</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>productsCount</em></dt>
+			<dd><p>Integer variable with the total quantity of selected items.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doUpdateMenu:" title="doUpdateMenu:"></a>
+	<h3 class="subsubtitle method-title">doUpdateMenu:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Local notification to update the categories and products of the current menu.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)doUpdateMenu:(NSNotification *)<em>notification</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>notification</em></dt>
+			<dd><p>A NSNotification param, in this case it&rsquo;s not used.</p>
+
+<pre><code>Request to spree the current menu, update the local DB and set again the array arrProductObjects. This method is called in the next cases:
+- After an order is maded by the user.
+- A category is added/removed/updated from the current menu.
+- A product is added/removed/updated from the current menu.
+- The app returns from the background.
+</code></pre></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/doUpdateProductsStockAfterNotification:" title="doUpdateProductsStockAfterNotification:"></a>
+	<h3 class="subsubtitle method-title">doUpdateProductsStockAfterNotification:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Local notification to update the stock after a push notification is received.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)doUpdateProductsStockAfterNotification:(NSNotification *)<em>notification</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>notification</em></dt>
+			<dd><p>A NSNotification param, in this case it&rsquo;s not used.</p>
+
+<pre><code>The app can receive a push notification which informas that an order has been served. When this occurs the method do:
+- Extract the data from user defaults stored in dataCompleteNotification, an array with the products that will be updated..
+- Update the stock in local DB. Call the DBManager's method updateProductStock, sendind the master_id and total_on_hand as params.
+- Set again the products array calling local method setQuantitySelectedProducts.
+- Reload table view tblProducts.
+- Reset the values in user defaults, setting dataCompleteNotification in nil.
+</code></pre></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getSubImageFrom:WithRect:" title="getSubImageFrom:WithRect:"></a>
+	<h3 class="subsubtitle method-title">getSubImageFrom:WithRect:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Crop a image sended to the method.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (UIImage *)getSubImageFrom:(UIImage *)<em>img</em> WithRect:(CGRect)<em>rect</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/locationManager:didFailWithError:" title="locationManager:didFailWithError:"></a>
+	<h3 class="subsubtitle method-title">locationManager:didFailWithError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the flag <a href="#//api/name/areLocationServicesAvailable">areLocationServicesAvailable</a> in NO when the location services are off.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)locationManager:(CLLocationManager *)<em>manager</em> didFailWithError:(NSError *)<em>error</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/locationManager:didUpdateLocations:" title="locationManager:didUpdateLocations:"></a>
+	<h3 class="subsubtitle method-title">locationManager:didUpdateLocations:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the flag <a href="#//api/name/areLocationServicesAvailable">areLocationServicesAvailable</a> in YES when the location services are on.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)locationManager:(CLLocationManager *)<em>manager</em> didUpdateLocations:(NSArray *)<em>locations</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/mapView:didUpdateUserLocation:" title="mapView:didUpdateUserLocation:"></a>
+	<h3 class="subsubtitle method-title">mapView:didUpdateUserLocation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Refresh the map after the user location was updated.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)mapView:(MKMapView *)<em>mapView</em> didUpdateUserLocation:(MKUserLocation *)<em>userLocation</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/numberOfSectionsInTableView:" title="numberOfSectionsInTableView:"></a>
+	<h3 class="subsubtitle method-title">numberOfSectionsInTableView:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return the number of sections based on the element that contains array <a href="#//api/name/arrProductObjects">arrProductObjects</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)numberOfSectionsInTableView:(UITableView *)<em>tableView</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/setQuantitySelectedProducts:" title="setQuantitySelectedProducts:"></a>
+	<h3 class="subsubtitle method-title">setQuantitySelectedProducts:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the quantity for selected products and update the total on hand of the products.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSMutableArray *)setQuantitySelectedProducts:(NSMutableArray *)<em>arrMenuProducts</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>arrMenuProducts</em></dt>
+			<dd><p>A mutable array, which depending where the message is sended is the origin of the content of the array. It must have the categories and the products of the current menu.</p>
+
+<pre><code>- First check if there's selected products by user. If there's, then look for those products to update their quantity value.
+- Create and set an mutable array called arrProductsOrdered with the products that are in orders with status "confirm" or "attending". To get the information a method from DBManager is used -getProductsInConfirm-. After, look for those products to update the total on hand value.
+- Return the array received via arrMenuProducts.
+</code></pre></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/synchronizeDefaults" title="synchronizeDefaults"></a>
+	<h3 class="subsubtitle method-title">synchronizeDefaults</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Synchronize the array arrProductsInQueue in the user defaults.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)synchronizeDefaults</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:cellForRowAtIndexPath:" title="tableView:cellForRowAtIndexPath:"></a>
+	<h3 class="subsubtitle method-title">tableView:cellForRowAtIndexPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Draw the content of each row of the table view.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (UITableViewCell *)tableView:(UITableView *)<em>tableView</em> cellForRowAtIndexPath:(NSIndexPath *)<em>indexPath</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:heightForHeaderInSection:" title="tableView:heightForHeaderInSection:"></a>
+	<h3 class="subsubtitle method-title">tableView:heightForHeaderInSection:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Define the height for the header section.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (CGFloat)tableView:(UITableView *)<em>tableView</em> heightForHeaderInSection:(NSInteger)<em>section</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:heightForRowAtIndexPath:" title="tableView:heightForRowAtIndexPath:"></a>
+	<h3 class="subsubtitle method-title">tableView:heightForRowAtIndexPath:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Define the height for a each row, based on which device is -iPhone 6 or another-.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (CGFloat)tableView:(UITableView *)<em>tableView</em> heightForRowAtIndexPath:(NSIndexPath *)<em>indexPath</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:numberOfRowsInSection:" title="tableView:numberOfRowsInSection:"></a>
+	<h3 class="subsubtitle method-title">tableView:numberOfRowsInSection:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return the number of rows for each section. Is determined by the number of elements in each sub-array stored in the main array arrProducObjects.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSInteger)tableView:(UITableView *)<em>tableView</em> numberOfRowsInSection:(NSInteger)<em>section</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/tableView:viewForHeaderInSection:" title="tableView:viewForHeaderInSection:"></a>
+	<h3 class="subsubtitle method-title">tableView:viewForHeaderInSection:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Draw the content of each section of the table view.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (UIView *)tableView:(UITableView *)<em>tableView</em> viewForHeaderInSection:(NSInteger)<em>section</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateDistanceToAnnotation" title="updateDistanceToAnnotation"></a>
+	<h3 class="subsubtitle method-title">updateDistanceToAnnotation</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Update the distance between the user position and the destination point.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (double)updateDistanceToAnnotation</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/viewDidAppear:" title="viewDidAppear:"></a>
+	<h3 class="subsubtitle method-title">viewDidAppear:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Initialice mapkit</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)viewDidAppear:(BOOL)<em>animated</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/viewWillDisappear:" title="viewWillDisappear:"></a>
+	<h3 class="subsubtitle method-title">viewWillDisappear:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Check if the bottom bar is active, to set the size of <a href="#//api/name/tblProducts">tblProducts</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)viewWillDisappear:(BOOL)<em>animated</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">MenuViewController_iPhone.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+                    
+                    
+
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 CROWDINT. All rights reserved. (Last updated: 2014-11-25)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>

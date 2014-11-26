@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ProductObject.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ProductObject</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+            
+			
+			<NodeRef refid="11"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setDescription:</TokenIdentifier>
+			<Abstract type="html">Description of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/description</TokenIdentifier>
+			<Abstract type="html">Description of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/description</TokenIdentifier>
+			<Abstract type="html">Description of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setDisplay_price:</TokenIdentifier>
+			<Abstract type="html">Price to display of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *display_price</Declaration>
+			
+			
+			<Anchor>//api/name/display_price</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/display_price</TokenIdentifier>
+			<Abstract type="html">Price to display of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *display_price</Declaration>
+			
+			
+			<Anchor>//api/name/display_price</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/display_price</TokenIdentifier>
+			<Abstract type="html">Price to display of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *display_price</Declaration>
+			
+			
+			<Anchor>//api/name/display_price</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setProduct_id:</TokenIdentifier>
+			<Abstract type="html">Id of the product in the Spree store.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int product_id</Declaration>
+			
+			
+			<Anchor>//api/name/product_id</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/product_id</TokenIdentifier>
+			<Abstract type="html">Id of the product in the Spree store.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int product_id</Declaration>
+			
+			
+			<Anchor>//api/name/product_id</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/product_id</TokenIdentifier>
+			<Abstract type="html">Id of the product in the Spree store.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int product_id</Declaration>
+			
+			
+			<Anchor>//api/name/product_id</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setMasterObject:</TokenIdentifier>
+			<Abstract type="html">Object for the master data of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MasterObject *masterObject</Declaration>
+			
+			
+			<Anchor>//api/name/masterObject</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/masterObject</TokenIdentifier>
+			<Abstract type="html">Object for the master data of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MasterObject *masterObject</Declaration>
+			
+			
+			<Anchor>//api/name/masterObject</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/masterObject</TokenIdentifier>
+			<Abstract type="html">Object for the master data of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) MasterObject *masterObject</Declaration>
+			
+			
+			<Anchor>//api/name/masterObject</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setCategoryObject:</TokenIdentifier>
+			<Abstract type="html">Object for the category of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) CategoryObject *categoryObject</Declaration>
+			
+			
+			<Anchor>//api/name/categoryObject</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/categoryObject</TokenIdentifier>
+			<Abstract type="html">Object for the category of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) CategoryObject *categoryObject</Declaration>
+			
+			
+			<Anchor>//api/name/categoryObject</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/categoryObject</TokenIdentifier>
+			<Abstract type="html">Object for the category of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) CategoryObject *categoryObject</Declaration>
+			
+			
+			<Anchor>//api/name/categoryObject</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setName:</TokenIdentifier>
+			<Abstract type="html">Name of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/name</TokenIdentifier>
+			<Abstract type="html">Name of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/name</TokenIdentifier>
+			<Abstract type="html">Name of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setPrice:</TokenIdentifier>
+			<Abstract type="html">Price of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *price</Declaration>
+			
+			
+			<Anchor>//api/name/price</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/price</TokenIdentifier>
+			<Abstract type="html">Price of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *price</Declaration>
+			
+			
+			<Anchor>//api/name/price</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/price</TokenIdentifier>
+			<Abstract type="html">Price of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *price</Declaration>
+			
+			
+			<Anchor>//api/name/price</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setSlug:</TokenIdentifier>
+			<Abstract type="html">Slug of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *slug</Declaration>
+			
+			
+			<Anchor>//api/name/slug</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/slug</TokenIdentifier>
+			<Abstract type="html">Slug of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *slug</Declaration>
+			
+			
+			<Anchor>//api/name/slug</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/slug</TokenIdentifier>
+			<Abstract type="html">Slug of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *slug</Declaration>
+			
+			
+			<Anchor>//api/name/slug</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setTotal_on_hand:</TokenIdentifier>
+			<Abstract type="html">Total on hand -stock- of the product in the Spree store.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int total_on_hand</Declaration>
+			
+			
+			<Anchor>//api/name/total_on_hand</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/total_on_hand</TokenIdentifier>
+			<Abstract type="html">Total on hand -stock- of the product in the Spree store.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int total_on_hand</Declaration>
+			
+			
+			<Anchor>//api/name/total_on_hand</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/total_on_hand</TokenIdentifier>
+			<Abstract type="html">Total on hand -stock- of the product in the Spree store.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int total_on_hand</Declaration>
+			
+			
+			<Anchor>//api/name/total_on_hand</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setQuantity:</TokenIdentifier>
+			<Abstract type="html">Quantity selected of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int quantity</Declaration>
+			
+			
+			<Anchor>//api/name/quantity</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/quantity</TokenIdentifier>
+			<Abstract type="html">Quantity selected of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int quantity</Declaration>
+			
+			
+			<Anchor>//api/name/quantity</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/quantity</TokenIdentifier>
+			<Abstract type="html">Quantity selected of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int quantity</Declaration>
+			
+			
+			<Anchor>//api/name/quantity</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setShowDays:</TokenIdentifier>
+			<Abstract type="html">Days that the product will be display.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int showDays</Declaration>
+			
+			
+			<Anchor>//api/name/showDays</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/showDays</TokenIdentifier>
+			<Abstract type="html">Days that the product will be display.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int showDays</Declaration>
+			
+			
+			<Anchor>//api/name/showDays</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/showDays</TokenIdentifier>
+			<Abstract type="html">Days that the product will be display.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int showDays</Declaration>
+			
+			
+			<Anchor>//api/name/showDays</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setDelivery_type:</TokenIdentifier>
+			<Abstract type="html">Delivery type of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int delivery_type</Declaration>
+			
+			
+			<Anchor>//api/name/delivery_type</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/delivery_type</TokenIdentifier>
+			<Abstract type="html">Delivery type of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int delivery_type</Declaration>
+			
+			
+			<Anchor>//api/name/delivery_type</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/delivery_type</TokenIdentifier>
+			<Abstract type="html">Delivery type of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int delivery_type</Declaration>
+			
+			
+			<Anchor>//api/name/delivery_type</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setDelivery_date:</TokenIdentifier>
+			<Abstract type="html">Delivery date for the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *delivery_date</Declaration>
+			
+			
+			<Anchor>//api/name/delivery_date</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/delivery_date</TokenIdentifier>
+			<Abstract type="html">Delivery date for the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *delivery_date</Declaration>
+			
+			
+			<Anchor>//api/name/delivery_date</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/delivery_date</TokenIdentifier>
+			<Abstract type="html">Delivery date for the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *delivery_date</Declaration>
+			
+			
+			<Anchor>//api/name/delivery_date</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/setDate_available:</TokenIdentifier>
+			<Abstract type="html">Date of the availability of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) float date_available</Declaration>
+			
+			
+			<Anchor>//api/name/date_available</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/date_available</TokenIdentifier>
+			<Abstract type="html">Date of the availability of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) float date_available</Declaration>
+			
+			
+			<Anchor>//api/name/date_available</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ProductObject/date_available</TokenIdentifier>
+			<Abstract type="html">Date of the availability of the product.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) float date_available</Declaration>
+			
+			
+			<Anchor>//api/name/date_available</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/assignProductObject:</TokenIdentifier>
+			<Abstract type="html">Assign the properties of an product object based on the dictionary sended as param. Returns an instance with the data setted.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>- (ProductObject *)assignProductObject:(NSMutableDictionary *)dictProduct</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>dictProduct</Name>
+					<Abstract type="html">Dictionary with the data of the product.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/assignProductObject:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ProductObject/assignProductObjectDB:</TokenIdentifier>
+			<Abstract type="html">Assign the properties of an product object based on the dictionary sended as param from the local database. Returns an instance with the data setted.</Abstract>
+			<DeclaredIn>ProductObject.h</DeclaredIn>
+			
+			<Declaration>- (ProductObject *)assignProductObjectDB:(NSDictionary *)dictProduct</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>dictProduct</Name>
+					<Abstract type="html">Dictionary with the data of the product.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/assignProductObjectDB:</Anchor>
+            <NodeRef refid="11"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

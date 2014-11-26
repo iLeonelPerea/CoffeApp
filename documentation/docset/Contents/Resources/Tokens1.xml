@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/AppDelegate.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/AppDelegate</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setNavigationController:</TokenIdentifier>
+			<Abstract type="html">Navigation controller.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UINavigationController *navigationController</Declaration>
+			
+			
+			<Anchor>//api/name/navigationController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/navigationController</TokenIdentifier>
+			<Abstract type="html">Navigation controller.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UINavigationController *navigationController</Declaration>
+			
+			
+			<Anchor>//api/name/navigationController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/navigationController</TokenIdentifier>
+			<Abstract type="html">Navigation controller.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UINavigationController *navigationController</Declaration>
+			
+			
+			<Anchor>//api/name/navigationController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setMainViewController:</TokenIdentifier>
+			<Abstract type="html">Login view controller.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) LoginViewController *mainViewController</Declaration>
+			
+			
+			<Anchor>//api/name/mainViewController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/mainViewController</TokenIdentifier>
+			<Abstract type="html">Login view controller.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) LoginViewController *mainViewController</Declaration>
+			
+			
+			<Anchor>//api/name/mainViewController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/mainViewController</TokenIdentifier>
+			<Abstract type="html">Login view controller.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) LoginViewController *mainViewController</Declaration>
+			
+			
+			<Anchor>//api/name/mainViewController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setViewController:</TokenIdentifier>
+			<Abstract type="html">Lateral menu -view controller-.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JASidePanelController *viewController</Declaration>
+			
+			
+			<Anchor>//api/name/viewController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/viewController</TokenIdentifier>
+			<Abstract type="html">Lateral menu -view controller-.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JASidePanelController *viewController</Declaration>
+			
+			
+			<Anchor>//api/name/viewController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/viewController</TokenIdentifier>
+			<Abstract type="html">Lateral menu -view controller-.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JASidePanelController *viewController</Declaration>
+			
+			
+			<Anchor>//api/name/viewController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setUserObject:</TokenIdentifier>
+			<Abstract type="html">User object, to store the data of the user logged in the app.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UserObject *userObject</Declaration>
+			
+			
+			<Anchor>//api/name/userObject</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/userObject</TokenIdentifier>
+			<Abstract type="html">User object, to store the data of the user logged in the app.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UserObject *userObject</Declaration>
+			
+			
+			<Anchor>//api/name/userObject</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/userObject</TokenIdentifier>
+			<Abstract type="html">User object, to store the data of the user logged in the app.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UserObject *userObject</Declaration>
+			
+			
+			<Anchor>//api/name/userObject</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setOrderObject:</TokenIdentifier>
+			<Abstract type="html">Order object.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) OrderObject *orderObject</Declaration>
+			
+			
+			<Anchor>//api/name/orderObject</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/orderObject</TokenIdentifier>
+			<Abstract type="html">Order object.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) OrderObject *orderObject</Declaration>
+			
+			
+			<Anchor>//api/name/orderObject</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/orderObject</TokenIdentifier>
+			<Abstract type="html">Order object.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) OrderObject *orderObject</Declaration>
+			
+			
+			<Anchor>//api/name/orderObject</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setIsTestingEnv:</TokenIdentifier>
+			<Abstract type="html">Boolean flag to know is the requests will be sended to testing or production server.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isTestingEnv</Declaration>
+			
+			
+			<Anchor>//api/name/isTestingEnv</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/isTestingEnv</TokenIdentifier>
+			<Abstract type="html">Boolean flag to know is the requests will be sended to testing or production server.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isTestingEnv</Declaration>
+			
+			
+			<Anchor>//api/name/isTestingEnv</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/isTestingEnv</TokenIdentifier>
+			<Abstract type="html">Boolean flag to know is the requests will be sended to testing or production server.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isTestingEnv</Declaration>
+			
+			
+			<Anchor>//api/name/isTestingEnv</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setDictOrderNotification:</TokenIdentifier>
+			<Abstract type="html">Dictionary to store the data of the push notifications.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableDictionary *dictOrderNotification</Declaration>
+			
+			
+			<Anchor>//api/name/dictOrderNotification</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/dictOrderNotification</TokenIdentifier>
+			<Abstract type="html">Dictionary to store the data of the push notifications.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableDictionary *dictOrderNotification</Declaration>
+			
+			
+			<Anchor>//api/name/dictOrderNotification</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/dictOrderNotification</TokenIdentifier>
+			<Abstract type="html">Dictionary to store the data of the push notifications.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableDictionary *dictOrderNotification</Declaration>
+			
+			
+			<Anchor>//api/name/dictOrderNotification</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setCurrentOrderNumber:</TokenIdentifier>
+			<Abstract type="html">Current order number.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *currentOrderNumber</Declaration>
+			
+			
+			<Anchor>//api/name/currentOrderNumber</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/currentOrderNumber</TokenIdentifier>
+			<Abstract type="html">Current order number.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *currentOrderNumber</Declaration>
+			
+			
+			<Anchor>//api/name/currentOrderNumber</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/currentOrderNumber</TokenIdentifier>
+			<Abstract type="html">Current order number.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *currentOrderNumber</Declaration>
+			
+			
+			<Anchor>//api/name/currentOrderNumber</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/setIsMenuViewController:</TokenIdentifier>
+			<Abstract type="html">Boolean flag to know if the MenuViewController_iPhone is active.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isMenuViewController</Declaration>
+			
+			
+			<Anchor>//api/name/isMenuViewController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/isMenuViewController</TokenIdentifier>
+			<Abstract type="html">Boolean flag to know if the MenuViewController_iPhone is active.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isMenuViewController</Declaration>
+			
+			
+			<Anchor>//api/name/isMenuViewController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/AppDelegate/isMenuViewController</TokenIdentifier>
+			<Abstract type="html">Boolean flag to know if the MenuViewController_iPhone is active.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isMenuViewController</Declaration>
+			
+			
+			<Anchor>//api/name/isMenuViewController</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/application:didReceiveRemoteNotification:</TokenIdentifier>
+			<Abstract type="html">Handle the receveid push notifications.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>userInfo</Name>
+					<Abstract type="html">Dictionary that contains the information of the notification. The content may vary according to the notification.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/application:didReceiveRemoteNotification:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/userDidRequestMenu:</TokenIdentifier>
+			<Abstract type="html">Set the MenuViewController_iPhone as the view controller for the center panel -main screen-.
+    </Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)userDidRequestMenu:(NSNotification *)notification</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>notification</Name>
+					<Abstract type="html">It&apos;s not used.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/userDidRequestMenu:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/userDidRequestOrders:</TokenIdentifier>
+			<Abstract type="html">Set the OrdersHistoryViewController as the view controller for the center panel -main screen-.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)userDidRequestOrders:(NSNotification *)notification</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>notification</Name>
+					<Abstract type="html">It&apos;s not used.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/userDidRequestOrders:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/userDidRequestSignOut:</TokenIdentifier>
+			<Abstract type="html">Set mainViewController as the root view controller of the app.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)userDidRequestSignOut:(NSNotification *)notification</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>notification</Name>
+					<Abstract type="html">It&apos;s not used.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/userDidRequestSignOut:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/userDidRequestSignIn:</TokenIdentifier>
+			<Abstract type="html">Set the view controller to display the left menu and the main screen controller after the user Logged In on the application.</Abstract>
+			<DeclaredIn>AppDelegate.h</DeclaredIn>
+			
+			<Declaration>- (void)userDidRequestSignIn:(NSNotification *)notification</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>notification</Name>
+					<Abstract type="html">It&apos;s not used.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/userDidRequestSignIn:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/application:didFinishLaunchingWithOptions:</TokenIdentifier>
+			<Abstract type="html">Set flag and other settings when the app finished launching.</Abstract>
+			<DeclaredIn>AppDelegate.m</DeclaredIn>
+			
+			<Declaration>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</Declaration>
+			
+			
+			<Anchor>//api/name/application:didFinishLaunchingWithOptions:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/application:didRegisterForRemoteNotificationsWithDeviceToken:</TokenIdentifier>
+			<Abstract type="html">Register the app for remote notifications -Parse-.</Abstract>
+			<DeclaredIn>AppDelegate.m</DeclaredIn>
+			
+			<Declaration>- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken</Declaration>
+			
+			
+			<Anchor>//api/name/application:didRegisterForRemoteNotificationsWithDeviceToken:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/application:didFailToRegisterForRemoteNotificationsWithError:</TokenIdentifier>
+			<Abstract type="html">Informs when the aplicattion could&apos;nt be registered for remote notitications.</Abstract>
+			<DeclaredIn>AppDelegate.m</DeclaredIn>
+			
+			<Declaration>- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/application:didFailToRegisterForRemoteNotificationsWithError:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/applicationDidBecomeActive:</TokenIdentifier>
+			<Abstract type="html">Look for the push notifications that were received while the application was in backgroud.
+Update order state and update products stock are the notification to look up.</Abstract>
+			<DeclaredIn>AppDelegate.m</DeclaredIn>
+			
+			<Declaration>- (void)applicationDidBecomeActive:(UIApplication *)application</Declaration>
+			
+			
+			<Anchor>//api/name/applicationDidBecomeActive:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/AppDelegate/applicationWillTerminate:</TokenIdentifier>
+			<Abstract type="html">Operations to be done before the application is terminate. It&apos;s no used for this app.</Abstract>
+			<DeclaredIn>AppDelegate.m</DeclaredIn>
+			
+			<Declaration>- (void)applicationWillTerminate:(UIApplication *)application</Declaration>
+			
+			
+			<Anchor>//api/name/applicationWillTerminate:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

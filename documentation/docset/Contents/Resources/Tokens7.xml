@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MasterObject.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MasterObject</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+            
+			
+			<NodeRef refid="7"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/setCost_price:</TokenIdentifier>
+			<Abstract type="html">Price cost of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *cost_price</Declaration>
+			
+			
+			<Anchor>//api/name/cost_price</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/cost_price</TokenIdentifier>
+			<Abstract type="html">Price cost of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *cost_price</Declaration>
+			
+			
+			<Anchor>//api/name/cost_price</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MasterObject/cost_price</TokenIdentifier>
+			<Abstract type="html">Price cost of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *cost_price</Declaration>
+			
+			
+			<Anchor>//api/name/cost_price</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/setDescription:</TokenIdentifier>
+			<Abstract type="html">Description of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/description</TokenIdentifier>
+			<Abstract type="html">Description of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MasterObject/description</TokenIdentifier>
+			<Abstract type="html">Description of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *description</Declaration>
+			
+			
+			<Anchor>//api/name/description</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/setDisplay_price:</TokenIdentifier>
+			<Abstract type="html">Price to display of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *display_price</Declaration>
+			
+			
+			<Anchor>//api/name/display_price</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/display_price</TokenIdentifier>
+			<Abstract type="html">Price to display of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *display_price</Declaration>
+			
+			
+			<Anchor>//api/name/display_price</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MasterObject/display_price</TokenIdentifier>
+			<Abstract type="html">Price to display of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *display_price</Declaration>
+			
+			
+			<Anchor>//api/name/display_price</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/setMasterObject_id:</TokenIdentifier>
+			<Abstract type="html">Master Id of the product in the Spree store.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int masterObject_id</Declaration>
+			
+			
+			<Anchor>//api/name/masterObject_id</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/masterObject_id</TokenIdentifier>
+			<Abstract type="html">Master Id of the product in the Spree store.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int masterObject_id</Declaration>
+			
+			
+			<Anchor>//api/name/masterObject_id</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MasterObject/masterObject_id</TokenIdentifier>
+			<Abstract type="html">Master Id of the product in the Spree store.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int masterObject_id</Declaration>
+			
+			
+			<Anchor>//api/name/masterObject_id</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/setIn_stock:</TokenIdentifier>
+			<Abstract type="html">Integer flag to know if the product is in stock in the Spree store.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int in_stock</Declaration>
+			
+			
+			<Anchor>//api/name/in_stock</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/in_stock</TokenIdentifier>
+			<Abstract type="html">Integer flag to know if the product is in stock in the Spree store.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int in_stock</Declaration>
+			
+			
+			<Anchor>//api/name/in_stock</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MasterObject/in_stock</TokenIdentifier>
+			<Abstract type="html">Integer flag to know if the product is in stock in the Spree store.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int in_stock</Declaration>
+			
+			
+			<Anchor>//api/name/in_stock</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/setName:</TokenIdentifier>
+			<Abstract type="html">Name of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/name</TokenIdentifier>
+			<Abstract type="html">Name of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MasterObject/name</TokenIdentifier>
+			<Abstract type="html">Name of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *name</Declaration>
+			
+			
+			<Anchor>//api/name/name</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/setPrice:</TokenIdentifier>
+			<Abstract type="html">Price of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *price</Declaration>
+			
+			
+			<Anchor>//api/name/price</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/price</TokenIdentifier>
+			<Abstract type="html">Price of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *price</Declaration>
+			
+			
+			<Anchor>//api/name/price</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MasterObject/price</TokenIdentifier>
+			<Abstract type="html">Price of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *price</Declaration>
+			
+			
+			<Anchor>//api/name/price</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/setSku:</TokenIdentifier>
+			<Abstract type="html">Sku of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *sku</Declaration>
+			
+			
+			<Anchor>//api/name/sku</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/sku</TokenIdentifier>
+			<Abstract type="html">Sku of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *sku</Declaration>
+			
+			
+			<Anchor>//api/name/sku</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MasterObject/sku</TokenIdentifier>
+			<Abstract type="html">Sku of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *sku</Declaration>
+			
+			
+			<Anchor>//api/name/sku</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/setImageObject:</TokenIdentifier>
+			<Abstract type="html">Object image to store all the images of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) ImageObject *imageObject</Declaration>
+			
+			
+			<Anchor>//api/name/imageObject</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/imageObject</TokenIdentifier>
+			<Abstract type="html">Object image to store all the images of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) ImageObject *imageObject</Declaration>
+			
+			
+			<Anchor>//api/name/imageObject</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MasterObject/imageObject</TokenIdentifier>
+			<Abstract type="html">Object image to store all the images of the product.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) ImageObject *imageObject</Declaration>
+			
+			
+			<Anchor>//api/name/imageObject</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/initWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to code the object.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithCoder:</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MasterObject/encodeWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to decode the object properties.</Abstract>
+			<DeclaredIn>MasterObject.h</DeclaredIn>
+			
+			<Declaration>- (void)encodeWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/encodeWithCoder:</Anchor>
+            <NodeRef refid="7"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

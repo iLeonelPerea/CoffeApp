@@ -1,0 +1,1271 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>DBManager Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">coffeeapp </a></h1>
+				<a id="developerHome" href="../index.html">CROWDINT</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">DBManager Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	<option value="class_methods">Class Methods</option>
+	
+	<option value="//api/name/checkOrCreateDataBase">&nbsp;&nbsp;&nbsp;&nbsp;+ checkOrCreateDataBase</option>
+	
+	<option value="//api/name/deleteOrderLog:">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteOrderLog:</option>
+	
+	<option value="//api/name/deleteProducts">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteProducts</option>
+	
+	<option value="//api/name/deleteTableContent:">&nbsp;&nbsp;&nbsp;&nbsp;+ deleteTableContent:</option>
+	
+	<option value="//api/name/finalizeStatements:withDB:">&nbsp;&nbsp;&nbsp;&nbsp;+ finalizeStatements:withDB:</option>
+	
+	<option value="//api/name/getCategories">&nbsp;&nbsp;&nbsp;&nbsp;+ getCategories</option>
+	
+	<option value="//api/name/getDBPath">&nbsp;&nbsp;&nbsp;&nbsp;+ getDBPath</option>
+	
+	<option value="//api/name/getOrdersHistory:">&nbsp;&nbsp;&nbsp;&nbsp;+ getOrdersHistory:</option>
+	
+	<option value="//api/name/getProducts">&nbsp;&nbsp;&nbsp;&nbsp;+ getProducts</option>
+	
+	<option value="//api/name/getProductsCategory:">&nbsp;&nbsp;&nbsp;&nbsp;+ getProductsCategory:</option>
+	
+	<option value="//api/name/getProductsInConfirm">&nbsp;&nbsp;&nbsp;&nbsp;+ getProductsInConfirm</option>
+	
+	<option value="//api/name/insertCategory:">&nbsp;&nbsp;&nbsp;&nbsp;+ insertCategory:</option>
+	
+	<option value="//api/name/insertOrdersLog:">&nbsp;&nbsp;&nbsp;&nbsp;+ insertOrdersLog:</option>
+	
+	<option value="//api/name/insertProduct:">&nbsp;&nbsp;&nbsp;&nbsp;+ insertProduct:</option>
+	
+	<option value="//api/name/insertProductCategory:">&nbsp;&nbsp;&nbsp;&nbsp;+ insertProductCategory:</option>
+	
+	<option value="//api/name/updateProductStock:withStock:">&nbsp;&nbsp;&nbsp;&nbsp;+ updateProductStock:withStock:</option>
+	
+	<option value="//api/name/updateStateOrderLog:withState:">&nbsp;&nbsp;&nbsp;&nbsp;+ updateStateOrderLog:withState:</option>
+	
+	
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#class_methods">Class Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/checkOrCreateDataBase">checkOrCreateDataBase</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteOrderLog:">deleteOrderLog:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteProducts">deleteProducts</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/deleteTableContent:">deleteTableContent:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/finalizeStatements:withDB:">finalizeStatements:withDB:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getCategories">getCategories</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getDBPath">getDBPath</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getOrdersHistory:">getOrdersHistory:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getProducts">getProducts</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getProductsCategory:">getProductsCategory:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/getProductsInConfirm">getProductsInConfirm</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/insertCategory:">insertCategory:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/insertOrdersLog:">insertOrdersLog:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/insertProduct:">insertProduct:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/insertProductCategory:">insertProductCategory:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateProductStock:withStock:">updateProductStock:withStock:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/updateStateOrderLog:withState:">updateStateOrderLog:withState:</a></span></li>
+	
+</ul></li>
+
+
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="DBManager Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">DBManager Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">DBManager.h<br />DBManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/checkOrCreateDataBase">+&nbsp;checkOrCreateDataBase</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getDBPath">+&nbsp;getDBPath</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/finalizeStatements:withDB:">+&nbsp;finalizeStatements:withDB:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/insertProduct:">+&nbsp;insertProduct:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getProductsCategory:">+&nbsp;getProductsCategory:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getProducts">+&nbsp;getProducts</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/deleteProducts">+&nbsp;deleteProducts</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/insertProductCategory:">+&nbsp;insertProductCategory:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/insertCategory:">+&nbsp;insertCategory:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getCategories">+&nbsp;getCategories</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/insertOrdersLog:">+&nbsp;insertOrdersLog:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateStateOrderLog:withState:">+&nbsp;updateStateOrderLog:withState:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getOrdersHistory:">+&nbsp;getOrdersHistory:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/deleteOrderLog:">+&nbsp;deleteOrderLog:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/deleteTableContent:">+&nbsp;deleteTableContent:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/updateProductStock:withStock:">+&nbsp;updateProductStock:withStock:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/getProductsInConfirm">+&nbsp;getProductsInConfirm</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Class Methods" name="class_methods"></a>
+						<h2 class="subtitle subtitle-methods">Class Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/checkOrCreateDataBase" title="checkOrCreateDataBase"></a>
+	<h3 class="subsubtitle method-title">checkOrCreateDataBase</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Check if the database already exists.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (BOOL)checkOrCreateDataBase</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>This method is used every time the app is launched. If the database doesn't exists, is created.
+The tables of the structure are:
+    - PRODUCTS. Store all the products of the current menu. Fields of the table:
+        - ID INTEGER
+        - PRODUCT_DESCRIPTION TEXT 
+        - PRODUCT_DISPLAY_PRICE TEXT 
+        - PRODUCT_PRODUCT_ID INTEGER 
+        - PRODUCT_MASTER_COST_PRICE TEXT 
+        - PRODUCT_MASTER_DESCRIPTION TEXT 
+        - PRODUCT_MASTER_DISPLAY_PRICE TEXT 
+        - PRODUCT_MASTER_MASTEROBJECT_ID INTEGER 
+        - PRODUCT_MASTER_IN_STOCK INTEGER 
+        - PRODUCT_MASTER_NAME TEXT 
+        - PRODUCT_MASTER_PRICE TEXT 
+        - PRODUCT_MASTER_SKU TEXT 
+        - PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME TEXT 
+        - PRODUCT_MASTER_IMAGE_IMAGE_ID INTEGER 
+        - PRODUCT_MASTER_IMAGE_LARGE_URL TEXT 
+        - PRODUCT_MASTER_IMAGE_MINI_URL TEXT 
+        - PRODUCT_MASTER_IMAGE_PRODUCT_URL TEXT 
+        - PRODUCT_MASTER_IMAGE_SMALL_URL TEXT 
+        - PRODUCT_CATEGORY_ID INTEGER 
+        - PRODUCT_NAME TEXT 
+        - PRODUCT_PRICE TEXT 
+        - PRODUCT_SLUG TEXT 
+        - PRODUCT_TOTAL_ON_HAND INTEGER 
+        - PRODUCT_SHOW_DAYS INTEGER 
+        - DATE_AVAILABLE INTEGER
+    - PRODUCT_CATEGORIES. Store the categories for the products of the current menu. Fields of the table:
+        - ID INTEGER 
+        - CATEGORY_NAME TEXT 
+        - INTERNAL_ID INTEGER
+    - ORDERSLOG. Log of the orders. The data of this table is used in the "My Orders" option of the app and to calculate the virtual stock of the products. Fields of the table:
+        - ID INTEGER 
+        - ORDER_ID TEXT 
+        - ORDER_STATUS TEXT 
+        - ORDER_DATE INTEGER 
+        - PRODUCT_ID INTEGER 
+        - PRODUCT_NAME TEXT 
+        - PRODUCT_QUANTITY_ORDERED INTEGER
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/deleteOrderLog:" title="deleteOrderLog:"></a>
+	<h3 class="subsubtitle method-title">deleteOrderLog:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Delete a specific order from ORDERSLOG table.</p>
+
+<pre><code>This method is used to delete a order that is cancelled by the user. To delete an order it must to be in ORDER_STATUS equal to "confirm".
+</code></pre>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)deleteOrderLog:(NSString *)<em>orderId</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>orderId</em></dt>
+			<dd><p>The ORDER_ID of the order to be deleted.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/deleteProducts" title="deleteProducts"></a>
+	<h3 class="subsubtitle method-title">deleteProducts</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Delete the content of the PRODUCTS table.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)deleteProducts</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>Is used before the app ask to the Spree store for the current menu.
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/deleteTableContent:" title="deleteTableContent:"></a>
+	<h3 class="subsubtitle method-title">deleteTableContent:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Delete the content of a table.</p>
+
+<pre><code>Receives an array with the names of the table, which their content will be deleted. Is used when the user do Log Out from the app.
+</code></pre>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)deleteTableContent:(NSArray *)<em>tables</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>tables</em></dt>
+			<dd><p>Array with the tables which content will be deleted.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/finalizeStatements:withDB:" title="finalizeStatements:withDB:"></a>
+	<h3 class="subsubtitle method-title">finalizeStatements:withDB:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Finalize a SQLite statement.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)finalizeStatements:(sqlite3_stmt *)<em>stm</em> withDB:(sqlite3 *)<em>DB</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>stm</em></dt>
+			<dd><p>Statement variable used.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>DB</em></dt>
+			<dd><p>The Sqlite database variable.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>Is used to finalize a statement after an operation on the database.
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getCategories" title="getCategories"></a>
+	<h3 class="subsubtitle method-title">getCategories</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the categories into an array from PRODUCT_CATEGORIES table.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSMutableArray *)getCategories</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getDBPath" title="getDBPath"></a>
+	<h3 class="subsubtitle method-title">getDBPath</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return the Path of the database on the device directory.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSString *)getDBPath</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getOrdersHistory:" title="getOrdersHistory:"></a>
+	<h3 class="subsubtitle method-title">getOrdersHistory:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return the orders from the ORDERSLOG table.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSMutableArray *)getOrdersHistory:(BOOL)<em>withPastOrders</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>withPastOrders</em></dt>
+			<dd><p>If the value of this param is YES, the method will return the orders with ORDER_STATUS in &ldquo;complete&rdquo;. On the other hand, will return the orders with ORDER_STATUS in &ldquo;confirm&rdquo; or &ldquo;attending&rdquo;.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>The information is returned into an array with two levels:
+- ORDER_ID.
+- ORDER_DATE.
+- ORDER_STATUS.
+- ORDER_DETAIL. Dictionary with an array that contains:
+    - PRODUCT_ID.
+    - PRODUCT_NAME.
+    - PRODUCT_QUANTITY_ORDERED.
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getProducts" title="getProducts"></a>
+	<h3 class="subsubtitle method-title">getProducts</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Get all the products for the current from the PRODUCTS table.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSMutableArray *)getProducts</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>Is used to get all the prodcuts for the current menu.
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getProductsCategory:" title="getProductsCategory:"></a>
+	<h3 class="subsubtitle method-title">getProductsCategory:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return all the products of a specific category.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSMutableArray *)getProductsCategory:(CategoryObject *)<em>category</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>category</em></dt>
+			<dd><p>It&rsquo;s a the category which contains the products to get from Products table.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/getProductsInConfirm" title="getProductsInConfirm"></a>
+	<h3 class="subsubtitle method-title">getProductsInConfirm</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Return the quantity of each product registered in ORDERSLOG.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (NSMutableArray *)getProductsInConfirm</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>This method sum the quantity of each product that is in orders with ORDER_STATUS equal to "confirm" or "attending".
+The information is used to set the update the total_on_hand value of each product of the current menu.
+The array that is returned contains:
+    - PRODUCT_ID.
+    - TOTAL.
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/insertCategory:" title="insertCategory:"></a>
+	<h3 class="subsubtitle method-title">insertCategory:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Insert a category into PRODUCT_CATEGORIES table based on an array received.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)insertCategory:(NSDictionary *)<em>category</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>category</em></dt>
+			<dd><p>Dictionary with the values for ID and CATEGORY_NAME.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/insertOrdersLog:" title="insertOrdersLog:"></a>
+	<h3 class="subsubtitle method-title">insertOrdersLog:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Insert into ORDERSLOG the information from the orders maded.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)insertOrdersLog:(NSDictionary *)<em>dictDataOrder</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>dictDataOrder</em></dt>
+			<dd><p>A dictionary with the next information: ORDER_ID, ORDER_STATUS, ORDER_DATE, PRODUCT_ID, PRODUCT_NAME and PRODUCT_QUANTITY_ORDERED.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>The data of this table is used in the "My Orders" option of the app and to calculate the virtual stock of the products.
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/insertProduct:" title="insertProduct:"></a>
+	<h3 class="subsubtitle method-title">insertProduct:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Inserts a product into the PRODUCTS table.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)insertProduct:(ProductObject *)<em>product</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>product</em></dt>
+			<dd><p>A <a href="../Classes/ProductObject.html">ProductObject</a> object.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>This method is used when the app send a request to the Spree store to get the current menu.</p>
+
+<p>To see which values are inserted, check the <a href="../Classes/ProductObject.html">ProductObject</a> section.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/insertProductCategory:" title="insertProductCategory:"></a>
+	<h3 class="subsubtitle method-title">insertProductCategory:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Insert a category into PRODUCT_CATEGORIES table.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)insertProductCategory:(ProductObject *)<em>product</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>product</em></dt>
+			<dd><p>The ProducObject contains the data of the category to be inserted.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateProductStock:withStock:" title="updateProductStock:withStock:"></a>
+	<h3 class="subsubtitle method-title">updateProductStock:withStock:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Update the stock of a specific product from the PRODUCTS table.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)updateProductStock:(int)<em>productId</em> withStock:(int)<em>stock</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>productId</em></dt>
+			<dd><p>The PRODUCT_MASTER_MASTEROBJECT_ID of the product to be updated.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>stock</em></dt>
+			<dd><p>The value of stock to be updated.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>When the app receives a push notification, because an order was served. This method is called to update the stock of a product.
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/updateStateOrderLog:withState:" title="updateStateOrderLog:withState:"></a>
+	<h3 class="subsubtitle method-title">updateStateOrderLog:withState:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Update the state of an order from ORDERSLOG table.</p>
+
+<pre><code>Is used to update the state of an order when is attended or completed.
+</code></pre>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>+ (void)updateStateOrderLog:(NSString *)<em>orderId</em> withState:(NSString *)<em>orderState</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>orderId</em></dt>
+			<dd><p>The ORDER_ID of the order to be updated.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>orderState</em></dt>
+			<dd><p>The ORDER_STATUS of the order to be updated.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">DBManager.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+                    
+                    
+                    
+                    
+
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 CROWDINT. All rights reserved. (Last updated: 2014-11-25)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
