@@ -81,7 +81,7 @@
                  NSLog(@"%@",[result objectForKey:@"error"]);
                 
                     /// Attempt to register the user in spree store
-                    if (![[result objectForKey:@"error"] isEqualToString:@""]) {
+                    if ([[result objectForKey:@"error"] isEqualToString:@"Record not found"]) {
                         
                         /// Define the user channel to listen push notifications.
                         customUserChannel = [NSString stringWithFormat:@"User_%@",strUserId];
