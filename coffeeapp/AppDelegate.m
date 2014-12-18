@@ -251,6 +251,28 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         /// Post a local notification to update the menu without loading menu view controller.
         [[NSNotificationCenter defaultCenter] postNotificationName:@"doUpdateMenu" object:nil];
     }
+    if ([[userInfo objectForKey:@"state"] isEqual:@"in-progress"]) {
+        
+        /// Create a custom alert view to display the info about the notification received.
+        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Wait a second..." otherButtonTitles:nil];
+        [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+        
+        /// Create and add the content of the aler view.
+        UIView *contentView = alertView.contentView;
+        [contentView setBackgroundColor:[UIColor clearColor]];
+        [alertView setBackgroundColor:[UIColor clearColor]];
+        UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
+        [imgV setImage:[UIImage imageNamed:@"illustration_06"]];
+        [contentView addSubview:imgV];
+        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
+        lblStatus.numberOfLines = 3;
+        [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
+        [lblStatus setTextAlignment:NSTextAlignmentCenter];
+        NSMutableDictionary * alert = [userInfo objectForKey:@"aps"];
+        lblStatus.text = [alert objectForKey:@"alert"];
+        [contentView addSubview:lblStatus];
+        [alertView show];
+    }
 }
 
 ///////////////////////////////////////////////////////////

@@ -69,6 +69,7 @@
 		7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D17919D19F6B4FF00696B91 /* DBManager.m */; };
 		7D1791A019F6CDD000696B91 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D17919F19F6CDD000696B91 /* libsqlite3.dylib */; };
 		7D2A60611A1D5B8000BB0132 /* illustration_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D2A60601A1D5B8000BB0132 /* illustration_05.png */; };
+		7D4E91481A4393F2003E2FE1 /* illustration_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4E91471A4393F2003E2FE1 /* illustration_06.png */; };
 		7D7C19691A00B4670072E46E /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7C19671A00B4670072E46E /* ShoppingCartViewController.m */; };
 		7D7C196A1A00B4670072E46E /* ShoppingCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C19681A00B4670072E46E /* ShoppingCartViewController.xib */; };
 		7D7C19701A0179180072E46E /* OrderObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7C196F1A0179180072E46E /* OrderObject.m */; };
@@ -170,6 +171,7 @@
 		7D17919D19F6B4FF00696B91 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		7D17919F19F6CDD000696B91 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		7D2A60601A1D5B8000BB0132 /* illustration_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_05.png; sourceTree = "<group>"; };
+		7D4E91471A4393F2003E2FE1 /* illustration_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_06.png; sourceTree = "<group>"; };
 		7D7C19661A00B4670072E46E /* ShoppingCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewController.h; sourceTree = "<group>"; };
 		7D7C19671A00B4670072E46E /* ShoppingCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewController.m; sourceTree = "<group>"; };
 		7D7C19681A00B4670072E46E /* ShoppingCartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShoppingCartViewController.xib; sourceTree = "<group>"; };
@@ -318,36 +320,38 @@
 		C869B7231A001ED800F12C57 /* assets */ = {
 			isa = PBXGroup;
 			children = (
-				7D2A60601A1D5B8000BB0132 /* illustration_05.png */,
-				233158EE1A168B0F006104C4 /* illustration_00.png */,
-				232D03561A13F45B008791A4 /* delete_order_btn_down.png */,
-				232D03571A13F45B008791A4 /* delete_order_btn_up.png */,
-				231293B21A1271D6003A5856 /* login_btn_down@3x.png */,
-				231293B31A1271D6003A5856 /* login_btn_up@3x.png */,
+				7D4E91471A4393F2003E2FE1 /* illustration_06.png */,
+				236FCB7B1A0051610021E2ED /* add_btn_down.png */,
+				236FCB7D1A0051760021E2ED /* add_btn_up.png */,
+				236FCB7F1A00519B0021E2ED /* add02_btn_down.png */,
+				236FCB811A0051A50021E2ED /* add02_btn_up.png */,
 				236FCB8B1A005C460021E2ED /* badge_ima.png */,
 				234BCE1D1A0D804200BA4074 /* crowdchef_iphone_120.png */,
 				234BCE1E1A0D804200BA4074 /* crowdchef_iphone_180.png */,
+				232D03561A13F45B008791A4 /* delete_order_btn_down.png */,
+				232D03571A13F45B008791A4 /* delete_order_btn_up.png */,
+				23F400951A0BCD9D009F09EE /* Fonts */,
 				2354C3D01A0310FB00729A84 /* history_btn_selected.png */,
 				2354C3D21A03110900729A84 /* history_btn_up.png */,
+				233158EE1A168B0F006104C4 /* illustration_00.png */,
 				C88352E71A0C4BA0001F3AA0 /* illustration_01.png */,
 				C88352E81A0C4BA0001F3AA0 /* illustration_02.png */,
 				C8653E4C1A0D5DF900A9F958 /* illustration_03.png */,
 				7DE6F45A1A129B4C001EE3B9 /* illustration_04.png */,
+				7D2A60601A1D5B8000BB0132 /* illustration_05.png */,
 				23B3B80E1A0812BF00800204 /* item_transparency_03.png */,
 				236FCB8D1A00688F0021E2ED /* item_transparency.png */,
 				2329A9151A09B08600E93ABB /* label.png */,
+				C89ED5B81A0023ED004441A3 /* login_btn_down@2x.png */,
+				231293B21A1271D6003A5856 /* login_btn_down@3x.png */,
+				C89ED5B91A0023ED004441A3 /* login_btn_up@2x.png */,
+				231293B31A1271D6003A5856 /* login_btn_up@3x.png */,
 				23A5E13F1A0293E400590509 /* logout_btn_down.png */,
 				23A5E1401A0293E400590509 /* logout_btn_up.png */,
 				235975DE1A01736E0070E914 /* menu_btn.png */,
 				2354C3D41A03111F00729A84 /* neworders_btn_selected.png */,
 				2354C3D61A03113B00729A84 /* neworders_btn_up.png */,
 				236FCB831A00587A0021E2ED /* outstock_btn_down.png */,
-				236FCB811A0051A50021E2ED /* add02_btn_up.png */,
-				236FCB7F1A00519B0021E2ED /* add02_btn_down.png */,
-				236FCB7D1A0051760021E2ED /* add_btn_up.png */,
-				236FCB7B1A0051610021E2ED /* add_btn_down.png */,
-				C89ED5B81A0023ED004441A3 /* login_btn_down@2x.png */,
-				C89ED5B91A0023ED004441A3 /* login_btn_up@2x.png */,
 				236FCB851A0058880021E2ED /* outstock_btn_up.png */,
 				235975DC1A01518D0070E914 /* patron_01.png */,
 				23B3B8101A08365E00800204 /* plceorder_btn_down.png */,
@@ -355,7 +359,6 @@
 				C869B7241A001EF900F12C57 /* splash_ima.png */,
 				236FCB871A0058E70021E2ED /* subtract_btn_down.png */,
 				236FCB891A0058FB0021E2ED /* subtract_btn_up.png */,
-				23F400951A0BCD9D009F09EE /* Fonts */,
 			);
 			name = assets;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D7C196A1A00B4670072E46E /* ShoppingCartViewController.xib in Resources */,
+				7D4E91481A4393F2003E2FE1 /* illustration_06.png in Resources */,
 				23F400A71A0BCDF6009F09EE /* Lato-Lig.ttf in Resources */,
 				231293B41A1271D6003A5856 /* login_btn_down@3x.png in Resources */,
 				23B3B80F1A0812BF00800204 /* item_transparency_03.png in Resources */,
@@ -917,6 +921,7 @@
 				230C5D151A1E641A006B9DB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C8B7CC3F19F1D76600AEBA27 /* Build configuration list for PBXProject "coffeeapp" */ = {
 			isa = XCConfigurationList;
