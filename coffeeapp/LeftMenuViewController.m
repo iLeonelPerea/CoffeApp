@@ -85,16 +85,22 @@
 /// Check for the selected row. Depending on which is the view controller displayed.
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tblMenu reloadData];
+    /// Add image indicator to indicate the selected cell
+    UIImageView *imgIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10,(IS_IPHONE_6 || IS_IPHONE_5)?80:50)];
     switch ([indexPath row]) {
         case 0:
             [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestMenu" object:nil];
+            [imgIndicator setImage:[UIImage imageNamed:@"menu_selected"]];
             break;
         case 1:
             [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestOrders" object:nil];
+            [imgIndicator setImage:[UIImage imageNamed:@"menu_selected"]];
             break;
         default:
             break;
     }
+    [[tableView cellForRowAtIndexPath:indexPath] addSubview:imgIndicator];
 }
 
 /// Draw the content of each cell of the table.
@@ -112,6 +118,12 @@
     [[cell textLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:24]];
     [[cell textLabel] setText:[arrMenu objectAtIndex:[indexPath row]]];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+    
+    /// Add image indicator to indicate the selected cell
+    UIView *viewIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10,(IS_IPHONE_6 || IS_IPHONE_5)?80:50)];
+    [viewIndicator setBackgroundColor:[UIColor whiteColor]];
+    [cell addSubview:viewIndicator];
     return cell;
 }
 
