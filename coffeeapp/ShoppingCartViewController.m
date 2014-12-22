@@ -96,10 +96,6 @@
     /// Set isMenuViewController flag to YES in AppDelegate.
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setIsMenuViewController:YES];
-    // set comments for selected products
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsShoppingCart] forKey:@"arrProductsInQueue"];
-    [defaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -365,7 +361,7 @@
     return cell;
 }
 
-// done note selector
+/// Done note selector
 -(void)doDoneNoteToProduct:(id)sender
 {
     UIButton * btn = (UIButton*)sender;
@@ -384,9 +380,10 @@
             break;
         }
     }
+    [self doSynchronizeDefaults];
 }
 
-// cancel note selector
+/// cancel note selector
 -(void)doCancelNoteToProduct:(id)sender
 {
     UIButton * btn = (UIButton*)sender;
@@ -395,7 +392,7 @@
     [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
 }
 
-// add note selector
+/// add note selector
 -(void)doAddNoteToProduct:(id)sender
 {
     UIButton * btn = (UIButton*)sender;
@@ -421,6 +418,15 @@
     UIImage* subImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return subImage;
+}
+
+/// Synchronize values into user defaults.
+-(void)doSynchronizeDefaults
+{
+     /// Set the array arrProductsInQueue with the values of the array arrProductsShoppingCart
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsShoppingCart] forKey:@"arrProductsInQueue"];
+     [defaults synchronize];
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
