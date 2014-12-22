@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 /// Macro that store the URL for the testing server.
-#define TESTING_URL @"http://36b9d303.ngrok.com/api"
+#define TESTING_URL @"http://462ae3ac.ngrok.com/api"
 
 @implementation RESTManager
 

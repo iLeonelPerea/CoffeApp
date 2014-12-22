@@ -10,7 +10,7 @@
 
 @implementation ProductObject
 
-@synthesize description, display_price, product_id, masterObject, categoryObject, name, price, slug, total_on_hand, quantity, delivery_type, delivery_date, showDays, date_available;
+@synthesize description, display_price, product_id, masterObject, categoryObject, name, price, slug, total_on_hand, quantity, delivery_type, delivery_date, showDays, date_available, comment, isEditingComments;
 
 
 //create coder and decoder to be able to save on standar user defaults.
@@ -32,6 +32,8 @@
         self.showDays = [coder decodeIntForKey:@"showDays"];
         self.delivery_type = [coder decodeIntForKey:@"delivery_type"];
         self.date_available = [coder decodeFloatForKey:@"date_available"];
+        self.comment = [coder decodeObjectForKey:@"comment"];
+        self.isEditingComments = [coder decodeBoolForKey:@"isEditingComments"];
     }
     return self;
 }
@@ -51,6 +53,8 @@
     [coder encodeInteger:showDays forKey:@"showDays"];
     [coder encodeInteger:delivery_type forKey:@"delivery_type"];
     [coder encodeFloat:date_available forKey:@"date_available"];
+    [coder encodeObject:comment forKey:@"comment"];
+    [coder encodeBool:isEditingComments forKey:@"isEditingComments"];
 }
 
 /// Assign the properties of the product object based on a dictionary.
@@ -103,6 +107,7 @@
     dateFromString = [dateFormatter dateFromString:strGivenDate];
     float dateFloat = [dateFromString timeIntervalSince1970];
     [newProductObject setDate_available:dateFloat];
+    newProductObject.isEditingComments = NO;
     return newProductObject;
 }
 

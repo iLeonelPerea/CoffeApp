@@ -60,6 +60,11 @@
 /** Date of the availability of the product. */
 @property (nonatomic, assign) float date_available;
 
+/** property used to store notes for this product **/
+@property (nonatomic, strong) NSString * comment;
+
+@property (nonatomic, assign) BOOL isEditingComments;
+
 /** Assign the properties of an product object based on the dictionary sended as param. Returns an instance with the data setted.
  
     @param dictProduct Dictionary with the data of the product.
