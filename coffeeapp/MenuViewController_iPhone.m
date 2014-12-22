@@ -26,7 +26,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable;
+@synthesize viewPicker, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,6 +59,14 @@
     
     /// Set the default value to the flag for bottom bar.
     isViewPlaceOrderActive = NO;
+    
+    /// Set the default value to the filter of categories.
+    [pickerOptions setDelegate:self];
+    [pickerOptions setDataSource:self];
+    pickerFilterActiveOption = 0;
+    isPickerFilterActive = NO;
+    [viewPicker setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 189):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 189):CGRectMake(0, 0, 320, 189)];
+    [pickerOptions setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 189):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 189):CGRectMake(0, 0, 320, 189)];
     
     /// Check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
@@ -102,6 +110,7 @@
             arrProductCategoriesObjects = [DBManager getCategories];
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
             [tblProducts reloadData];
+            [pickerOptions reloadAllComponents];
         }else{
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
@@ -124,6 +133,14 @@
     [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
+    
+    UIImage *faceImage = [UIImage imageNamed:@"filter_btn"];
+    UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
+    face.bounds = CGRectMake( 10, 0, faceImage.size.width, faceImage.size.height );//set bound as per you want
+    [face addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
+    [face setImage:faceImage forState:UIControlStateNormal];
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:face];
+    [self navigationItem].rightBarButtonItem = backButton;
     
     /// Create observer to update products stock without call the spree service
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doUpdateProductsStockAfterNotification:) name:@"doUpdateProductsStockAfterNotification" object:nil];
@@ -341,14 +358,14 @@
     return (IS_IPHONE_6)?280.0f:240.0f;
 }
 
-/// Return the number of sections based on the element that contains array arrProductObjects.
+/// Return the number of sections based on the element that contains array arrProductObjects. If the filter is active return 1.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return [arrProductObjects count]; // Save the count of sections
+    return (isPickerFilterActive) ? 1 : [arrProductObjects count]; // Save the count of sections
 }
 
-/// Return the number of rows for each section. Is determined by the number of elements in each sub-array stored in the main array arrProducObjects.
+/// Return the number of rows for each section. Is determined by the number of elements in each sub-array stored in the main array arrProducObjects. If the filter is active return the section selected.
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[arrProductObjects objectAtIndex:section] count];
+    return (isPickerFilterActive) ? [[arrProductObjects objectAtIndex:pickerFilterActiveOption] count] : [[arrProductObjects objectAtIndex:section] count];
 }
 
 /// Define the height for the header section.
@@ -360,6 +377,9 @@
 /// Draw the content of each section of the table view.
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    // If the filter is active set the category selected.
+    long filteredSection = (isPickerFilterActive) ? pickerFilterActiveOption : section;
+    
     /// Create a view that will contain all the elements of the section.
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 50)];
     
@@ -371,7 +391,7 @@
     /// Create and set a label to display the title of the sections.
     UILabel * lblSectionTitle = [[UILabel alloc] init];
     [lblSectionTitle setFrame:CGRectMake(20, 0, 200, 50)];
-    [lblSectionTitle setText:[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:section] category_name ]];
+    [lblSectionTitle setText:[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ]];
     [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:255]];
     [headerView addSubview:lblSectionTitle];
@@ -379,7 +399,7 @@
     /// Create and set a label to display the number of elements in the section.
     UILabel * lblProductsNumber = [[UILabel alloc] init];
     [lblProductsNumber setFrame:(IS_IPHONE_6)?CGRectMake(250, 0, 100, 50):CGRectMake(200, 0, 100, 50)];
-    [lblProductsNumber setText:([[arrProductObjects objectAtIndex:section] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:section] count]]:[NSString stringWithFormat:@"%d Product",(int)[[arrProductObjects objectAtIndex:section] count]]];
+    [lblProductsNumber setText:([[arrProductObjects objectAtIndex:filteredSection] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:filteredSection] count]]:[NSString stringWithFormat:@"%d Product",(int)[[arrProductObjects objectAtIndex:filteredSection] count]]];
     [lblProductsNumber setTextAlignment:NSTextAlignmentRight];
     [lblProductsNumber setTextColor:[UIColor colorWithRed:146.0f/255.0f green:142.0f/255.0f blue:140.0f/255.0f alpha:1.0f]];
     [lblProductsNumber setFont:[UIFont fontWithName:@"Lato-Light" size:15]];
@@ -390,6 +410,9 @@
 
 ///Draw the content of each row of the table view.
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    // If the filter is active set the category selected.
+    long filteredSection = (isPickerFilterActive) ? pickerFilterActiveOption : indexPath.section;
+    
     static NSString *CellIdentifier = @"CellProduct";
     
     /// Create the cell will contain all the elements.
@@ -403,7 +426,7 @@
     
     /// Create a product object and
     productObject = [[ProductObject alloc] init];
-    productObject = [[arrProductObjects objectAtIndex:indexPath.section] objectAtIndex:(NSInteger)indexPath.row];
+    productObject = [[arrProductObjects objectAtIndex:filteredSection] objectAtIndex:(NSInteger)indexPath.row];
     
     /// --------- Product image
     UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 280):CGRectMake(0, 0, 320, 240)];
@@ -438,7 +461,7 @@
     CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
     
     /// Check if the flag for meals category availability. If it is not avalaible, set add button image to no available.
-    if (!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:indexPath.section] category_name ] isEqualToString:@"Desayuno"]) {
+    if (!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Desayuno"]) {
         //Button outstock
         [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(52, 197, 270, 45):CGRectMake(25, 174, 270, 45)];
         [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
@@ -522,17 +545,21 @@
 {
     /// Extract the content of the sender param and create a custom button
     CustomButton * senderButton = (CustomButton*)sender;
+    
+    // If the filter is active set the category selected.
+    long filteredSection = (isPickerFilterActive) ? pickerFilterActiveOption : senderButton.section;
+    
     /// Check if the product quantity is equal to one, then display an alert view to ask the user if he wants to add more items to his selection.
-    if (((ProductObject *)[[arrProductObjects objectAtIndex:((CustomButton *)sender).section] objectAtIndex:((CustomButton *)sender).index]).quantity==1) {
+    if (((ProductObject *)[[arrProductObjects objectAtIndex:filteredSection] objectAtIndex:((CustomButton *)sender).index]).quantity==1) {
         senderButton.selected = YES;
         UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Please check!" message:[NSString stringWithFormat:@"Are you sure you want to add two items to your order?"] delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil];
-        currentSection = ((CustomButton*)sender).section;
+        currentSection = (int)filteredSection;
         [alert setTag:((CustomButton*)sender).index];
         [alert show];
     }else{
         /// Add one more to product quantity
         ProductObject * selectedProduct = [ProductObject new];
-        selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
+        selectedProduct = [[arrProductObjects objectAtIndex:filteredSection] objectAtIndex:senderButton.index];
         selectedProduct.quantity ++;
         [self doReloadData];
         [self synchronizeDefaults];
@@ -545,8 +572,12 @@
     ProductObject * selectedProduct = [ProductObject new];
     /// Extract the content of sender param.
     CustomButton * senderButton = (CustomButton*)sender;
+    
+    // If the filter is active set the category selected.
+    long filteredSection = (isPickerFilterActive) ? pickerFilterActiveOption : senderButton.section;
+    
     /// Set product object with the reference of the selected product stored in arrProductObjects.
-    selectedProduct = [[arrProductObjects objectAtIndex:senderButton.section] objectAtIndex:senderButton.index];
+    selectedProduct = [[arrProductObjects objectAtIndex:filteredSection] objectAtIndex:senderButton.index];
     selectedProduct.quantity --;
     [self doReloadData];
     [self synchronizeDefaults];
@@ -557,7 +588,8 @@
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     /// Check if the location service are available and if the user`s location is under 1,000 meters.
     /// In case of false, a custom alert view is displayed to inform the user about.
-    if ([self updateDistanceToAnnotation]>1000 && areLocationServicesAvailable) {
+    //if ([self updateDistanceToAnnotation]>1000 && areLocationServicesAvailable) {
+    if ([self updateDistanceToAnnotation]<1000 && areLocationServicesAvailable) {
         /// Create the custom alert.
         LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ooh, Something happens!" otherButtonTitles:nil];
         [alertView setSize:CGSizeMake(250.0f, 320.0f)];
@@ -727,6 +759,45 @@
     mapRegion.span.longitudeDelta = 0.002;
     
     [mapKitView setRegion:mapRegion animated: YES];
+}
+
+#pragma mark -- UIPickerViewDelegate
+-(void)showPicker{
+    [viewPicker setHidden:NO];
+}
+
+/// Set the title of each category
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    return (row == 0) ? @"All Categories" : [(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:row-1] category_name];
+}
+
+// Hide the Picker
+-(void)doPickerCancel:(id)sender
+{
+    [viewPicker setHidden:YES];
+}
+
+// Save the category selected
+-(void)doPickerOk:(id)sender
+{
+    [viewPicker setHidden:YES];
+    isPickerFilterActive = ([pickerOptions selectedRowInComponent:0]==0) ? NO : YES;
+    pickerFilterActiveOption = (int)[pickerOptions selectedRowInComponent:0]-1;
+    [self doReloadData];
+    [self synchronizeDefaults];
+}
+
+// Return the number of categories
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    return [arrProductObjects count]+1;
+}
+
+// Return the number of components
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    return 1;
 }
 
 @end

@@ -70,6 +70,7 @@
 		7D17919E19F6B4FF00696B91 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D17919D19F6B4FF00696B91 /* DBManager.m */; };
 		7D1791A019F6CDD000696B91 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D17919F19F6CDD000696B91 /* libsqlite3.dylib */; };
 		7D2A60611A1D5B8000BB0132 /* illustration_05.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D2A60601A1D5B8000BB0132 /* illustration_05.png */; };
+		7D4D29241A4894CA005645A0 /* filter_btn.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4D29231A4894CA005645A0 /* filter_btn.png */; };
 		7D4E91481A4393F2003E2FE1 /* illustration_06.png in Resources */ = {isa = PBXBuildFile; fileRef = 7D4E91471A4393F2003E2FE1 /* illustration_06.png */; };
 		7D7C19691A00B4670072E46E /* ShoppingCartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7C19671A00B4670072E46E /* ShoppingCartViewController.m */; };
 		7D7C196A1A00B4670072E46E /* ShoppingCartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D7C19681A00B4670072E46E /* ShoppingCartViewController.xib */; };
@@ -173,6 +174,7 @@
 		7D17919D19F6B4FF00696B91 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		7D17919F19F6CDD000696B91 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		7D2A60601A1D5B8000BB0132 /* illustration_05.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_05.png; sourceTree = "<group>"; };
+		7D4D29231A4894CA005645A0 /* filter_btn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter_btn.png; sourceTree = "<group>"; };
 		7D4E91471A4393F2003E2FE1 /* illustration_06.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_06.png; sourceTree = "<group>"; };
 		7D7C19661A00B4670072E46E /* ShoppingCartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingCartViewController.h; sourceTree = "<group>"; };
 		7D7C19671A00B4670072E46E /* ShoppingCartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingCartViewController.m; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 		C869B7231A001ED800F12C57 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				7D4D29231A4894CA005645A0 /* filter_btn.png */,
 				2315F8BD1A44ACB900C1FE7B /* menu_selected.png */,
 				7D4E91471A4393F2003E2FE1 /* illustration_06.png */,
 				236FCB7B1A0051610021E2ED /* add_btn_down.png */,
@@ -594,6 +597,7 @@
 				232D03581A13F45B008791A4 /* delete_order_btn_down.png in Resources */,
 				C8B7CC5519F1D76600AEBA27 /* Images.xcassets in Resources */,
 				236FCB8C1A005C460021E2ED /* badge_ima.png in Resources */,
+				7D4D29241A4894CA005645A0 /* filter_btn.png in Resources */,
 				236FCB7E1A0051760021E2ED /* add_btn_up.png in Resources */,
 				23F400A81A0BCDF6009F09EE /* Lato-LigIta.ttf in Resources */,
 				232D03591A13F45B008791A4 /* delete_order_btn_up.png in Resources */,

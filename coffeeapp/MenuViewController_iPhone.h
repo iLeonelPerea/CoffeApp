@@ -32,7 +32,19 @@
 
 @class LoginViewController;
 
-@interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate>
+@interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+
+/** Outlet to enable the filter categories throught UIPicker. */
+@property (nonatomic, strong) IBOutlet UIView * viewPicker;
+
+/** Outlet to hide the picker and buttons. */
+@property (nonatomic, strong) IBOutlet UIPickerView *pickerOptions;
+
+/** Use to save the category selected. */
+@property (nonatomic, assign) long pickerFilterActiveOption;
+
+/** Boolean flag to determine if the filter is active. */
+@property (nonatomic, assign) BOOL isPickerFilterActive;
 
 /** Outlet to enable the use of geolocalization through MapKit. */
 @property (strong, nonatomic) IBOutlet MKMapView *mapKitView;
@@ -157,5 +169,7 @@
     - Check if the category of the product is equal to "Desayuno" and if the meals category is available.
  */
 -(IBAction)doPlaceOrder:(id)sender;
+-(IBAction)doPickerOk:(id)sender;
+-(IBAction)doPickerCancel:(id)sender;
 
 @end
