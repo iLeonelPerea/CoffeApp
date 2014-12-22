@@ -125,7 +125,7 @@
         [dictItemDetail setObject:[NSString stringWithFormat:@"%d", productInQueue.delivery_type] forKey:@"delivery_type"];
         //new parameter added here
         //todo: check with backend
-        if(![productInQueue.comment isEqual:@""])
+        if(productInQueue.comment.length != 0)
         {
             [dictItemDetail setObject:productInQueue.comment forKey:@"comment"];
         }
@@ -315,7 +315,8 @@
     
     /// -------- Product name
     UILabel * lblProductName = [[UILabel alloc] init];
-    [lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
+    //[lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
+    [lblProductName setFrame:CGRectMake(0, 0, self.view.frame.size.width-50, 80)];
     [lblProductName setText:[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]]];
     [lblProductName setNumberOfLines:2];
     [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
@@ -327,7 +328,7 @@
     //--------------------- Notes Section ---------------
     if(productObject.isEditingComments)
     {
-        UITextField * txtComment = [[UITextField alloc] initWithFrame:CGRectMake(20, 70, 300, 80)];
+        UITextField * txtComment = [[UITextField alloc] initWithFrame:CGRectMake(20, 70, self.view.frame.size.width-40, 80)];
         txtComment.placeholder = @"Make a note for this item";
         //check if prev. comment has been added.
         if(![productObject.comment isEqual:@""])
@@ -335,13 +336,13 @@
         [txtComment setDelegate:self];
         [cell addSubview:txtComment];
         
-        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(270, 27, 28, 27)];
+        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40, 27, 28, 27)];
         [btnClose setImage:[UIImage imageNamed:@"close_note"] forState:UIControlStateNormal];
         [btnClose setTag:indexPath.row];
         [btnClose addTarget:self action:@selector(doCancelNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnClose];
         
-        UIButton * btnDone = [[UIButton alloc] initWithFrame:CGRectMake(230, 140, 80, 40)];
+        UIButton * btnDone = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-80, 140, 80, 40)];
         [btnDone setImage:[UIImage imageNamed:@"done_btn_up"] forState:UIControlStateNormal];
         [btnDone setImage:[UIImage imageNamed:@"done_btn_down"] forState:UIControlStateHighlighted];
         [btnDone setTag:indexPath.row];
@@ -350,7 +351,7 @@
     }
     else
     {
-        UIButton * btnNotes = [[UIButton alloc] initWithFrame:CGRectMake(270, 27, 28, 27)];
+        UIButton * btnNotes = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40, 27, 28, 27)];
         [btnNotes setImage:[UIImage imageNamed:@"notes_ico"] forState:UIControlStateNormal];
         [btnNotes setTag:indexPath.row];
         [btnNotes addTarget:self action:@selector(doAddNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
@@ -395,15 +396,9 @@
     UIButton * btn = (UIButton*)sender;
     ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:btn.tag];
     selectedProduct.isEditingComments = YES;
+    [tblProducts setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+400)];
+    [tblProducts setContentOffset:CGPointMake(0, btn.frame.origin.y+120)];
     [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
-    
-    /*
-    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Capture Note" message:@"50 Chars Max" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Done", nil];
-    [alert setAlertViewStyle:UIAlertViewStylePlainTextInput];
-    [[alert textFieldAtIndex:0] setDelegate:self];
-    alert.tag = btn.tag;
-    [alert show];
-     */
 }
 
 /// Crop the image sended as param.
@@ -435,6 +430,12 @@
             NSLog(@"testing comment...");
         }
     }
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [tblProducts setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+400)];
+    [tblProducts setContentOffset:CGPointMake(0, textField.frame.origin.y+120) animated:YES];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
