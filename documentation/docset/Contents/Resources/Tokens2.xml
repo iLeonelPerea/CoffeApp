@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/CategoryObject.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/CategoryObject</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>CategoryObject.h</DeclaredIn>
+            
+			
+			<NodeRef refid="2"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CategoryObject/setCategory_id:</TokenIdentifier>
+			<Abstract type="html">Id for the category in the Spree store.</Abstract>
+			<DeclaredIn>CategoryObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int category_id</Declaration>
+			
+			
+			<Anchor>//api/name/category_id</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CategoryObject/category_id</TokenIdentifier>
+			<Abstract type="html">Id for the category in the Spree store.</Abstract>
+			<DeclaredIn>CategoryObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int category_id</Declaration>
+			
+			
+			<Anchor>//api/name/category_id</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CategoryObject/category_id</TokenIdentifier>
+			<Abstract type="html">Id for the category in the Spree store.</Abstract>
+			<DeclaredIn>CategoryObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int category_id</Declaration>
+			
+			
+			<Anchor>//api/name/category_id</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CategoryObject/setCategory_name:</TokenIdentifier>
+			<Abstract type="html">Name of the category.</Abstract>
+			<DeclaredIn>CategoryObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *category_name</Declaration>
+			
+			
+			<Anchor>//api/name/category_name</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CategoryObject/category_name</TokenIdentifier>
+			<Abstract type="html">Name of the category.</Abstract>
+			<DeclaredIn>CategoryObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *category_name</Declaration>
+			
+			
+			<Anchor>//api/name/category_name</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/CategoryObject/category_name</TokenIdentifier>
+			<Abstract type="html">Name of the category.</Abstract>
+			<DeclaredIn>CategoryObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *category_name</Declaration>
+			
+			
+			<Anchor>//api/name/category_name</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CategoryObject/initWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to code the object.</Abstract>
+			<DeclaredIn>CategoryObject.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithCoder:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/CategoryObject/encodeWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to decode the object properties.</Abstract>
+			<DeclaredIn>CategoryObject.h</DeclaredIn>
+			
+			<Declaration>- (void)encodeWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/encodeWithCoder:</Anchor>
+            <NodeRef refid="2"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

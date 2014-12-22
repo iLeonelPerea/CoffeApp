@@ -198,6 +198,7 @@
                     /// If the id from selected product is equal to id from menu product, aasign the quantity to display.
                     if ([orderMasterProduct masterObject_id] == [masterObject masterObject_id]) {
                         [prodObject setQuantity:[orderSelectedProduct quantity]];
+                        prodObject.comment = orderSelectedProduct.comment;
                         continue;
                     }
                 }

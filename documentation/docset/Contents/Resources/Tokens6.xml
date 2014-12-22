@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/LoginViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/LoginViewController</TokenIdentifier>
+			<Abstract type="html">Macros to identify the screen size.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="6"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/setSignInButton:</TokenIdentifier>
+			<Abstract type="html">Outlet for a custom button from the G+ SDK.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton</Declaration>
+			
+			
+			<Anchor>//api/name/signInButton</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/signInButton</TokenIdentifier>
+			<Abstract type="html">Outlet for a custom button from the G+ SDK.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton</Declaration>
+			
+			
+			<Anchor>//api/name/signInButton</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LoginViewController/signInButton</TokenIdentifier>
+			<Abstract type="html">Outlet for a custom button from the G+ SDK.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton</Declaration>
+			
+			
+			<Anchor>//api/name/signInButton</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/setImgSplashScreen:</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIImageView to set the splash screen.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet UIImageView *imgSplashScreen</Declaration>
+			
+			
+			<Anchor>//api/name/imgSplashScreen</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/imgSplashScreen</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIImageView to set the splash screen.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet UIImageView *imgSplashScreen</Declaration>
+			
+			
+			<Anchor>//api/name/imgSplashScreen</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LoginViewController/imgSplashScreen</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIImageView to set the splash screen.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet UIImageView *imgSplashScreen</Declaration>
+			
+			
+			<Anchor>//api/name/imgSplashScreen</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/setUserObject:</TokenIdentifier>
+			<Abstract type="html">UserObject object to store the credentials of the users received from G+ and Spree.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UserObject *userObject</Declaration>
+			
+			
+			<Anchor>//api/name/userObject</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/userObject</TokenIdentifier>
+			<Abstract type="html">UserObject object to store the credentials of the users received from G+ and Spree.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UserObject *userObject</Declaration>
+			
+			
+			<Anchor>//api/name/userObject</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LoginViewController/userObject</TokenIdentifier>
+			<Abstract type="html">UserObject object to store the credentials of the users received from G+ and Spree.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) UserObject *userObject</Declaration>
+			
+			
+			<Anchor>//api/name/userObject</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/setPrgLoaging:</TokenIdentifier>
+			<Abstract type="html">Outlet for HUD component to display loading messages.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *prgLoaging</Declaration>
+			
+			
+			<Anchor>//api/name/prgLoaging</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/prgLoaging</TokenIdentifier>
+			<Abstract type="html">Outlet for HUD component to display loading messages.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *prgLoaging</Declaration>
+			
+			
+			<Anchor>//api/name/prgLoaging</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LoginViewController/prgLoaging</TokenIdentifier>
+			<Abstract type="html">Outlet for HUD component to display loading messages.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *prgLoaging</Declaration>
+			
+			
+			<Anchor>//api/name/prgLoaging</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/finishedWithAuth:error:</TokenIdentifier>
+			<Abstract type="html">Method to evaluate the result of the auth proccess with G+.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>auth</Name>
+					<Abstract type="html">It&apos;s not used.</Abstract>
+				</Parameter><Parameter>
+					<Name>error</Name>
+					<Abstract type="html">Information about error in the auth proccess.
+
+    It&apos;s a method from the G+ SDK. 
+    - Check for error in the auth proccess.
+    - If there&apos;s no errors. A UserObject object it&apos;s created with the credentials of G+.
+    - The UserObject object is stored in the AppDelegate.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/finishedWithAuth:error:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/refreshInterfaceBasedOnSignIn</TokenIdentifier>
+			<Abstract type="html">Check for the status of the SignIn proccess.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)refreshInterfaceBasedOnSignIn</Declaration>
+			
+			
+			<Anchor>//api/name/refreshInterfaceBasedOnSignIn</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/presentSignInViewController:</TokenIdentifier>
+			<Abstract type="html">Push the view controller to do the SignIn proccess in G+.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)presentSignInViewController:(UIViewController *)viewController</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>viewController</Name>
+					<Abstract type="html">View controller to be displayed for the login with G+.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/presentSignInViewController:</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/doSetUserObject</TokenIdentifier>
+			<Abstract type="html">Set the data of UserObject in the AppDelegate after the SignIn proccess. If it is was succeded, posts a local notification to display the menu view controller.</Abstract>
+			<DeclaredIn>LoginViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doSetUserObject</Declaration>
+			
+			
+			<Anchor>//api/name/doSetUserObject</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/viewDidLoad</TokenIdentifier>
+			<Abstract type="html">Google App client ID. Created specifically for CoffeeApp.</Abstract>
+			<DeclaredIn>LoginViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)viewDidLoad</Declaration>
+			
+			
+			<Anchor>//api/name/viewDidLoad</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LoginViewController/didReceiveMemoryWarning</TokenIdentifier>
+			<Abstract type="html">System method.</Abstract>
+			<DeclaredIn>LoginViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didReceiveMemoryWarning</Declaration>
+			
+			
+			<Anchor>//api/name/didReceiveMemoryWarning</Anchor>
+            <NodeRef refid="6"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

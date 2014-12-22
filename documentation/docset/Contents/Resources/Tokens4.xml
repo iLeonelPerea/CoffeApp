@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ImageObject.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ImageObject</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+            
+			
+			<NodeRef refid="4"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/setAttachment_file_name:</TokenIdentifier>
+			<Abstract type="html">Name of the file.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *attachment_file_name</Declaration>
+			
+			
+			<Anchor>//api/name/attachment_file_name</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/attachment_file_name</TokenIdentifier>
+			<Abstract type="html">Name of the file.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *attachment_file_name</Declaration>
+			
+			
+			<Anchor>//api/name/attachment_file_name</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ImageObject/attachment_file_name</TokenIdentifier>
+			<Abstract type="html">Name of the file.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *attachment_file_name</Declaration>
+			
+			
+			<Anchor>//api/name/attachment_file_name</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/setImage_id:</TokenIdentifier>
+			<Abstract type="html">Id of the image.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int image_id</Declaration>
+			
+			
+			<Anchor>//api/name/image_id</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/image_id</TokenIdentifier>
+			<Abstract type="html">Id of the image.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int image_id</Declaration>
+			
+			
+			<Anchor>//api/name/image_id</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ImageObject/image_id</TokenIdentifier>
+			<Abstract type="html">Id of the image.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int image_id</Declaration>
+			
+			
+			<Anchor>//api/name/image_id</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/setLarge_url:</TokenIdentifier>
+			<Abstract type="html">URL for the large image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *large_url</Declaration>
+			
+			
+			<Anchor>//api/name/large_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/large_url</TokenIdentifier>
+			<Abstract type="html">URL for the large image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *large_url</Declaration>
+			
+			
+			<Anchor>//api/name/large_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ImageObject/large_url</TokenIdentifier>
+			<Abstract type="html">URL for the large image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *large_url</Declaration>
+			
+			
+			<Anchor>//api/name/large_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/setMini_url:</TokenIdentifier>
+			<Abstract type="html">URL for the mini image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *mini_url</Declaration>
+			
+			
+			<Anchor>//api/name/mini_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/mini_url</TokenIdentifier>
+			<Abstract type="html">URL for the mini image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *mini_url</Declaration>
+			
+			
+			<Anchor>//api/name/mini_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ImageObject/mini_url</TokenIdentifier>
+			<Abstract type="html">URL for the mini image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *mini_url</Declaration>
+			
+			
+			<Anchor>//api/name/mini_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/setProduct_url:</TokenIdentifier>
+			<Abstract type="html">URL for the image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *product_url</Declaration>
+			
+			
+			<Anchor>//api/name/product_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/product_url</TokenIdentifier>
+			<Abstract type="html">URL for the image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *product_url</Declaration>
+			
+			
+			<Anchor>//api/name/product_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ImageObject/product_url</TokenIdentifier>
+			<Abstract type="html">URL for the image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *product_url</Declaration>
+			
+			
+			<Anchor>//api/name/product_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/setSmall_url:</TokenIdentifier>
+			<Abstract type="html">URL for the small image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *small_url</Declaration>
+			
+			
+			<Anchor>//api/name/small_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/small_url</TokenIdentifier>
+			<Abstract type="html">URL for the small image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *small_url</Declaration>
+			
+			
+			<Anchor>//api/name/small_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ImageObject/small_url</TokenIdentifier>
+			<Abstract type="html">URL for the small image of the product.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *small_url</Declaration>
+			
+			
+			<Anchor>//api/name/small_url</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/initWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to code the object.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithCoder:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ImageObject/encodeWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to decode the object properties.</Abstract>
+			<DeclaredIn>ImageObject.h</DeclaredIn>
+			
+			<Declaration>- (void)encodeWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/encodeWithCoder:</Anchor>
+            <NodeRef refid="4"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

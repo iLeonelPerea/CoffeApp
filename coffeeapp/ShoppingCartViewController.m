@@ -123,6 +123,16 @@
         [dictItemDetail setObject:[NSString stringWithFormat:@"%d", productInQueue.masterObject.masterObject_id] forKey:@"variant_id"];
         [dictItemDetail setObject:[NSString stringWithFormat:@"%d", productInQueue.quantity] forKey:@"quantity"];
         [dictItemDetail setObject:[NSString stringWithFormat:@"%d", productInQueue.delivery_type] forKey:@"delivery_type"];
+        //new parameter added here
+        //todo: check with backend
+        if(productInQueue.comment.length != 0)
+        {
+            [dictItemDetail setObject:productInQueue.comment forKey:@"comment"];
+        }
+        else
+        {
+            [dictItemDetail setObject:@"" forKey:@"comment"];
+        }
         [dictItemDetail setObject:productInQueue.delivery_date forKey:@"delivery_time"];
         [arrOrderItems addObject:dictItemDetail];
     }
@@ -164,7 +174,7 @@
               NSLog(@"order Number: %@ and order Token: %@", [result objectForKey:@"number"], [result objectForKey:@"token"]);
               /// Post a local notification to be sended to CoffeeBoy App to inform about an new order maded.
               [self doPostPushNotificationWithOrderNumber:[result objectForKey:@"number"] andOrderToken:[result objectForKey:@"token"]];
-              NSLog(@"Order done with result %@", result);
+              //NSLog(@"Order done with result %@", result);
               /// Create a dictionary based on the result object from the request.
               NSDictionary * dictResult = result;
               /// Check for the number -of the order- and the state -of the order- in the dictionary.
@@ -254,6 +264,11 @@
 /// Define the height fot the row based on the device screen size.
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:indexPath.row];
+    if(selectedProduct.isEditingComments)
+    {
+        return 180;
+    }
     return (IS_IPHONE_6)?94:80;
 }
 
@@ -300,7 +315,8 @@
     
     /// -------- Product name
     UILabel * lblProductName = [[UILabel alloc] init];
-    [lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
+    //[lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
+    [lblProductName setFrame:CGRectMake(0, 0, self.view.frame.size.width-50, 80)];
     [lblProductName setText:[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]]];
     [lblProductName setNumberOfLines:2];
     [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
@@ -309,7 +325,81 @@
     [cell addSubview:lblProductName];
     //---------------------------------------------------
     
+    //--------------------- Notes Section ---------------
+    if(productObject.isEditingComments)
+    {
+        UITextField * txtComment = [[UITextField alloc] initWithFrame:CGRectMake(20, 70, self.view.frame.size.width-40, 80)];
+        txtComment.placeholder = @"Make a note for this item";
+        //check if prev. comment has been added.
+        if(![productObject.comment isEqual:@""])
+            txtComment.text = productObject.comment;
+        [txtComment setDelegate:self];
+        [txtComment setTag:indexPath.row];
+        [cell addSubview:txtComment];
+        
+        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40, 27, 28, 27)];
+        [btnClose setImage:[UIImage imageNamed:@"close_note"] forState:UIControlStateNormal];
+        [btnClose setTag:indexPath.row];
+        [btnClose addTarget:self action:@selector(doCancelNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:btnClose];
+        
+        UIButton * btnDone = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-80, 140, 80, 40)];
+        [btnDone setImage:[UIImage imageNamed:@"done_btn_up"] forState:UIControlStateNormal];
+        [btnDone setImage:[UIImage imageNamed:@"done_btn_down"] forState:UIControlStateHighlighted];
+        [btnDone setTag:indexPath.row];
+        [btnDone addTarget:self action:@selector(doDoneNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:btnDone];
+    }
+    else
+    {
+        UIButton * btnNotes = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40, 27, 28, 27)];
+        [btnNotes setImage:[UIImage imageNamed:@"notes_ico"] forState:UIControlStateNormal];
+        [btnNotes setTag:indexPath.row];
+        [btnNotes addTarget:self action:@selector(doAddNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
+        [cell addSubview:btnNotes];
+    }
     return cell;
+}
+
+/// Done note selector
+-(void)doDoneNoteToProduct:(id)sender
+{
+    UIButton * btn = (UIButton*)sender;
+    ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:btn.tag];
+    CGPoint buttonPosition = [sender convertPoint:CGPointZero toView:tblProducts];
+    NSIndexPath *indexPath = [tblProducts indexPathForRowAtPoint:buttonPosition];
+    UITableViewCell * cell = [tblProducts cellForRowAtIndexPath:indexPath];
+    for (UIView * view in cell.subviews)
+    {
+        if([view isKindOfClass:[UITextField class]])
+        {
+            UITextField * txtNote = (UITextField*)view;
+            selectedProduct.comment = txtNote.text;
+            selectedProduct.isEditingComments = NO;
+            [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+            break;
+        }
+    }
+    [self doSynchronizeDefaults];
+}
+
+/// cancel note selector
+-(void)doCancelNoteToProduct:(id)sender
+{
+    UIButton * btn = (UIButton*)sender;
+    ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:btn.tag];
+    selectedProduct.isEditingComments = NO;
+    [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+}
+
+/// add note selector
+-(void)doAddNoteToProduct:(id)sender
+{
+    UIButton * btn = (UIButton*)sender;
+    ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:btn.tag];
+    selectedProduct.isEditingComments = YES;
+    [tblProducts setContentOffset:CGPointMake(0, btn.frame.origin.y+(btn.tag*50))];
+    [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
 }
 
 /// Crop the image sended as param.
@@ -330,4 +420,25 @@
     return subImage;
 }
 
+/// Synchronize values into user defaults.
+-(void)doSynchronizeDefaults
+{
+     /// Set the array arrProductsInQueue with the values of the array arrProductsShoppingCart
+     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsShoppingCart] forKey:@"arrProductsInQueue"];
+     [defaults synchronize];
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [tblProducts setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+(textField.tag*100))];
+    [tblProducts setContentOffset:CGPointMake(0, textField.frame.origin.y+(textField.tag*55)) animated:YES];
+}
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if(range.location > 49) // check alert's input length, it cannot be greather than 50 chars.
+        return NO;
+    return YES;
+}
 @end

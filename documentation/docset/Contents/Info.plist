@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.crowdint.coffeeapp.coffeeapp</string>
+	<key>CFBundleName</key>
+	<string>coffeeapp Documentation</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	
+	
+	
+	<key>DocSetFallbackURL</key>
+	<string>http://crowdint.com/CROWDINT</string>
+	<key>DocSetFeedName</key>
+	<string>coffeeapp Documentation</string>
+	<key>DocSetFeedURL</key>
+	<string>http://crowdint.com/CROWDINT/CROWDINT.atom</string>
+	<key>DocSetMinimumXcodeVersion</key>
+	<string>3.0</string>
+	<key>DocSetPlatformFamily</key>
+	<string>coffeBoy</string>
+	<key>DashDocSetFamily</key>
+	<string>appledoc</string>
+	<key>DocSetPublisherIdentifier</key>
+	<string>com.crowdint.coffeeapp.documentation</string>
+	<key>DocSetPublisherName</key>
+	<string>CROWDINT</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2014 CROWDINT. All rights reserved.</string>
+</dict>
+</plist>

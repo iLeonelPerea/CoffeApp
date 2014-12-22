@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/RESTManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/RESTManager</TokenIdentifier>
+			<Abstract type="html">Class with the methods for request to the Spree store.</Abstract>
+			<DeclaredIn>RESTManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="12"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RESTManager/sendData:toService:withMethod:isTesting:withAccessToken:isAccessTokenInHeader:toCallback:</TokenIdentifier>
+			<Abstract type="html">Method to send a request to the Spree store.</Abstract>
+			<DeclaredIn>RESTManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)sendData:(NSMutableDictionary *)data toService:(NSString *)service withMethod:(NSString *)method isTesting:(BOOL)testing withAccessToken:(NSString *)accessToken isAccessTokenInHeader:(BOOL)isInHeader toCallback:(void ( ^ ) ( id ))callback</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>data</Name>
+					<Abstract type="html">Dictionary with the data to be sended.</Abstract>
+				</Parameter><Parameter>
+					<Name>service</Name>
+					<Abstract type="html">The name of the endpoint of the Spree store.</Abstract>
+				</Parameter><Parameter>
+					<Name>method</Name>
+					<Abstract type="html">If the request is GET or POST.</Abstract>
+				</Parameter><Parameter>
+					<Name>testing</Name>
+					<Abstract type="html">Flag to define is the request will be send to the testing server.</Abstract>
+				</Parameter><Parameter>
+					<Name>accessToken</Name>
+					<Abstract type="html">The spreeapikey value.</Abstract>
+				</Parameter><Parameter>
+					<Name>isInHeader</Name>
+					<Abstract type="html">Flag to define if the accessToken will be sended in the header or in the boy of the request.</Abstract>
+				</Parameter><Parameter>
+					<Name>(id)callback</Name>
+					<Abstract type="html">The response of the request.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/sendData:toService:withMethod:isTesting:withAccessToken:isAccessTokenInHeader:toCallback:</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/RESTManager/updateProducts:toCallback:</TokenIdentifier>
+			<Abstract type="html">A special request to get the current menu from the Spree store.</Abstract>
+			<DeclaredIn>RESTManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)updateProducts:(NSString *)userAccessToken toCallback:(void ( ^ ) ( id ))callback</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>userAccessToken</Name>
+					<Abstract type="html">The spreeapikey value.</Abstract>
+				</Parameter><Parameter>
+					<Name>(id)callback</Name>
+					<Abstract type="html">The response of the request.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/updateProducts:toCallback:</Anchor>
+            <NodeRef refid="12"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

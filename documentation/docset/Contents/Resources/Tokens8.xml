@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/MenuViewController_iPhone.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/MenuViewController_iPhone</TokenIdentifier>
+			<Abstract type="html">    This controller display the current menu</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+            
+			
+			<NodeRef refid="8"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setViewPicker:</TokenIdentifier>
+			<Abstract type="html">Outlet to enable the filter categories throught UIPicker.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIView *viewPicker</Declaration>
+			
+			
+			<Anchor>//api/name/viewPicker</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/viewPicker</TokenIdentifier>
+			<Abstract type="html">Outlet to enable the filter categories throught UIPicker.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIView *viewPicker</Declaration>
+			
+			
+			<Anchor>//api/name/viewPicker</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/viewPicker</TokenIdentifier>
+			<Abstract type="html">Outlet to enable the filter categories throught UIPicker.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIView *viewPicker</Declaration>
+			
+			
+			<Anchor>//api/name/viewPicker</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setPickerOptions:</TokenIdentifier>
+			<Abstract type="html">Outlet to hide the picker and buttons.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIPickerView *pickerOptions</Declaration>
+			
+			
+			<Anchor>//api/name/pickerOptions</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/pickerOptions</TokenIdentifier>
+			<Abstract type="html">Outlet to hide the picker and buttons.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIPickerView *pickerOptions</Declaration>
+			
+			
+			<Anchor>//api/name/pickerOptions</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/pickerOptions</TokenIdentifier>
+			<Abstract type="html">Outlet to hide the picker and buttons.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIPickerView *pickerOptions</Declaration>
+			
+			
+			<Anchor>//api/name/pickerOptions</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setPickerFilterActiveOption:</TokenIdentifier>
+			<Abstract type="html">Use to save the category selected.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) long pickerFilterActiveOption</Declaration>
+			
+			
+			<Anchor>//api/name/pickerFilterActiveOption</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/pickerFilterActiveOption</TokenIdentifier>
+			<Abstract type="html">Use to save the category selected.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) long pickerFilterActiveOption</Declaration>
+			
+			
+			<Anchor>//api/name/pickerFilterActiveOption</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/pickerFilterActiveOption</TokenIdentifier>
+			<Abstract type="html">Use to save the category selected.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) long pickerFilterActiveOption</Declaration>
+			
+			
+			<Anchor>//api/name/pickerFilterActiveOption</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setIsPickerFilterActive:</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the filter is active.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isPickerFilterActive</Declaration>
+			
+			
+			<Anchor>//api/name/isPickerFilterActive</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/isPickerFilterActive</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the filter is active.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isPickerFilterActive</Declaration>
+			
+			
+			<Anchor>//api/name/isPickerFilterActive</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/isPickerFilterActive</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the filter is active.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isPickerFilterActive</Declaration>
+			
+			
+			<Anchor>//api/name/isPickerFilterActive</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setMapKitView:</TokenIdentifier>
+			<Abstract type="html">Outlet to enable the use of geolocalization through MapKit.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet MKMapView *mapKitView</Declaration>
+			
+			
+			<Anchor>//api/name/mapKitView</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/mapKitView</TokenIdentifier>
+			<Abstract type="html">Outlet to enable the use of geolocalization through MapKit.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet MKMapView *mapKitView</Declaration>
+			
+			
+			<Anchor>//api/name/mapKitView</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/mapKitView</TokenIdentifier>
+			<Abstract type="html">Outlet to enable the use of geolocalization through MapKit.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) IBOutlet MKMapView *mapKitView</Declaration>
+			
+			
+			<Anchor>//api/name/mapKitView</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setLocationManager:</TokenIdentifier>
+			<Abstract type="html">Use to set and calculate the distance between the client -iPhone App- and the administrator -iPad App-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) CLLocationManager *locationManager</Declaration>
+			
+			
+			<Anchor>//api/name/locationManager</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/locationManager</TokenIdentifier>
+			<Abstract type="html">Use to set and calculate the distance between the client -iPhone App- and the administrator -iPad App-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) CLLocationManager *locationManager</Declaration>
+			
+			
+			<Anchor>//api/name/locationManager</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/locationManager</TokenIdentifier>
+			<Abstract type="html">Use to set and calculate the distance between the client -iPhone App- and the administrator -iPad App-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (strong, nonatomic) CLLocationManager *locationManager</Declaration>
+			
+			
+			<Anchor>//api/name/locationManager</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setArrProductObjects:</TokenIdentifier>
+			<Abstract type="html">Array to store all the elements of the menu -Categories and Products-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrProductObjects</Declaration>
+			
+			
+			<Anchor>//api/name/arrProductObjects</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/arrProductObjects</TokenIdentifier>
+			<Abstract type="html">Array to store all the elements of the menu -Categories and Products-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrProductObjects</Declaration>
+			
+			
+			<Anchor>//api/name/arrProductObjects</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/arrProductObjects</TokenIdentifier>
+			<Abstract type="html">Array to store all the elements of the menu -Categories and Products-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrProductObjects</Declaration>
+			
+			
+			<Anchor>//api/name/arrProductObjects</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setArrProductCategoriesObjects:</TokenIdentifier>
+			<Abstract type="html">Array to store only the categories.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrProductCategoriesObjects</Declaration>
+			
+			
+			<Anchor>//api/name/arrProductCategoriesObjects</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/arrProductCategoriesObjects</TokenIdentifier>
+			<Abstract type="html">Array to store only the categories.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrProductCategoriesObjects</Declaration>
+			
+			
+			<Anchor>//api/name/arrProductCategoriesObjects</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/arrProductCategoriesObjects</TokenIdentifier>
+			<Abstract type="html">Array to store only the categories.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrProductCategoriesObjects</Declaration>
+			
+			
+			<Anchor>//api/name/arrProductCategoriesObjects</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setIsViewPlaceOrderActive:</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the bottom bar for place the order is active.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isViewPlaceOrderActive</Declaration>
+			
+			
+			<Anchor>//api/name/isViewPlaceOrderActive</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/isViewPlaceOrderActive</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the bottom bar for place the order is active.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isViewPlaceOrderActive</Declaration>
+			
+			
+			<Anchor>//api/name/isViewPlaceOrderActive</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/isViewPlaceOrderActive</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the bottom bar for place the order is active.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isViewPlaceOrderActive</Declaration>
+			
+			
+			<Anchor>//api/name/isViewPlaceOrderActive</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setTblProducts:</TokenIdentifier>
+			<Abstract type="html">Outlet for the table view element, where the menu is displayed.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblProducts</Declaration>
+			
+			
+			<Anchor>//api/name/tblProducts</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/tblProducts</TokenIdentifier>
+			<Abstract type="html">Outlet for the table view element, where the menu is displayed.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblProducts</Declaration>
+			
+			
+			<Anchor>//api/name/tblProducts</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/tblProducts</TokenIdentifier>
+			<Abstract type="html">Outlet for the table view element, where the menu is displayed.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblProducts</Declaration>
+			
+			
+			<Anchor>//api/name/tblProducts</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setViewPlaceOrder:</TokenIdentifier>
+			<Abstract type="html">Outlet for the view used as bottom bar to place the order.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIView *viewPlaceOrder</Declaration>
+			
+			
+			<Anchor>//api/name/viewPlaceOrder</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/viewPlaceOrder</TokenIdentifier>
+			<Abstract type="html">Outlet for the view used as bottom bar to place the order.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIView *viewPlaceOrder</Declaration>
+			
+			
+			<Anchor>//api/name/viewPlaceOrder</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/viewPlaceOrder</TokenIdentifier>
+			<Abstract type="html">Outlet for the view used as bottom bar to place the order.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIView *viewPlaceOrder</Declaration>
+			
+			
+			<Anchor>//api/name/viewPlaceOrder</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setLblProductsCount:</TokenIdentifier>
+			<Abstract type="html">Outlet for the label that display the total amount of selected products by user.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblProductsCount</Declaration>
+			
+			
+			<Anchor>//api/name/lblProductsCount</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/lblProductsCount</TokenIdentifier>
+			<Abstract type="html">Outlet for the label that display the total amount of selected products by user.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblProductsCount</Declaration>
+			
+			
+			<Anchor>//api/name/lblProductsCount</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/lblProductsCount</TokenIdentifier>
+			<Abstract type="html">Outlet for the label that display the total amount of selected products by user.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblProductsCount</Declaration>
+			
+			
+			<Anchor>//api/name/lblProductsCount</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setBtnPlaceOrder:</TokenIdentifier>
+			<Abstract type="html">Outlet for the button to place order -display the shopping cart controller-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnPlaceOrder</Declaration>
+			
+			
+			<Anchor>//api/name/btnPlaceOrder</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/btnPlaceOrder</TokenIdentifier>
+			<Abstract type="html">Outlet for the button to place order -display the shopping cart controller-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnPlaceOrder</Declaration>
+			
+			
+			<Anchor>//api/name/btnPlaceOrder</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/btnPlaceOrder</TokenIdentifier>
+			<Abstract type="html">Outlet for the button to place order -display the shopping cart controller-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnPlaceOrder</Declaration>
+			
+			
+			<Anchor>//api/name/btnPlaceOrder</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setHUDJMProgress:</TokenIdentifier>
+			<Abstract type="html">Outlet for the HUD used to display loading while some proccess is active</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *HUDJMProgress</Declaration>
+			
+			
+			<Anchor>//api/name/HUDJMProgress</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/HUDJMProgress</TokenIdentifier>
+			<Abstract type="html">Outlet for the HUD used to display loading while some proccess is active</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *HUDJMProgress</Declaration>
+			
+			
+			<Anchor>//api/name/HUDJMProgress</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/HUDJMProgress</TokenIdentifier>
+			<Abstract type="html">Outlet for the HUD used to display loading while some proccess is active</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *HUDJMProgress</Declaration>
+			
+			
+			<Anchor>//api/name/HUDJMProgress</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setProductObject:</TokenIdentifier>
+			<Abstract type="html">A variable of ProductObject kind.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) ProductObject *productObject</Declaration>
+			
+			
+			<Anchor>//api/name/productObject</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/productObject</TokenIdentifier>
+			<Abstract type="html">A variable of ProductObject kind.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) ProductObject *productObject</Declaration>
+			
+			
+			<Anchor>//api/name/productObject</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/productObject</TokenIdentifier>
+			<Abstract type="html">A variable of ProductObject kind.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) ProductObject *productObject</Declaration>
+			
+			
+			<Anchor>//api/name/productObject</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setCurrentDayOfWeek:</TokenIdentifier>
+			<Abstract type="html">Variable to store the current day of the week in integer value, which can be between 0 and 6.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int currentDayOfWeek</Declaration>
+			
+			
+			<Anchor>//api/name/currentDayOfWeek</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/currentDayOfWeek</TokenIdentifier>
+			<Abstract type="html">Variable to store the current day of the week in integer value, which can be between 0 and 6.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int currentDayOfWeek</Declaration>
+			
+			
+			<Anchor>//api/name/currentDayOfWeek</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/currentDayOfWeek</TokenIdentifier>
+			<Abstract type="html">Variable to store the current day of the week in integer value, which can be between 0 and 6.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int currentDayOfWeek</Declaration>
+			
+			
+			<Anchor>//api/name/currentDayOfWeek</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setAreMealsAvailable:</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the category meals is available according to a time schedule.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL areMealsAvailable</Declaration>
+			
+			
+			<Anchor>//api/name/areMealsAvailable</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/areMealsAvailable</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the category meals is available according to a time schedule.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL areMealsAvailable</Declaration>
+			
+			
+			<Anchor>//api/name/areMealsAvailable</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/areMealsAvailable</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the category meals is available according to a time schedule.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL areMealsAvailable</Declaration>
+			
+			
+			<Anchor>//api/name/areMealsAvailable</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setCurrentSection:</TokenIdentifier>
+			<Abstract type="html">Variable to store the number of the current -displayed on screen- section.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int currentSection</Declaration>
+			
+			
+			<Anchor>//api/name/currentSection</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/currentSection</TokenIdentifier>
+			<Abstract type="html">Variable to store the number of the current -displayed on screen- section.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int currentSection</Declaration>
+			
+			
+			<Anchor>//api/name/currentSection</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/currentSection</TokenIdentifier>
+			<Abstract type="html">Variable to store the number of the current -displayed on screen- section.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int currentSection</Declaration>
+			
+			
+			<Anchor>//api/name/currentSection</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setAreLocationServicesAvailable:</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine is the location service are available on the device. If they&apos;re not, the geolocalization limitant is disable.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL areLocationServicesAvailable</Declaration>
+			
+			
+			<Anchor>//api/name/areLocationServicesAvailable</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/areLocationServicesAvailable</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine is the location service are available on the device. If they&apos;re not, the geolocalization limitant is disable.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL areLocationServicesAvailable</Declaration>
+			
+			
+			<Anchor>//api/name/areLocationServicesAvailable</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/MenuViewController_iPhone/areLocationServicesAvailable</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine is the location service are available on the device. If they&apos;re not, the geolocalization limitant is disable.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL areLocationServicesAvailable</Declaration>
+			
+			
+			<Anchor>//api/name/areLocationServicesAvailable</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/setQuantitySelectedProducts:</TokenIdentifier>
+			<Abstract type="html">Set the quantity for selected products and update the total on hand of the products.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>- (NSMutableArray *)setQuantitySelectedProducts:(NSMutableArray *)arrMenuProducts</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>arrMenuProducts</Name>
+					<Abstract type="html">A mutable array, which depending where the message is sended is the origin of the content of the array. It must have the categories and the products of the current menu.
+
+    - First check if there&apos;s selected products by user. If there&apos;s, then look for those products to update their quantity value.
+    - Create and set an mutable array called arrProductsOrdered with the products that are in orders with status &quot;confirm&quot; or &quot;attending&quot;. To get the information a method from DBManager is used -getProductsInConfirm-. After, look for those products to update the total on hand value.
+    - Return the array received via arrMenuProducts.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setQuantitySelectedProducts:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/doUpdateProductsStockAfterNotification:</TokenIdentifier>
+			<Abstract type="html">Local notification to update the stock after a push notification is received.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>- (void)doUpdateProductsStockAfterNotification:(NSNotification *)notification</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>notification</Name>
+					<Abstract type="html">A NSNotification param, in this case it&apos;s not used.
+
+    The app can receive a push notification which informas that an order has been served. When this occurs the method do:
+    - Extract the data from user defaults stored in dataCompleteNotification, an array with the products that will be updated..
+    - Update the stock in local DB. Call the DBManager&apos;s method updateProductStock, sendind the masterid and totalon_hand as params.
+    - Set again the products array calling local method setQuantitySelectedProducts.
+    - Reload table view tblProducts.
+    - Reset the values in user defaults, setting dataCompleteNotification in nil.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doUpdateProductsStockAfterNotification:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/doUpdateMenu:</TokenIdentifier>
+			<Abstract type="html">Local notification to update the categories and products of the current menu.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>- (void)doUpdateMenu:(NSNotification *)notification</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>notification</Name>
+					<Abstract type="html">A NSNotification param, in this case it&apos;s not used.
+
+    Request to spree the current menu, update the local DB and set again the array arrProductObjects. This method is called in the next cases:
+    - After an order is maded by the user.
+    - A category is added/removed/updated from the current menu.
+    - A product is added/removed/updated from the current menu.
+    - The app returns from the background.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doUpdateMenu:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/synchronizeDefaults</TokenIdentifier>
+			<Abstract type="html">Synchronize the array arrProductsInQueue in the user defaults.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>- (void)synchronizeDefaults</Declaration>
+			
+			
+			<Anchor>//api/name/synchronizeDefaults</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/doShowPlaceOrderBottomBar:</TokenIdentifier>
+			<Abstract type="html">Show or hide the bottom bar with the button to place the order and the select items count.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>- (void)doShowPlaceOrderBottomBar:(int)productsCount</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>productsCount</Name>
+					<Abstract type="html">Integer variable with the total quantity of selected items.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doShowPlaceOrderBottomBar:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/didSelectProduct:</TokenIdentifier>
+			<Abstract type="html">Add the quantity of the selected product.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>- (void)didSelectProduct:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">Contains the reference of the add button of the current selected product.
+
+    - Create a product object variable.
+    - Extract the content of sender param.
+    - Set product object with the reference of the selected product stored in arrProductObjects.
+    - Update the quantity of the product.
+    - Reload the table view tblProducts.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/didSelectProduct:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/didDeselectProduct:</TokenIdentifier>
+			<Abstract type="html">Sustract the quantity of the selected product.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>- (void)didDeselectProduct:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">Contains the reference of the minus button of the current selected product.
+
+    - Create a product object variable.
+    - Extract the content of sender param.
+    - Set product object with the reference of the selected product stored in arrProductObjects.
+    - Update the quantity of the product.
+    - Reload the table view tblProducts.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/didDeselectProduct:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/doPlaceOrder:</TokenIdentifier>
+			<Abstract type="html">Display the ShoppingCartViewController.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doPlaceOrder:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">In this case it&apos;s not used.
+
+    To display de shopping cart, it is neccesary:
+    - Check if the location service are available and if the user`s location is under 1,000 meters. In case of false, a custom alert view is displayed to inform the user about.
+    - Check if the category of the product is equal to &quot;Desayuno&quot; and if the meals category is available.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doPlaceOrder:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/viewDidAppear:</TokenIdentifier>
+			<Abstract type="html">Initialice mapkit</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (void)viewDidAppear:(BOOL)animated</Declaration>
+			
+			
+			<Anchor>//api/name/viewDidAppear:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/viewWillDisappear:</TokenIdentifier>
+			<Abstract type="html">Check if the bottom bar is active, to set the size of tblProducts.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (void)viewWillDisappear:(BOOL)animated</Declaration>
+			
+			
+			<Anchor>//api/name/viewWillDisappear:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/didReceiveMemoryWarning</TokenIdentifier>
+			<Abstract type="html">System method.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (void)didReceiveMemoryWarning</Declaration>
+			
+			
+			<Anchor>//api/name/didReceiveMemoryWarning</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/doReloadData</TokenIdentifier>
+			<Abstract type="html">Reload tblProducts table view.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (void)doReloadData</Declaration>
+			
+			
+			<Anchor>//api/name/doReloadData</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/tableView:heightForRowAtIndexPath:</TokenIdentifier>
+			<Abstract type="html">Define the height for a each row, based on which device is -iPhone 6 or another-.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:heightForRowAtIndexPath:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/numberOfSectionsInTableView:</TokenIdentifier>
+			<Abstract type="html">Return the number of sections based on the element that contains array arrProductObjects. If the filter is active return 1.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView</Declaration>
+			
+			
+			<Anchor>//api/name/numberOfSectionsInTableView:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/tableView:numberOfRowsInSection:</TokenIdentifier>
+			<Abstract type="html">Return the number of rows for each section. Is determined by the number of elements in each sub-array stored in the main array arrProducObjects. If the filter is active return the section selected.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:numberOfRowsInSection:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/tableView:heightForHeaderInSection:</TokenIdentifier>
+			<Abstract type="html">Define the height for the header section.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:heightForHeaderInSection:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/tableView:viewForHeaderInSection:</TokenIdentifier>
+			<Abstract type="html">Draw the content of each section of the table view.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:viewForHeaderInSection:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/tableView:cellForRowAtIndexPath:</TokenIdentifier>
+			<Abstract type="html">Draw the content of each row of the table view.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:cellForRowAtIndexPath:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/alertView:clickedButtonAtIndex:</TokenIdentifier>
+			<Abstract type="html">Alert view delegate. Add the quantity to a specific product when the user select more than one.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex</Declaration>
+			
+			
+			<Anchor>//api/name/alertView:clickedButtonAtIndex:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/getSubImageFrom:WithRect:</TokenIdentifier>
+			<Abstract type="html">Crop a image sended to the method.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (UIImage *)getSubImageFrom:(UIImage *)img WithRect:(CGRect)rect</Declaration>
+			
+			
+			<Anchor>//api/name/getSubImageFrom:WithRect:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/updateDistanceToAnnotation</TokenIdentifier>
+			<Abstract type="html">Update the distance between the user position and the destination point.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (double)updateDistanceToAnnotation</Declaration>
+			
+			
+			<Anchor>//api/name/updateDistanceToAnnotation</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/locationManager:didFailWithError:</TokenIdentifier>
+			<Abstract type="html">Set the flag areLocationServicesAvailable in NO when the location services are off.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error</Declaration>
+			
+			
+			<Anchor>//api/name/locationManager:didFailWithError:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/locationManager:didUpdateLocations:</TokenIdentifier>
+			<Abstract type="html">Set the flag areLocationServicesAvailable in YES when the location services are on.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations</Declaration>
+			
+			
+			<Anchor>//api/name/locationManager:didUpdateLocations:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/mapView:didUpdateUserLocation:</TokenIdentifier>
+			<Abstract type="html">Refresh the map after the user location was updated.</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation</Declaration>
+			
+			
+			<Anchor>//api/name/mapView:didUpdateUserLocation:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/MenuViewController_iPhone/pickerView:titleForRow:forComponent:</TokenIdentifier>
+			<Abstract type="html">Set the title of each category</Abstract>
+			<DeclaredIn>MenuViewController_iPhone.m</DeclaredIn>
+			
+			<Declaration>- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component</Declaration>
+			
+			
+			<Anchor>//api/name/pickerView:titleForRow:forComponent:</Anchor>
+            <NodeRef refid="8"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

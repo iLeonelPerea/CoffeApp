@@ -175,6 +175,12 @@
 #pragma mark -- Cancel order action
 -(void)doCancelOrder:(id)sender
 {
+    /// Show an HUD
+    dispatch_async(dispatch_get_main_queue(),^{
+        [(UIButton*)sender setEnabled:NO];
+        [prgLoading showInView:[self view]];
+    });
+    
     /// Extract the information from the arrOrders
     UIButton * senderButton = (UIButton *)sender;
     NSMutableDictionary * dictOrder = [arrOrders objectAtIndex:[senderButton tag]];

@@ -1,0 +1,605 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/ShoppingCartViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/ShoppingCartViewController</TokenIdentifier>
+			<Abstract type="html">Macros to identify size screen</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="13"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setImgTitle:</TokenIdentifier>
+			<Abstract type="html">Outlet to set the screen&apos;s title.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIImageView *imgTitle</Declaration>
+			
+			
+			<Anchor>//api/name/imgTitle</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/imgTitle</TokenIdentifier>
+			<Abstract type="html">Outlet to set the screen&apos;s title.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIImageView *imgTitle</Declaration>
+			
+			
+			<Anchor>//api/name/imgTitle</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/imgTitle</TokenIdentifier>
+			<Abstract type="html">Outlet to set the screen&apos;s title.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIImageView *imgTitle</Declaration>
+			
+			
+			<Anchor>//api/name/imgTitle</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setImgBottomBar:</TokenIdentifier>
+			<Abstract type="html">Outlet to set the background of the botton bar of the screen.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIImageView *imgBottomBar</Declaration>
+			
+			
+			<Anchor>//api/name/imgBottomBar</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/imgBottomBar</TokenIdentifier>
+			<Abstract type="html">Outlet to set the background of the botton bar of the screen.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIImageView *imgBottomBar</Declaration>
+			
+			
+			<Anchor>//api/name/imgBottomBar</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/imgBottomBar</TokenIdentifier>
+			<Abstract type="html">Outlet to set the background of the botton bar of the screen.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIImageView *imgBottomBar</Declaration>
+			
+			
+			<Anchor>//api/name/imgBottomBar</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setBtnCheckOut:</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIButton to make the order.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnCheckOut</Declaration>
+			
+			
+			<Anchor>//api/name/btnCheckOut</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/btnCheckOut</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIButton to make the order.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnCheckOut</Declaration>
+			
+			
+			<Anchor>//api/name/btnCheckOut</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/btnCheckOut</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIButton to make the order.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnCheckOut</Declaration>
+			
+			
+			<Anchor>//api/name/btnCheckOut</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setBtnEmptyShoppingCart:</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIButton to cancel -return to the menu-.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnEmptyShoppingCart</Declaration>
+			
+			
+			<Anchor>//api/name/btnEmptyShoppingCart</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/btnEmptyShoppingCart</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIButton to cancel -return to the menu-.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnEmptyShoppingCart</Declaration>
+			
+			
+			<Anchor>//api/name/btnEmptyShoppingCart</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/btnEmptyShoppingCart</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIButton to cancel -return to the menu-.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnEmptyShoppingCart</Declaration>
+			
+			
+			<Anchor>//api/name/btnEmptyShoppingCart</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setLblDate:</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display the current date.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblDate</Declaration>
+			
+			
+			<Anchor>//api/name/lblDate</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/lblDate</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display the current date.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblDate</Declaration>
+			
+			
+			<Anchor>//api/name/lblDate</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/lblDate</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display the current date.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblDate</Declaration>
+			
+			
+			<Anchor>//api/name/lblDate</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setLblDisclaimer:</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display a disclaimer message.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblDisclaimer</Declaration>
+			
+			
+			<Anchor>//api/name/lblDisclaimer</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/lblDisclaimer</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display a disclaimer message.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblDisclaimer</Declaration>
+			
+			
+			<Anchor>//api/name/lblDisclaimer</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/lblDisclaimer</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display a disclaimer message.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblDisclaimer</Declaration>
+			
+			
+			<Anchor>//api/name/lblDisclaimer</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setTblProducts:</TokenIdentifier>
+			<Abstract type="html">Outlet for a tebla view component, which display the items selected by user.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblProducts</Declaration>
+			
+			
+			<Anchor>//api/name/tblProducts</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/tblProducts</TokenIdentifier>
+			<Abstract type="html">Outlet for a tebla view component, which display the items selected by user.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblProducts</Declaration>
+			
+			
+			<Anchor>//api/name/tblProducts</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/tblProducts</TokenIdentifier>
+			<Abstract type="html">Outlet for a tebla view component, which display the items selected by user.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblProducts</Declaration>
+			
+			
+			<Anchor>//api/name/tblProducts</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setArrProductsShoppingCart:</TokenIdentifier>
+			<Abstract type="html">Mutable array to store the items selected for the order.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrProductsShoppingCart</Declaration>
+			
+			
+			<Anchor>//api/name/arrProductsShoppingCart</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/arrProductsShoppingCart</TokenIdentifier>
+			<Abstract type="html">Mutable array to store the items selected for the order.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrProductsShoppingCart</Declaration>
+			
+			
+			<Anchor>//api/name/arrProductsShoppingCart</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/arrProductsShoppingCart</TokenIdentifier>
+			<Abstract type="html">Mutable array to store the items selected for the order.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrProductsShoppingCart</Declaration>
+			
+			
+			<Anchor>//api/name/arrProductsShoppingCart</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setHUDJMProgress:</TokenIdentifier>
+			<Abstract type="html">Outlet for a HUD to display laoding messages.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *HUDJMProgress</Declaration>
+			
+			
+			<Anchor>//api/name/HUDJMProgress</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/HUDJMProgress</TokenIdentifier>
+			<Abstract type="html">Outlet for a HUD to display laoding messages.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *HUDJMProgress</Declaration>
+			
+			
+			<Anchor>//api/name/HUDJMProgress</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/HUDJMProgress</TokenIdentifier>
+			<Abstract type="html">Outlet for a HUD to display laoding messages.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *HUDJMProgress</Declaration>
+			
+			
+			<Anchor>//api/name/HUDJMProgress</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/setTmrOrder:</TokenIdentifier>
+			<Abstract type="html">Timer to trigger the cancel method after 20 minutes of inactivity.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSTimer *tmrOrder</Declaration>
+			
+			
+			<Anchor>//api/name/tmrOrder</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/tmrOrder</TokenIdentifier>
+			<Abstract type="html">Timer to trigger the cancel method after 20 minutes of inactivity.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSTimer *tmrOrder</Declaration>
+			
+			
+			<Anchor>//api/name/tmrOrder</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/ShoppingCartViewController/tmrOrder</TokenIdentifier>
+			<Abstract type="html">Timer to trigger the cancel method after 20 minutes of inactivity.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSTimer *tmrOrder</Declaration>
+			
+			
+			<Anchor>//api/name/tmrOrder</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/doDismissShoppingCart:</TokenIdentifier>
+			<Abstract type="html">Dismiss the current view controller.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doDismissShoppingCart:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">It&apos;s no used.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doDismissShoppingCart:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/doPlaceOrder:</TokenIdentifier>
+			<Abstract type="html">Place order.
+    </Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doPlaceOrder:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">It&apos;s not used.
+    
+    - Extract the selected products and create a dictionary for each one, which is added to an array. It will be setted to the OrderObject in AppDelegate to prepare the order petition.
+    - Requeste to spree to make the order, based on the data of getOrder from the UserObject in AppDelegate.
+    - Check for the result of the request.
+    - Insert in the local database the log if the request was succeded.
+    - Post a notification to CoffeeBoy app, to informa about a new order maded.
+    - Dismiss the current view controller to return to the menu.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doPlaceOrder:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/doPostPushNotificationWithOrderNumber:andOrderToken:</TokenIdentifier>
+			<Abstract type="html">Post a notification to CoffeBoy App.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>- (void)doPostPushNotificationWithOrderNumber:(NSString *)orderNumber andOrderToken:(NSString *)orderToken</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>orderNumber</Name>
+					<Abstract type="html">The ORDER_ID of the order maded.</Abstract>
+				</Parameter><Parameter>
+					<Name>andOrderToken</Name>
+					<Abstract type="html">Token generated by spree for the order maded.
+
+    Send a notification for the CoffeeBoy app to inform about a new order maded.
+    - Set the data to be sended.
+    - Send the notification via &quot;Requests&quot; channel.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doPostPushNotificationWithOrderNumber:andOrderToken:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/doCancel:</TokenIdentifier>
+			<Abstract type="html">Dismiss the ShoppingCartViewController and cancell the checkout proccess.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doCancel:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">It&apos;s not used.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doCancel:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/viewDidAppear:</TokenIdentifier>
+			<Abstract type="html">Operations to be done when the view appear.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)viewDidAppear:(BOOL)animated</Declaration>
+			
+			
+			<Anchor>//api/name/viewDidAppear:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/viewWillDisappear:</TokenIdentifier>
+			<Abstract type="html">System method.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)viewWillDisappear:(BOOL)animated</Declaration>
+			
+			
+			<Anchor>//api/name/viewWillDisappear:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/didReceiveMemoryWarning</TokenIdentifier>
+			<Abstract type="html">Set isMenuViewController flag to YES in AppDelegate.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didReceiveMemoryWarning</Declaration>
+			
+			
+			<Anchor>//api/name/didReceiveMemoryWarning</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/tableView:numberOfRowsInSection:</TokenIdentifier>
+			<Abstract type="html">Define the number of rows for the table view tblProducts based on the number of elements of arrProductsShoppingCart.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:numberOfRowsInSection:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/tableView:heightForRowAtIndexPath:</TokenIdentifier>
+			<Abstract type="html">Define the height fot the row based on the device screen size.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:heightForRowAtIndexPath:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/tableView:cellForRowAtIndexPath:</TokenIdentifier>
+			<Abstract type="html">Draw the contect of the cell for the table row. Display the quantity and name of the product with the image as background.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:cellForRowAtIndexPath:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/doDoneNoteToProduct:</TokenIdentifier>
+			<Abstract type="html">Done note selector</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)doDoneNoteToProduct:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/doDoneNoteToProduct:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/doCancelNoteToProduct:</TokenIdentifier>
+			<Abstract type="html">cancel note selector</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)doCancelNoteToProduct:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/doCancelNoteToProduct:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/doAddNoteToProduct:</TokenIdentifier>
+			<Abstract type="html">add note selector</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)doAddNoteToProduct:(id)sender</Declaration>
+			
+			
+			<Anchor>//api/name/doAddNoteToProduct:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/getSubImageFrom:WithRect:</TokenIdentifier>
+			<Abstract type="html">Crop the image sended as param.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (UIImage *)getSubImageFrom:(UIImage *)img WithRect:(CGRect)rect</Declaration>
+			
+			
+			<Anchor>//api/name/getSubImageFrom:WithRect:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/doSynchronizeDefaults</TokenIdentifier>
+			<Abstract type="html">Synchronize values into user defaults.</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)doSynchronizeDefaults</Declaration>
+			
+			
+			<Anchor>//api/name/doSynchronizeDefaults</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/ShoppingCartViewController/textFieldDidBeginEditing:</TokenIdentifier>
+			<Abstract type="html">Set the array arrProductsInQueue with the values of the array arrProductsShoppingCart</Abstract>
+			<DeclaredIn>ShoppingCartViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)textFieldDidBeginEditing:(UITextField *)textField</Declaration>
+			
+			
+			<Anchor>//api/name/textFieldDidBeginEditing:</Anchor>
+            <NodeRef refid="13"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>
