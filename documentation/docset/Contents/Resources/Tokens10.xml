@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/OrdersHistoryViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/OrdersHistoryViewController</TokenIdentifier>
+			<Abstract type="html">    This controller display all the orders from the user.
+    
+    There&apos;s to tabs:
+        - Pending orders: All the orders placed or that are being attending.
+        - Past orders: All the served orders.
+    
+    The information is from the ORDERSLOG table of local database.</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="10"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/setImgPatron:</TokenIdentifier>
+			<Abstract type="html">Outlet to display the title&apos;s background</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIImageView *imgPatron</Declaration>
+			
+			
+			<Anchor>//api/name/imgPatron</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/imgPatron</TokenIdentifier>
+			<Abstract type="html">Outlet to display the title&apos;s background</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIImageView *imgPatron</Declaration>
+			
+			
+			<Anchor>//api/name/imgPatron</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrdersHistoryViewController/imgPatron</TokenIdentifier>
+			<Abstract type="html">Outlet to display the title&apos;s background</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIImageView *imgPatron</Declaration>
+			
+			
+			<Anchor>//api/name/imgPatron</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/setLblTitle:</TokenIdentifier>
+			<Abstract type="html">Outlet to set screen&apos;s title. Which is &quot;Pending orders&quot; or &quot;Past orders&quot;</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblTitle</Declaration>
+			
+			
+			<Anchor>//api/name/lblTitle</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/lblTitle</TokenIdentifier>
+			<Abstract type="html">Outlet to set screen&apos;s title. Which is &quot;Pending orders&quot; or &quot;Past orders&quot;</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblTitle</Declaration>
+			
+			
+			<Anchor>//api/name/lblTitle</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrdersHistoryViewController/lblTitle</TokenIdentifier>
+			<Abstract type="html">Outlet to set screen&apos;s title. Which is &quot;Pending orders&quot; or &quot;Past orders&quot;</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblTitle</Declaration>
+			
+			
+			<Anchor>//api/name/lblTitle</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/setTblOrders:</TokenIdentifier>
+			<Abstract type="html">Outlet for TableView component where the orders&apos;s information is displayed</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblOrders</Declaration>
+			
+			
+			<Anchor>//api/name/tblOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/tblOrders</TokenIdentifier>
+			<Abstract type="html">Outlet for TableView component where the orders&apos;s information is displayed</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblOrders</Declaration>
+			
+			
+			<Anchor>//api/name/tblOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrdersHistoryViewController/tblOrders</TokenIdentifier>
+			<Abstract type="html">Outlet for TableView component where the orders&apos;s information is displayed</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblOrders</Declaration>
+			
+			
+			<Anchor>//api/name/tblOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/setBtnIncomingOrders:</TokenIdentifier>
+			<Abstract type="html">Outlet for UIButton component. Which launch the action to display the orders in confirm or attending status</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnIncomingOrders</Declaration>
+			
+			
+			<Anchor>//api/name/btnIncomingOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/btnIncomingOrders</TokenIdentifier>
+			<Abstract type="html">Outlet for UIButton component. Which launch the action to display the orders in confirm or attending status</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnIncomingOrders</Declaration>
+			
+			
+			<Anchor>//api/name/btnIncomingOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrdersHistoryViewController/btnIncomingOrders</TokenIdentifier>
+			<Abstract type="html">Outlet for UIButton component. Which launch the action to display the orders in confirm or attending status</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnIncomingOrders</Declaration>
+			
+			
+			<Anchor>//api/name/btnIncomingOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/setBtnPastOrders:</TokenIdentifier>
+			<Abstract type="html">Outlet for UIButton component. Which launch the action to display the past (complete) orders</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnPastOrders</Declaration>
+			
+			
+			<Anchor>//api/name/btnPastOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/btnPastOrders</TokenIdentifier>
+			<Abstract type="html">Outlet for UIButton component. Which launch the action to display the past (complete) orders</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnPastOrders</Declaration>
+			
+			
+			<Anchor>//api/name/btnPastOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrdersHistoryViewController/btnPastOrders</TokenIdentifier>
+			<Abstract type="html">Outlet for UIButton component. Which launch the action to display the past (complete) orders</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnPastOrders</Declaration>
+			
+			
+			<Anchor>//api/name/btnPastOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/setArrOrders:</TokenIdentifier>
+			<Abstract type="html">Array to store the orders to display on screen. It&apos;s content depends on which tab is selected</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrOrders</Declaration>
+			
+			
+			<Anchor>//api/name/arrOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/arrOrders</TokenIdentifier>
+			<Abstract type="html">Array to store the orders to display on screen. It&apos;s content depends on which tab is selected</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrOrders</Declaration>
+			
+			
+			<Anchor>//api/name/arrOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrdersHistoryViewController/arrOrders</TokenIdentifier>
+			<Abstract type="html">Array to store the orders to display on screen. It&apos;s content depends on which tab is selected</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrOrders</Declaration>
+			
+			
+			<Anchor>//api/name/arrOrders</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/setIsPendingOrdersSelected:</TokenIdentifier>
+			<Abstract type="html">Boolean flat to indicate is the Pending Orders tab is active.
+    Also is used to set the param for the method that extracts the info from the local database when the app receives a push notification to update the user&apos;s order status </Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isPendingOrdersSelected</Declaration>
+			
+			
+			<Anchor>//api/name/isPendingOrdersSelected</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/isPendingOrdersSelected</TokenIdentifier>
+			<Abstract type="html">Boolean flat to indicate is the Pending Orders tab is active.
+    Also is used to set the param for the method that extracts the info from the local database when the app receives a push notification to update the user&apos;s order status </Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isPendingOrdersSelected</Declaration>
+			
+			
+			<Anchor>//api/name/isPendingOrdersSelected</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrdersHistoryViewController/isPendingOrdersSelected</TokenIdentifier>
+			<Abstract type="html">Boolean flat to indicate is the Pending Orders tab is active.
+    Also is used to set the param for the method that extracts the info from the local database when the app receives a push notification to update the user&apos;s order status </Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isPendingOrdersSelected</Declaration>
+			
+			
+			<Anchor>//api/name/isPendingOrdersSelected</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/setPrgLoading:</TokenIdentifier>
+			<Abstract type="html">Outlet for the HUD component to display a &quot;loading&quot; when some process is active</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *prgLoading</Declaration>
+			
+			
+			<Anchor>//api/name/prgLoading</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/prgLoading</TokenIdentifier>
+			<Abstract type="html">Outlet for the HUD component to display a &quot;loading&quot; when some process is active</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *prgLoading</Declaration>
+			
+			
+			<Anchor>//api/name/prgLoading</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/OrdersHistoryViewController/prgLoading</TokenIdentifier>
+			<Abstract type="html">Outlet for the HUD component to display a &quot;loading&quot; when some process is active</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *prgLoading</Declaration>
+			
+			
+			<Anchor>//api/name/prgLoading</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/doShowPendingOrders:</TokenIdentifier>
+			<Abstract type="html">Get and display all the orders in status &quot;confirm&quot; or &quot;attendig&quot;.</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doShowPendingOrders:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">In this case this param is unused.
+
+    - Calls the method getOrdersHistory of the DBManager. When this method is called,
+        the only param -withPastOrders- that it&apos;s required, is setted to NO.
+    - Once the information is ready and stored in arrOrders, the table view is reloaded to display the data. 
+    - The corresponding button is setted active.
+    - The screen title is setted to &quot;Pending Orders&quot;.
+    - The flag isPendingOrdersSelected is setted in YES.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doShowPendingOrders:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/doShowPastOrders:</TokenIdentifier>
+			<Abstract type="html">Get and display all the orders in status &quot;complete&quot;.</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doShowPastOrders:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">In this case this param is unused.
+
+    - Calls the method getOrdersHistory of the DBManager. In this case, the required param -withPastOrders- is setted in YES.
+    - Once the information is ready and stored in arrOrders, the table view is reloaded to display the data.
+    - The corresponding button is setted active.
+    - The screen title is setted to &quot;Past Orders&quot;.
+    - The flag isPendingOrdersSelected is setted in No.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doShowPastOrders:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/doRefreshOrdersHistory:</TokenIdentifier>
+			<Abstract type="html">Refresh the table view controller</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doRefreshOrdersHistory:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">In this case this param is unused.
+
+    When a push notificationis received to infrom about and update on the order status. This method refresh the content of the table view.
+    First check the value of the flag isPendingOrdersSelected to determine the param to call DBManager&apos;s getOrdersHistory.
+    Once the information is ready, the tableview is refreshed to display the updated information.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doRefreshOrdersHistory:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/doCancelOrder:</TokenIdentifier>
+			<Abstract type="html">Cancel order</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doCancelOrder:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">Receives a UIButton element.
+
+    - Only orders with status in &quot;confirm&quot; can be canceled.
+    - Whith the value received on sender, takes the tag value as a index for arrOrders.
+    - Create a dictionary based on the array index.
+    - Send a request via RESTManager to spree, Send thr ORDER_ID stored in the dictionary to service &quot;/cancel&quot;
+    - When spree response. Check for error in the request. If it is an error create a custom alert to display and return to normal app flow.
+    - In the case of non negative response, check for canceled state in result dictionary. Create a push notification to be sended to the CoffeeBoy,
+        with action setted in &quot;cancelOrder&quot; and sound in &quot;default&quot;.
+    - Call to DBManager&apos;s method deleteOrderLog, sending as parameter the &quot;ORDER_ID&quot; value stored in dictOrder.
+    - Dismiss the HUD element and return to the normal app flow.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doCancelOrder:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/viewDidAppear:</TokenIdentifier>
+			<Abstract type="html">Set the components to fit in iPhone&apos;s differents screen sizes</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)viewDidAppear:(BOOL)animated</Declaration>
+			
+			
+			<Anchor>//api/name/viewDidAppear:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/didReceiveMemoryWarning</TokenIdentifier>
+			<Abstract type="html">System method</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didReceiveMemoryWarning</Declaration>
+			
+			
+			<Anchor>//api/name/didReceiveMemoryWarning</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/tableView:heightForRowAtIndexPath:</TokenIdentifier>
+			<Abstract type="html">Return the height for the rows</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.m</DeclaredIn>
+			
+			<Declaration>- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:heightForRowAtIndexPath:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/numberOfSectionsInTableView:</TokenIdentifier>
+			<Abstract type="html">Return the numbers of section on the table from the number of elements in arrOrders</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.m</DeclaredIn>
+			
+			<Declaration>- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView</Declaration>
+			
+			
+			<Anchor>//api/name/numberOfSectionsInTableView:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/tableView:numberOfRowsInSection:</TokenIdentifier>
+			<Abstract type="html">Return the numbers of rows based on the elements in each sub-array &quot;ORDER_DETAIL&quot; in the main array arrOrders</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.m</DeclaredIn>
+			
+			<Declaration>- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:numberOfRowsInSection:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/tableView:heightForHeaderInSection:</TokenIdentifier>
+			<Abstract type="html">Return the height of the header section</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.m</DeclaredIn>
+			
+			<Declaration>- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:heightForHeaderInSection:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/tableView:viewForHeaderInSection:</TokenIdentifier>
+			<Abstract type="html">Draw the header&apos;s content with order&apos;s date and label when the order is being attended</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.m</DeclaredIn>
+			
+			<Declaration>- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:viewForHeaderInSection:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/OrdersHistoryViewController/tableView:cellForRowAtIndexPath:</TokenIdentifier>
+			<Abstract type="html">Draw the cell with the elements of each order and the quantity of each of them.</Abstract>
+			<DeclaredIn>OrdersHistoryViewController.m</DeclaredIn>
+			
+			<Declaration>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:cellForRowAtIndexPath:</Anchor>
+            <NodeRef refid="10"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

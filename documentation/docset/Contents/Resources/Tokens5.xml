@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/LeftMenuViewController.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/LeftMenuViewController</TokenIdentifier>
+			<Abstract type="html">Macros to identify the size of the screen.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+            
+			
+			<NodeRef refid="5"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/setTblMenu:</TokenIdentifier>
+			<Abstract type="html">Outlet for an UITableView to display the options menu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblMenu</Declaration>
+			
+			
+			<Anchor>//api/name/tblMenu</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/tblMenu</TokenIdentifier>
+			<Abstract type="html">Outlet for an UITableView to display the options menu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblMenu</Declaration>
+			
+			
+			<Anchor>//api/name/tblMenu</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LeftMenuViewController/tblMenu</TokenIdentifier>
+			<Abstract type="html">Outlet for an UITableView to display the options menu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UITableView *tblMenu</Declaration>
+			
+			
+			<Anchor>//api/name/tblMenu</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/setArrMenu:</TokenIdentifier>
+			<Abstract type="html">Array to store the options of the menu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrMenu</Declaration>
+			
+			
+			<Anchor>//api/name/arrMenu</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/arrMenu</TokenIdentifier>
+			<Abstract type="html">Array to store the options of the menu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrMenu</Declaration>
+			
+			
+			<Anchor>//api/name/arrMenu</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LeftMenuViewController/arrMenu</TokenIdentifier>
+			<Abstract type="html">Array to store the options of the menu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSMutableArray *arrMenu</Declaration>
+			
+			
+			<Anchor>//api/name/arrMenu</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/setIsUserLogged:</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the user is logged.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isUserLogged</Declaration>
+			
+			
+			<Anchor>//api/name/isUserLogged</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/isUserLogged</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the user is logged.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isUserLogged</Declaration>
+			
+			
+			<Anchor>//api/name/isUserLogged</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LeftMenuViewController/isUserLogged</TokenIdentifier>
+			<Abstract type="html">Boolean flag to determine if the user is logged.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) BOOL isUserLogged</Declaration>
+			
+			
+			<Anchor>//api/name/isUserLogged</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/setLblUser:</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display the name of the user.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblUser</Declaration>
+			
+			
+			<Anchor>//api/name/lblUser</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/lblUser</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display the name of the user.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblUser</Declaration>
+			
+			
+			<Anchor>//api/name/lblUser</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LeftMenuViewController/lblUser</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display the name of the user.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblUser</Declaration>
+			
+			
+			<Anchor>//api/name/lblUser</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/setBtnSignOut:</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIButton to do the Sign Out of the app.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnSignOut</Declaration>
+			
+			
+			<Anchor>//api/name/btnSignOut</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/btnSignOut</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIButton to do the Sign Out of the app.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnSignOut</Declaration>
+			
+			
+			<Anchor>//api/name/btnSignOut</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LeftMenuViewController/btnSignOut</TokenIdentifier>
+			<Abstract type="html">Outlet for an UIButton to do the Sign Out of the app.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UIButton *btnSignOut</Declaration>
+			
+			
+			<Anchor>//api/name/btnSignOut</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/setImgUserProfile:</TokenIdentifier>
+			<Abstract type="html">Outlet for a circular image view container to display the image of the user.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet NZCircularImageView *imgUserProfile</Declaration>
+			
+			
+			<Anchor>//api/name/imgUserProfile</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/imgUserProfile</TokenIdentifier>
+			<Abstract type="html">Outlet for a circular image view container to display the image of the user.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet NZCircularImageView *imgUserProfile</Declaration>
+			
+			
+			<Anchor>//api/name/imgUserProfile</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LeftMenuViewController/imgUserProfile</TokenIdentifier>
+			<Abstract type="html">Outlet for a circular image view container to display the image of the user.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet NZCircularImageView *imgUserProfile</Declaration>
+			
+			
+			<Anchor>//api/name/imgUserProfile</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/setLblOptions:</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display the title of the menu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblOptions</Declaration>
+			
+			
+			<Anchor>//api/name/lblOptions</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/lblOptions</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display the title of the menu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblOptions</Declaration>
+			
+			
+			<Anchor>//api/name/lblOptions</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LeftMenuViewController/lblOptions</TokenIdentifier>
+			<Abstract type="html">Outlet for an UILabel to display the title of the menu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) IBOutlet UILabel *lblOptions</Declaration>
+			
+			
+			<Anchor>//api/name/lblOptions</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/setHUD:</TokenIdentifier>
+			<Abstract type="html">Outlet for a HUD component to display loading messages.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *HUD</Declaration>
+			
+			
+			<Anchor>//api/name/HUD</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/HUD</TokenIdentifier>
+			<Abstract type="html">Outlet for a HUD component to display loading messages.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *HUD</Declaration>
+			
+			
+			<Anchor>//api/name/HUD</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/LeftMenuViewController/HUD</TokenIdentifier>
+			<Abstract type="html">Outlet for a HUD component to display loading messages.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) JGProgressHUD *HUD</Declaration>
+			
+			
+			<Anchor>//api/name/HUD</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/doSignOut:</TokenIdentifier>
+			<Abstract type="html">Do the Sign Out of the application.</Abstract>
+			<DeclaredIn>LeftMenuViewController.h</DeclaredIn>
+			
+			<Declaration>- (IBAction)doSignOut:(id)sender</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>(id)sender</Name>
+					<Abstract type="html">It&apos;s not used.
+
+    - SignOut from G+.
+    - Revoke token.
+    - Clean userObject data stored in user defaults.
+    - Calls to set the main view controller to display.
+    - Delete content of local DB tables.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/doSignOut:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/viewDidAppear:</TokenIdentifier>
+			<Abstract type="html">Check for the image of the user.</Abstract>
+			<DeclaredIn>LeftMenuViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)viewDidAppear:(BOOL)animated</Declaration>
+			
+			
+			<Anchor>//api/name/viewDidAppear:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/didReceiveMemoryWarning</TokenIdentifier>
+			<Abstract type="html">System method.</Abstract>
+			<DeclaredIn>LeftMenuViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)didReceiveMemoryWarning</Declaration>
+			
+			
+			<Anchor>//api/name/didReceiveMemoryWarning</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/tableView:heightForRowAtIndexPath:</TokenIdentifier>
+			<Abstract type="html">Define the height for the table row based on the device.</Abstract>
+			<DeclaredIn>LeftMenuViewController.m</DeclaredIn>
+			
+			<Declaration>- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:heightForRowAtIndexPath:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/tableView:numberOfRowsInSection:</TokenIdentifier>
+			<Abstract type="html">Define the numbers of rows based on the numbers of elements of the array arrMenu.</Abstract>
+			<DeclaredIn>LeftMenuViewController.m</DeclaredIn>
+			
+			<Declaration>- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:numberOfRowsInSection:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/tableView:didSelectRowAtIndexPath:</TokenIdentifier>
+			<Abstract type="html">Check for the selected row. Depending on which is the view controller displayed.</Abstract>
+			<DeclaredIn>LeftMenuViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:didSelectRowAtIndexPath:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/tableView:cellForRowAtIndexPath:</TokenIdentifier>
+			<Abstract type="html">Draw the content of each cell of the table.</Abstract>
+			<DeclaredIn>LeftMenuViewController.m</DeclaredIn>
+			
+			<Declaration>- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath</Declaration>
+			
+			
+			<Anchor>//api/name/tableView:cellForRowAtIndexPath:</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/LeftMenuViewController/doCancelOrder</TokenIdentifier>
+			<Abstract type="html">Delete content of local DB tables</Abstract>
+			<DeclaredIn>LeftMenuViewController.m</DeclaredIn>
+			
+			<Declaration>- (void)doCancelOrder</Declaration>
+			
+			
+			<Anchor>//api/name/doCancelOrder</Anchor>
+            <NodeRef refid="5"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

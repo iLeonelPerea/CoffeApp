@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/UserObject.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/UserObject</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+            
+			
+			<NodeRef refid="14"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/setUserId:</TokenIdentifier>
+			<Abstract type="html">The Id of the user in the Spree store.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int userId</Declaration>
+			
+			
+			<Anchor>//api/name/userId</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/userId</TokenIdentifier>
+			<Abstract type="html">The Id of the user in the Spree store.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int userId</Declaration>
+			
+			
+			<Anchor>//api/name/userId</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UserObject/userId</TokenIdentifier>
+			<Abstract type="html">The Id of the user in the Spree store.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, assign) int userId</Declaration>
+			
+			
+			<Anchor>//api/name/userId</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/setFirstName:</TokenIdentifier>
+			<Abstract type="html">First name of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *firstName</Declaration>
+			
+			
+			<Anchor>//api/name/firstName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/firstName</TokenIdentifier>
+			<Abstract type="html">First name of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *firstName</Declaration>
+			
+			
+			<Anchor>//api/name/firstName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UserObject/firstName</TokenIdentifier>
+			<Abstract type="html">First name of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *firstName</Declaration>
+			
+			
+			<Anchor>//api/name/firstName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/setLastName:</TokenIdentifier>
+			<Abstract type="html">Last name of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *lastName</Declaration>
+			
+			
+			<Anchor>//api/name/lastName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/lastName</TokenIdentifier>
+			<Abstract type="html">Last name of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *lastName</Declaration>
+			
+			
+			<Anchor>//api/name/lastName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UserObject/lastName</TokenIdentifier>
+			<Abstract type="html">Last name of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *lastName</Declaration>
+			
+			
+			<Anchor>//api/name/lastName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/setUserName:</TokenIdentifier>
+			<Abstract type="html">Full name of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userName</Declaration>
+			
+			
+			<Anchor>//api/name/userName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/userName</TokenIdentifier>
+			<Abstract type="html">Full name of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userName</Declaration>
+			
+			
+			<Anchor>//api/name/userName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UserObject/userName</TokenIdentifier>
+			<Abstract type="html">Full name of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userName</Declaration>
+			
+			
+			<Anchor>//api/name/userName</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/setUserEmail:</TokenIdentifier>
+			<Abstract type="html">Email of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userEmail</Declaration>
+			
+			
+			<Anchor>//api/name/userEmail</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/userEmail</TokenIdentifier>
+			<Abstract type="html">Email of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userEmail</Declaration>
+			
+			
+			<Anchor>//api/name/userEmail</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UserObject/userEmail</TokenIdentifier>
+			<Abstract type="html">Email of the user.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userEmail</Declaration>
+			
+			
+			<Anchor>//api/name/userEmail</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/setUserPassword:</TokenIdentifier>
+			<Abstract type="html">Password of the user, taken from a G+ unique tag.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userPassword</Declaration>
+			
+			
+			<Anchor>//api/name/userPassword</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/userPassword</TokenIdentifier>
+			<Abstract type="html">Password of the user, taken from a G+ unique tag.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userPassword</Declaration>
+			
+			
+			<Anchor>//api/name/userPassword</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UserObject/userPassword</TokenIdentifier>
+			<Abstract type="html">Password of the user, taken from a G+ unique tag.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userPassword</Declaration>
+			
+			
+			<Anchor>//api/name/userPassword</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/setUserUrlProfileImage:</TokenIdentifier>
+			<Abstract type="html">URL of the profile image of the user in G+.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userUrlProfileImage</Declaration>
+			
+			
+			<Anchor>//api/name/userUrlProfileImage</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/userUrlProfileImage</TokenIdentifier>
+			<Abstract type="html">URL of the profile image of the user in G+.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userUrlProfileImage</Declaration>
+			
+			
+			<Anchor>//api/name/userUrlProfileImage</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UserObject/userUrlProfileImage</TokenIdentifier>
+			<Abstract type="html">URL of the profile image of the user in G+.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userUrlProfileImage</Declaration>
+			
+			
+			<Anchor>//api/name/userUrlProfileImage</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/setUserSpreeToken:</TokenIdentifier>
+			<Abstract type="html">The Spree token of the user -a.k.a spreeapikey-.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userSpreeToken</Declaration>
+			
+			
+			<Anchor>//api/name/userSpreeToken</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/userSpreeToken</TokenIdentifier>
+			<Abstract type="html">The Spree token of the user -a.k.a spreeapikey-.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userSpreeToken</Declaration>
+			
+			
+			<Anchor>//api/name/userSpreeToken</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UserObject/userSpreeToken</TokenIdentifier>
+			<Abstract type="html">The Spree token of the user -a.k.a spreeapikey-.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userSpreeToken</Declaration>
+			
+			
+			<Anchor>//api/name/userSpreeToken</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/setUserChannel:</TokenIdentifier>
+			<Abstract type="html">Value for the channel of the user to listen push notifications using Parse service.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userChannel</Declaration>
+			
+			
+			<Anchor>//api/name/userChannel</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/userChannel</TokenIdentifier>
+			<Abstract type="html">Value for the channel of the user to listen push notifications using Parse service.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userChannel</Declaration>
+			
+			
+			<Anchor>//api/name/userChannel</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/UserObject/userChannel</TokenIdentifier>
+			<Abstract type="html">Value for the channel of the user to listen push notifications using Parse service.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>@property (nonatomic, strong) NSString *userChannel</Declaration>
+			
+			
+			<Anchor>//api/name/userChannel</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/init</TokenIdentifier>
+			<Abstract type="html">Init method set default properties values</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>- (id)init</Declaration>
+			
+			
+			<Anchor>//api/name/init</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/initUser:withId:andFirstName:andLastName:withEmail:password:urlProfileImage:</TokenIdentifier>
+			<Abstract type="html">Initialize a user object with specific data.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>- (id)initUser:(NSString *)user withId:(NSString *)strUserId andFirstName:(NSString *)strFirstName andLastName:(NSString *)strLastName withEmail:(NSString *)email password:(NSString *)password urlProfileImage:(NSString *)urlProfileImage</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>user</Name>
+					<Abstract type="html">Full name of the user.</Abstract>
+				</Parameter><Parameter>
+					<Name>strUserId</Name>
+					<Abstract type="html">Id of the user in G+. Used to create the user channel for listen push notifications.</Abstract>
+				</Parameter><Parameter>
+					<Name>email</Name>
+					<Abstract type="html">Email of the user.</Abstract>
+				</Parameter><Parameter>
+					<Name>password</Name>
+					<Abstract type="html">Tag value of the user in G+. Used to create the password fot user account in Spree store.</Abstract>
+				</Parameter><Parameter>
+					<Name>urlProfileImage</Name>
+					<Abstract type="html">URL of the profile image of the user in G+.</Abstract>
+				</Parameter><Parameter>
+					<Name>lastName</Name>
+					<Abstract type="html">Last name of the user.</Abstract>
+				</Parameter><Parameter>
+					<Name>firstName</Name>
+					<Abstract type="html">First name of the user.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initUser:withId:andFirstName:andLastName:withEmail:password:urlProfileImage:</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/initWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to code the object.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>- (id)initWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/initWithCoder:</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/UserObject/encodeWithCoder:</TokenIdentifier>
+			<Abstract type="html">Create a custom init to decode the object properties.</Abstract>
+			<DeclaredIn>UserObject.h</DeclaredIn>
+			
+			<Declaration>- (void)encodeWithCoder:(NSCoder *)coder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>coder</Name>
+					<Abstract type="html">NSCoder variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/encodeWithCoder:</Anchor>
+            <NodeRef refid="14"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

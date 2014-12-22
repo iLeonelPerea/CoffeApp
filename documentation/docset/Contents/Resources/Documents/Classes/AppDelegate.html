@@ -1,0 +1,1210 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>AppDelegate Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.2 (build 963)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">coffeeapp </a></h1>
+				<a id="developerHome" href="../index.html">CROWDINT</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">AppDelegate Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	<option value="properties">Properties</option>
+	
+	<option value="//api/name/currentOrderNumber">&nbsp;&nbsp;&nbsp;&nbsp;currentOrderNumber</option>
+	
+	<option value="//api/name/dictOrderNotification">&nbsp;&nbsp;&nbsp;&nbsp;dictOrderNotification</option>
+	
+	<option value="//api/name/isMenuViewController">&nbsp;&nbsp;&nbsp;&nbsp;isMenuViewController</option>
+	
+	<option value="//api/name/isTestingEnv">&nbsp;&nbsp;&nbsp;&nbsp;isTestingEnv</option>
+	
+	<option value="//api/name/mainViewController">&nbsp;&nbsp;&nbsp;&nbsp;mainViewController</option>
+	
+	<option value="//api/name/navigationController">&nbsp;&nbsp;&nbsp;&nbsp;navigationController</option>
+	
+	<option value="//api/name/orderObject">&nbsp;&nbsp;&nbsp;&nbsp;orderObject</option>
+	
+	<option value="//api/name/userObject">&nbsp;&nbsp;&nbsp;&nbsp;userObject</option>
+	
+	<option value="//api/name/viewController">&nbsp;&nbsp;&nbsp;&nbsp;viewController</option>
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/application:didFailToRegisterForRemoteNotificationsWithError:">&nbsp;&nbsp;&nbsp;&nbsp;- application:didFailToRegisterForRemoteNotificationsWithError:</option>
+	
+	<option value="//api/name/application:didFinishLaunchingWithOptions:">&nbsp;&nbsp;&nbsp;&nbsp;- application:didFinishLaunchingWithOptions:</option>
+	
+	<option value="//api/name/application:didReceiveRemoteNotification:">&nbsp;&nbsp;&nbsp;&nbsp;- application:didReceiveRemoteNotification:</option>
+	
+	<option value="//api/name/application:didRegisterForRemoteNotificationsWithDeviceToken:">&nbsp;&nbsp;&nbsp;&nbsp;- application:didRegisterForRemoteNotificationsWithDeviceToken:</option>
+	
+	<option value="//api/name/applicationDidBecomeActive:">&nbsp;&nbsp;&nbsp;&nbsp;- applicationDidBecomeActive:</option>
+	
+	<option value="//api/name/applicationWillTerminate:">&nbsp;&nbsp;&nbsp;&nbsp;- applicationWillTerminate:</option>
+	
+	<option value="//api/name/userDidRequestMenu:">&nbsp;&nbsp;&nbsp;&nbsp;- userDidRequestMenu:</option>
+	
+	<option value="//api/name/userDidRequestOrders:">&nbsp;&nbsp;&nbsp;&nbsp;- userDidRequestOrders:</option>
+	
+	<option value="//api/name/userDidRequestSignIn:">&nbsp;&nbsp;&nbsp;&nbsp;- userDidRequestSignIn:</option>
+	
+	<option value="//api/name/userDidRequestSignOut:">&nbsp;&nbsp;&nbsp;&nbsp;- userDidRequestSignOut:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#properties">Properties</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/currentOrderNumber">currentOrderNumber</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/dictOrderNotification">dictOrderNotification</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isMenuViewController">isMenuViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isTestingEnv">isTestingEnv</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/mainViewController">mainViewController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/navigationController">navigationController</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/orderObject">orderObject</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userObject">userObject</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/viewController">viewController</a></span></li>
+	
+</ul></li>
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/application:didFailToRegisterForRemoteNotificationsWithError:">application:didFailToRegisterForRemoteNotificationsWithError:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/application:didFinishLaunchingWithOptions:">application:didFinishLaunchingWithOptions:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/application:didReceiveRemoteNotification:">application:didReceiveRemoteNotification:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/application:didRegisterForRemoteNotificationsWithDeviceToken:">application:didRegisterForRemoteNotificationsWithDeviceToken:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applicationDidBecomeActive:">applicationDidBecomeActive:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/applicationWillTerminate:">applicationWillTerminate:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userDidRequestMenu:">userDidRequestMenu:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userDidRequestOrders:">userDidRequestOrders:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userDidRequestSignIn:">userDidRequestSignIn:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/userDidRequestSignOut:">userDidRequestSignOut:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="AppDelegate Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">AppDelegate Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">UIResponder</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">UIApplicationDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">AppDelegate.h<br />AppDelegate.m</td>
+</tr>
+						</tbody></table></div>
+					
+                    
+                    
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/navigationController">&nbsp;&nbsp;navigationController</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/mainViewController">&nbsp;&nbsp;mainViewController</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/viewController">&nbsp;&nbsp;viewController</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userObject">&nbsp;&nbsp;userObject</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/orderObject">&nbsp;&nbsp;orderObject</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isTestingEnv">&nbsp;&nbsp;isTestingEnv</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/dictOrderNotification">&nbsp;&nbsp;dictOrderNotification</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/currentOrderNumber">&nbsp;&nbsp;currentOrderNumber</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isMenuViewController">&nbsp;&nbsp;isMenuViewController</a></code>
+	</span>
+	<span class="task-item-suffix">property</span>
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/application:didReceiveRemoteNotification:">&ndash;&nbsp;application:didReceiveRemoteNotification:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userDidRequestMenu:">&ndash;&nbsp;userDidRequestMenu:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userDidRequestOrders:">&ndash;&nbsp;userDidRequestOrders:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userDidRequestSignOut:">&ndash;&nbsp;userDidRequestSignOut:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/userDidRequestSignIn:">&ndash;&nbsp;userDidRequestSignIn:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+						
+						
+						<h3 class="subsubtitle task-title">Other Methods</h3>
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/application:didFinishLaunchingWithOptions:">&ndash;&nbsp;application:didFinishLaunchingWithOptions:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/application:didRegisterForRemoteNotificationsWithDeviceToken:">&ndash;&nbsp;application:didRegisterForRemoteNotificationsWithDeviceToken:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/application:didFailToRegisterForRemoteNotificationsWithError:">&ndash;&nbsp;application:didFailToRegisterForRemoteNotificationsWithError:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/applicationDidBecomeActive:">&ndash;&nbsp;applicationDidBecomeActive:</a></code>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/applicationWillTerminate:">&ndash;&nbsp;applicationWillTerminate:</a></code>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Properties" name="properties"></a>
+						<h2 class="subtitle subtitle-methods">Properties</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/currentOrderNumber" title="currentOrderNumber"></a>
+	<h3 class="subsubtitle method-title">currentOrderNumber</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Current order number.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSString *currentOrderNumber</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/dictOrderNotification" title="dictOrderNotification"></a>
+	<h3 class="subsubtitle method-title">dictOrderNotification</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Dictionary to store the data of the push notifications.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSMutableDictionary *dictOrderNotification</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isMenuViewController" title="isMenuViewController"></a>
+	<h3 class="subsubtitle method-title">isMenuViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Boolean flag to know if the <a href="../Classes/MenuViewController_iPhone.html">MenuViewController_iPhone</a> is active.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isMenuViewController</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isTestingEnv" title="isTestingEnv"></a>
+	<h3 class="subsubtitle method-title">isTestingEnv</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Boolean flag to know is the requests will be sended to testing or production server.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL isTestingEnv</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/mainViewController" title="mainViewController"></a>
+	<h3 class="subsubtitle method-title">mainViewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Login view controller.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) LoginViewController *mainViewController</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/navigationController" title="navigationController"></a>
+	<h3 class="subsubtitle method-title">navigationController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Navigation controller.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UINavigationController *navigationController</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/orderObject" title="orderObject"></a>
+	<h3 class="subsubtitle method-title">orderObject</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Order object.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) OrderObject *orderObject</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userObject" title="userObject"></a>
+	<h3 class="subsubtitle method-title">userObject</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>User object, to store the data of the user logged in the app.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) UserObject *userObject</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/viewController" title="viewController"></a>
+	<h3 class="subsubtitle method-title">viewController</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Lateral menu -view controller<a href="#//api/name/-">-</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) JASidePanelController *viewController</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/application:didFailToRegisterForRemoteNotificationsWithError:" title="application:didFailToRegisterForRemoteNotificationsWithError:"></a>
+	<h3 class="subsubtitle method-title">application:didFailToRegisterForRemoteNotificationsWithError:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Informs when the aplicattion could'nt be registered for remote notitications.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)application:(UIApplication *)<em>application</em> didFailToRegisterForRemoteNotificationsWithError:(NSError *)<em>error</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/application:didFinishLaunchingWithOptions:" title="application:didFinishLaunchingWithOptions:"></a>
+	<h3 class="subsubtitle method-title">application:didFinishLaunchingWithOptions:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set flag and other settings when the app finished launching.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)application:(UIApplication *)<em>application</em> didFinishLaunchingWithOptions:(NSDictionary *)<em>launchOptions</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/application:didReceiveRemoteNotification:" title="application:didReceiveRemoteNotification:"></a>
+	<h3 class="subsubtitle method-title">application:didReceiveRemoteNotification:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Handle the receveid push notifications.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)application:(UIApplication *)<em>application</em> didReceiveRemoteNotification:(NSDictionary *)<em>userInfo</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>userInfo</em></dt>
+			<dd><p>Dictionary that contains the information of the notification. The content may vary according to the notification.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<pre><code>Listen for push notifications in active or inactive state of the application.
+The list of notification can be received are.
+- Update order state. Modify the status of the order in ORDERSLOG table from the local database. And to inform the user the state of his order.
+- Update products stock. When a order is served in the CoffeeBoy app, the stock of the products from the current menu must be updated.
+- Category message. When a category is added/removed from the current menu.
+- Product message. When a product is added/removed from the current menu.
+</code></pre>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/application:didRegisterForRemoteNotificationsWithDeviceToken:" title="application:didRegisterForRemoteNotificationsWithDeviceToken:"></a>
+	<h3 class="subsubtitle method-title">application:didRegisterForRemoteNotificationsWithDeviceToken:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Register the app for remote notifications -Parse<a href="#//api/name/-">-</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)application:(UIApplication *)<em>application</em> didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)<em>newDeviceToken</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/applicationDidBecomeActive:" title="applicationDidBecomeActive:"></a>
+	<h3 class="subsubtitle method-title">applicationDidBecomeActive:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Look for the push notifications that were received while the application was in backgroud.
+Update order state and update products stock are the notification to look up.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)applicationDidBecomeActive:(UIApplication *)<em>application</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/applicationWillTerminate:" title="applicationWillTerminate:"></a>
+	<h3 class="subsubtitle method-title">applicationWillTerminate:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Operations to be done before the application is terminate. It&rsquo;s no used for this app.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)applicationWillTerminate:(UIApplication *)<em>application</em></code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.m</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userDidRequestMenu:" title="userDidRequestMenu:"></a>
+	<h3 class="subsubtitle method-title">userDidRequestMenu:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the <a href="../Classes/MenuViewController_iPhone.html">MenuViewController_iPhone</a> as the view controller for the center panel -main screen<a href="#//api/name/-">-</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)userDidRequestMenu:(NSNotification *)<em>notification</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>notification</em></dt>
+			<dd><p>It&rsquo;s not used.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userDidRequestOrders:" title="userDidRequestOrders:"></a>
+	<h3 class="subsubtitle method-title">userDidRequestOrders:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the <a href="../Classes/OrdersHistoryViewController.html">OrdersHistoryViewController</a> as the view controller for the center panel -main screen<a href="#//api/name/-">-</a>.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)userDidRequestOrders:(NSNotification *)<em>notification</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>notification</em></dt>
+			<dd><p>It&rsquo;s not used.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userDidRequestSignIn:" title="userDidRequestSignIn:"></a>
+	<h3 class="subsubtitle method-title">userDidRequestSignIn:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set the view controller to display the left menu and the main screen controller after the user Logged In on the application.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)userDidRequestSignIn:(NSNotification *)<em>notification</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>notification</em></dt>
+			<dd><p>It&rsquo;s not used.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/userDidRequestSignOut:" title="userDidRequestSignOut:"></a>
+	<h3 class="subsubtitle method-title">userDidRequestSignOut:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Set <a href="#//api/name/mainViewController">mainViewController</a> as the root view controller of the app.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)userDidRequestSignOut:(NSNotification *)<em>notification</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>notification</em></dt>
+			<dd><p>It&rsquo;s not used.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">AppDelegate.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+                    
+                    
+                    
+                    
+
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2014 CROWDINT. All rights reserved. (Last updated: 2014-11-25)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2 (build 963)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
