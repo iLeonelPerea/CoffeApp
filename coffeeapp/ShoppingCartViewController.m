@@ -96,6 +96,10 @@
     /// Set isMenuViewController flag to YES in AppDelegate.
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setIsMenuViewController:YES];
+    // set comments for selected products
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:arrProductsShoppingCart] forKey:@"arrProductsInQueue"];
+    [defaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning
@@ -334,6 +338,7 @@
         if(![productObject.comment isEqual:@""])
             txtComment.text = productObject.comment;
         [txtComment setDelegate:self];
+        [txtComment setTag:indexPath.row];
         [cell addSubview:txtComment];
         
         UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40, 27, 28, 27)];
@@ -396,8 +401,7 @@
     UIButton * btn = (UIButton*)sender;
     ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:btn.tag];
     selectedProduct.isEditingComments = YES;
-    [tblProducts setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+400)];
-    [tblProducts setContentOffset:CGPointMake(0, btn.frame.origin.y+120)];
+    [tblProducts setContentOffset:CGPointMake(0, btn.frame.origin.y+(btn.tag*50))];
     [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
 }
 
@@ -419,23 +423,10 @@
     return subImage;
 }
 
--(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if([alertView.title isEqual:@"Capture Note"])
-    {
-        if(buttonIndex == 1)
-        {
-            ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:alertView.tag];
-            selectedProduct.comment = [alertView textFieldAtIndex:0].text;
-            NSLog(@"testing comment...");
-        }
-    }
-}
-
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    [tblProducts setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+400)];
-    [tblProducts setContentOffset:CGPointMake(0, textField.frame.origin.y+120) animated:YES];
+    [tblProducts setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+(textField.tag*100))];
+    [tblProducts setContentOffset:CGPointMake(0, textField.frame.origin.y+(textField.tag*55)) animated:YES];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string

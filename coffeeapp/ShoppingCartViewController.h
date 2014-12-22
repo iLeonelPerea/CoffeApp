@@ -20,7 +20,7 @@
 #import "AppDelegate.h"
 #import <LMAlertView.h>
 
-@interface ShoppingCartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIAlertViewDelegate, UITextFieldDelegate>
+@interface ShoppingCartViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate>
 
 /** Outlet to set the screen's title. */
 @property (nonatomic, strong) IBOutlet UIImageView * imgTitle;
