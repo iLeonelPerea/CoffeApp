@@ -202,7 +202,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         lblStatus.numberOfLines = 3;
         [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
         [lblStatus setTextAlignment:NSTextAlignmentCenter];
-        lblStatus.text = ([[userInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"])?[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]:[NSString stringWithFormat:@"%@ Your order it's %@", userObject.firstName, [userInfo objectForKey:@"state"]];
+        lblStatus.text = ([[userInfo objectForKey:@"state"] isEqual:@"completeWithOutOfStock"])?[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]:[NSString stringWithFormat:@"%@ Your order is %@", userObject.firstName, [userInfo objectForKey:@"state"]];
         [contentView addSubview:lblStatus];
         [alertView show];
         

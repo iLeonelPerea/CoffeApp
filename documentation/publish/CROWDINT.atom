@@ -1,18 +1,18 @@
 <?xml version="1.0" standalone="no"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xmlns:docset="http://developer.apple.com/rss/docset_extensions" xml:lang="en">
-    <id>http://crowdint.com/CROWDINT/CROWDINT.atom/20141222170527</id>
+    <id>http://crowdint.com/CROWDINT/CROWDINT.atom/20141222175620</id>
     <title type="text">coffeeapp Documentation</title>
     <rights>Copyright © 2014 CROWDINT. All rights reserved.</rights>
     <link rel="self" href="http://crowdint.com/CROWDINT/CROWDINT.atom"></link>
     <docset:publisherName>CROWDINT</docset:publisherName>
     <docset:publisherID>com.crowdint.coffeeapp.documentation</docset:publisherID>
-    <updated>2014-12-22T17:05:27-06:00</updated>
+    <updated>2014-12-22T17:56:20-06:00</updated>
     <entry>
         <id>tag:crowdint.com,2014-12-22:com.crowdint.coffeeapp.coffeeapp/1.0.0</id>
         <title type="text">coffeeapp Documentation</title>
-        <updated>2014-12-22T17:05:27-06:00</updated>
+        <updated>2014-12-22T17:56:20-06:00</updated>
         <content type="text">coffeeapp Documentation (v1.0.0)</content>
-        <link rel="enclosure" type="application/octet-stream" href="http:/crowdint.com/CROWDINT/com.crowdint.coffeeapp.coffeeapp-1.0.xar" length="448257"></link>
+        <link rel="enclosure" type="application/octet-stream" href="http:/crowdint.com/CROWDINT/com.crowdint.coffeeapp.coffeeapp-1.0.xar" length="448238"></link>
         <docset:identifier>com.crowdint.coffeeapp.coffeeapp</docset:identifier>
         <docset:version>1.0.0</docset:version>
         <docset:minimumXcodeVersion>3.0.0</docset:minimumXcodeVersion>
