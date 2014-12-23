@@ -136,7 +136,7 @@
     
     UIImage *faceImage = [UIImage imageNamed:@"filter_btn"];
     UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
-    face.bounds = CGRectMake( 0, 0, faceImage.size.width, faceImage.size.height );//set bound as per you want
+    face.bounds = CGRectMake( 0, 0, faceImage.size.width/2, faceImage.size.height/2 );//set bound as per you want
     [face addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
     [face setImage:faceImage forState:UIControlStateNormal];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:face];
@@ -198,6 +198,7 @@
                     /// If the id from selected product is equal to id from menu product, aasign the quantity to display.
                     if ([orderMasterProduct masterObject_id] == [masterObject masterObject_id]) {
                         [prodObject setQuantity:[orderSelectedProduct quantity]];
+                        prodObject.comment = orderSelectedProduct.comment;
                         continue;
                     }
                 }

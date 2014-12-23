@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/DBManager.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/DBManager</TokenIdentifier>
+			<Abstract type="html"></Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+            
+			
+			<NodeRef refid="3"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/checkOrCreateDataBase</TokenIdentifier>
+			<Abstract type="html">Check if the database already exists.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (BOOL)checkOrCreateDataBase</Declaration>
+			
+			
+			<Anchor>//api/name/checkOrCreateDataBase</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/getDBPath</TokenIdentifier>
+			<Abstract type="html">Return the Path of the database on the device directory.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (NSString *)getDBPath</Declaration>
+			
+			
+			<Anchor>//api/name/getDBPath</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/finalizeStatements:withDB:</TokenIdentifier>
+			<Abstract type="html">Finalize a SQLite statement.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)finalizeStatements:(sqlite3_stmt *)stm withDB:(sqlite3 *)DB</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>stm</Name>
+					<Abstract type="html">Statement variable used.</Abstract>
+				</Parameter><Parameter>
+					<Name>DB</Name>
+					<Abstract type="html">The Sqlite database variable.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/finalizeStatements:withDB:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/insertProduct:</TokenIdentifier>
+			<Abstract type="html">Inserts a product into the PRODUCTS table.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)insertProduct:(ProductObject *)product</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>product</Name>
+					<Abstract type="html">A ProductObject object.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/insertProduct:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/getProductsCategory:</TokenIdentifier>
+			<Abstract type="html">Return all the products of a specific category.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (NSMutableArray *)getProductsCategory:(CategoryObject *)category</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>category</Name>
+					<Abstract type="html">It&apos;s a the category which contains the products to get from Products table.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/getProductsCategory:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/getProducts</TokenIdentifier>
+			<Abstract type="html">Get all the products for the current from the PRODUCTS table.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (NSMutableArray *)getProducts</Declaration>
+			
+			
+			<Anchor>//api/name/getProducts</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/deleteProducts</TokenIdentifier>
+			<Abstract type="html">Delete the content of the PRODUCTS table.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)deleteProducts</Declaration>
+			
+			
+			<Anchor>//api/name/deleteProducts</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/insertProductCategory:</TokenIdentifier>
+			<Abstract type="html">Insert a category into PRODUCT_CATEGORIES table.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)insertProductCategory:(ProductObject *)product</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>product</Name>
+					<Abstract type="html">The ProducObject contains the data of the category to be inserted.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/insertProductCategory:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/insertCategory:</TokenIdentifier>
+			<Abstract type="html">Insert a category into PRODUCT_CATEGORIES table based on an array received.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)insertCategory:(NSDictionary *)category</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>category</Name>
+					<Abstract type="html">Dictionary with the values for ID and CATEGORY_NAME.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/insertCategory:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/getCategories</TokenIdentifier>
+			<Abstract type="html">Returns the categories into an array from PRODUCT_CATEGORIES table.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (NSMutableArray *)getCategories</Declaration>
+			
+			
+			<Anchor>//api/name/getCategories</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/insertOrdersLog:</TokenIdentifier>
+			<Abstract type="html">Insert into ORDERSLOG the information from the orders maded.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)insertOrdersLog:(NSDictionary *)dictDataOrder</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>dictDataOrder</Name>
+					<Abstract type="html">A dictionary with the next information: ORDERID, ORDERSTATUS, ORDERDATE, PRODUCTID, PRODUCTNAME and PRODUCTQUANTITY_ORDERED.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/insertOrdersLog:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/updateStateOrderLog:withState:</TokenIdentifier>
+			<Abstract type="html">Update the state of an order from ORDERSLOG table.
+    
+    Is used to update the state of an order when is attended or completed.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)updateStateOrderLog:(NSString *)orderId withState:(NSString *)orderState</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>orderId</Name>
+					<Abstract type="html">The ORDER_ID of the order to be updated.</Abstract>
+				</Parameter><Parameter>
+					<Name>orderState</Name>
+					<Abstract type="html">The ORDER_STATUS of the order to be updated.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/updateStateOrderLog:withState:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/getOrdersHistory:</TokenIdentifier>
+			<Abstract type="html">Return the orders from the ORDERSLOG table.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (NSMutableArray *)getOrdersHistory:(BOOL)withPastOrders</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>withPastOrders</Name>
+					<Abstract type="html">If the value of this param is YES, the method will return the orders with ORDERSTATUS in &quot;complete&quot;. On the other hand, will return the orders with ORDERSTATUS in &quot;confirm&quot; or &quot;attending&quot;.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/getOrdersHistory:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/deleteOrderLog:</TokenIdentifier>
+			<Abstract type="html">Delete a specific order from ORDERSLOG table.
+    
+    This method is used to delete a order that is cancelled by the user. To delete an order it must to be in ORDER_STATUS equal to &quot;confirm&quot;.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)deleteOrderLog:(NSString *)orderId</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>orderId</Name>
+					<Abstract type="html">The ORDER_ID of the order to be deleted.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/deleteOrderLog:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/deleteTableContent:</TokenIdentifier>
+			<Abstract type="html">Delete the content of a table.
+    
+    Receives an array with the names of the table, which their content will be deleted. Is used when the user do Log Out from the app.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)deleteTableContent:(NSArray *)tables</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>tables</Name>
+					<Abstract type="html">Array with the tables which content will be deleted.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/deleteTableContent:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/updateProductStock:withStock:</TokenIdentifier>
+			<Abstract type="html">Update the stock of a specific product from the PRODUCTS table.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (void)updateProductStock:(int)productId withStock:(int)stock</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>productId</Name>
+					<Abstract type="html">The PRODUCTMASTERMASTEROBJECT_ID of the product to be updated.</Abstract>
+				</Parameter><Parameter>
+					<Name>stock</Name>
+					<Abstract type="html">The value of stock to be updated.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/updateProductStock:withStock:</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/DBManager/getProductsInConfirm</TokenIdentifier>
+			<Abstract type="html">Return the quantity of each product registered in ORDERSLOG.</Abstract>
+			<DeclaredIn>DBManager.h</DeclaredIn>
+			
+			<Declaration>+ (NSMutableArray *)getProductsInConfirm</Declaration>
+			
+			
+			<Anchor>//api/name/getProductsInConfirm</Anchor>
+            <NodeRef refid="3"/>
+		</Token>
+		
+        
+        
+	</File>
+</Tokens>

@@ -81,7 +81,7 @@
                  NSLog(@"%@",[result objectForKey:@"error"]);
                 
                     /// Attempt to register the user in spree store
-                    if (![[result objectForKey:@"error"] isEqualToString:@""]) {
+                    if ([[result objectForKey:@"error"] isEqualToString:@"Record not found"]) {
                         
                         /// Define the user channel to listen push notifications.
                         customUserChannel = [NSString stringWithFormat:@"User_%@",strUserId];
@@ -92,30 +92,15 @@
                             /// Check if the request was successful.
                             if([[result objectForKey:@"success"] isEqual:@NO])
                             {
-                                /// Create a custom alert view to inform about the error.
-                                LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Service Error!" otherButtonTitles:nil];
-                                [alertView setSize:CGSizeMake(200.0f, 320.0f)];
-                                
-                                // Add your subviews here to customise
-                                UIView *contentView = alertView.contentView;
-                                [contentView setBackgroundColor:[UIColor clearColor]];
-                                [alertView setBackgroundColor:[UIColor clearColor]];
-                                UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
-                                [imgV setImage:[UIImage imageNamed:@"illustration_05"]];
-                                [contentView addSubview:imgV];
-                                UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
-                                lblStatus.numberOfLines = 3;
-                                [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
-                                [lblStatus setTextAlignment:NSTextAlignmentCenter];
-                                lblStatus.text = [result objectForKey:@"message"];
-                                [contentView addSubview:lblStatus];
-                                [alertView show];
+                                /// Call the method to show the custom alert
+                                [self chefAlert:[result objectForKey:@"message"] withIllustration:@"illustration_05"];
                                 return;
                             }
                             
                             /// Check for an error in the register proccess of the user in the Spree store.
-                            if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
+                            if (([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqual:@""]) || ([result objectForKey:@"exception"] && ![[result objectForKey:@"exception"] isEqual:@""])) {
                                 NSLog(@"%@",[result objectForKey:@"error"]);
+                                [self chefAlert:[result objectForKey:@"message"] withIllustration:@"illustration_05"];
                                 return;
                             }
                             /// Set the value of the user Id in the Spree store and the value for the spree_api_key.
@@ -141,23 +126,8 @@
                 [RESTManager sendData:jsonDictUpdate toService:[NSString stringWithFormat:@"users/%@", [[result objectForKey:@"user"] objectForKey:@"id"]] withMethod:@"PUT" isTesting:appDelegate.isTestingEnv withAccessToken:[[result objectForKey:@"user"] objectForKey:@"spree_api_key"] isAccessTokenInHeader:YES toCallback:^(id updateUserResult) {
                     if([[result objectForKey:@"success"] isEqual:@NO])
                     {
-                        LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Service Error!" otherButtonTitles:nil];
-                        [alertView setSize:CGSizeMake(200.0f, 320.0f)];
-                        
-                        // Add your subviews here to customise
-                        UIView *contentView = alertView.contentView;
-                        [contentView setBackgroundColor:[UIColor clearColor]];
-                        [alertView setBackgroundColor:[UIColor clearColor]];
-                        UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
-                        [imgV setImage:[UIImage imageNamed:@"illustration_05"]];
-                        [contentView addSubview:imgV];
-                        UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
-                        lblStatus.numberOfLines = 3;
-                        [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
-                        [lblStatus setTextAlignment:NSTextAlignmentCenter];
-                        lblStatus.text = [result objectForKey:@"message"];
-                        [contentView addSubview:lblStatus];
-                        [alertView show];
+                        /// Call the method to show the custom alert
+                        [self chefAlert:[result objectForKey:@"message"] withIllustration:@"illustration_05"];
                         return;
                     }
                     NSLog(@"user must be added to a channel now...");
@@ -207,6 +177,28 @@
     [coder encodeObject:userUrlProfileImage forKey:@"userUrlProfileImage"];
     [coder encodeObject:userSpreeToken forKey:@"userSpreeToken"];
     [coder encodeObject:userChannel forKey:@"userChannel"];
+}
+
+-(void)chefAlert:(NSString*)alertMessage withIllustration:(NSString*)illustrationName;
+{
+    /// Create a custom alert view to inform about the error.
+    LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Service Error!" otherButtonTitles:nil];
+    [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+    
+    // Add your subviews here to customise
+    UIView *contentView = alertView.contentView;
+    [contentView setBackgroundColor:[UIColor clearColor]];
+    [alertView setBackgroundColor:[UIColor clearColor]];
+    UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 10.0f, 129.0f, 200.0f)];
+    [imgV setImage:[UIImage imageNamed:illustrationName]];
+    [contentView addSubview:imgV];
+    UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
+    lblStatus.numberOfLines = 3;
+    [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:16]];
+    [lblStatus setTextAlignment:NSTextAlignmentCenter];
+    [lblStatus setText:alertMessage];
+    [contentView addSubview:lblStatus];
+    [alertView show];
 }
 
 @end
