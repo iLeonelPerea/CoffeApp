@@ -801,4 +801,9 @@
     return 1;
 }
 
+-(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 40.0f;
+}
+
 @end
