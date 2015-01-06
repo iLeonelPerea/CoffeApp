@@ -226,8 +226,16 @@
         }
     }
     
+    /// Loop to check all the elements of the menu stored in arrProductsObjects.
+    int productsCount = 0;
+    for (ProductObject * tmpProductObject in arrOrderSelectedProducts) {
+        /// Check if the product has been selected.
+        if ([tmpProductObject quantity] != 0) {
+            productsCount += [tmpProductObject quantity];
+        }
+    }
     //Call the method that determines if the bottom bar is displayed or not
-    [self doShowPlaceOrderBottomBar:(int)[arrOrderSelectedProducts count]];
+    [self doShowPlaceOrderBottomBar:productsCount];
     return arrMenuProducts;
 }
 
