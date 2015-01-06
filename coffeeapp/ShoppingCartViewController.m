@@ -437,8 +437,20 @@
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if(range.location > 49) // check alert's input length, it cannot be greather than 50 chars.
+    static const NSUInteger limit = 50; // we limit to 50 characters
+    NSUInteger allowedLength = limit - [textField.text length] + range.length;
+    if (string.length > allowedLength) {
+        if (string.length > 1) {
+            // get at least the part of the new string that fits
+            NSString *limitedString = [string substringToIndex:allowedLength];
+            NSMutableString *newString = [textField.text mutableCopy];
+            [newString replaceCharactersInRange:range withString:limitedString];
+            textField.text = newString;
+        }
         return NO;
-    return YES;
+    } else {
+        return YES;
+    }
 }
+
 @end
