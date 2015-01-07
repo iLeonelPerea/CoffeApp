@@ -134,7 +134,7 @@
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
     
-    UIImage *faceImage = [UIImage imageNamed:@"filter_btn"];
+    UIImage *faceImage = [UIImage imageNamed:@"filter_btn_02"];
     UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
     face.bounds = CGRectMake( 0, 0, faceImage.size.width/2, faceImage.size.height/2 );//set bound as per you want
     [face addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
