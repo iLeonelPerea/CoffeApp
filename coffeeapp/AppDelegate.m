@@ -13,7 +13,8 @@
 #import "LeftMenuViewController.h"
 #import "RESTManager.h"
 #import <LMAlertView.h>
-
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -29,6 +30,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     /// Parse credentials and settings.
     [Parse setApplicationId:@"M9XmhjQ8B2iqs3CdNLASwl6hypCXnI8rRJLqFy0x" clientKey:@"6tCRkL9VyM3HQaUQIsduISATRURhHqLQ42ii9QJ4"];
+    [Fabric with:@[CrashlyticsKit]];
+
     [PFUser enableAutomaticUser];
     PFACL * defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];

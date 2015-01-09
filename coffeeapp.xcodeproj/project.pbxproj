@@ -90,6 +90,8 @@
 		C818766A1A44F012001BDF0D /* close_note.png in Resources */ = {isa = PBXBuildFile; fileRef = C81876691A44F012001BDF0D /* close_note.png */; };
 		C839FA4419F5923500BC01D5 /* UserProfileController.m in Sources */ = {isa = PBXBuildFile; fileRef = C839FA4219F5923500BC01D5 /* UserProfileController.m */; };
 		C839FA4519F5923500BC01D5 /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C839FA4319F5923500BC01D5 /* UserProfileController.xib */; };
+		C849FB951A5DF58400F6C1FE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C849FB931A5DF58400F6C1FE /* Crashlytics.framework */; };
+		C849FB961A5DF58400F6C1FE /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C849FB941A5DF58400F6C1FE /* Fabric.framework */; };
 		C8653E4D1A0D5DF900A9F958 /* illustration_03.png in Resources */ = {isa = PBXBuildFile; fileRef = C8653E4C1A0D5DF900A9F958 /* illustration_03.png */; };
 		C869B7251A001EF900F12C57 /* splash_ima.png in Resources */ = {isa = PBXBuildFile; fileRef = C869B7241A001EF900F12C57 /* splash_ima.png */; };
 		C88352E91A0C4BA0001F3AA0 /* illustration_01.png in Resources */ = {isa = PBXBuildFile; fileRef = C88352E71A0C4BA0001F3AA0 /* illustration_01.png */; };
@@ -210,6 +212,8 @@
 		C839FA4119F5923500BC01D5 /* UserProfileController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileController.h; sourceTree = "<group>"; };
 		C839FA4219F5923500BC01D5 /* UserProfileController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileController.m; sourceTree = "<group>"; };
 		C839FA4319F5923500BC01D5 /* UserProfileController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
+		C849FB931A5DF58400F6C1FE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		C849FB941A5DF58400F6C1FE /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		C8653E4C1A0D5DF900A9F958 /* illustration_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_03.png; sourceTree = "<group>"; };
 		C869B7241A001EF900F12C57 /* splash_ima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash_ima.png; sourceTree = "<group>"; };
 		C88352E71A0C4BA0001F3AA0 /* illustration_01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_01.png; sourceTree = "<group>"; };
@@ -249,6 +253,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7DE6F4571A127EAC001EE3B9 /* MapKit.framework in Frameworks */,
+				C849FB961A5DF58400F6C1FE /* Fabric.framework in Frameworks */,
+				C849FB951A5DF58400F6C1FE /* Crashlytics.framework in Frameworks */,
 				C8FB66A319F6F88C00CBED84 /* CoreData.framework in Frameworks */,
 				C8FB66A119F6F87C00CBED84 /* UIKit.framework in Frameworks */,
 				C8FB66A019F6F86E00CBED84 /* CoreGraphics.framework in Frameworks */,
@@ -481,6 +487,8 @@
 		E1D64AD1A07F8D544705FCE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C849FB931A5DF58400F6C1FE /* Crashlytics.framework */,
+				C849FB941A5DF58400F6C1FE /* Fabric.framework */,
 				7DE6F4561A127EAC001EE3B9 /* MapKit.framework */,
 				C8FB66A219F6F88C00CBED84 /* CoreData.framework */,
 				C8FB669F19F6F86E00CBED84 /* CoreGraphics.framework */,
@@ -514,6 +522,7 @@
 				C8B7CC4119F1D76600AEBA27 /* Frameworks */,
 				C8B7CC4219F1D76600AEBA27 /* Resources */,
 				893B7B625F1479EB12AD232F /* Copy Pods Resources */,
+				C849FB921A5DF55A00F6C1FE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -710,6 +719,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C849FB921A5DF55A00F6C1FE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 2b766c438adde6491a5bc9e58514f8b834ccea69 5b23e4bade7a0d273348d90cc8cc7d55b66f00cd43cfa4a55bb6fa4ef972cc7c";
 		};
 /* End PBXShellScriptBuildPhase section */
 
