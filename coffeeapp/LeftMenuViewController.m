@@ -56,7 +56,6 @@
     {
         [imgUserProfile setImageWithResizeURL:userObject.userUrlProfileImage usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
-
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -122,6 +121,8 @@
     [[cell textLabel] setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [[cell textLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:24]];
     [[cell textLabel] setText:[arrMenu objectAtIndex:[indexPath row]]];
+    //[[cell textLabel] setFrame:CGRectMake(100, 0, (IS_IPHONE_6)?275:220, (IS_IPHONE_6 || IS_IPHONE_5)?95:80)];
+    
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
@@ -131,19 +132,21 @@
     [cell addSubview:viewIndicator];
     
     /// Add image checkmark to indicate the selected cell
-    UIView *viewCheckMark = [[UIView alloc] initWithFrame:CGRectMake(210, (IS_IPHONE_6 || IS_IPHONE_5)?37:30, 26, 20)];
+    UIView *viewCheckMark = [[UIView alloc] initWithFrame:CGRectMake((IS_IPHONE_6)?250:210, 37, 26, 20)];
     [viewCheckMark setBackgroundColor:[UIColor whiteColor]];
     [cell addSubview:viewCheckMark];
     
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     /// Add image indicator to indicate the selected cell
     
+    cell.imageView.image =[[UIImage alloc]init];
+    
     if ([indexPath row] == appDelegate.activeMenu) {
         UIImageView *imgIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10,(IS_IPHONE_6 || IS_IPHONE_5)?95:80)];
         [imgIndicator setImage:[UIImage imageNamed:@"menu_selected"]];
         [cell addSubview:imgIndicator];
         
-        UIImageView *imgCheckMark = [[UIImageView alloc] initWithFrame:CGRectMake(210, (IS_IPHONE_6 || IS_IPHONE_5)?37:30, 26, 20)];
+        UIImageView *imgCheckMark = [[UIImageView alloc] initWithFrame:CGRectMake((IS_IPHONE_6)?250:210, 37, 26, 20)];
         [imgCheckMark setImage:[UIImage imageNamed:@"Checkmarck_Grey"]];
         [cell addSubview:imgCheckMark];
     }

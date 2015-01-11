@@ -50,7 +50,7 @@
     /// Set the constraints for the elements on the view.
     [[self view] setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 667):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 0, 320, 480)];
     [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height+60, self.view.frame.size.width, 60)];
-    [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
+    [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
     [lblProductsCount setFrame:CGRectMake(19, 0, 90, 60)];
     [lblProductsCount setTextAlignment:NSTextAlignmentLeft];
     [lblProductsCount setFont:[UIFont fontWithName:@"Lato-light" size:16]];
@@ -490,7 +490,7 @@
         (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek)) ) {
         //Button outstock
         UIView * viewOutOfStock = [[UIView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(113.5f, 101, 148, 27):CGRectMake(86, 86, 148, 27)];
-        [viewOutOfStock setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
+        [viewOutOfStock setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
         [viewOutOfStock.layer setCornerRadius:5.0f];
         [viewOutOfStock.layer setMasksToBounds:YES];
         UILabel * lblOutOfStock = [[UILabel alloc] initWithFrame:CGRectMake(6.5f, 0.0f, 118.0f, 27.0f)];
