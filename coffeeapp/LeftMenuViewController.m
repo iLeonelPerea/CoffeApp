@@ -35,7 +35,8 @@
     UserObject * userObject = [[UserObject alloc] init];
     userObject = [appDelegate userObject];
     /// Set the style for the user's label.
-    [lblUser setFont:[UIFont fontWithName:@"Lato-Light" size:16]];
+    [lblUser setFont:[UIFont fontWithName:@"Lato-Light" size:19]];
+    [lblUser setNumberOfLines:2];
     [lblUser setText:[userObject userName]];
     [lblUser setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     
@@ -65,7 +66,7 @@
     [imgUserProfile setFrame:(IS_IPHONE_6)?CGRectMake(20, 421, 100, 100):(IS_IPHONE_5)?CGRectMake(20, 321, 100, 100):CGRectMake(20, 230, 100, 100)];
     [lblUser setFrame:(IS_IPHONE_6)?CGRectMake(20, 519, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 419, 240, 60):CGRectMake(20, 330, 240, 60)];
     [lblMail setFrame:(IS_IPHONE_6)?CGRectMake(20, 549, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 449, 240, 60):CGRectMake(20, 360, 240, 60)];
-    [btnSignOut setFrame:(IS_IPHONE_6)?CGRectMake(20, 610, 200, 40):(IS_IPHONE_5)?CGRectMake(20, 507, 200, 40):CGRectMake(20, 420, 200, 40)];
+    [btnSignOut setFrame:(IS_IPHONE_6)?CGRectMake(20, 610, 230, 45):(IS_IPHONE_5)?CGRectMake(20, 507, 230, 45):CGRectMake(20, 420, 230, 45)];
 }
 
 /// System method.
@@ -118,7 +119,6 @@
     }
     
     /// Set the label for the cell.
-    [[cell textLabel] setFrame:CGRectMake(60, 0, 130, 95)];
     [[cell textLabel] setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [[cell textLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:24]];
     [[cell textLabel] setText:[arrMenu objectAtIndex:[indexPath row]]];
