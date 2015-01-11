@@ -779,6 +779,11 @@
 #pragma mark -- updateCategory
 /// Set values of each category in the top bar
 -(void)updateCategoryBar{
+    //Remove subviews from viewScroll
+    for (UIView * view in viewScrollCategories.subviews){
+        [view removeFromSuperview];
+    }
+    
     int indexArrayProductCategories = -1; // set index of category
     float xPositionCategory = 0.0, widthLastCategory = 0.0; //position of each category
     
