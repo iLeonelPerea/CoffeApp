@@ -45,7 +45,8 @@
     
     /** Set screen's title label to "Pending orders" */
     [lblTitle setText:@"PENDING ORDERS"];
-    [lblTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
+    [lblTitle setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
+    [lblTitle setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     
     /** Get the orders information, init with the orders in status "confirm" or "attending" */
     arrOrders = [DBManager getOrdersHistory:NO];
@@ -163,7 +164,7 @@
     /// --------- Product name
     UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(20, 0, 335, 23):CGRectMake(20, 0, 280, 23)];
     [[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"];
-    [lblName setText:[NSString stringWithFormat:@"%@ %@",[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"],[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_NAME"]]];
+    [lblName setText:[NSString stringWithFormat:@"%@ %@",[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"],[(NSString*)[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_NAME"] capitalizedString]]];
     [lblName setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
     [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblName setTextAlignment:NSTextAlignmentLeft];

@@ -26,7 +26,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize viewPicker, viewCategories, viewScrollCategories, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive;
+@synthesize viewPicker, viewCategories, viewScrollCategories, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive, tblProductsHeight;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -64,14 +64,6 @@
     
     /// Set the default value to the flag for bottom bar.
     isViewPlaceOrderActive = NO;
-    
-    /// Set the default value to the filter of categories.
-    [pickerOptions setDelegate:self];
-    [pickerOptions setDataSource:self];
-    pickerFilterActiveOption = 0;
-    isPickerFilterActive = NO;
-    [viewPicker setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 189):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 189):CGRectMake(0, 0, 320, 189)];
-    [pickerOptions setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 189):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 189):CGRectMake(0, 0, 320, 189)];
     
     /// Check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
@@ -115,7 +107,6 @@
             arrProductCategoriesObjects = [DBManager getCategories];
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
             [tblProducts reloadData];
-            [pickerOptions reloadAllComponents];
             
             [self updateCategoryBar];
         }else{
@@ -144,7 +135,7 @@
     UIImage *faceImage = [UIImage imageNamed:@"PlateCover"];
     UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
     face.bounds = CGRectMake( 0, 0, faceImage.size.width/2, faceImage.size.height/2 );//set bound as per you want
-    [face addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
+    [face addTarget:self action:@selector(doHideShowCategoryFilter:) forControlEvents:UIControlEventTouchUpInside];
     [face setImage:faceImage forState:UIControlStateNormal];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:face];
     [self navigationItem].rightBarButtonItem = backButton;
@@ -168,16 +159,19 @@
     mapKitView.delegate = self;
     [mapKitView setShowsUserLocation:YES];
     
+    tblProductsHeight = self.view.frame.size.height;
+    
     //[viewScrollCategories setContentOffset:(IS_IPHONE_6)?CGPointMake(0, 0):(IS_IPHONE_5)?CGPointMake(0, 0):CGPointMake(0, 0) animated:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     
     /// Check if the bottom bar is active, to set the size of tblProducts.
+    int newTblProductsHeight =  tblProductsHeight - 125;
     if (isViewPlaceOrderActive) {
-        [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 124, 375, 485):(IS_IPHONE_5)?CGRectMake(0, 124, 320, 386):CGRectMake(0, 124, 320, 298)];
+        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 125, 375, newTblProductsHeight):(IS_IPHONE_5)?CGRectMake(0, 125, 320, newTblProductsHeight):CGRectMake(0, 125, 320, newTblProductsHeight)];
     }else{
-        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 124, 375, 543):(IS_IPHONE_5)?CGRectMake(0, 124, 320, 444):CGRectMake(0, 64, 320, 356)];
+        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 125, 375, newTblProductsHeight):(IS_IPHONE_5)?CGRectMake(0, 125, 320, newTblProductsHeight):CGRectMake(0, 125, 320, newTblProductsHeight)];
     }
     [viewCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 65, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 65, 320, 57):CGRectMake(0, 65, 320, 57)];
     [viewScrollCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 57):CGRectMake(0, 0, 320, 57)];
@@ -332,22 +326,28 @@
 #pragma mark -- Show place order bottom bar
 -(void)doShowPlaceOrderBottomBar:(int)productsCount
 {
+    /// Initialize the height of the table checking if the viewCategories is hidden or not.
+    int newTblProductsHeight = ([viewCategories isHidden])?tblProductsHeight-65:tblProductsHeight-125;
+    int tblProductsYPosition = ([viewCategories isHidden])?65:125;
     /// Check for the quantity of selected products && if place order is not active.
     if (productsCount>0 && !isViewPlaceOrderActive) {
         /// Set flag in YES.
         isViewPlaceOrderActive = YES;
+        /// Decrease the value of the table height
+        newTblProductsHeight = newTblProductsHeight - 60;
         /// Make an animation to hide the place order bottom bar.
         [UIView animateWithDuration:0.4f animations:^{
             // Decrease
             [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height-60, viewPlaceOrder.frame.size.width, 60)];
         } completion:^(BOOL finished) {
-            [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 124, 375, 485):(IS_IPHONE_5)?CGRectMake(0, 124, 320, 386):CGRectMake(0, 124, 320, 298)];
+            [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, tblProductsYPosition, 375, newTblProductsHeight):(IS_IPHONE_5)?CGRectMake(0, tblProductsYPosition, 320, newTblProductsHeight):CGRectMake(0, 124, 320, 298)];
         }];
         
     }else if(productsCount==0 && isViewPlaceOrderActive){
         /// Set flag in NO.
         isViewPlaceOrderActive = NO;
-        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 124, 375, 543):(IS_IPHONE_5)?CGRectMake(0, 124, 320, 444):CGRectMake(0, 64, 320, 356)];
+        /// Increase the value of the table height
+        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, tblProductsYPosition, 375, newTblProductsHeight):(IS_IPHONE_5)?CGRectMake(0, tblProductsYPosition, 320, newTblProductsHeight):CGRectMake(0, 64, 320, 356)];
         /// Create an animation to shoe the place order bottom bar.
         [UIView animateWithDuration:0.4f animations:^{
             // Increase
@@ -842,6 +842,14 @@
     viewScrollCategories.contentSize = CGSizeMake(xPositionCategory, 57); //Assign content size
 }
 
+-(void)doHideShowCategoryFilter:(id)sender
+{
+    [viewCategories setHidden:![viewCategories isHidden]];
+    int newTblProductsHeight = ([viewCategories isHidden])?tblProductsHeight-65:tblProductsHeight-125;
+    newTblProductsHeight = (isViewPlaceOrderActive)?newTblProductsHeight-60:newTblProductsHeight;
+    [tblProducts setFrame:CGRectMake(0, ([viewCategories isHidden])?65:125, tblProducts.frame.size.width, newTblProductsHeight)];
+}
+
 // Asign new filter and refresh
 -(void)setFilter:(UITapGestureRecognizer *)tapGesture{
     UILabel *selection = (UILabel *)tapGesture.view;
@@ -850,51 +858,6 @@
     [self doReloadData];
     [self synchronizeDefaults];
     [self updateCategoryBar];
-}
-
-#pragma mark -- UIPickerViewDelegate
--(void)showPicker{
-    [viewPicker setHidden:NO];
-}
-
-/// Set the title of each category
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    return (row == 0) ? @"All Categories" : [(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:row-1] category_name];
-}
-
-// Hide the Picker
--(void)doPickerCancel:(id)sender
-{
-    [viewPicker setHidden:YES];
-}
-
-// Save the category selected
--(void)doPickerOk:(id)sender
-{
-    [viewPicker setHidden:YES];
-    isPickerFilterActive = ([pickerOptions selectedRowInComponent:0]==0) ? NO : YES;
-    pickerFilterActiveOption = (int)[pickerOptions selectedRowInComponent:0]-1;
-    [self doReloadData];
-    [self synchronizeDefaults];
-    [self updateCategoryBar];
-}
-
-// Return the number of categories
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [arrProductObjects count]+1;
-}
-
-// Return the number of components
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
--(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 40.0f;
 }
 
 @end

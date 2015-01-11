@@ -32,7 +32,7 @@
 
 @class LoginViewController;
 
-@interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDataSource, UIPickerViewDelegate>
+@interface MenuViewController_iPhone : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UIPickerViewDelegate>
 
 /** Outlet to enable the filter categories throught UIPicker. */
 @property (nonatomic, strong) IBOutlet UIView * viewPicker;
@@ -96,6 +96,8 @@
 
 /** Boolean flag to determine is the location service are available on the device. If they're not, the geolocalization limitant is disable. */
 @property (nonatomic, assign) BOOL areLocationServicesAvailable;
+
+@property (nonatomic, assign) int tblProductsHeight;
 
 /** Set the quantity for selected products and update the total on hand of the products.
  
@@ -175,7 +177,7 @@
     - Check if the category of the product is equal to "Desayuno" and if the meals category is available.
  */
 -(IBAction)doPlaceOrder:(id)sender;
--(IBAction)doPickerOk:(id)sender;
--(IBAction)doPickerCancel:(id)sender;
+
+-(IBAction)doHideShowCategoryFilter:(id)sender;
 
 @end

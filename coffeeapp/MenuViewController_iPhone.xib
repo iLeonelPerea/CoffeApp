@@ -10,11 +10,9 @@
                 <outlet property="btnPlaceOrder" destination="arX-tN-vq3" id="7Oe-Me-vr6"/>
                 <outlet property="lblProductsCount" destination="WsC-1d-Nzx" id="udk-0c-LbP"/>
                 <outlet property="mapKitView" destination="OlD-3y-2lI" id="6ig-PU-sRQ"/>
-                <outlet property="pickerOptions" destination="rXg-2i-vFD" id="ge6-As-OJB"/>
                 <outlet property="tblProducts" destination="7yx-Em-d2a" id="Hjc-J0-FbX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewCategories" destination="7Pk-km-1RK" id="vIT-LM-vYy"/>
-                <outlet property="viewPicker" destination="3KQ-eN-b62" id="xzt-vB-jEQ"/>
                 <outlet property="viewPlaceOrder" destination="pUe-Ri-9D5" id="w4i-Gq-oRn"/>
                 <outlet property="viewScrollCategories" destination="beo-e3-EaL" id="Dky-HO-6fK"/>
             </connections>
@@ -52,7 +50,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" id="pUe-Ri-9D5">
-                    <rect key="frame" x="0.0" y="568" width="320" height="86"/>
+                    <rect key="frame" x="0.0" y="568" width="320" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Products" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="WsC-1d-Nzx">
@@ -76,37 +74,6 @@
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.85266315607734811" green="0.52381563932647268" blue="0.32002103036086954" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
-                <view hidden="YES" contentMode="scaleToFill" id="3KQ-eN-b62">
-                    <rect key="frame" x="0.0" y="65" width="320" height="189"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                    <subviews>
-                        <pickerView contentMode="scaleToFill" id="rXg-2i-vFD">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="162"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                        </pickerView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="H6r-D8-WF4">
-                            <rect key="frame" x="8" y="159" width="80" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Cancel">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="doPickerCancel:" destination="-1" eventType="touchUpInside" id="AB4-ld-U1p"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="G6m-LU-Msu">
-                            <rect key="frame" x="232" y="159" width="80" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="OK">
-                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="doPickerOk:" destination="-1" eventType="touchUpInside" id="R1i-RT-GQs"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
