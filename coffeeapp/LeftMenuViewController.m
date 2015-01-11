@@ -19,7 +19,7 @@
 @end
 
 @implementation LeftMenuViewController
-@synthesize tblMenu, arrMenu, isUserLogged, btnSignOut, lblUser, imgUserProfile, HUD, lblOptions;
+@synthesize tblMenu, lblMail, arrMenu, isUserLogged, btnSignOut, lblUser, imgUserProfile, HUD, lblOptions;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -35,9 +35,14 @@
     UserObject * userObject = [[UserObject alloc] init];
     userObject = [appDelegate userObject];
     /// Set the style for the user's label.
-    [lblUser setFont:[UIFont fontWithName:@"Lato-Regular" size:20]];
+    [lblUser setFont:[UIFont fontWithName:@"Lato-Light" size:32]];
     [lblUser setText:[userObject userName]];
     [lblUser setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
+    
+    [lblMail setFont:[UIFont fontWithName:@"Lato-Light" size:16]];
+    [lblMail setText:[userObject userEmail]];
+    [lblMail setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
+    
     [lblOptions setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     /// Check for the image of the user.
     if([(NSString*) userObject.userUrlProfileImage rangeOfString:@"?"].location != NSNotFound)
@@ -57,9 +62,10 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     /// Set the elements to fit on the screen.
-    [tblMenu setFrame:(IS_IPHONE_6 || IS_IPHONE_5)?CGRectMake(0, 70, 320, 160):CGRectMake(0, 70, 320, 100)];
-    [imgUserProfile setFrame:(IS_IPHONE_6)?CGRectMake(20, 441, 90, 90):(IS_IPHONE_5)?CGRectMake(20, 341, 90, 90):CGRectMake(20, 250, 90, 90)];
-    [lblUser setFrame:(IS_IPHONE_6)?CGRectMake(20, 539, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 439, 240, 60):CGRectMake(20, 350, 240, 60)];
+    [tblMenu setFrame:(IS_IPHONE_6 || IS_IPHONE_5)?CGRectMake(0, 20, 320, 220):CGRectMake(0, 20, 320, 160)];
+    [imgUserProfile setFrame:(IS_IPHONE_6)?CGRectMake(20, 421, 100, 100):(IS_IPHONE_5)?CGRectMake(20, 321, 100, 100):CGRectMake(20, 230, 100, 100)];
+    [lblUser setFrame:(IS_IPHONE_6)?CGRectMake(20, 519, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 419, 240, 60):CGRectMake(20, 330, 240, 60)];
+    [lblMail setFrame:(IS_IPHONE_6)?CGRectMake(20, 549, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 449, 240, 60):CGRectMake(20, 360, 240, 60)];
     [btnSignOut setFrame:(IS_IPHONE_6)?CGRectMake(20, 610, 200, 40):(IS_IPHONE_5)?CGRectMake(20, 507, 200, 40):CGRectMake(20, 420, 200, 40)];
 }
 
@@ -73,7 +79,7 @@
 /// Define the height for the table row based on the device.
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (IS_IPHONE_6 || IS_IPHONE_5)?80:50;
+    return (IS_IPHONE_6 || IS_IPHONE_5)?110:80;
 }
 
 /// Define the numbers of rows based on the numbers of elements of the array arrMenu.
@@ -85,22 +91,21 @@
 /// Check for the selected row. Depending on which is the view controller displayed.
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    appDelegate.activeMenu = (int)[indexPath row];
+    
     [tblMenu reloadData];
-    /// Add image indicator to indicate the selected cell
-    UIImageView *imgIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10,(IS_IPHONE_6 || IS_IPHONE_5)?80:50)];
+
     switch ([indexPath row]) {
         case 0:
             [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestMenu" object:nil];
-            [imgIndicator setImage:[UIImage imageNamed:@"menu_selected"]];
             break;
         case 1:
             [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestOrders" object:nil];
-            [imgIndicator setImage:[UIImage imageNamed:@"menu_selected"]];
             break;
         default:
             break;
     }
-    [[tableView cellForRowAtIndexPath:indexPath] addSubview:imgIndicator];
 }
 
 /// Draw the content of each cell of the table.
@@ -115,15 +120,34 @@
     
     /// Set the label for the cell.
     [[cell textLabel] setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
-    [[cell textLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:24]];
+    [[cell textLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:34]];
     [[cell textLabel] setText:[arrMenu objectAtIndex:[indexPath row]]];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
     /// Add image indicator to indicate the selected cell
-    UIView *viewIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10,(IS_IPHONE_6 || IS_IPHONE_5)?80:50)];
+    UIView *viewIndicator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10,(IS_IPHONE_6 || IS_IPHONE_5)?110:80)];
     [viewIndicator setBackgroundColor:[UIColor whiteColor]];
     [cell addSubview:viewIndicator];
+    
+    /// Add image checkmark to indicate the selected cell
+    UIView *viewCheckMark = [[UIView alloc] initWithFrame:CGRectMake(270, (IS_IPHONE_6 || IS_IPHONE_5)?45:30, 26, 20)];
+    [viewCheckMark setBackgroundColor:[UIColor whiteColor]];
+    [cell addSubview:viewCheckMark];
+    
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    /// Add image indicator to indicate the selected cell
+    
+    if ([indexPath row] == appDelegate.activeMenu) {
+        UIImageView *imgIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10,(IS_IPHONE_6 || IS_IPHONE_5)?110:80)];
+        [imgIndicator setImage:[UIImage imageNamed:@"menu_selected"]];
+        [cell addSubview:imgIndicator];
+        
+        UIImageView *imgCheckMark = [[UIImageView alloc] initWithFrame:CGRectMake(270, (IS_IPHONE_6 || IS_IPHONE_5)?45:30, 26, 20)];
+        [imgCheckMark setImage:[UIImage imageNamed:@"Checkmarck_Grey"]];
+        [cell addSubview:imgCheckMark];
+    }
+    [cell setClipsToBounds:NO];
     return cell;
 }
 

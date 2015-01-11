@@ -34,6 +34,9 @@
 /** Outlet for an UILabel to display the name of the user. */
 @property (nonatomic, strong) IBOutlet UILabel * lblUser;
 
+/** Outlet for an UILabel to display the email of the user. */
+@property (nonatomic, strong) IBOutlet UILabel * lblMail;
+
 /** Outlet for an UIButton to do the Sign Out of the app. */
 @property (nonatomic, strong) IBOutlet UIButton * btnSignOut;
 
