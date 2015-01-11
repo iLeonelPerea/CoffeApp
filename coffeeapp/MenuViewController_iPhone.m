@@ -306,6 +306,7 @@
             /// Check if the product has been selected.
             if (tmpObject.quantity != 0) {
                 productsCount += tmpObject.quantity;
+                tmpObject.comment = @"";
                 [arrProductsInQueue addObject:tmpObject];
             }
         }
