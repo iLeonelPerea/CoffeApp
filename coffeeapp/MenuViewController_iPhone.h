@@ -37,6 +37,12 @@
 /** Outlet to enable the filter categories throught UIPicker. */
 @property (nonatomic, strong) IBOutlet UIView * viewPicker;
 
+/** Outlet to enable the filter categories throught UIScroll. */
+@property (nonatomic, strong) IBOutlet UIView * viewCategories;
+
+/** Outlet to enable the filter categories throught UILabel. */
+@property (nonatomic, strong) IBOutlet UIScrollView * viewScrollCategories;
+
 /** Outlet to hide the picker and buttons. */
 @property (nonatomic, strong) IBOutlet UIPickerView *pickerOptions;
 
