@@ -31,7 +31,6 @@
 		230129371A620132001DAE1D /* SadFace.png in Resources */ = {isa = PBXBuildFile; fileRef = 230129361A620132001DAE1D /* SadFace.png */; };
 		231293B41A1271D6003A5856 /* login_btn_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231293B21A1271D6003A5856 /* login_btn_down@3x.png */; };
 		231293B51A1271D6003A5856 /* login_btn_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231293B31A1271D6003A5856 /* login_btn_up@3x.png */; };
-		2315F8BE1A44ACB900C1FE7B /* menu_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 2315F8BD1A44ACB900C1FE7B /* menu_selected.png */; };
 		2329A9161A09B08600E93ABB /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = 2329A9151A09B08600E93ABB /* label.png */; };
 		232D03581A13F45B008791A4 /* delete_order_btn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 232D03561A13F45B008791A4 /* delete_order_btn_down.png */; };
 		232D03591A13F45B008791A4 /* delete_order_btn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 232D03571A13F45B008791A4 /* delete_order_btn_up.png */; };
@@ -76,6 +75,8 @@
 		7D7D137119FAD81900B3FAE3 /* CategoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D137019FAD81900B3FAE3 /* CategoryObject.m */; };
 		7D845F0219F6DB24006C7B0E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D845F0119F6DB24006C7B0E /* Foundation.framework */; };
 		7DB9DFAB1A61ECD8001F3AC5 /* PlateCover.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9DFAA1A61ECD8001F3AC5 /* PlateCover.png */; };
+		7DB9DFAD1A6254EA001F3AC5 /* Checkmarck_Grey.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9DFAC1A6254EA001F3AC5 /* Checkmarck_Grey.png */; };
+		7DB9DFAF1A6261A4001F3AC5 /* menu_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DB9DFAE1A6261A4001F3AC5 /* menu_selected.png */; };
 		7DBCD4601A5D964D00F5D6ED /* filter_btn_02.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DBCD45F1A5D964D00F5D6ED /* filter_btn_02.png */; };
 		7DE6F4571A127EAC001EE3B9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DE6F4561A127EAC001EE3B9 /* MapKit.framework */; };
 		7DE6F45B1A129B4C001EE3B9 /* illustration_04.png in Resources */ = {isa = PBXBuildFile; fileRef = 7DE6F45A1A129B4C001EE3B9 /* illustration_04.png */; };
@@ -134,7 +135,6 @@
 		230129361A620132001DAE1D /* SadFace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SadFace.png; sourceTree = "<group>"; };
 		231293B21A1271D6003A5856 /* login_btn_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_down@3x.png"; sourceTree = "<group>"; };
 		231293B31A1271D6003A5856 /* login_btn_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_up@3x.png"; sourceTree = "<group>"; };
-		2315F8BD1A44ACB900C1FE7B /* menu_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_selected.png; sourceTree = "<group>"; };
 		2329A9151A09B08600E93ABB /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
 		232D03561A13F45B008791A4 /* delete_order_btn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_order_btn_down.png; sourceTree = "<group>"; };
 		232D03571A13F45B008791A4 /* delete_order_btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_order_btn_up.png; sourceTree = "<group>"; };
@@ -189,6 +189,8 @@
 		7D845F0119F6DB24006C7B0E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7D845F0519F6DBF7006C7B0E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7DB9DFAA1A61ECD8001F3AC5 /* PlateCover.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlateCover.png; sourceTree = "<group>"; };
+		7DB9DFAC1A6254EA001F3AC5 /* Checkmarck_Grey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Checkmarck_Grey.png; sourceTree = "<group>"; };
+		7DB9DFAE1A6261A4001F3AC5 /* menu_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu_selected.png; sourceTree = "<group>"; };
 		7DBCD45F1A5D964D00F5D6ED /* filter_btn_02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter_btn_02.png; sourceTree = "<group>"; };
 		7DE6F4561A127EAC001EE3B9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7DE6F45A1A129B4C001EE3B9 /* illustration_04.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_04.png; sourceTree = "<group>"; };
@@ -342,10 +344,11 @@
 				2301292F1A61EEC8001DAE1D /* SubstractButton.png */,
 				2301292A1A61DDC4001DAE1D /* AddButton_Pressed.png */,
 				2301292B1A61DDC4001DAE1D /* AddButton.png */,
+				7DB9DFAE1A6261A4001F3AC5 /* menu_selected.png */,
+				7DB9DFAC1A6254EA001F3AC5 /* Checkmarck_Grey.png */,
 				7DB9DFAA1A61ECD8001F3AC5 /* PlateCover.png */,
 				7DBCD45F1A5D964D00F5D6ED /* filter_btn_02.png */,
 				7D4D29231A4894CA005645A0 /* filter_btn.png */,
-				2315F8BD1A44ACB900C1FE7B /* menu_selected.png */,
 				7D4E91471A4393F2003E2FE1 /* illustration_06.png */,
 				C89678B21A488CD000B38F1E /* done_btn_down.png */,
 				C89678B31A488CD000B38F1E /* done_btn_up.png */,
@@ -610,8 +613,10 @@
 				234BCE1F1A0D804200BA4074 /* crowdchef_iphone_120.png in Resources */,
 				C8B7CC5819F1D76600AEBA27 /* LaunchScreen.xib in Resources */,
 				23A5E1421A0293E400590509 /* logout_btn_up.png in Resources */,
+				7DB9DFAF1A6261A4001F3AC5 /* menu_selected.png in Resources */,
 				C8A265441A42581B00CBFED1 /* illustration_hurry.png in Resources */,
 				2354C3D31A03110900729A84 /* history_btn_up.png in Resources */,
+				7DB9DFAD1A6254EA001F3AC5 /* Checkmarck_Grey.png in Resources */,
 				23F400A41A0BCDF6009F09EE /* Lato-BolIta.ttf in Resources */,
 				230129351A61FF16001DAE1D /* Circle_Count.png in Resources */,
 				2315F8BE1A44ACB900C1FE7B /* menu_selected.png in Resources */,
