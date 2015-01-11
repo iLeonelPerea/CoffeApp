@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C81f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C94b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -13,8 +13,10 @@
                 <outlet property="pickerOptions" destination="rXg-2i-vFD" id="ge6-As-OJB"/>
                 <outlet property="tblProducts" destination="7yx-Em-d2a" id="Hjc-J0-FbX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewCategories" destination="7Pk-km-1RK" id="vIT-LM-vYy"/>
                 <outlet property="viewPicker" destination="3KQ-eN-b62" id="xzt-vB-jEQ"/>
                 <outlet property="viewPlaceOrder" destination="pUe-Ri-9D5" id="w4i-Gq-oRn"/>
+                <outlet property="viewScrollCategories" destination="beo-e3-EaL" id="Dky-HO-6fK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -30,7 +32,7 @@
                     </connections>
                 </mapView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="400" sectionHeaderHeight="100" sectionFooterHeight="1" id="7yx-Em-d2a">
-                    <rect key="frame" x="0.0" y="69" width="320" height="499"/>
+                    <rect key="frame" x="0.0" y="129" width="320" height="439"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -38,6 +40,17 @@
                         <outlet property="delegate" destination="-1" id="7R6-Ce-dbY"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" id="7Pk-km-1RK">
+                    <rect key="frame" x="0.0" y="65" width="320" height="57"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" id="beo-e3-EaL">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="57"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
                 <view contentMode="scaleToFill" id="pUe-Ri-9D5">
                     <rect key="frame" x="0.0" y="568" width="320" height="86"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

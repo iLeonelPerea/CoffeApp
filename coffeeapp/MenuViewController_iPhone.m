@@ -26,7 +26,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize viewPicker, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive;
+@synthesize viewPicker, viewCategories, viewScrollCategories, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -111,6 +111,8 @@
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
             [tblProducts reloadData];
             [pickerOptions reloadAllComponents];
+            
+            [self updateCategoryBar];
         }else{
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
@@ -134,7 +136,7 @@
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
     
-    UIImage *faceImage = [UIImage imageNamed:@"filter_btn_02"];
+    UIImage *faceImage = [UIImage imageNamed:@"PlateCover"];
     UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
     face.bounds = CGRectMake( 0, 0, faceImage.size.width/2, faceImage.size.height/2 );//set bound as per you want
     [face addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
@@ -160,15 +162,17 @@
     /// Initialice mapkit
     mapKitView.delegate = self;
     [mapKitView setShowsUserLocation:YES];
+    
+    //[viewScrollCategories setContentOffset:(IS_IPHONE_6)?CGPointMake(0, 0):(IS_IPHONE_5)?CGPointMake(0, 0):CGPointMake(0, 0) animated:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     
     /// Check if the bottom bar is active, to set the size of tblProducts.
     if (isViewPlaceOrderActive) {
-        [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 64, 375, 545):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 446):CGRectMake(0, 64, 320, 358)];
+        [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 124, 375, 485):(IS_IPHONE_5)?CGRectMake(0, 124, 320, 386):CGRectMake(0, 124, 320, 298)];
     }else{
-        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 603):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 504):CGRectMake(0, 64, 320, 416)];
+        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 124, 375, 543):(IS_IPHONE_5)?CGRectMake(0, 124, 320, 444):CGRectMake(0, 64, 320, 356)];
     }
 }
 
@@ -330,13 +334,13 @@
             // Decrease
             [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height-60, viewPlaceOrder.frame.size.width, 60)];
         } completion:^(BOOL finished) {
-            [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 64, 375, 545):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 446):CGRectMake(0, 64, 320, 358)];
+            [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 124, 375, 485):(IS_IPHONE_5)?CGRectMake(0, 124, 320, 386):CGRectMake(0, 124, 320, 298)];
         }];
         
     }else if(productsCount==0 && isViewPlaceOrderActive){
         /// Set flag in NO.
         isViewPlaceOrderActive = NO;
-        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 603):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 504):CGRectMake(0, 64, 320, 416)];
+        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 124, 375, 543):(IS_IPHONE_5)?CGRectMake(0, 124, 320, 444):CGRectMake(0, 64, 320, 356)];
         /// Create an animation to shoe the place order bottom bar.
         [UIView animateWithDuration:0.4f animations:^{
             // Increase
@@ -770,6 +774,75 @@
     [mapKitView setRegion:mapRegion animated: YES];
 }
 
+#pragma mark -- updateCategory
+/// Set values of each category in the top bar
+-(void)updateCategoryBar{
+    int indexArrayProductCategories = -1; // set index of category
+    float xPositionCategory = 0.0, widthLastCategory = 0.0; //position of each category
+    
+    //Create label of category
+    UILabel *lblCategory = [[UILabel alloc] init];
+    [lblCategory setFrame:CGRectMake(xPositionCategory, 18, 3*12, 20)];
+    lblCategory.textAlignment = NSTextAlignmentCenter;
+    [lblCategory setText:@"ALL"];
+    [lblCategory setTag:indexArrayProductCategories];
+    lblCategory.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setFilter:)];
+    [lblCategory addGestureRecognizer:tapGesture];
+    [lblCategory setFont:[UIFont fontWithName:@"Lato-Bold" size:12]];
+    [lblCategory setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
+    [viewScrollCategories addSubview:lblCategory];
+    if (!isPickerFilterActive) { //If filter is active
+        UILabel *lblActiveCategory = [[UILabel alloc] init];
+        [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+(3*12/2), 25, 25, 25)];
+        lblActiveCategory.textAlignment = NSTextAlignmentCenter;
+        [lblActiveCategory setText:@"·"];
+        [lblActiveCategory setFont:[UIFont fontWithName:@"Lato-Light" size:80]];
+        [lblActiveCategory setTextColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
+        [viewScrollCategories addSubview:lblActiveCategory];
+    }
+    indexArrayProductCategories ++;
+    xPositionCategory += 36;
+    for (CategoryObject *category in arrProductCategoriesObjects) {
+        //Create label of category
+        UILabel *lblCategory = [[UILabel alloc] init];
+        [lblCategory setFrame:CGRectMake(xPositionCategory, 18, [category.category_name length]*12, 20)];
+        lblCategory.textAlignment = NSTextAlignmentCenter;
+        [lblCategory setText:[category.category_name uppercaseString]];
+        [lblCategory setTag:indexArrayProductCategories];
+        lblCategory.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setFilter:)];
+        [lblCategory addGestureRecognizer:tapGesture];
+        [lblCategory setFont:[UIFont fontWithName:@"Lato-Bold" size:12]];
+        [lblCategory setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
+        [viewScrollCategories addSubview:lblCategory];
+        if (isPickerFilterActive && indexArrayProductCategories == pickerFilterActiveOption) { //If filter is active
+            UILabel *lblActiveCategory = [[UILabel alloc] init];
+            [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+([category.category_name length]*12/2), 25, 25, 25)];
+            lblActiveCategory.textAlignment = NSTextAlignmentCenter;
+            [lblActiveCategory setText:@"·"];
+            [lblActiveCategory setFont:[UIFont fontWithName:@"Lato-Light" size:80]];
+            [lblActiveCategory setTextColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
+            [viewScrollCategories addSubview:lblActiveCategory];
+        }
+        xPositionCategory += [category.category_name length]*12;
+        indexArrayProductCategories ++;
+        widthLastCategory = [category.category_name length]*12;
+    }
+    [viewScrollCategories setFrame:CGRectMake(0, 0, xPositionCategory + widthLastCategory, 57)]; //Set frame
+    viewScrollCategories.contentSize = CGSizeMake(xPositionCategory + widthLastCategory +30, 57); //Assign content size
+}
+
+// Asign new filter and refresh
+-(void)setFilter:(UITapGestureRecognizer *)tapGesture{
+    UILabel *selection = (UILabel *)tapGesture.view;
+    isPickerFilterActive = (selection.tag + 1==0) ? NO : YES;
+    pickerFilterActiveOption = selection.tag;
+    [self doReloadData];
+    [self synchronizeDefaults];
+    [self updateCategoryBar];
+}
+
 #pragma mark -- UIPickerViewDelegate
 -(void)showPicker{
     [viewPicker setHidden:NO];
@@ -795,6 +868,7 @@
     pickerFilterActiveOption = (int)[pickerOptions selectedRowInComponent:0]-1;
     [self doReloadData];
     [self synchronizeDefaults];
+    [self updateCategoryBar];
 }
 
 // Return the number of categories
