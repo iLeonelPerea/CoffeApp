@@ -131,7 +131,7 @@
     [cell addSubview:viewIndicator];
     
     /// Add image checkmark to indicate the selected cell
-    UIView *viewCheckMark = [[UIView alloc] initWithFrame:CGRectMake(210, (IS_IPHONE_6 || IS_IPHONE_5)?37:30, 26, 20)];
+    UIView *viewCheckMark = [[UIView alloc] initWithFrame:CGRectMake((IS_IPHONE_6)?300:210, 37, 26, 20)];
     [viewCheckMark setBackgroundColor:[UIColor whiteColor]];
     [cell addSubview:viewCheckMark];
     
@@ -143,7 +143,7 @@
         [imgIndicator setImage:[UIImage imageNamed:@"menu_selected"]];
         [cell addSubview:imgIndicator];
         
-        UIImageView *imgCheckMark = [[UIImageView alloc] initWithFrame:CGRectMake(210, (IS_IPHONE_6 || IS_IPHONE_5)?37:30, 26, 20)];
+        UIImageView *imgCheckMark = [[UIImageView alloc] initWithFrame:CGRectMake((IS_IPHONE_6)?250:210, 37, 26, 20)];
         [imgCheckMark setImage:[UIImage imageNamed:@"Checkmarck_Grey"]];
         [cell addSubview:imgCheckMark];
     }
