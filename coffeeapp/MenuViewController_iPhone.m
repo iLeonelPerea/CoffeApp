@@ -174,6 +174,8 @@
     }else{
         [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 124, 375, 543):(IS_IPHONE_5)?CGRectMake(0, 124, 320, 444):CGRectMake(0, 64, 320, 356)];
     }
+    [viewCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 65, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 65, 320, 57):CGRectMake(0, 65, 320, 57)];
+    [viewScrollCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 57):CGRectMake(0, 0, 320, 57)];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -829,8 +831,7 @@
         indexArrayProductCategories ++;
         widthLastCategory = [category.category_name length]*12;
     }
-    [viewScrollCategories setFrame:CGRectMake(0, 0, xPositionCategory + widthLastCategory, 57)]; //Set frame
-    viewScrollCategories.contentSize = CGSizeMake(xPositionCategory + widthLastCategory +30, 57); //Assign content size
+    viewScrollCategories.contentSize = CGSizeMake(xPositionCategory, 57); //Assign content size
 }
 
 // Asign new filter and refresh
