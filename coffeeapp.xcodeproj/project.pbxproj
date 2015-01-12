@@ -31,7 +31,8 @@
 		230129371A620132001DAE1D /* SadFace.png in Resources */ = {isa = PBXBuildFile; fileRef = 230129361A620132001DAE1D /* SadFace.png */; };
 		231293B41A1271D6003A5856 /* login_btn_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231293B21A1271D6003A5856 /* login_btn_down@3x.png */; };
 		231293B51A1271D6003A5856 /* login_btn_up@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 231293B31A1271D6003A5856 /* login_btn_up@3x.png */; };
-		2329A9161A09B08600E93ABB /* label.png in Resources */ = {isa = PBXBuildFile; fileRef = 2329A9151A09B08600E93ABB /* label.png */; };
+		232CA7C01A6377CF0099748F /* Notes.png in Resources */ = {isa = PBXBuildFile; fileRef = 232CA7BF1A6377CF0099748F /* Notes.png */; };
+		232CA7C21A6384290099748F /* LabelPendingOrders.png in Resources */ = {isa = PBXBuildFile; fileRef = 232CA7C11A6384290099748F /* LabelPendingOrders.png */; };
 		232D03581A13F45B008791A4 /* delete_order_btn_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 232D03561A13F45B008791A4 /* delete_order_btn_down.png */; };
 		232D03591A13F45B008791A4 /* delete_order_btn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 232D03571A13F45B008791A4 /* delete_order_btn_up.png */; };
 		233158EF1A168B0F006104C4 /* illustration_00.png in Resources */ = {isa = PBXBuildFile; fileRef = 233158EE1A168B0F006104C4 /* illustration_00.png */; };
@@ -141,7 +142,8 @@
 		230129361A620132001DAE1D /* SadFace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SadFace.png; sourceTree = "<group>"; };
 		231293B21A1271D6003A5856 /* login_btn_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_down@3x.png"; sourceTree = "<group>"; };
 		231293B31A1271D6003A5856 /* login_btn_up@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_up@3x.png"; sourceTree = "<group>"; };
-		2329A9151A09B08600E93ABB /* label.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = label.png; sourceTree = "<group>"; };
+		232CA7BF1A6377CF0099748F /* Notes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Notes.png; sourceTree = "<group>"; };
+		232CA7C11A6384290099748F /* LabelPendingOrders.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LabelPendingOrders.png; sourceTree = "<group>"; };
 		232D03561A13F45B008791A4 /* delete_order_btn_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_order_btn_down.png; sourceTree = "<group>"; };
 		232D03571A13F45B008791A4 /* delete_order_btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete_order_btn_up.png; sourceTree = "<group>"; };
 		233158EE1A168B0F006104C4 /* illustration_00.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_00.png; sourceTree = "<group>"; };
@@ -348,6 +350,8 @@
 		C869B7231A001ED800F12C57 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				232CA7C11A6384290099748F /* LabelPendingOrders.png */,
+				232CA7BF1A6377CF0099748F /* Notes.png */,
 				C8D56ADA1A6349D100E63A7C /* litleCross.png */,
 				C8D56AD81A63387100E63A7C /* Note_2.png */,
 				C8D56AD41A632DDE00E63A7C /* Note.png */,
@@ -389,7 +393,6 @@
 				C8653E4C1A0D5DF900A9F958 /* illustration_03.png */,
 				7DE6F45A1A129B4C001EE3B9 /* illustration_04.png */,
 				7D2A60601A1D5B8000BB0132 /* illustration_05.png */,
-				2329A9151A09B08600E93ABB /* label.png */,
 				C89ED5B81A0023ED004441A3 /* login_btn_down@2x.png */,
 				231293B21A1271D6003A5856 /* login_btn_down@3x.png */,
 				C89ED5B91A0023ED004441A3 /* login_btn_up@2x.png */,
@@ -638,6 +641,7 @@
 				C8D56ADB1A6349D100E63A7C /* litleCross.png in Resources */,
 				2354C3D31A03110900729A84 /* history_btn_up.png in Resources */,
 				7DB9DFAD1A6254EA001F3AC5 /* Checkmarck_Grey.png in Resources */,
+				232CA7C01A6377CF0099748F /* Notes.png in Resources */,
 				23F400A41A0BCDF6009F09EE /* Lato-BolIta.ttf in Resources */,
 				230129351A61FF16001DAE1D /* Circle_Count.png in Resources */,
 				7DE6F45B1A129B4C001EE3B9 /* illustration_04.png in Resources */,
@@ -649,7 +653,6 @@
 				7DB9DFAB1A61ECD8001F3AC5 /* PlateCover.png in Resources */,
 				232D03591A13F45B008791A4 /* delete_order_btn_up.png in Resources */,
 				233158EF1A168B0F006104C4 /* illustration_00.png in Resources */,
-				2329A9161A09B08600E93ABB /* label.png in Resources */,
 				C81019841A620FBC00059EB7 /* PlaceOrder.png in Resources */,
 				C8D56AD31A62122D00E63A7C /* PlaceOrder_Pressed.png in Resources */,
 				C8653E4D1A0D5DF900A9F958 /* illustration_03.png in Resources */,
@@ -669,6 +672,7 @@
 				C869B7251A001EF900F12C57 /* splash_ima.png in Resources */,
 				23F400A51A0BCDF6009F09EE /* Lato-Hai.ttf in Resources */,
 				C89678B41A488CD000B38F1E /* done_btn_down.png in Resources */,
+				232CA7C21A6384290099748F /* LabelPendingOrders.png in Resources */,
 				23A5E1411A0293E400590509 /* logout_btn_down.png in Resources */,
 				C8A265451A42581B00CBFED1 /* notes_ico.png in Resources */,
 				7D2A60611A1D5B8000BB0132 /* illustration_05.png in Resources */,

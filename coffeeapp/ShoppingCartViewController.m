@@ -40,11 +40,13 @@
     isEditing = NO;
     /// Set the screen elements to fit on the screen depending on the device.
     [lblDate setFrame:(IS_IPHONE_6)?CGRectMake(21, 85, 375, 50):CGRectMake(21, 85, 295, 50)];
-    [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 134, 375, 430):(IS_IPHONE_5)?CGRectMake(0, 134, 320, 320):CGRectMake(0, 134, 320, 270)];
+    [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 134, 375, 370):(IS_IPHONE_5)?CGRectMake(0, 134, 320, 270):CGRectMake(0, 134, 320, 270)];
     [lblDisclaimer setFrame:(IS_IPHONE_6)?CGRectMake(20, 500, 335, 90):(IS_IPHONE_5)?CGRectMake(20, 400, 280, 90):CGRectMake(20, 330, 280, 90)];
     [imgBottomBar setFrame:(IS_IPHONE_6)?CGRectMake(0, 607, 375, 60):(IS_IPHONE_5)?CGRectMake(0, 508, 320, 60):CGRectMake(0, 420, 320, 60)];
-    [btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(40, 625, 85, 23):(IS_IPHONE_5)?CGRectMake(40, 530, 42, 12):CGRectMake(40, 437, 55, 30)];
-    [btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(140, 620, 220, 28):(IS_IPHONE_5)?CGRectMake(150, 530, 145, 18):CGRectMake(120, 437, 180, 30)];
+    [btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(19, 612, 50, 50):(IS_IPHONE_5)?CGRectMake(19, 513, 50, 50):CGRectMake(40, 437, 55, 30)];
+    [btnEmptyShoppingCart setTitle:@"Back" forState:UIControlStateNormal];
+    [[btnEmptyShoppingCart titleLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:16]];
+    [btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(200, 628, 145, 18):(IS_IPHONE_5)?CGRectMake(140, 528, 145, 18):CGRectMake(120, 437, 180, 30)];
     /// Set the current date text.
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, LLLL d, yyyy"];
@@ -85,9 +87,9 @@
     /// Set image to Place order button
     [btnCheckOut setImage:[UIImage imageNamed:@"PlaceOrder"] forState:UIControlStateNormal];
     [btnCheckOut setImage:[UIImage imageNamed:@"PlaceOrder_Pressed"] forState:UIControlStateSelected];
-    [btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel"] forState:UIControlStateNormal];
-    [btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel_pressed"] forState:UIControlStateSelected];
-    [imgBottomBar setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f alpha:1.0f]];
+    //[btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel"] forState:UIControlStateNormal];
+    //[btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel_pressed"] forState:UIControlStateSelected];
+    [imgBottomBar setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127/255.0f blue:0.0f alpha:1.0f]];
     [btnEditDelete setFrame:CGRectMake(self.view.frame.size.width - 50, 85, 24, 24)];
     
     UIView * viewTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
@@ -306,7 +308,7 @@
     /// -------- Product name
     UILabel * lblProductName = [[UILabel alloc] init];
     //[lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
-    [lblProductName setFrame:CGRectMake(20, 0, self.view.frame.size.width-50, 80)];
+    [lblProductName setFrame:CGRectMake(20, 0, self.view.frame.size.width-100, 80)];
     [lblProductName setText:[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]]];
     [lblProductName setNumberOfLines:2];
     [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:20]];
@@ -323,7 +325,7 @@
         [btnNote addTarget:self action:@selector(doAddNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnNote];
         
-        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 40, 27, 19, 21)];
+        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 45, 27, 19, 21)];
         btnRemove.tag = indexPath.row;
         [btnRemove setImage:[UIImage imageNamed:@"TrashCan_Orange"] forState:UIControlStateNormal];
         [btnRemove addTarget:self action:@selector(doRemoveProduct:) forControlEvents:UIControlEventTouchUpInside];
@@ -346,13 +348,14 @@
         [txtComment setTag:indexPath.row];
         [cell addSubview:txtComment];
         
-        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-60, 27, 13, 13)];
+        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40, 27, 13, 13)];
         [btnClose setImage:[UIImage imageNamed:@"litleCross"] forState:UIControlStateNormal];
         [btnClose setTag:indexPath.row];
         [btnClose addTarget:self action:@selector(doCancelNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
+        [btnClose addTarget:self action:@selector(doCancelNoteToProduct:) forControlEvents:UIControlEventTouchUpOutside];
         [cell addSubview:btnClose];
         
-        UIButton * btnDone = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-100, 170, 80, 40)];
+        UIButton * btnDone = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-93, 170, 80, 40)];
         [btnDone setImage:[UIImage imageNamed:@"done_btn_up"] forState:UIControlStateNormal];
         [btnDone setImage:[UIImage imageNamed:@"done_btn_down"] forState:UIControlStateHighlighted];
         [btnDone setTag:indexPath.row];
@@ -400,6 +403,7 @@
             selectedProduct.comment = txtNote.text;
             selectedProduct.isEditingComments = NO;
             [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:indexPath.row inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+                [self doEdit:[self btnEditDelete]];
             break;
         }
     }
@@ -413,6 +417,7 @@
     ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:btn.tag];
     selectedProduct.isEditingComments = NO;
     [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+    [self doEdit:[self btnEditDelete]];
 }
 
 /// add note selector

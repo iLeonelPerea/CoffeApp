@@ -53,6 +53,10 @@
 /** Outlet for the HUD component to display a _"loading"_ when some process is active */
 @property (nonatomic, strong) JGProgressHUD * prgLoading;
 
+@property (nonatomic, assign) BOOL isEditModeActive;
+
+@property (nonatomic, strong) IBOutlet UIButton * btnEditMode;
+
 /** Get and display all the orders in status "confirm" or "attendig".
 
     @param (id)sender In this case this param is unused.
@@ -105,5 +109,9 @@
  
  */
 -(IBAction)doCancelOrder:(id)sender;
+
+-(IBAction)doEditMode:(id)sender;
+
+-(BOOL)areTherePendingOrdersInConfirmStatus;
 
 @end

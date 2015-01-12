@@ -57,7 +57,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="doCancel:" destination="-1" eventType="touchUpInside" id="tWL-nI-9dd"/>
+                        <action selector="doCancel:" destination="-1" eventType="touchUpInside" id="R8C-Z1-Abt"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ys9-4h-Wpx">
