@@ -37,9 +37,9 @@
     
     /** Create and set the title label for the navigation bar */
     UILabel * lblControllerTitle = [[UILabel alloc] init];
-    [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
+    [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 55)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
-    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
+    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Regular" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
     

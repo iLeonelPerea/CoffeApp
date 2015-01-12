@@ -43,7 +43,7 @@
     [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 134, 375, 430):(IS_IPHONE_5)?CGRectMake(0, 134, 320, 320):CGRectMake(0, 134, 320, 270)];
     [lblDisclaimer setFrame:(IS_IPHONE_6)?CGRectMake(20, 500, 335, 90):(IS_IPHONE_5)?CGRectMake(20, 400, 280, 90):CGRectMake(20, 330, 280, 90)];
     [imgBottomBar setFrame:(IS_IPHONE_6)?CGRectMake(0, 607, 375, 60):(IS_IPHONE_5)?CGRectMake(0, 508, 320, 60):CGRectMake(0, 420, 320, 60)];
-    [btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(20, 625, 85, 23):(IS_IPHONE_5)?CGRectMake(20, 530, 42, 12):CGRectMake(20, 437, 55, 30)];
+    [btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(40, 625, 85, 23):(IS_IPHONE_5)?CGRectMake(40, 530, 42, 12):CGRectMake(40, 437, 55, 30)];
     [btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(140, 620, 220, 28):(IS_IPHONE_5)?CGRectMake(150, 530, 145, 18):CGRectMake(120, 437, 180, 30)];
     /// Set the current date text.
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -88,15 +88,15 @@
     [btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel"] forState:UIControlStateNormal];
     [btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel_pressed"] forState:UIControlStateSelected];
     [imgBottomBar setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f alpha:1.0f]];
-    [btnEditDelete setFrame:CGRectMake(self.view.frame.size.width - 50, 73, 28, 28)];
+    [btnEditDelete setFrame:CGRectMake(self.view.frame.size.width - 50, 85, 24, 24)];
     
     UIView * viewTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
     [viewTop setBackgroundColor:[UIColor colorWithRed:4.0f/255.0f green:130.0f/255.0f blue:118.0f/255.0f alpha:1.0f]];
     
     UILabel * lblControllerTitle = [[UILabel alloc] init];
-    [lblControllerTitle setFrame:CGRectMake(0, 17, self.view.frame.size.width, 50)];
+    [lblControllerTitle setFrame:CGRectMake(0, 17, self.view.frame.size.width, 55)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
-    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
+    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Regular" size:20]];
     [lblControllerTitle setTextAlignment:NSTextAlignmentCenter];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [viewTop addSubview:lblControllerTitle];
@@ -336,17 +336,18 @@
         UIView * viewBg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 220)];
         [viewBg setBackgroundColor:[UIColor colorWithRed:0.92914f green:0.92914f blue:0.92914f alpha:1.0f]];
         
-        UITextField * txtComment = [[UITextField alloc] initWithFrame:CGRectMake(30, 50, self.view.frame.size.width-40, 80)];
+        UITextField * txtComment = [[UITextField alloc] initWithFrame:CGRectMake(30, 52, self.view.frame.size.width-40, 80)];
         txtComment.placeholder = @"Make a note for this item";
         //check if prev. comment has been added.
         if(![productObject.comment isEqual:@""])
             txtComment.text = productObject.comment;
         [txtComment setDelegate:self];
+        [txtComment setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
         [txtComment setTag:indexPath.row];
         [cell addSubview:txtComment];
         
-        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-60, 27, 28, 27)];
-        [btnClose setImage:[UIImage imageNamed:@"close_note"] forState:UIControlStateNormal];
+        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-60, 27, 13, 13)];
+        [btnClose setImage:[UIImage imageNamed:@"litleCross"] forState:UIControlStateNormal];
         [btnClose setTag:indexPath.row];
         [btnClose addTarget:self action:@selector(doCancelNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnClose];
@@ -373,7 +374,6 @@
         UIView * viewSeparator = [[UIView alloc] initWithFrame:CGRectMake(0, (IS_IPHONE_6)?94:80, self.view.frame.size.width, 1)];
         [viewSeparator setBackgroundColor:[UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f]];
         [cell addSubview:viewSeparator];
-        NSLog(@"product.comment: %@ and isEditing: %2d", productObject.comment, isEditing);
         if(![productObject.comment isEqual:@""] && !isEditing)
         {
             UIImageView * imgHasNote = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 48, 27, 19, 21)];

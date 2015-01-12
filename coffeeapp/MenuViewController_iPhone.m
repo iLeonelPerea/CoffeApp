@@ -126,7 +126,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doUpdateMenu:) name:@"doUpdateMenu" object:nil];
 
     UILabel * lblControllerTitle = [[UILabel alloc] init];
-    [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
+    [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 55)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
     [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Regular" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
@@ -175,6 +175,10 @@
     }
     [viewCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 65, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 65, 320, 57):CGRectMake(0, 65, 320, 57)];
     [viewScrollCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 57):CGRectMake(0, 0, 320, 57)];
+    UIView * separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 1)];
+    [separatorView setBackgroundColor:[UIColor colorWithRed:165.0f/255.0f green:150.0f/255.0f blue:143.0f/255.0f alpha:1.0f]];
+    [self.view addSubview:separatorView];
+    [self.view bringSubviewToFront:separatorView];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -410,7 +414,7 @@
     [lblSectionTitle setFrame:CGRectMake(19, 0, 200, 44)];
     NSString * sectionTitleUpperCase = [(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ];
     [lblSectionTitle setText:[sectionTitleUpperCase uppercaseString]];
-    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Bold" size:20]];
+    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:74.0f/255.0f green:67.0f/255.0f blue:63.0f/255.0f alpha:255]];
     [headerView addSubview:lblSectionTitle];
     
