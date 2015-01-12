@@ -57,6 +57,8 @@
 
 @property (nonatomic, strong) IBOutlet UIButton * btnEditMode;
 
+@property (nonatomic, strong) IBOutlet UILabel *lblNoDataMessage;
+
 /** Get and display all the orders in status "confirm" or "attendig".
 
     @param (id)sender In this case this param is unused.
@@ -113,5 +115,7 @@
 -(IBAction)doEditMode:(id)sender;
 
 -(BOOL)areTherePendingOrdersInConfirmStatus;
+
+-(void)doShowNoDataMessage;
 
 @end

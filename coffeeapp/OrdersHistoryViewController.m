@@ -18,7 +18,7 @@
 @end
 
 @implementation OrdersHistoryViewController
-@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, isPendingOrdersSelected, prgLoading, isEditModeActive, btnEditMode;
+@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, isPendingOrdersSelected, prgLoading, isEditModeActive, btnEditMode, lblNoDataMessage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,6 +63,7 @@
     [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
     isEditModeActive = NO;
     
+    [self doShowNoDataMessage];
 }
 
 /** Set the components to fit in iPhone's differents screen sizes */
@@ -80,6 +81,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)doShowNoDataMessage
+{
+    if ([arrOrders count] == 0) {
+        [lblNoDataMessage setHidden:NO];
+        [lblNoDataMessage setText:@"NO ORDERS"];
+        [lblNoDataMessage setFont:[UIFont fontWithName:@"Lato-Light" size:18]];
+        [lblNoDataMessage sizeToFit];
+        [lblNoDataMessage setFrame:CGRectMake((self.view.frame.size.width - lblNoDataMessage.frame.size.width) / 2, (self.view.frame.size.height - lblNoDataMessage.frame.size.height) / 2,  lblNoDataMessage.frame.size.width, lblNoDataMessage.frame.size.height)];
+    }else{
+        [lblNoDataMessage setHidden:YES];
+    }
 }
 
 #pragma mark -- Edit mode method
@@ -313,6 +327,7 @@
     isPendingOrdersSelected = NO;
     [btnEditMode setHidden:YES];
     isEditModeActive = NO;
+    [self doShowNoDataMessage];
 }
 
 -(void)doShowPendingOrders:(id)sender
@@ -327,5 +342,6 @@
     /// Set flag in YES
     isPendingOrdersSelected = YES;
     [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
+    [self doShowNoDataMessage];
 }
 @end

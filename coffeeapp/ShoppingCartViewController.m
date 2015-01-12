@@ -309,7 +309,7 @@
     UILabel * lblProductName = [[UILabel alloc] init];
     //[lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
     [lblProductName setFrame:CGRectMake(20, 0, self.view.frame.size.width-100, 80)];
-    [lblProductName setText:[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]]];
+    [lblProductName setText:[[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]] capitalizedString]];
     [lblProductName setNumberOfLines:2];
     [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:20]];
     [lblProductName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
