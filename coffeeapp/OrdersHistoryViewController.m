@@ -37,9 +37,9 @@
     
     /** Create and set the title label for the navigation bar */
     UILabel * lblControllerTitle = [[UILabel alloc] init];
-    [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
+    [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 55)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
-    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
+    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Regular" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
     
@@ -59,7 +59,7 @@
     
     
     /** Create the icon to edit mode*/
-    [btnEditMode setFrame:CGRectMake(271, 74, 30, 30)];
+    [btnEditMode setFrame:CGRectMake((IS_IPHONE_6)?326:271, 74, 30, 30)];
     [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
     isEditModeActive = NO;
     
@@ -125,7 +125,7 @@
 /// Return the height for the rows
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 23;
+    return 20;
 }
 
 /// Return the numbers of section on the table from the number of elements in arrOrders
@@ -141,33 +141,52 @@
 /// Return the height of the header section
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 35;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 15;
+}
+
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView * footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 15)];
+    [footerView setBackgroundColor:[UIColor whiteColor]];
+    UIView * viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, 15, self.view.frame.size.width, 0.5f)];
+    [viewLine setBackgroundColor:[UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f]];
+    [footerView addSubview:viewLine];
+    return footerView;
 }
 
 /// Draw the header's content with order's date and label when the order is being attended
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     /// Create a UIView component to store all the header's content
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 50)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 35)];
     [headerView setBackgroundColor:[UIColor whiteColor]];
     NSMutableDictionary * dictOrderHeader = [arrOrders objectAtIndex:section];
     
     /// Create and set a UILabel to display the order's date
     UILabel * lblSectionTitle = [[UILabel alloc] init];
-    [lblSectionTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 15, 335, 30):CGRectMake(20, 15, 280, 30)];
+    [lblSectionTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 10, 335, 20):CGRectMake(20, 10, 280, 20)];
     [lblSectionTitle setNumberOfLines:2];
-    [lblSectionTitle setText:[dictOrderHeader objectForKey:@"ORDER_DATE"]];
+    [lblSectionTitle setText:[[dictOrderHeader objectForKey:@"ORDER_DATE"] capitalizedString]];
     [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:(IS_IPHONE_6)?17:15]];
     [lblSectionTitle setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [headerView addSubview:lblSectionTitle];
+    // Bottom gray line simulated with an UIView
+    UIView * viewLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0.5f)];
+    [viewLine setBackgroundColor:[UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f]];
+    [headerView addSubview:viewLine];
     
     /// Check the status of the order to add a delete icon when the order is in "confirm" or a label when is in "attendind"
     if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"attending"]) {
         UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(305, 0, 70, 70):CGRectMake(250, 0, 70, 70)];
-        [imgLabel setImage:[UIImage imageNamed:@"Label.png"]];
+        [imgLabel setImage:[UIImage imageNamed:@"LabelPendingOrders"]];
         [headerView addSubview:imgLabel];
     }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"] && isEditModeActive) {
-        UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(330, 9, 40, 40):CGRectMake(275, 9, 40, 40)];
+        UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(326, 9, 40, 40):CGRectMake(274, 9, 40, 40)];
         [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_up"] forState:UIControlStateNormal];
         [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_down"] forState:UIControlStateHighlighted];
         [headerView addSubview:btnCancel];
@@ -310,5 +329,4 @@
     isPendingOrdersSelected = YES;
     [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
 }
-
 @end

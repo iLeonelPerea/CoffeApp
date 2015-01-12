@@ -10,7 +10,6 @@
                 <outlet property="btnEditMode" destination="iiV-NU-zvk" id="i6I-L2-Cnr"/>
                 <outlet property="btnIncomingOrders" destination="HhZ-NF-PPg" id="ibT-YL-9Rk"/>
                 <outlet property="btnPastOrders" destination="B46-tk-LHv" id="LPx-8Z-fuy"/>
-                <outlet property="imgPatron" destination="99L-kP-IW2" id="q6o-ZT-sWf"/>
                 <outlet property="lblTitle" destination="guH-Oc-d5J" id="cEr-aW-jdm"/>
                 <outlet property="tblOrders" destination="m8L-ch-V9c" id="2Tx-dF-efT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -21,15 +20,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="99L-kP-IW2">
-                    <rect key="frame" x="0.0" y="60" width="320" height="50"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="guH-Oc-d5J">
                     <rect key="frame" x="20" y="60" width="280" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                    <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="m8L-ch-V9c">

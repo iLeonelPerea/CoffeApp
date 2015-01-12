@@ -10,6 +10,7 @@
                 <outlet property="btnPlaceOrder" destination="arX-tN-vq3" id="7Oe-Me-vr6"/>
                 <outlet property="lblProductsCount" destination="WsC-1d-Nzx" id="udk-0c-LbP"/>
                 <outlet property="mapKitView" destination="OlD-3y-2lI" id="6ig-PU-sRQ"/>
+                <outlet property="separatorView" destination="p3M-ri-EPf" id="33F-pY-5Z1"/>
                 <outlet property="tblProducts" destination="7yx-Em-d2a" id="Hjc-J0-FbX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewCategories" destination="7Pk-km-1RK" id="vIT-LM-vYy"/>
@@ -22,13 +23,17 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="OlD-3y-2lI">
-                    <rect key="frame" x="40" y="220" width="240" height="128"/>
+                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" pitchEnabled="NO" id="OlD-3y-2lI">
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="Uab-r7-Qs9"/>
                     </connections>
                 </mapView>
+                <view contentMode="scaleToFill" id="p3M-ri-EPf">
+                    <rect key="frame" x="45" y="207" width="160" height="284"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="400" sectionHeaderHeight="100" sectionFooterHeight="1" id="7yx-Em-d2a">
                     <rect key="frame" x="0.0" y="129" width="320" height="439"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

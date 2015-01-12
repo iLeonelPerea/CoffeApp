@@ -56,7 +56,6 @@
     {
         [imgUserProfile setImageWithResizeURL:userObject.userUrlProfileImage usingActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     }
-
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -67,6 +66,9 @@
     [lblUser setFrame:(IS_IPHONE_6)?CGRectMake(20, 519, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 419, 240, 60):CGRectMake(20, 330, 240, 60)];
     [lblMail setFrame:(IS_IPHONE_6)?CGRectMake(20, 549, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 449, 240, 60):CGRectMake(20, 360, 240, 60)];
     [btnSignOut setFrame:(IS_IPHONE_6)?CGRectMake(20, 610, 230, 45):(IS_IPHONE_5)?CGRectMake(20, 507, 230, 45):CGRectMake(20, 420, 230, 45)];
+    UIView * viewTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+    [viewTop setBackgroundColor:[UIColor colorWithRed:4.0f/255.0f green:130.0f/255.0f blue:118.0f/255.0f alpha:1.0f]];
+    [self.view addSubview:viewTop];
 }
 
 /// System method.
@@ -122,6 +124,8 @@
     [[cell textLabel] setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [[cell textLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:24]];
     [[cell textLabel] setText:[arrMenu objectAtIndex:[indexPath row]]];
+    //[[cell textLabel] setFrame:CGRectMake(100, 0, (IS_IPHONE_6)?275:220, (IS_IPHONE_6 || IS_IPHONE_5)?95:80)];
+    
     [cell setAccessoryType:UITableViewCellAccessoryNone];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     
@@ -131,12 +135,14 @@
     [cell addSubview:viewIndicator];
     
     /// Add image checkmark to indicate the selected cell
-    UIView *viewCheckMark = [[UIView alloc] initWithFrame:CGRectMake((IS_IPHONE_6)?300:210, 37, 26, 20)];
+    UIView *viewCheckMark = [[UIView alloc] initWithFrame:CGRectMake((IS_IPHONE_6)?250:210, 37, 26, 20)];
     [viewCheckMark setBackgroundColor:[UIColor whiteColor]];
     [cell addSubview:viewCheckMark];
     
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     /// Add image indicator to indicate the selected cell
+    
+    cell.imageView.image =[[UIImage alloc]init];
     
     if ([indexPath row] == appDelegate.activeMenu) {
         UIImageView *imgIndicator = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 10,(IS_IPHONE_6 || IS_IPHONE_5)?95:80)];

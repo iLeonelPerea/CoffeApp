@@ -46,6 +46,8 @@
 /** Outlet to hide the picker and buttons. */
 @property (nonatomic, strong) IBOutlet UIPickerView *pickerOptions;
 
+@property (nonatomic, strong) IBOutlet UIView *separatorView;
+
 /** Use to save the category selected. */
 @property (nonatomic, assign) long pickerFilterActiveOption;
 
