@@ -18,7 +18,7 @@
 @end
 
 @implementation OrdersHistoryViewController
-@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, isPendingOrdersSelected, prgLoading;
+@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, isPendingOrdersSelected, prgLoading, isEditModeActive, btnEditMode;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,6 +56,13 @@
     
     /** Create an observer to trigger a refresh of the screen when is active and one of the orders is attended or served */
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doRefreshOrdersHistory:) name:@"doRefreshOrdersHistory" object:nil];
+    
+    
+    /** Create the icon to edit mode*/
+    [btnEditMode setFrame:CGRectMake(271, 74, 30, 30)];
+    [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
+    isEditModeActive = NO;
+    
 }
 
 /** Set the components to fit in iPhone's differents screen sizes */
@@ -75,6 +82,28 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark -- Edit mode method
+-(void)doEditMode:(id)sender;
+{
+    /// Set the value of the boolean flag
+    isEditModeActive = !isEditModeActive;
+    /// Reload the orders table to draw the delete order icon
+    [tblOrders reloadData];
+}
+
+-(BOOL)areTherePendingOrdersInConfirmStatus
+{
+    /// Set to 0 the counting of pending orders in confirm status
+    int pendingOrdersInConfirmStatusCount = 0;
+    for (NSDictionary *dictOrder in arrOrders) {
+        /// Check the status of the order to increase the counting of pending orders in confirm status
+        if ([[dictOrder objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"]) {
+            pendingOrdersInConfirmStatusCount += 1;
+        }
+    }
+    return (pendingOrdersInConfirmStatusCount > 0)?YES:NO;
+}
+
 #pragma mark -- Refresh orders history after push notification
 -(void)doRefreshOrdersHistory:(id)sender
 {
@@ -83,6 +112,8 @@
      */
     if (isPendingOrdersSelected) {
         arrOrders = [DBManager getOrdersHistory:NO];
+        [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
+        isEditModeActive = ([self areTherePendingOrdersInConfirmStatus])?isEditModeActive:!isEditModeActive;
     }else{
         arrOrders = [DBManager getOrdersHistory:YES];
     }
@@ -133,9 +164,9 @@
     /// Check the status of the order to add a delete icon when the order is in "confirm" or a label when is in "attendind"
     if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"attending"]) {
         UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(305, 0, 70, 70):CGRectMake(250, 0, 70, 70)];
-        [imgLabel setImage:[UIImage imageNamed:@"label.png"]];
+        [imgLabel setImage:[UIImage imageNamed:@"Label.png"]];
         [headerView addSubview:imgLabel];
-    }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"]) {
+    }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"] && isEditModeActive) {
         UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(330, 9, 40, 40):CGRectMake(275, 9, 40, 40)];
         [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_up"] forState:UIControlStateNormal];
         [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_down"] forState:UIControlStateHighlighted];
@@ -262,6 +293,8 @@
     [btnPastOrders setImage:[UIImage imageNamed:@"history_btn_selected.png"] forState:UIControlStateNormal];
     /// Set flag in NO
     isPendingOrdersSelected = NO;
+    [btnEditMode setHidden:YES];
+    isEditModeActive = NO;
 }
 
 -(void)doShowPendingOrders:(id)sender
@@ -275,6 +308,7 @@
     [btnPastOrders setImage:[UIImage imageNamed:@"history_btn_up.png"] forState:UIControlStateNormal];
     /// Set flag in YES
     isPendingOrdersSelected = YES;
+    [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
 }
 
 @end

@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OrdersHistoryViewController">
             <connections>
+                <outlet property="btnEditMode" destination="iiV-NU-zvk" id="i6I-L2-Cnr"/>
                 <outlet property="btnIncomingOrders" destination="HhZ-NF-PPg" id="ibT-YL-9Rk"/>
                 <outlet property="btnPastOrders" destination="B46-tk-LHv" id="LPx-8Z-fuy"/>
                 <outlet property="imgPatron" destination="99L-kP-IW2" id="q6o-ZT-sWf"/>
@@ -59,6 +60,16 @@
                         <action selector="doShowPastOrders:" destination="-1" eventType="touchUpInside" id="5ZY-WU-PBZ"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iiV-NU-zvk">
+                    <rect key="frame" x="249" y="60" width="56" height="53"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" image="Notes.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="doEditMode:" destination="-1" eventType="touchUpInside" id="6Yg-ub-3MK"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
@@ -66,6 +77,7 @@
         </view>
     </objects>
     <resources>
+        <image name="Notes.png" width="56" height="53"/>
         <image name="history_btn_up.png" width="320" height="100"/>
         <image name="neworders_btn_selected.png" width="320" height="100"/>
     </resources>
