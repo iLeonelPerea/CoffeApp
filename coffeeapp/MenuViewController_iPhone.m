@@ -856,7 +856,7 @@
     }
     int newTblProductsHeight = ([viewCategories isHidden])?tblProductsHeight-65:tblProductsHeight-125;
     newTblProductsHeight = (isViewPlaceOrderActive)?newTblProductsHeight-60:newTblProductsHeight;
-    [UIView animateWithDuration:0.67 animations:^{
+    [UIView animateWithDuration:0.2f animations:^{
         [tblProducts setFrame:CGRectMake(0, ([viewCategories isHidden])?65:125, tblProducts.frame.size.width, newTblProductsHeight)];
         [separatorView setFrame:CGRectMake(0, ([viewCategories isHidden])?64:124, self.view.frame.size.width, 1)];
     } completion:^(BOOL finished) {

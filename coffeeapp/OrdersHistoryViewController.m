@@ -59,7 +59,7 @@
     
     
     /** Create the icon to edit mode*/
-    [btnEditMode setFrame:CGRectMake((IS_IPHONE_6)?326:271, 74, 30, 30)];
+    [btnEditMode setFrame:CGRectMake(self.view.frame.size.width-43, 74, 24, 24)];
     [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
     isEditModeActive = NO;
     
@@ -186,9 +186,8 @@
         [imgLabel setImage:[UIImage imageNamed:@"LabelPendingOrders"]];
         [headerView addSubview:imgLabel];
     }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"] && isEditModeActive) {
-        UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(326, 9, 40, 40):CGRectMake(274, 9, 40, 40)];
-        [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_up"] forState:UIControlStateNormal];
-        [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_down"] forState:UIControlStateHighlighted];
+        UIButton * btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(headerView.frame.size.width-38, 9, 19, 21)];
+        [btnCancel setImage:[UIImage imageNamed:@"TrashCan_Orange"] forState:UIControlStateNormal];
         [headerView addSubview:btnCancel];
         
         [btnCancel addTarget:self action:@selector(doCancelOrder:) forControlEvents:UIControlEventTouchUpInside];
