@@ -98,6 +98,7 @@
 @property (nonatomic, assign) BOOL areLocationServicesAvailable;
 
 @property (nonatomic, assign) int tblProductsHeight;
+@property (nonatomic, strong) UIView * separatorView;
 
 /** Set the quantity for selected products and update the total on hand of the products.
  

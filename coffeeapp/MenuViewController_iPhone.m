@@ -26,7 +26,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize viewPicker, viewCategories, viewScrollCategories, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive, tblProductsHeight;
+@synthesize viewPicker, viewCategories, viewScrollCategories, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive, tblProductsHeight, separatorView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -175,7 +175,7 @@
     }
     [viewCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 65, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 65, 320, 57):CGRectMake(0, 65, 320, 57)];
     [viewScrollCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 57):CGRectMake(0, 0, 320, 57)];
-    UIView * separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 1)];
+    separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 1)];
     [separatorView setBackgroundColor:[UIColor colorWithRed:165.0f/255.0f green:150.0f/255.0f blue:143.0f/255.0f alpha:1.0f]];
     [self.view addSubview:separatorView];
     [self.view bringSubviewToFront:separatorView];
@@ -850,9 +850,18 @@
 -(void)doHideShowCategoryFilter:(id)sender
 {
     [viewCategories setHidden:![viewCategories isHidden]];
+    if(![viewCategories isHidden])
+    {
+        [viewCategories setAlpha:0.0f];
+    }
     int newTblProductsHeight = ([viewCategories isHidden])?tblProductsHeight-65:tblProductsHeight-125;
     newTblProductsHeight = (isViewPlaceOrderActive)?newTblProductsHeight-60:newTblProductsHeight;
-    [tblProducts setFrame:CGRectMake(0, ([viewCategories isHidden])?65:125, tblProducts.frame.size.width, newTblProductsHeight)];
+    [UIView animateWithDuration:0.67 animations:^{
+        [tblProducts setFrame:CGRectMake(0, ([viewCategories isHidden])?65:125, tblProducts.frame.size.width, newTblProductsHeight)];
+        [separatorView setFrame:CGRectMake(0, ([viewCategories isHidden])?64:124, self.view.frame.size.width, 1)];
+    } completion:^(BOOL finished) {
+        [viewCategories setAlpha:1.0f];
+    }];
 }
 
 // Asign new filter and refresh
