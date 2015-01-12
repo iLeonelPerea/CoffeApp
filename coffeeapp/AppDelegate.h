@@ -51,6 +51,9 @@
 /** Boolean flag to know if the MenuViewController_iPhone is active. */
 @property (nonatomic, assign) BOOL isMenuViewController;
 
+/** Current menu active. */
+@property (nonatomic, assign) int activeMenu;
+
 /** Handle the receveid push notifications.
  
     Listen for push notifications in active or inactive state of the application.

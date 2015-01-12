@@ -14,19 +14,25 @@
 #import "RESTManager.h"
 #import <LMAlertView.h>
 
+/// Macros to identify size screen
+#define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON)
+#define IS_IPHONE_6 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)667) < DBL_EPSILON)
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber, isMenuViewController;
+@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber, isMenuViewController, activeMenu;
 
 /// Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
 
 /// Set flag and other settings when the app finished launching.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //Defaults
+    activeMenu = 0;
+    
     /// Parse credentials and settings.
     [Parse setApplicationId:@"M9XmhjQ8B2iqs3CdNLASwl6hypCXnI8rRJLqFy0x" clientKey:@"6tCRkL9VyM3HQaUQIsduISATRURhHqLQ42ii9QJ4"];
     [PFUser enableAutomaticUser];
@@ -66,7 +72,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [self setViewController: [[JASidePanelController alloc] init]];
     [[self viewController] setLeftPanel:[[LeftMenuViewController alloc] init]];
     [[self viewController] setLeftPanel:[[self viewController] leftPanel]];
-    [[self viewController] setLeftFixedWidth:270];
+    [[self viewController] setLeftFixedWidth:(IS_IPHONE_6)?320:270];
     [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
 
     /// Navigation bar customization.
