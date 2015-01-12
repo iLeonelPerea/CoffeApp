@@ -792,7 +792,7 @@
     }
     
     int indexArrayProductCategories = -1; // set index of category
-    float xPositionCategory = 0.0, widthLastCategory = 0.0; //position of each category
+    float xPositionCategory = 9.0, widthLastCategory = 0.0; //position of each category
     
     //Create label of category
     UILabel *lblCategory = [[UILabel alloc] init];
