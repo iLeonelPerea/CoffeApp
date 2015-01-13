@@ -175,7 +175,7 @@
     }
     [viewCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 65, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 65, 320, 57):CGRectMake(0, 65, 320, 57)];
     [viewScrollCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 57):CGRectMake(0, 0, 320, 57)];
-    separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 1)];
+    separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 0.3f)];
     [separatorView setBackgroundColor:[UIColor colorWithRed:165.0f/255.0f green:150.0f/255.0f blue:143.0f/255.0f alpha:1.0f]];
     [self.view addSubview:separatorView];
     [self.view bringSubviewToFront:separatorView];
