@@ -18,7 +18,7 @@
 @end
 
 @implementation OrdersHistoryViewController
-@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, isPendingOrdersSelected, prgLoading, isEditModeActive, btnEditMode;
+@synthesize imgPatron, lblTitle, tblOrders, btnIncomingOrders, btnPastOrders, arrOrders, isPendingOrdersSelected, prgLoading, isEditModeActive, btnEditMode, lblNoDataMessage;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -59,10 +59,11 @@
     
     
     /** Create the icon to edit mode*/
-    [btnEditMode setFrame:CGRectMake((IS_IPHONE_6)?326:271, 74, 30, 30)];
+    [btnEditMode setFrame:CGRectMake(self.view.frame.size.width-43, 74, 24, 24)];
     [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
     isEditModeActive = NO;
     
+    [self doShowNoDataMessage];
 }
 
 /** Set the components to fit in iPhone's differents screen sizes */
@@ -80,6 +81,19 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)doShowNoDataMessage
+{
+    if ([arrOrders count] == 0) {
+        [lblNoDataMessage setHidden:NO];
+        [lblNoDataMessage setText:@"NO ORDERS"];
+        [lblNoDataMessage setFont:[UIFont fontWithName:@"Lato-Light" size:18]];
+        [lblNoDataMessage sizeToFit];
+        [lblNoDataMessage setFrame:CGRectMake((self.view.frame.size.width - lblNoDataMessage.frame.size.width) / 2, (self.view.frame.size.height - lblNoDataMessage.frame.size.height) / 2,  lblNoDataMessage.frame.size.width, lblNoDataMessage.frame.size.height)];
+    }else{
+        [lblNoDataMessage setHidden:YES];
+    }
 }
 
 #pragma mark -- Edit mode method
@@ -186,9 +200,8 @@
         [imgLabel setImage:[UIImage imageNamed:@"LabelPendingOrders"]];
         [headerView addSubview:imgLabel];
     }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"] && isEditModeActive) {
-        UIButton * btnCancel = [[UIButton alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(326, 9, 40, 40):CGRectMake(274, 9, 40, 40)];
-        [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_up"] forState:UIControlStateNormal];
-        [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_down"] forState:UIControlStateHighlighted];
+        UIButton * btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(headerView.frame.size.width-38, 9, 19, 21)];
+        [btnCancel setImage:[UIImage imageNamed:@"TrashCan_Orange"] forState:UIControlStateNormal];
         [headerView addSubview:btnCancel];
         
         [btnCancel addTarget:self action:@selector(doCancelOrder:) forControlEvents:UIControlEventTouchUpInside];
@@ -314,6 +327,7 @@
     isPendingOrdersSelected = NO;
     [btnEditMode setHidden:YES];
     isEditModeActive = NO;
+    [self doShowNoDataMessage];
 }
 
 -(void)doShowPendingOrders:(id)sender
@@ -328,5 +342,6 @@
     /// Set flag in YES
     isPendingOrdersSelected = YES;
     [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
+    [self doShowNoDataMessage];
 }
 @end

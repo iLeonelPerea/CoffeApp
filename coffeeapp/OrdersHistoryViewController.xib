@@ -10,6 +10,7 @@
                 <outlet property="btnEditMode" destination="iiV-NU-zvk" id="i6I-L2-Cnr"/>
                 <outlet property="btnIncomingOrders" destination="HhZ-NF-PPg" id="ibT-YL-9Rk"/>
                 <outlet property="btnPastOrders" destination="B46-tk-LHv" id="LPx-8Z-fuy"/>
+                <outlet property="lblNoDataMessage" destination="yik-yg-R1S" id="R84-Ze-NHV"/>
                 <outlet property="lblTitle" destination="guH-Oc-d5J" id="cEr-aW-jdm"/>
                 <outlet property="tblOrders" destination="m8L-ch-V9c" id="2Tx-dF-efT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -65,6 +66,13 @@
                         <action selector="doEditMode:" destination="-1" eventType="touchUpInside" id="6Yg-ub-3MK"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yik-yg-R1S">
+                    <rect key="frame" x="127" y="407" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
