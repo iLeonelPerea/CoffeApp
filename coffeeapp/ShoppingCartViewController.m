@@ -319,7 +319,7 @@
     
     if(isEditing && !productObject.isEditingComments)
     {
-        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80, 27, 19, 21)];
+        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80, 27, 19, 25)];
         btnNote.tag = indexPath.row;
         [btnNote setImage:[UIImage imageNamed:@"Note"] forState:UIControlStateNormal];
         [btnNote addTarget:self action:@selector(doAddNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
