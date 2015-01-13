@@ -22,7 +22,7 @@
 
 @implementation ShoppingCartViewController
 
-@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder, imgBottomBar, imgTitle, lblDisclaimer, isEditing, btnEditDelete;
+@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder, imgBottomBar, imgTitle, lblDisclaimer, isEditing, btnEditDelete, currentEditingProduct, currentEditingTag;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +38,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     isEditing = NO;
+    currentEditingProduct = nil;
+    currentEditingTag = -1;
     /// Set the screen elements to fit on the screen depending on the device.
     [lblDate setFrame:(IS_IPHONE_6)?CGRectMake(21, 85, 375, 50):CGRectMake(21, 85, 295, 50)];
     [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 134, 375, 370):(IS_IPHONE_5)?CGRectMake(0, 134, 320, 270):CGRectMake(0, 134, 320, 270)];
@@ -423,9 +425,16 @@
 /// add note selector
 -(void)doAddNoteToProduct:(id)sender
 {
+    if(currentEditingProduct)
+    {
+        currentEditingProduct.isEditingComments = NO;
+        [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:currentEditingTag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
     UIButton * btn = (UIButton*)sender;
     ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:btn.tag];
     selectedProduct.isEditingComments = YES;
+    currentEditingProduct = selectedProduct;
+    currentEditingTag = btn.tag;
     float cant = (btn.tag*180);
     [tblProducts setContentOffset:CGPointMake(0, btn.frame.origin.y*cant)];
     [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
