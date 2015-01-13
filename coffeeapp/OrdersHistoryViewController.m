@@ -59,7 +59,8 @@
     
     
     /** Create the icon to edit mode*/
-    [btnEditMode setFrame:CGRectMake(self.view.frame.size.width-43, 74, 24, 24)];
+    [btnEditMode setFrame:CGRectMake(self.view.frame.size.width-53, 67, 40, 40)];
+    [btnEditMode setImage:[UIImage imageNamed:@"notes_ico"] forState:UIControlStateNormal];
     [btnEditMode setHidden:([self areTherePendingOrdersInConfirmStatus])?NO:YES];
     isEditModeActive = NO;
     
@@ -133,6 +134,7 @@
     }
     /** Reload table view to display info */
     [tblOrders reloadData];
+    [self doShowNoDataMessage];
 }
 
 #pragma mark -- Table view delegate
@@ -200,8 +202,8 @@
         [imgLabel setImage:[UIImage imageNamed:@"LabelPendingOrders"]];
         [headerView addSubview:imgLabel];
     }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"] && isEditModeActive) {
-        UIButton * btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(headerView.frame.size.width-38, 9, 19, 21)];
-        [btnCancel setImage:[UIImage imageNamed:@"TrashCan_Orange"] forState:UIControlStateNormal];
+        UIButton * btnCancel = [[UIButton alloc] initWithFrame:CGRectMake(headerView.frame.size.width-55, 0, 40, 40)];
+        [btnCancel setImage:[UIImage imageNamed:@"delete_order_btn_up"] forState:UIControlStateNormal];
         [headerView addSubview:btnCancel];
         
         [btnCancel addTarget:self action:@selector(doCancelOrder:) forControlEvents:UIControlEventTouchUpInside];
@@ -308,6 +310,7 @@
                   [DBManager deleteOrderLog:[dictOrder objectForKey:@"ORDER_ID"]];
                   /// Post a local notification to refresh the OrderViewController if the user is in that controller
                   [prgLoading dismiss];
+                  isEditModeActive = NO;
                   [[NSNotificationCenter defaultCenter] postNotificationName:@"doRefreshOrdersHistory" object:nil];
               }
         }];
