@@ -195,7 +195,7 @@
               /// Check for the number -of the order- and the state -of the order- in the dictionary.
               if ([dictResult objectForKey:@"number"] != nil && [[dictResult objectForKey:@"state"] isEqual:@"confirm"]) {
                   /// Create an alert view to inform that the order is placed.
-                  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention" message:@"Order Placed!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention" message:@"Your order will be attended in a sec!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                   [alert show];
                   myAppDelegate.currentOrderNumber = [result objectForKey:@"number"];
                   /// Create a dictionary, will contain the data to be registered as log in the local database.
@@ -319,13 +319,13 @@
     
     if(isEditing && !productObject.isEditingComments)
     {
-        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80, 27, 19, 21)];
+        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80, 27, 19, 25)];
         btnNote.tag = indexPath.row;
         [btnNote setImage:[UIImage imageNamed:@"Note"] forState:UIControlStateNormal];
         [btnNote addTarget:self action:@selector(doAddNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnNote];
         
-        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 45, 27, 19, 21)];
+        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 45, 27, 19, 25)];
         btnRemove.tag = indexPath.row;
         [btnRemove setImage:[UIImage imageNamed:@"TrashCan_Orange"] forState:UIControlStateNormal];
         [btnRemove addTarget:self action:@selector(doRemoveProduct:) forControlEvents:UIControlEventTouchUpInside];

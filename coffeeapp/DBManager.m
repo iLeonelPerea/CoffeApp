@@ -422,7 +422,7 @@
         sqlite3_prepare_v2(appDB, deleteSQL, -1, &statement, nil);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+            NSLog(@"delete order log Fail error %s", sqlite3_errmsg(appDB));
         }
         /// Finalize the statement.
         [DBManager finalizeStatements:statement withDB:appDB];
@@ -449,7 +449,7 @@
             sqlite3_prepare_v2(appDB, deleteSQL, -1, &statement, nil);
             /// Check for errors.
             if (sqlite3_step(statement) != SQLITE_DONE) {
-                NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+                NSLog(@"delete table content Fail error %s", sqlite3_errmsg(appDB));
             }
             /// Finalize the statement.
             [DBManager finalizeStatements:statement withDB:appDB];
@@ -475,7 +475,7 @@
             sqlite3_prepare_v2(appDB, updateSQL, -1, &statement, nil);
             /// Check for errors.
             if (sqlite3_step(statement) == SQLITE_DONE) {
-                NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+                NSLog(@"update product stock Fail error %s", sqlite3_errmsg(appDB));
             }
             /// Finalize the statement.
             [DBManager finalizeStatements:statement withDB:appDB];
@@ -528,7 +528,7 @@
     if (sqlite3_open(dbPath, &appDB) == SQLITE_OK) {
         sqlite3_prepare_v2(appDB, deleteStmt, -1, &statement, nil);
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+            NSLog(@"delete unattended orders Fail error %s", sqlite3_errmsg(appDB));
         }
     }
     [DBManager finalizeStatements:statement withDB:appDB];

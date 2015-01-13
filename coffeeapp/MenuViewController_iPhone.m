@@ -65,6 +65,33 @@
     /// Set the default value to the flag for bottom bar.
     isViewPlaceOrderActive = NO;
     
+    /// Setting up tableview delegates and datasources
+    [tblProducts setDelegate:self];
+    [tblProducts setDataSource:self];
+    HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    
+    ///Iniliatize the arrays to store the products.
+    arrProductObjects = [NSMutableArray new];
+    
+    /// Set the HUD for loading message
+    [[HUDJMProgress textLabel] setText:@"Loading products"];
+    [HUDJMProgress showInView:[self view]];
+    AppDelegate * appDelegate =  [[UIApplication sharedApplication] delegate];
+    /// Make a request to spree to get all the elements of the menu.
+    [RESTManager updateProducts:[[appDelegate userObject] userSpreeToken] toCallback:^(id resultSignUp) {
+        if ([resultSignUp isEqual:@YES]) {
+            /// Set the array prodcuts - If the there's products selected by users, they will be set here.
+            arrProductCategoriesObjects = [DBManager getCategories];
+            arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
+            [tblProducts reloadData];
+            [self updateCategoryBar];
+        }else{
+            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alert show];
+        }
+        [HUDJMProgress dismiss];
+    }];
+    
     /// Check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         if([[result objectForKey:@"success"] isEqual:@NO])
@@ -87,34 +114,7 @@
             areMealsAvailable = NO;
         }
     }];
-   
-    /// Setting up tableview delegates and datasources
-    [tblProducts setDelegate:self];
-    [tblProducts setDataSource:self];
-    HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    
-    ///Iniliatize the arrays to store the products.
-    arrProductObjects = [NSMutableArray new];
-    
-    /// Set the HUD for loading message
-    [[HUDJMProgress textLabel] setText:@"Loading products"];
-    [HUDJMProgress showInView:[self view]];
-    AppDelegate * appDelegate =  [[UIApplication sharedApplication] delegate];
-    /// Make a request to spree to get all the elements of the menu.
-    [RESTManager updateProducts:[[appDelegate userObject] userSpreeToken] toCallback:^(id resultSignUp) {
-        if ([resultSignUp isEqual:@YES]) {
-            /// Set the array prodcuts - If the there's products selected by users, they will be set here.
-            arrProductCategoriesObjects = [DBManager getCategories];
-            arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
-            [tblProducts reloadData];
-            
-            [self updateCategoryBar];
-        }else{
-            UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alert show];
-        }
-        [HUDJMProgress dismiss];
-    }];
+
     
     /// Get the current day of the week.
     NSDate *now = [NSDate date];
@@ -177,6 +177,7 @@
     [viewScrollCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 57):CGRectMake(0, 0, 320, 57)];
     separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 0.3f)];
     [separatorView setBackgroundColor:[UIColor colorWithRed:165.0f/255.0f green:150.0f/255.0f blue:143.0f/255.0f alpha:1.0f]];
+    separatorView.layer.opacity = 0.5f;
     [self.view addSubview:separatorView];
     [self.view bringSubviewToFront:separatorView];
 }
