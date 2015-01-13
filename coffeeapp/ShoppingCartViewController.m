@@ -195,7 +195,7 @@
               /// Check for the number -of the order- and the state -of the order- in the dictionary.
               if ([dictResult objectForKey:@"number"] != nil && [[dictResult objectForKey:@"state"] isEqual:@"confirm"]) {
                   /// Create an alert view to inform that the order is placed.
-                  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention" message:@"Order Placed!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+                  UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention" message:@"Your order will be attended in a sec!" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
                   [alert show];
                   myAppDelegate.currentOrderNumber = [result objectForKey:@"number"];
                   /// Create a dictionary, will contain the data to be registered as log in the local database.

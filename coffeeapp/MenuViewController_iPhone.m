@@ -65,29 +65,6 @@
     /// Set the default value to the flag for bottom bar.
     isViewPlaceOrderActive = NO;
     
-    /// Check if meals are available based on server time
-    [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
-        if([[result objectForKey:@"success"] isEqual:@NO])
-        {
-            /// Dismiss the HUD for loading, if it is active.
-            if (HUDJMProgress) {
-                [HUDJMProgress dismissAnimated:YES];
-            }
-            return;
-        }
-        /// Extract the hour value from the server time
-        NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
-        /// Check if the hour is between the valid range of time for meals category
-        if([strHr intValue] > 7 && [strHr intValue] < 11)
-        {
-            areMealsAvailable = YES;
-        }
-        else
-        {
-            areMealsAvailable = NO;
-        }
-    }];
-   
     /// Setting up tableview delegates and datasources
     [tblProducts setDelegate:self];
     [tblProducts setDataSource:self];
@@ -114,6 +91,30 @@
         }
         [HUDJMProgress dismiss];
     }];
+    
+    /// Check if meals are available based on server time
+    [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+        if([[result objectForKey:@"success"] isEqual:@NO])
+        {
+            /// Dismiss the HUD for loading, if it is active.
+            if (HUDJMProgress) {
+                [HUDJMProgress dismissAnimated:YES];
+            }
+            return;
+        }
+        /// Extract the hour value from the server time
+        NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
+        /// Check if the hour is between the valid range of time for meals category
+        if([strHr intValue] > 7 && [strHr intValue] < 11)
+        {
+            areMealsAvailable = YES;
+        }
+        else
+        {
+            areMealsAvailable = NO;
+        }
+    }];
+
     
     /// Get the current day of the week.
     NSDate *now = [NSDate date];
@@ -174,8 +175,9 @@
     }
     [viewCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 65, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 65, 320, 57):CGRectMake(0, 65, 320, 57)];
     [viewScrollCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 57):CGRectMake(0, 0, 320, 57)];
-    separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 1)];
+    separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 0.3f)];
     [separatorView setBackgroundColor:[UIColor colorWithRed:165.0f/255.0f green:150.0f/255.0f blue:143.0f/255.0f alpha:1.0f]];
+    separatorView.layer.opacity = 0.5f;
     [self.view addSubview:separatorView];
     [self.view bringSubviewToFront:separatorView];
 }
