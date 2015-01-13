@@ -90,7 +90,7 @@
     //[btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel"] forState:UIControlStateNormal];
     //[btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel_pressed"] forState:UIControlStateSelected];
     [imgBottomBar setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127/255.0f blue:0.0f alpha:1.0f]];
-    [btnEditDelete setFrame:CGRectMake(self.view.frame.size.width - 55, 80, 40, 40)];
+    [btnEditDelete setFrame:CGRectMake(self.view.frame.size.width - 55, 70, 40, 40)];
     
     UIView * viewTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
     [viewTop setBackgroundColor:[UIColor colorWithRed:4.0f/255.0f green:130.0f/255.0f blue:118.0f/255.0f alpha:1.0f]];
@@ -282,7 +282,7 @@
     ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:indexPath.row];
     if(selectedProduct.isEditingComments)
     {
-        return 180;
+        return 200;
     }
     return (IS_IPHONE_6)?94:80;
 }
@@ -308,7 +308,7 @@
     /// -------- Product name
     UILabel * lblProductName = [[UILabel alloc] init];
     //[lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
-    [lblProductName setFrame:CGRectMake(20, 0, self.view.frame.size.width-100, 80)];
+    [lblProductName setFrame:CGRectMake(20, 0, self.view.frame.size.width-115, 80)];
     [lblProductName setText:[[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]] capitalizedString]];
     [lblProductName setNumberOfLines:2];
     [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:20]];
@@ -319,13 +319,13 @@
     
     if(isEditing && !productObject.isEditingComments)
     {
-        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80, 27, 19, 25)];
+        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 90, ((IS_IPHONE_6)?94:80 - 40) / 2, 40, 40)];
         btnNote.tag = indexPath.row;
         [btnNote setImage:[UIImage imageNamed:@"Note"] forState:UIControlStateNormal];
         [btnNote addTarget:self action:@selector(doAddNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnNote];
         
-        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 45, 27, 19, 25)];
+        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 55, ((IS_IPHONE_6)?94:80 - 40) / 2, 40, 40)];
         btnRemove.tag = indexPath.row;
         [btnRemove setImage:[UIImage imageNamed:@"TrashCan_Orange"] forState:UIControlStateNormal];
         [btnRemove addTarget:self action:@selector(doRemoveProduct:) forControlEvents:UIControlEventTouchUpInside];
@@ -335,7 +335,7 @@
     //--------------------- Notes Section ---------------
     if(productObject.isEditingComments)
     {
-        UIView * viewBg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 180)];
+        UIView * viewBg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
         [viewBg setBackgroundColor:[UIColor colorWithRed:0.92914f green:0.92914f blue:0.92914f alpha:1.0f]];
         
         UITextField * txtComment = [[UITextField alloc] initWithFrame:CGRectMake(30, 52, self.view.frame.size.width-40, 80)];
@@ -348,14 +348,14 @@
         [txtComment setTag:indexPath.row];
         [cell addSubview:txtComment];
         
-        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40, 27, 13, 13)];
+        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-57, 13, 40, 40)];
         [btnClose setImage:[UIImage imageNamed:@"litleCross"] forState:UIControlStateNormal];
         [btnClose setTag:indexPath.row];
         [btnClose addTarget:self action:@selector(doCancelNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
         [btnClose addTarget:self action:@selector(doCancelNoteToProduct:) forControlEvents:UIControlEventTouchUpOutside];
         [cell addSubview:btnClose];
         
-        UIButton * btnDone = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-93, 140, 80, 40)];
+        UIButton * btnDone = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-93, 150, 80, 40)];
         [btnDone setImage:[UIImage imageNamed:@"done_btn_up"] forState:UIControlStateNormal];
         [btnDone setImage:[UIImage imageNamed:@"done_btn_down"] forState:UIControlStateHighlighted];
         [btnDone setTag:indexPath.row];
