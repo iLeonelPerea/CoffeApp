@@ -90,7 +90,7 @@
     //[btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel"] forState:UIControlStateNormal];
     //[btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel_pressed"] forState:UIControlStateSelected];
     [imgBottomBar setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127/255.0f blue:0.0f alpha:1.0f]];
-    [btnEditDelete setFrame:CGRectMake(self.view.frame.size.width - 50, 85, 24, 24)];
+    [btnEditDelete setFrame:CGRectMake(self.view.frame.size.width - 55, 80, 40, 40)];
     
     UIView * viewTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
     [viewTop setBackgroundColor:[UIColor colorWithRed:4.0f/255.0f green:130.0f/255.0f blue:118.0f/255.0f alpha:1.0f]];
