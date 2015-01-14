@@ -807,7 +807,7 @@
     [[lblCategory titleLabel] setTextColor:[UIColor blackColor]];
     [viewScrollCategories addSubview:lblCategory];
      */
-    UIButton * btnCategoryAll = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, 4*12, 57)];
+    UIButton * btnCategoryAll = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, 5*12, 57)];
     [btnCategoryAll setTitle:@"ALL" forState:UIControlStateNormal];
     [btnCategoryAll addTarget:self action:@selector(setFilter:) forControlEvents:UIControlEventTouchUpInside];
     [btnCategoryAll setTitleColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
@@ -817,7 +817,7 @@
     [viewScrollCategories addSubview:btnCategoryAll];
     if (!isPickerFilterActive) { //If filter is active
         UILabel *lblActiveCategory = [[UILabel alloc] init];
-        [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+(4*12/2), 25, 25, 25)];
+        [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+(5*12/2), 25, 25, 25)];
         lblActiveCategory.textAlignment = NSTextAlignmentCenter;
         [lblActiveCategory setText:@"·"];
         [lblActiveCategory setFont:[UIFont fontWithName:@"Lato-Light" size:80]];
@@ -825,7 +825,7 @@
         [viewScrollCategories addSubview:lblActiveCategory];
     }
     indexArrayProductCategories ++;
-    xPositionCategory += 36;
+    xPositionCategory += 50;
     for (CategoryObject *category in arrProductCategoriesObjects) {
         //Create label of category
         /*UIButton *lblCategory = [[UIButton alloc] init];
