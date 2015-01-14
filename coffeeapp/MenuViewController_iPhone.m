@@ -794,7 +794,7 @@
     float xPositionCategory = 9.0, widthLastCategory = 0.0; //position of each category
     
     //Create label of category
-    UIButton *lblCategory = [[UIButton alloc] init];
+    /*UIButton *lblCategory = [[UIButton alloc] init];
     [lblCategory setFrame:CGRectMake(xPositionCategory, 0, 3*12, 57)];
     lblCategory.titleLabel.textAlignment = NSTextAlignmentCenter;
     [lblCategory setTitle:@"ALL" forState:UIControlStateNormal];
@@ -806,6 +806,12 @@
     [lblCategory.titleLabel setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
     [[lblCategory titleLabel] setTextColor:[UIColor blackColor]];
     [viewScrollCategories addSubview:lblCategory];
+     */
+    UIButton * btnCategoryAll = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, 50, 40)];
+    [btnCategoryAll setTitle:@"ALL" forState:UIControlStateNormal];
+    [btnCategoryAll addTarget:self action:@selector(setFilter:) forControlEvents:UIControlEventTouchUpInside];
+    [btnCategoryAll setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [viewScrollCategories addSubview:btnCategoryAll];
     if (!isPickerFilterActive) { //If filter is active
         UILabel *lblActiveCategory = [[UILabel alloc] init];
         [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+(3*12/2), 25, 25, 25)];
