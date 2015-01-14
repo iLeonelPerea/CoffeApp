@@ -794,16 +794,17 @@
     float xPositionCategory = 9.0, widthLastCategory = 0.0; //position of each category
     
     //Create label of category
-    UILabel *lblCategory = [[UILabel alloc] init];
-    [lblCategory setFrame:CGRectMake(xPositionCategory, 18, 3*12, 20)];
-    lblCategory.textAlignment = NSTextAlignmentCenter;
-    [lblCategory setText:@"ALL"];
+    UIButton *lblCategory = [[UIButton alloc] init];
+    [lblCategory setFrame:CGRectMake(xPositionCategory, 0, 3*12, 57)];
+    lblCategory.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [lblCategory setTitle:@"ALL" forState:UIControlStateNormal];
     [lblCategory setTag:indexArrayProductCategories];
     lblCategory.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setFilter:)];
     [lblCategory addGestureRecognizer:tapGesture];
-    [lblCategory setFont:[UIFont fontWithName:@"Lato-Bold" size:12]];
-    [lblCategory setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
+    lblCategory.titleLabel.font = [UIFont fontWithName:@"Lato-Bold" size:12];
+    [lblCategory.titleLabel setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
+    [[lblCategory titleLabel] setTextColor:[UIColor blackColor]];
     [viewScrollCategories addSubview:lblCategory];
     if (!isPickerFilterActive) { //If filter is active
         UILabel *lblActiveCategory = [[UILabel alloc] init];
@@ -818,16 +819,17 @@
     xPositionCategory += 36;
     for (CategoryObject *category in arrProductCategoriesObjects) {
         //Create label of category
-        UILabel *lblCategory = [[UILabel alloc] init];
-        [lblCategory setFrame:CGRectMake(xPositionCategory, 18, [category.category_name length]*12, 20)];
-        lblCategory.textAlignment = NSTextAlignmentCenter;
-        [lblCategory setText:[category.category_name uppercaseString]];
+        UIButton *lblCategory = [[UIButton alloc] init];
+        [lblCategory setFrame:CGRectMake(xPositionCategory, 0, [category.category_name length]*12, 57)];
+        lblCategory.titleLabel.textAlignment = NSTextAlignmentCenter;
+        [lblCategory setTitle:[category.category_name uppercaseString] forState:UIControlStateNormal];
+        [lblCategory.titleLabel setText:[category.category_name uppercaseString]];
         [lblCategory setTag:indexArrayProductCategories];
         lblCategory.userInteractionEnabled = YES;
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setFilter:)];
         [lblCategory addGestureRecognizer:tapGesture];
-        [lblCategory setFont:[UIFont fontWithName:@"Lato-Bold" size:12]];
-        [lblCategory setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
+        lblCategory.titleLabel.font = [UIFont fontWithName:@"Lato-Bold" size:12];
+        [lblCategory.titleLabel setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
         [viewScrollCategories addSubview:lblCategory];
         if (isPickerFilterActive && indexArrayProductCategories == pickerFilterActiveOption) { //If filter is active
             UILabel *lblActiveCategory = [[UILabel alloc] init];
