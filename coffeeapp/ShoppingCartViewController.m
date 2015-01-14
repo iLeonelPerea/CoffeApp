@@ -48,12 +48,12 @@
     [btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(19, 612, 50, 50):(IS_IPHONE_5)?CGRectMake(19, 513, 50, 50):CGRectMake(40, 437, 55, 30)];
     [btnEmptyShoppingCart setTitle:@"Back" forState:UIControlStateNormal];
     [[btnEmptyShoppingCart titleLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:16]];
-    [btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(174, self.view.frame.size.height - 60, 182, 60):CGRectMake(119, self.view.frame.size.height - 60, 182, 60)];
+    [btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(174, 607, 182, 60):CGRectMake(119, self.view.frame.size.height - 60, 182, 60)];
     [btnCheckOut setTitle:@"Place Order" forState:UIControlStateNormal];
     [[btnCheckOut titleLabel] setTextColor:[UIColor whiteColor]];
     [[btnCheckOut titleLabel] setFont:[UIFont fontWithName:@"Lato-Regular" size:22]];
     [[btnCheckOut titleLabel] setTextAlignment:NSTextAlignmentLeft];;
-    UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(330, self.view.frame.size.height - 28, 20, 15):CGRectMake(275, self.view.frame.size.height -38, 20, 15)];
+    UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(330, 667 - 38, 20, 15):CGRectMake(275, self.view.frame.size.height -38, 20, 15)];
     [imgCheckMark setImage:[UIImage imageNamed:@"Checkmark_White"]];
     [self.view addSubview:imgCheckMark];
     /// Set the current date text.
@@ -289,7 +289,7 @@
     {
         return 200;
     }
-    return (IS_IPHONE_6)?94:80;
+    return (IS_IPHONE_6)?94:80 ;
 }
 
 /// Draw the contect of the cell for the table row. Display the quantity and name of the product with the image as background.
@@ -313,7 +313,7 @@
     /// -------- Product name
     UILabel * lblProductName = [[UILabel alloc] init];
     //[lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
-    [lblProductName setFrame:CGRectMake(20, 0, self.view.frame.size.width-115, 80)];
+    [lblProductName setFrame:CGRectMake(20, 0, self.view.frame.size.width-115, (IS_IPHONE_6)?94:80)];
     [lblProductName setText:[[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]] capitalizedString]];
     [lblProductName setNumberOfLines:2];
     [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:20]];
@@ -324,13 +324,13 @@
     
     if(isEditing && !productObject.isEditingComments)
     {
-        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 90, ((IS_IPHONE_6)?94:80 - 40) / 2, 40, 40)];
+        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 90, (IS_IPHONE_6)?27:20, 40, 40)];
         btnNote.tag = indexPath.row;
         [btnNote setImage:[UIImage imageNamed:@"Note"] forState:UIControlStateNormal];
         [btnNote addTarget:self action:@selector(doAddNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnNote];
         
-        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 55, ((IS_IPHONE_6)?94:80 - 40) / 2, 40, 40)];
+        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 55, (IS_IPHONE_6)?27:20, 40, 40)];
         btnRemove.tag = indexPath.row;
         [btnRemove setImage:[UIImage imageNamed:@"TrashCan_Orange"] forState:UIControlStateNormal];
         [btnRemove addTarget:self action:@selector(doRemoveProduct:) forControlEvents:UIControlEventTouchUpInside];
