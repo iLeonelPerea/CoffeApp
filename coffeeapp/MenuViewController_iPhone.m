@@ -791,7 +791,7 @@
     }
     
     int indexArrayProductCategories = -1; // set index of category
-    float xPositionCategory = 9.0, widthLastCategory = 0.0; //position of each category
+    float xPositionCategory = 3.0, widthLastCategory = 0.0; //position of each category
     
     //Create label of category
     /*UIButton *lblCategory = [[UIButton alloc] init];
@@ -807,14 +807,17 @@
     [[lblCategory titleLabel] setTextColor:[UIColor blackColor]];
     [viewScrollCategories addSubview:lblCategory];
      */
-    UIButton * btnCategoryAll = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, 50, 40)];
+    UIButton * btnCategoryAll = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, 4*12, 57)];
     [btnCategoryAll setTitle:@"ALL" forState:UIControlStateNormal];
     [btnCategoryAll addTarget:self action:@selector(setFilter:) forControlEvents:UIControlEventTouchUpInside];
-    [btnCategoryAll setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btnCategoryAll setTitleColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [btnCategoryAll.titleLabel setFont:[UIFont fontWithName:@"Lato-Bold" size:12]];
+    [btnCategoryAll.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [btnCategoryAll setTag:indexArrayProductCategories];
     [viewScrollCategories addSubview:btnCategoryAll];
     if (!isPickerFilterActive) { //If filter is active
         UILabel *lblActiveCategory = [[UILabel alloc] init];
-        [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+(3*12/2), 25, 25, 25)];
+        [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+(4*12/2), 25, 25, 25)];
         lblActiveCategory.textAlignment = NSTextAlignmentCenter;
         [lblActiveCategory setText:@"·"];
         [lblActiveCategory setFont:[UIFont fontWithName:@"Lato-Light" size:80]];
@@ -825,7 +828,7 @@
     xPositionCategory += 36;
     for (CategoryObject *category in arrProductCategoriesObjects) {
         //Create label of category
-        UIButton *lblCategory = [[UIButton alloc] init];
+        /*UIButton *lblCategory = [[UIButton alloc] init];
         [lblCategory setFrame:CGRectMake(xPositionCategory, 0, [category.category_name length]*12, 57)];
         lblCategory.titleLabel.textAlignment = NSTextAlignmentCenter;
         [lblCategory setTitle:[category.category_name uppercaseString] forState:UIControlStateNormal];
@@ -836,7 +839,15 @@
         [lblCategory addGestureRecognizer:tapGesture];
         lblCategory.titleLabel.font = [UIFont fontWithName:@"Lato-Bold" size:12];
         [lblCategory.titleLabel setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
-        [viewScrollCategories addSubview:lblCategory];
+        [viewScrollCategories addSubview:lblCategory];*/
+        UIButton * btnCategory = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, [category.category_name length]*12, 57)];
+        [btnCategory setTitle:[category.category_name uppercaseString] forState:UIControlStateNormal];
+        [btnCategory addTarget:self action:@selector(setFilter:) forControlEvents:UIControlEventTouchUpInside];
+        [btnCategory setTitleColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [btnCategory.titleLabel setFont:[UIFont fontWithName:@"Lato-Bold" size:12]];
+        [btnCategoryAll.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [btnCategory setTag:indexArrayProductCategories];
+        [viewScrollCategories addSubview:btnCategory];
         if (isPickerFilterActive && indexArrayProductCategories == pickerFilterActiveOption) { //If filter is active
             UILabel *lblActiveCategory = [[UILabel alloc] init];
             [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+([category.category_name length]*12/2), 25, 25, 25)];
@@ -871,10 +882,10 @@
 }
 
 // Asign new filter and refresh
--(void)setFilter:(UITapGestureRecognizer *)tapGesture{
-    UILabel *selection = (UILabel *)tapGesture.view;
-    isPickerFilterActive = (selection.tag + 1==0) ? NO : YES;
-    pickerFilterActiveOption = selection.tag;
+-(void)setFilter:(id)sender{
+    //UILabel *selection = (UILabel *)tapGesture.view;
+    isPickerFilterActive = ([sender tag] + 1==0) ? NO : YES;
+    pickerFilterActiveOption = [sender tag];
     [self doReloadData];
     [self synchronizeDefaults];
     [self updateCategoryBar];
