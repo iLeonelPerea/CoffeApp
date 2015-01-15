@@ -21,17 +21,8 @@
 /** Id of the image. */
 @property (nonatomic, assign) int image_id;
 
-/** URL for the large image of the product. */
-@property (nonatomic, strong) NSString * large_url;
-
-/** URL for the mini image of the product. */
-@property (nonatomic, strong) NSString * mini_url;
-
 /** URL for the image of the product. */
 @property (nonatomic, strong) NSString * product_url;
-
-/** URL for the small image of the product. */
-@property (nonatomic, strong) NSString * small_url;
 
 /** Create a custom init to code the object.
  

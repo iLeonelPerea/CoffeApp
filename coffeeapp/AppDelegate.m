@@ -43,7 +43,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     /// Set YES to identify when requests are done to a testing enviroment.
-    isTestingEnv = NO;
+    isTestingEnv = YES;
     /// Set dafault value of NO to the flag to identify when MenuViewController_iPhone is active.
     isMenuViewController = NO;
     

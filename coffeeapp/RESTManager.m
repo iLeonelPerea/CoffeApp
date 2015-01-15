@@ -12,7 +12,7 @@
 #import "AppDelegate.h"
 
 /// Macro that store the URL for the testing server.
-#define TESTING_URL @"http://462ae3ac.ngrok.com/api"
+#define TESTING_URL @"https://stage-spree-demo-store-three.herokuapp.com/api"
 
 @implementation RESTManager
 

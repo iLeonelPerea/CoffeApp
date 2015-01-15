@@ -18,12 +18,6 @@
 
 @interface ProductObject : NSObject
 
-/** Description of the product. */
-@property (nonatomic, strong) NSString * description;
-
-/** Price to display of the product. */
-@property (nonatomic, strong) NSString * display_price;
-
 /** Id of the product in the Spree store. */
 @property (nonatomic, assign) int product_id;
 
@@ -36,20 +30,11 @@
 /** Name of the product. */
 @property (nonatomic, strong) NSString * name;
 
-/** Price of the product. */
-@property (nonatomic, strong) NSString * price;
-
-/** Slug of the product. */
-@property (nonatomic, strong) NSString * slug;
-
 /** Total on hand -stock- of the product in the Spree store. */
 @property (nonatomic, assign) int total_on_hand;
 
 /** Quantity selected of the product. */
 @property (nonatomic, assign) int quantity;
-
-/** Days that the product will be display. */
-@property (nonatomic, assign) int showDays;
 
 /** Delivery type of the product. */
 @property (nonatomic, assign) int delivery_type;
