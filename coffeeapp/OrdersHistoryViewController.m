@@ -71,11 +71,16 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     /** The components are setted to fit the screen size according their proportions. Fits to iPhone 4/4S/5/5S/6, 6 plus is not supported yet */
-    [imgPatron setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 50):CGRectMake(0, 64, 320, 50)];
-    [lblTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 64, 375, 50):CGRectMake(20, 64, 320, 50)];
-    [btnIncomingOrders setFrame:(IS_IPHONE_6)?CGRectMake(0, 611, 188, 56):(IS_IPHONE_5)?CGRectMake(0, 520, 160, 48):CGRectMake(0, 432, 160, 48)];
-    [btnPastOrders setFrame:(IS_IPHONE_6)?CGRectMake(189, 611, 188, 56):(IS_IPHONE_5)?CGRectMake(161, 520, 159, 48):CGRectMake(161, 432, 159, 48)];
-    [tblOrders setFrame:(IS_IPHONE_6)?CGRectMake(0, 110, 375, 501):(IS_IPHONE_5)?CGRectMake(0, 110, 320, 410):CGRectMake(0, 110, 320, 362)];
+    //[imgPatron setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 50):CGRectMake(0, 64, 320, 50)];
+    [lblTitle setFrame:CGRectMake(20, 64, self.view.frame.size.width, 50)];
+    //[lblTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 64, 375, 50):CGRectMake(20, 64, 320, 50)];
+    int buttonsHeight = (IS_IPHONE_6_PLUS)?65.5f:(IS_IPHONE_6)?56.1f:48.0f;
+    [btnIncomingOrders setFrame:CGRectMake(0, self.view.frame.size.height - buttonsHeight, self.view.frame.size.width / 2, buttonsHeight)];
+    //[btnIncomingOrders setFrame:(IS_IPHONE_6)?CGRectMake(0, 611, 188, 56):(IS_IPHONE_5)?CGRectMake(0, 520, 160, 48):CGRectMake(0, 432, 160, 48)];
+    [btnPastOrders setFrame:CGRectMake((self.view.frame.size.width) / 2, self.view.frame.size.height - buttonsHeight, self.view.frame.size.width / 2, buttonsHeight)];
+    //[btnPastOrders setFrame:(IS_IPHONE_6)?CGRectMake(189, 611, 188, 56):(IS_IPHONE_5)?CGRectMake(161, 520, 159, 48):CGRectMake(161, 432, 159, 48)];
+    [tblOrders setFrame:CGRectMake(0, 110, self.view.frame.size.width, (self.view.frame.size.height - buttonsHeight) - 110 )];
+    //[tblOrders setFrame:(IS_IPHONE_6)?CGRectMake(0, 110, 375, 501):(IS_IPHONE_5)?CGRectMake(0, 110, 320, 410):CGRectMake(0, 110, 320, 362)];
 }
 
 /** System method */
@@ -185,7 +190,8 @@
     
     /// Create and set a UILabel to display the order's date
     UILabel * lblSectionTitle = [[UILabel alloc] init];
-    [lblSectionTitle setFrame:(IS_IPHONE_6)?CGRectMake(20, 10, 335, 20):CGRectMake(20, 10, 280, 20)];
+    //[lblTitle setFrame:CGRectMake(20, 10, ((IS_IPHONE_6_PLUS)?414:(IS_IPHONE_6)?375:320) - 40, 20)];
+    [lblSectionTitle setFrame:(IS_IPHONE_6_PLUS)?CGRectMake(20, 10, 374, 20):(IS_IPHONE_6)?CGRectMake(20, 10, 335, 20):CGRectMake(20, 10, 280, 20)];
     [lblSectionTitle setNumberOfLines:2];
     [lblSectionTitle setText:[[dictOrderHeader objectForKey:@"ORDER_DATE"] capitalizedString]];
     [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:(IS_IPHONE_6)?17:15]];
@@ -198,7 +204,8 @@
     
     /// Check the status of the order to add a delete icon when the order is in "confirm" or a label when is in "attendind"
     if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"attending"]) {
-        UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(305, 0, 70, 70):CGRectMake(250, 0, 70, 70)];
+        UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:CGRectMake(headerView.frame.size.width - 70, 0, 70, 70)];
+        //UIImageView * imgLabel = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(305, 0, 70, 70):CGRectMake(250, 0, 70, 70)];
         [imgLabel setImage:[UIImage imageNamed:@"LabelPendingOrders"]];
         [headerView addSubview:imgLabel];
     }else if ([[dictOrderHeader objectForKey:@"ORDER_STATUS"] isEqual:@"confirm"] && isEditModeActive) {
@@ -227,7 +234,8 @@
     cell.accessoryType = UITableViewCellAccessoryNone;
     
     /// --------- Product name
-    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(20, 0, 335, 23):CGRectMake(20, 0, 280, 23)];
+    UILabel * lblName  = [[UILabel alloc] initWithFrame:CGRectMake( 20, 0, tblOrders.frame.size.width - 40, 23)];
+    //UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(20, 0, 335, 23):CGRectMake(20, 0, 280, 23)];
     [[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"];
     [lblName setText:[NSString stringWithFormat:@"%@ %@",[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_QUANTITY_ORDERED"],[(NSString*)[[[[arrOrders objectAtIndex:[indexPath section]] objectForKey:@"ORDER_DETAIL"] objectAtIndex:[indexPath row]] objectForKey:@"PRODUCT_NAME"] capitalizedString]]];
     [lblName setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
