@@ -20,7 +20,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize signInButton, userObject, prgLoaging, imgSplashScreen;
+@synthesize signInButton, userObject, prgLoading, imgSplashScreen;
 
 /// Google App client ID. Created specifically for CoffeeApp.
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -41,8 +41,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     /// Add an observer to set up the userObject in AppDelegate.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSetUserObject) name:@"initUserFinishedLoading" object:nil];
     /// Set the progress loading indicator.
-    prgLoaging = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    [[prgLoaging textLabel] setText:@"Sign In..."];
+    prgLoading = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    [[prgLoading textLabel] setText:@"Sign In..."];
 }
 
 /// System method.
@@ -66,6 +66,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 #pragma mark -- GPPSignIn delegate
 -(void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
+    [prgLoading showInView:[self view]];
     /** This is the content of auth dictionary, which is the response of the SingIn from G+
      {accessToken="", 
      refreshToken="", 
@@ -81,8 +82,36 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     if (error) {
         /// Do some error handling here.
     } else {
+        //check email domain
+        NSString * strEmail = [[GPPSignIn sharedInstance] userEmail];
+        NSArray * arrEmail = [strEmail componentsSeparatedByString:@"@"];
+        if(![[arrEmail objectAtIndex:1] isEqual:@"crowdint.com"])
+        {
+            [prgLoading dismiss];
+            NSLog(@"user does not belong to company and can do nothing here...");
+            /// SignOut
+            [[GPPSignIn sharedInstance] signOut];
+            /// Revoke token
+            [[GPPSignIn sharedInstance] disconnect];
+            LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:nil message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+            /// Create and add the content of the aler view.
+            UIView *contentView = alertView.contentView;
+            [contentView setBackgroundColor:[UIColor clearColor]];
+            [alertView setBackgroundColor:[UIColor clearColor]];
+            UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 5.0f, 129.0f, 200.0f)];
+            [imgV setImage:[UIImage imageNamed:@"ChefNo"]];
+            [contentView addSubview:imgV];
+            UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
+            lblStatus.numberOfLines = 3;
+            [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:14]];
+            [lblStatus setTextAlignment:NSTextAlignmentCenter];
+            lblStatus.text = @"Sorry, you don't have permissions to enjoy our delicious application!";
+            [contentView addSubview:lblStatus];
+            [alertView show];
+            return;
+        }
         /// Show the loading message.
-        [prgLoaging showInView:[self view]];
         [self refreshInterfaceBasedOnSignIn];
         AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
         GTLPlusPersonName * nameData = [person name];
@@ -121,7 +150,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userObject] forKey:@"userObject"];
     [defaults synchronize];
-    [prgLoaging dismiss];
+    [prgLoading dismiss];
     /// Post a local notification to trigger "userDidRequestSignIn".
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestSignIn" object:nil];
 }
