@@ -40,20 +40,34 @@
     isEditing = NO;
     currentEditingProduct = nil;
     currentEditingTag = -1;
+    [self.view setFrame:CGRectMake(0, 0, (IS_IPHONE_6_PLUS)?414:(IS_IPHONE_6)?375:320, (IS_IPHONE_6_PLUS)?736:(IS_IPHONE_6)?667:568)];
     /// Set the screen elements to fit on the screen depending on the device.
-    [lblDate setFrame:(IS_IPHONE_6)?CGRectMake(21, 85, 375, 50):CGRectMake(21, 85, 295, 50)];
-    [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 134, 375, 370):(IS_IPHONE_5)?CGRectMake(0, 134, 320, 270):CGRectMake(0, 134, 320, 270)];
-    [lblDisclaimer setFrame:(IS_IPHONE_6)?CGRectMake(20, 500, 335, 90):(IS_IPHONE_5)?CGRectMake(20, 400, 280, 90):CGRectMake(20, 330, 280, 90)];
-    [imgBottomBar setFrame:(IS_IPHONE_6)?CGRectMake(0, 607, 375, 60):(IS_IPHONE_5)?CGRectMake(0, 508, 320, 60):CGRectMake(0, 420, 320, 60)];
-    [btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(19, 612, 50, 50):(IS_IPHONE_5)?CGRectMake(19, 513, 50, 50):CGRectMake(40, 437, 55, 30)];
+    [lblDate setFrame:CGRectMake(21, 85, 295, 50)];
+    //[lblDate setFrame:(IS_IPHONE_6)?CGRectMake(21, 85, 375, 50):CGRectMake(21, 85, 295, 50)];
+    [lblDisclaimer setFrame:CGRectMake(20, 500, ((IS_IPHONE_6_PLUS)?414:(IS_IPHONE_6)?375:320) - 40, 90)];
+    [lblDisclaimer setText:@"*You have only 20 mins to place your order, before the system deletes it from your account."];
+    [lblDisclaimer setFont:[UIFont fontWithName:@"Lato-Light" size:16]];
+    [lblDisclaimer setNumberOfLines:0];
+    [lblDisclaimer sizeToFit];
+    NSLog(@"%f",lblDisclaimer.frame.size.height);
+    [lblDisclaimer setFrame:CGRectMake(20, (self.view.bounds.size.height - lblDisclaimer.frame.size.height) - 70, lblDisclaimer.frame.size.width, lblDisclaimer.frame.size.height)];
+    //[lblDisclaimer setFrame:(IS_IPHONE_6)?CGRectMake(20, 500, 335, 90):(IS_IPHONE_5)?CGRectMake(20, 400, 280, 90):CGRectMake(20, 330, 280, 90)];
+    [tblProducts setFrame:CGRectMake(0, 134, self.view.frame.size.width, (self.view.frame.size.height - lblDisclaimer.frame.size.height) - 210)];
+    //[tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 134, 375, 370):(IS_IPHONE_5)?CGRectMake(0, 134, 320, 270):CGRectMake(0, 134, 320, 270)];
+    [imgBottomBar setFrame:CGRectMake(0, self.view.frame.size.height - 60, self.view.frame.size.width, 60)];
+    //[imgBottomBar setFrame:(IS_IPHONE_6)?CGRectMake(0, 607, 375, 60):(IS_IPHONE_5)?CGRectMake(0, 508, 320, 60):CGRectMake(0, 420, 320, 60)];
+    [btnEmptyShoppingCart setFrame:CGRectMake(19, self.view.frame.size.height - 55, 50, 50)];
+    //[btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(19, 612, 50, 50):(IS_IPHONE_5)?CGRectMake(19, 513, 50, 50):CGRectMake(40, 437, 55, 30)];
     [btnEmptyShoppingCart setTitle:@"Back" forState:UIControlStateNormal];
     [[btnEmptyShoppingCart titleLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:16]];
-    [btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(174, 607, 182, 60):CGRectMake(119, self.view.frame.size.height - 60, 182, 60)];
+    [btnCheckOut setFrame:CGRectMake(self.view.frame.size.width - 201, self.view.frame.size.height - 60, 182, 60)];
+    //[btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(174, 607, 182, 60):CGRectMake(119, self.view.frame.size.height - 60, 182, 60)];
     [btnCheckOut setTitle:@"Place Order" forState:UIControlStateNormal];
     [[btnCheckOut titleLabel] setTextColor:[UIColor whiteColor]];
     [[btnCheckOut titleLabel] setFont:[UIFont fontWithName:@"Lato-Regular" size:22]];
     [[btnCheckOut titleLabel] setTextAlignment:NSTextAlignmentLeft];;
-    UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(330, 667 - 38, 20, 15):CGRectMake(275, self.view.frame.size.height -38, 20, 15)];
+    UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 45, self.view.frame.size.height - 38, 20, 15)];
+    //UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(330, 667 - 38, 20, 15):CGRectMake(275, self.view.frame.size.height -38, 20, 15)];
     [imgCheckMark setImage:[UIImage imageNamed:@"Checkmark_White"]];
     [self.view addSubview:imgCheckMark];
     /// Set the current date text.
@@ -63,7 +77,6 @@
     NSString * strDate = [dateFormatter stringFromDate:[NSDate date]];
     [lblDate setText:[strDate capitalizedString]];
     /// Set the style of the disclaimer message.
-    [lblDisclaimer setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     
     /// Extract the data of the array arrProductsInQueue from user defaults.
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];

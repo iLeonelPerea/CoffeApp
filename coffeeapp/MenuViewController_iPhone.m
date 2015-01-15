@@ -48,17 +48,19 @@
     areLocationServicesAvailable = YES;
     
     /// Set the constraints for the elements on the view.
-    [[self view] setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 667):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 0, 320, 480)];
+    [[self view] setFrame:(IS_IPHONE_6_PLUS)?CGRectMake(0, 0, 414, 736):(IS_IPHONE_6)?CGRectMake(0, 0, 375, 667):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 0, 320, 480)];
     [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height+60, self.view.frame.size.width, 60)];
     [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
     [lblProductsCount setFrame:CGRectMake(19, 0, 90, 60)];
     [lblProductsCount setTextAlignment:NSTextAlignmentLeft];
     [lblProductsCount setFont:[UIFont fontWithName:@"Lato-light" size:16]];
-    [btnPlaceOrder setFrame:(IS_IPHONE_6)?CGRectMake(174, 0, 182, 60):CGRectMake(119, 0, 182, 60)];
+    [btnPlaceOrder setFrame:CGRectMake(self.view.bounds.size.width - 201, 0, 182, 60)];
+    //[btnPlaceOrder setFrame:(IS_IPHONE_6)?CGRectMake(174, 0, 182, 60):CGRectMake(119, 0, 182, 60)];
     [[btnPlaceOrder titleLabel] setTextColor:[UIColor whiteColor]];
     [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"Lato-Regular" size:22]];
     [[btnPlaceOrder titleLabel] setTextAlignment:NSTextAlignmentLeft];
-    UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(336, 22, 20, 15):CGRectMake(281, 22, 20, 15)];
+    UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 39, 22, 20, 15)];
+    //UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(336, 22, 20, 15):CGRectMake(281, 22, 20, 15)];
     [imgCheckMark setImage:[UIImage imageNamed:@"Checkmark_White"]];
     [viewPlaceOrder addSubview:imgCheckMark];
     
@@ -166,12 +168,12 @@
     /// Check if the bottom bar is active, to set the size of tblProducts.
     int newTblProductsHeight =  tblProductsHeight - 125;
     if (isViewPlaceOrderActive) {
-        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 125, 375, newTblProductsHeight):(IS_IPHONE_5)?CGRectMake(0, 125, 320, newTblProductsHeight):CGRectMake(0, 125, 320, newTblProductsHeight)];
+        [tblProducts setFrame:CGRectMake(0, 123, self.view.frame.size.width, newTblProductsHeight)];
     }else{
-        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 125, 375, newTblProductsHeight):(IS_IPHONE_5)?CGRectMake(0, 125, 320, newTblProductsHeight):CGRectMake(0, 125, 320, newTblProductsHeight)];
+        [tblProducts setFrame:CGRectMake(0, 125, self.view.frame.size.width, newTblProductsHeight)];
     }
-    [viewCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 65, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 65, 320, 57):CGRectMake(0, 65, 320, 57)];
-    [viewScrollCategories setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 57):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 57):CGRectMake(0, 0, 320, 57)];
+    [viewCategories setFrame:CGRectMake(0, 65, self.view.frame.size.width, 57)];
+    [viewScrollCategories setFrame:CGRectMake(0, 0, self.view.frame.size.width, 57)];
     separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 0.3f)];
     [separatorView setBackgroundColor:[UIColor colorWithRed:165.0f/255.0f green:150.0f/255.0f blue:143.0f/255.0f alpha:1.0f]];
     separatorView.layer.opacity = 0.5f;
@@ -343,14 +345,14 @@
             // Decrease
             [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height-60, viewPlaceOrder.frame.size.width, 60)];
         } completion:^(BOOL finished) {
-            [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, tblProductsYPosition, 375, newTblProductsHeight):(IS_IPHONE_5)?CGRectMake(0, tblProductsYPosition, 320, newTblProductsHeight):CGRectMake(0, 124, 320, 298)];
+            [tblProducts setFrame:CGRectMake(0, tblProductsYPosition, self.view.frame.size.width, newTblProductsHeight)];
         }];
         
     }else if(productsCount==0 && isViewPlaceOrderActive){
         /// Set flag in NO.
         isViewPlaceOrderActive = NO;
         /// Increase the value of the table height
-        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, tblProductsYPosition, 375, newTblProductsHeight):(IS_IPHONE_5)?CGRectMake(0, tblProductsYPosition, 320, newTblProductsHeight):CGRectMake(0, 64, 320, 356)];
+        [tblProducts setFrame:CGRectMake(0, tblProductsYPosition, self.view.frame.size.width, newTblProductsHeight)];
         /// Create an animation to shoe the place order bottom bar.
         [UIView animateWithDuration:0.4f animations:^{
             // Increase
@@ -378,7 +380,7 @@
 /// Define the height for a each row, based on which device is -iPhone 6 or another-.
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (IS_IPHONE_6)?234.0f:200.0f;
+    return (IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0f;
 }
 
 /// Return the number of sections based on the element that contains array arrProductObjects. If the filter is active return 1.
@@ -418,7 +420,7 @@
     
     /// Create and set a label to display the number of elements in the section.
     UILabel * lblProductsNumber = [[UILabel alloc] init];
-    [lblProductsNumber setFrame:(IS_IPHONE_6)?CGRectMake(256, 0, 100, 44):CGRectMake(201, 0, 100, 44)];
+    [lblProductsNumber setFrame:CGRectMake(tblProducts.bounds.size.width -119, 0, 100, 44)];
     [lblProductsNumber setText:([[arrProductObjects objectAtIndex:filteredSection] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:filteredSection] count]]:[NSString stringWithFormat:@"%d Product",(int)[[arrProductObjects objectAtIndex:filteredSection] count]]];
     [lblProductsNumber setTextAlignment:NSTextAlignmentRight];
     [lblProductsNumber setTextColor:[UIColor colorWithRed:74.0f/255.0f green:67.0f/255.0f blue:63.0f/255.0f alpha:255]];
@@ -449,7 +451,7 @@
     productObject = [[arrProductObjects objectAtIndex:filteredSection] objectAtIndex:(NSInteger)indexPath.row];
     
     /// --------- Product image
-    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 234):CGRectMake(0, 0, 320, 200)];
+    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6_PLUS)?CGRectMake(0, 0, 414,257):(IS_IPHONE_6)?CGRectMake(0, 0, 375, 234):CGRectMake(0, 0, 320, 200)];
     if(productObject.masterObject.imageObject.attachment_file_name != nil){
         NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
@@ -468,7 +470,7 @@
     [cell addSubview:imgGradiant];
     
     /// --------- Product name
-    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(19, 187.5f, 222, 187.5f):CGRectMake(19, 100, 190, 100)];
+    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_6 || IS_IPHONE_6_PLUS)?CGRectMake(19, 187.5f, 222, 187.5f):CGRectMake(19, 100, 190, 100)];
     [lblName setText: [(NSString*)[productObject name] capitalizedString]];
     [lblName setFont:[UIFont fontWithName:@"Lato-Bold" size:19]];
     [lblName setTextAlignment:NSTextAlignmentLeft];
@@ -492,7 +494,8 @@
     if ((!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Desayuno"]) ||
         (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek)) ) {
         //Button outstock
-        UIView * viewOutOfStock = [[UIView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(113.5f, 101, 148, 27):CGRectMake(86, 86, 148, 27)];
+        UIView * viewOutOfStock = [[UIView alloc] initWithFrame:CGRectMake( (tblProducts.bounds.size.width - 148) / 2, ( ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0f) -27) / 2, 148, 27)];
+        //UIView * viewOutOfStock = [[UIView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(113.5f, 101, 148, 27):CGRectMake(86, 86, 148, 27)];
         [viewOutOfStock setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
         [viewOutOfStock.layer setCornerRadius:5.0f];
         [viewOutOfStock.layer setMasksToBounds:YES];
@@ -513,7 +516,8 @@
         [btnAdd setEnabled:([productObject total_on_hand] == [productObject quantity])?NO:YES];
         
         /// Check if the quantity -selected product- is more than zero to modify the aspect of the add button.
-        [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(316, 183, 40, 40):CGRectMake(261, 149, 40, 40)];
+        [btnAdd setFrame:CGRectMake(tblProducts.bounds.size.width -59, ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0) - 51 , 40, 40)];
+        //[btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(316, 183, 40, 40):CGRectMake(261, 149, 40, 40)];
         [btnAdd setImage:[UIImage imageNamed:@"AddButton"] forState:UIControlStateNormal];
         [btnAdd setImage:[UIImage imageNamed:@"AddButton_Pressed"] forState:UIControlStateHighlighted];
 
@@ -527,7 +531,8 @@
         CustomButton *btnMinus = [CustomButton buttonWithType:UIButtonTypeCustom];
         if ([productObject quantity] > 0)
         {
-            [btnMinus setFrame:(IS_IPHONE_6)?CGRectMake(266, 183, 40, 40):CGRectMake(211, 149, 40, 40)];
+            [btnMinus setFrame:CGRectMake(tblProducts.bounds.size.width - 109, ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0) -51, 40, 40)];
+            //[btnMinus setFrame:(IS_IPHONE_6)?CGRectMake(266, 183, 40, 40):CGRectMake(211, 149, 40, 40)];
             [btnMinus setImage:[UIImage imageNamed:@"SubstractButton"] forState:UIControlStateNormal];
             [btnMinus setImage:[UIImage imageNamed:@"SubstractButton-Pressed"] forState:UIControlStateHighlighted];
         }
@@ -540,11 +545,12 @@
         
         /// -------- Quantity selected
         UIImageView * imgBadge = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Circle_Count"]];
-        [imgBadge setFrame:(IS_IPHONE_6)?CGRectMake(343, 171, 25, 25):CGRectMake(288, 137, 25, 25)];
+        [imgBadge setFrame:CGRectMake(tblProducts.bounds.size.width - 32, ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0)-63, 25, 25)];
+        //[imgBadge setFrame:(IS_IPHONE_6)?CGRectMake(343, 171, 25, 25):CGRectMake(288, 137, 25, 25)];
         [imgBadge setHidden:(productObject.quantity > 0)?NO:YES];
         [cell addSubview:imgBadge];
         
-        UILabel *lblQuantity = [[UILabel alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(343, 171, 25, 25):CGRectMake(288, 137, 25, 25)];
+        UILabel *lblQuantity = [[UILabel alloc] initWithFrame:CGRectMake(tblProducts.bounds.size.width - 32, ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0)-63, 25, 25)];
         [lblQuantity setText:[NSString stringWithFormat:@"%d", productObject.quantity]];
         [lblQuantity setTextAlignment:NSTextAlignmentCenter];
         [lblQuantity setTextColor:[UIColor whiteColor]];

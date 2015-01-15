@@ -34,21 +34,21 @@
     /// Set the current user name from userObject located at AppDelegate
     UserObject * userObject = [[UserObject alloc] init];
     userObject = [appDelegate userObject];
-    [imgUserProfile setFrame:(IS_IPHONE_6)?CGRectMake(20, 40, 100, 100):(IS_IPHONE_5)?CGRectMake(20, 40, 100, 100):CGRectMake(20, 40, 100, 100)];
-    [btnSignOut setFrame:(IS_IPHONE_6)?CGRectMake(20, 610, 230, 45):(IS_IPHONE_5)?CGRectMake(20, 507, 230, 45):CGRectMake(20, 420, 230, 45)];
+    [imgUserProfile setFrame:CGRectMake(20, 40, 100, 100)];
+    [btnSignOut setFrame:CGRectMake(20, ((IS_IPHONE_6_PLUS)?736:(IS_IPHONE_6)?667:568) - 61, 230, 45)];
     /// Set the style for the user's label.
-    [lblUser setFrame:(IS_IPHONE_6)?CGRectMake(20, 150, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 150, 240, 60):CGRectMake(20, 140, 240, 60)];
+    [lblUser setFrame:CGRectMake(20, 150, 240, 60)];
     [lblUser setFont:[UIFont fontWithName:@"Lato-Light" size:19]];
     [lblUser setNumberOfLines:2];
     [lblUser setText:[userObject userName]];
     [lblUser setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
     [lblUser sizeToFit];
-    [lblMail setFrame:(IS_IPHONE_6)?CGRectMake(20, 155 + lblUser.frame.size.height, 240, 60):(IS_IPHONE_5)?CGRectMake(20, 155 + lblUser.frame.size.height, 240, 60):CGRectMake(20, 155 + lblUser.frame.size.height, 240, 60)];
+    [lblMail setFrame:CGRectMake(20, 155 + lblUser.frame.size.height, 240, 60)];
     [lblMail setFont:[UIFont fontWithName:@"Lato-Light" size:14]];
     [lblMail setText:[userObject userEmail]];
     [lblMail sizeToFit];
     [lblMail setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
-    [tblMenu setFrame:(IS_IPHONE_6 || IS_IPHONE_5)?CGRectMake(0, lblMail.frame.origin.y + lblMail.frame.size.height + 10, 320, 100):CGRectMake(0, lblMail.frame.origin.y + lblMail.frame.size.height + 10, 320, 80)];
+    [tblMenu setFrame:CGRectMake(0, lblMail.frame.origin.y + lblMail.frame.size.height + 10, 320, 100)];
 
     /// Check for the image of the user.
     if([(NSString*) userObject.userUrlProfileImage rangeOfString:@"?"].location != NSNotFound)
