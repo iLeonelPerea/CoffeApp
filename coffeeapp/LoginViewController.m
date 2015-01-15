@@ -54,8 +54,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 -(void)viewDidAppear:(BOOL)animated
 {
     /// Set the elements to fit the size of the screen.
-    [signInButton setFrame:(IS_IPHONE_6)?CGRectMake(47, 600, 280, 50):(IS_IPHONE_5)?CGRectMake(20, 508, 280, 50):CGRectMake(20, 420, 280, 50)];
-    [imgSplashScreen setFrame:(IS_IPHONE_6)?CGRectMake(84, 100, 206, 351):(IS_IPHONE_5)?CGRectMake(57, 78, 206, 351):CGRectMake(57, 48, 206, 351)];
+    [signInButton setFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, self.view.bounds.size.height - 65, 280, 50)];
+    //[signInButton setFrame:(IS_IPHONE_6)?CGRectMake(47, 600, 280, 50):(IS_IPHONE_5)?CGRectMake(20, 508, 280, 50):CGRectMake(20, 420, 280, 50)];
+    [imgSplashScreen setFrame:CGRectMake((self.view.bounds.size.width - 206) / 2, (self.view.bounds.size.height - 351) / 2, 206, 351)];
+    //[imgSplashScreen setFrame:(IS_IPHONE_6)?CGRectMake(84, 100, 206, 351):(IS_IPHONE_5)?CGRectMake(57, 78, 206, 351):CGRectMake(57, 48, 206, 351)];
     /// Set the images for the SignIn button.
     [signInButton setImage:[UIImage imageNamed:@"login_btn_up@2x"] forState:UIControlStateNormal];
     [signInButton setImage:[UIImage imageNamed:@"login_btn_down@2x"] forState:UIControlStateHighlighted];
