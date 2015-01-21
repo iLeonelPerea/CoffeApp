@@ -210,6 +210,7 @@
                       [dictOrderLog setObject:orderState forKey:@"orderStatus"];
                       [dictOrderLog setObject:orderDate forKey:@"orderDate"];
                       [dictOrderLog setObject:[NSString stringWithFormat:@"%d",[[tmpProductObject masterObject] masterObject_id]] forKey:@"productId"];
+                      [dictOrderLog setObject:[tmpProductObject name] forKey:@"productName"];
                       [dictOrderLog setObject:[NSString stringWithFormat:@"%d",[tmpProductObject quantity]] forKey:@"productQuantityOrdered"];
                       [DBManager insertOrdersLog:dictOrderLog];
                   }

@@ -22,10 +22,6 @@
 /** Integer flag to know if the product is in stock in the Spree store. */
 @property (nonatomic, assign) int in_stock;
 
-/** Name of the product. */
-@property (nonatomic, strong) NSString * name;
-
-
 /** Object image to store all the images of the product. */
 @property (nonatomic, strong) ImageObject * imageObject;
 
