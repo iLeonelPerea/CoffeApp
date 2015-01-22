@@ -15,7 +15,7 @@
     sqlite3 *inventoryDB;
     /// Create a file manager object.
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSLog(@"%@",[DBManager getDBPath]);
+    //NSLog(@"%@",[DBManager getDBPath]);
     /// Check for the databse file in the file path.
     if([filemgr fileExistsAtPath:[DBManager getDBPath]] == NO){
         /// Get the DBPath
@@ -26,13 +26,13 @@
             const char *sql_stmt = " CREATE TABLE IF NOT EXISTS PRODUCTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, PRODUCT_PRODUCT_ID INTEGER, PRODUCT_MASTER_MASTEROBJECT_ID INTEGER, PRODUCT_MASTER_IN_STOCK INTEGER, PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME TEXT, PRODUCT_MASTER_IMAGE_IMAGE_ID INTEGER, PRODUCT_MASTER_IMAGE_PRODUCT_URL TEXT, PRODUCT_CATEGORY_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_TOTAL_ON_HAND INTEGER, DATE_AVAILABLE INTEGER);  CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORIES (ID INTEGER, CATEGORY_NAME TEXT, INTERNAL_ID INTEGER PRIMARY KEY AUTOINCREMENT); CREATE TABLE IF NOT EXISTS ORDERSLOG(ID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_ID TEXT, ORDER_STATUS TEXT, ORDER_DATE INTEGER, PRODUCT_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_QUANTITY_ORDERED INTEGER); ";
             if (sqlite3_exec(inventoryDB, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK){
                 isDbOk = NO;
-                NSLog(@"table fail...");
+                //NSLog(@"table fail...");
             }else{
                 isDbOk = YES;
             }
             [DBManager finalizeStatements:nil withDB:inventoryDB];
         }else{
-            NSLog(@"db fail...");
+            //NSLog(@"db fail...");
             isDbOk = NO;
         }
     }else{
@@ -77,7 +77,7 @@
         sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
         /// Check for errors in the insert.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"fiel error... %s - %d", sqlite3_errmsg(inventoryDB),product.product_id);
+            //NSLog(@"fiel error... %s - %d", sqlite3_errmsg(inventoryDB),product.product_id);
         }
     }
     /// Finalize the statement.
@@ -178,7 +178,7 @@
         sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"fiel error... %s", sqlite3_errmsg(inventoryDB));
+            //NSLog(@"fiel error... %s", sqlite3_errmsg(inventoryDB));
         }
     }
     /// Finalize the statement.
@@ -200,7 +200,7 @@
         sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"fiel error... %s - %d", sqlite3_errmsg(inventoryDB),product.product_id);
+            //NSLog(@"fiel error... %s - %d", sqlite3_errmsg(inventoryDB),product.product_id);
         }
     }
     /// Finalize the statement.
@@ -222,7 +222,7 @@
         sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"fiel error... %s - %@", sqlite3_errmsg(inventoryDB),[category objectForKey:@"name"]);
+            //NSLog(@"fiel error... %s - %@", sqlite3_errmsg(inventoryDB),[category objectForKey:@"name"]);
         }
     }
     /// Finalize the statement.
@@ -284,7 +284,7 @@
         sqlite3_prepare_v2(appDB, insertSQL, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"%s",sqlite3_errmsg(appDB));
+            //NSLog(@"%s",sqlite3_errmsg(appDB));
         }
     }
     /// Finalize the statement.
@@ -306,7 +306,7 @@
         sqlite3_prepare_v2(appDB, updateSQL, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"%s", sqlite3_errmsg(appDB));
+            //NSLog(@"%s", sqlite3_errmsg(appDB));
         }
     }
     /// Finalize the statement.
@@ -408,7 +408,7 @@
         sqlite3_prepare_v2(appDB, deleteSQL, -1, &statement, nil);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"delete order log Fail error %s", sqlite3_errmsg(appDB));
+            //NSLog(@"delete order log Fail error %s", sqlite3_errmsg(appDB));
         }
         /// Finalize the statement.
         [DBManager finalizeStatements:statement withDB:appDB];
@@ -435,7 +435,7 @@
             sqlite3_prepare_v2(appDB, deleteSQL, -1, &statement, nil);
             /// Check for errors.
             if (sqlite3_step(statement) != SQLITE_DONE) {
-                NSLog(@"delete table content Fail error %s", sqlite3_errmsg(appDB));
+                //NSLog(@"delete table content Fail error %s", sqlite3_errmsg(appDB));
             }
             /// Finalize the statement.
             [DBManager finalizeStatements:statement withDB:appDB];
@@ -461,7 +461,7 @@
             sqlite3_prepare_v2(appDB, updateSQL, -1, &statement, nil);
             /// Check for errors.
             if (sqlite3_step(statement) == SQLITE_DONE) {
-                NSLog(@"update product stock Fail error %s", sqlite3_errmsg(appDB));
+                //NSLog(@"update product stock Fail error %s", sqlite3_errmsg(appDB));
             }
             /// Finalize the statement.
             [DBManager finalizeStatements:statement withDB:appDB];
@@ -514,7 +514,7 @@
     if (sqlite3_open(dbPath, &appDB) == SQLITE_OK) {
         sqlite3_prepare_v2(appDB, deleteStmt, -1, &statement, nil);
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"delete unattended orders Fail error %s", sqlite3_errmsg(appDB));
+            //NSLog(@"delete unattended orders Fail error %s", sqlite3_errmsg(appDB));
         }
     }
     [DBManager finalizeStatements:statement withDB:appDB];

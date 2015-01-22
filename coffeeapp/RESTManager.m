@@ -64,7 +64,7 @@
         
         /// Serialize the data.
         NSString *JSONString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"json string: %@", JSONString);
+        //NSLog(@"json string: %@", JSONString);
         [request setValue:[NSString stringWithFormat:@"%ld", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
         [request setHTTPBody:jsonData];
     }
@@ -99,7 +99,7 @@
                 NSString * strErr;
                 if([error.userInfo objectForKey:@"NSLocalizedDescription"])
                 {
-                    NSLog(@"%@",[error.userInfo objectForKey:@"NSLocalizedDescription"]);
+                    //NSLog(@"%@",[error.userInfo objectForKey:@"NSLocalizedDescription"]);
                     strErr = [error.userInfo objectForKey:@"NSLocalizedDescription"];
                 }
                 else
@@ -232,7 +232,7 @@
                                     if(totalImages == 0)
                                         callback(@YES);
                                 } failBlock:^(NSError *errro) {
-                                    NSLog(@"Failed to download the image to local storage");
+                                    //NSLog(@"Failed to download the image to local storage");
                                     totalImages --;
                                     if(totalImages == 0)
                                         callback(@YES);

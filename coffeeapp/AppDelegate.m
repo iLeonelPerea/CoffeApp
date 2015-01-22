@@ -162,10 +162,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 /// Informs when the aplicattion could'nt be registered for remote notitications.
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {
-        NSLog(@"Push notifications are not supported in the iOS Simulator.");
+        //NSLog(@"Push notifications are not supported in the iOS Simulator.");
     } else {
         /// show some alert or otherwise handle the failure to register.
-        NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
+        //NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
     }
 }
 
@@ -363,9 +363,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 #pragma mark - ()
 - (void)subscribeFinished:(NSNumber *)result error:(NSError *)error {
     if ([result boolValue]) {
-        NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
+        //NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
     } else {
-        NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
+        //NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
     }
 }
 

@@ -186,10 +186,10 @@
                   [alertView show];
                   return;
               }
-              NSLog(@"order Number: %@ and order Token: %@", [result objectForKey:@"number"], [result objectForKey:@"token"]);
+              //NSLog(@"order Number: %@ and order Token: %@", [result objectForKey:@"number"], [result objectForKey:@"token"]);
               /// Post a local notification to be sended to CoffeeBoy App to inform about an new order maded.
               [self doPostPushNotificationWithOrderNumber:[result objectForKey:@"number"] andOrderToken:[result objectForKey:@"token"]];
-              //NSLog(@"Order done with result %@", result);
+              ////NSLog(@"Order done with result %@", result);
               /// Create a dictionary based on the result object from the request.
               NSDictionary * dictResult = result;
               /// Check for the number -of the order- and the state -of the order- in the dictionary.

@@ -71,11 +71,11 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
      expirationDate=""}
     */
     /// This is the email which the user used to did log in
-    /// NSLog(@"%@",[[GPPSignIn sharedInstance] userEmail]);
+    /// //NSLog(@"%@",[[GPPSignIn sharedInstance] userEmail]);
     /// This is the object with the user data
     GTLPlusPerson * person = [[GPPSignIn sharedInstance] googlePlusUser];
-    /// NSLog(@"%@", person);
-    /// NSLog(@"Received error %@ and auth object %@",error, auth);
+    /// //NSLog(@"%@", person);
+    /// //NSLog(@"Received error %@ and auth object %@",error, auth);
     if (error) {
         /// Do some error handling here.
     } else {
@@ -84,7 +84,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         [self refreshInterfaceBasedOnSignIn];
         AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
         GTLPlusPersonName * nameData = [person name];
-        /// NSLog(@"name: %@, lastname: %@", [nameData givenName], [nameData familyName]);
+        /// //NSLog(@"name: %@, lastname: %@", [nameData givenName], [nameData familyName]);
         /// Create an instance of UserObject with the credentials from G+.
         userObject = [[UserObject alloc] initUser:[person displayName] withId:[person.JSON objectForKey:@"id"] andFirstName:[nameData givenName] andLastName:[nameData familyName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag] urlProfileImage:[[person image] url] ];
         /// Store the userObject in the AppDelegate.
