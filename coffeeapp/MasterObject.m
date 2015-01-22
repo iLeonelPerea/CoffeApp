@@ -10,7 +10,7 @@
 
 @implementation MasterObject
 
-@synthesize masterObject_id, in_stock, name, imageObject;
+@synthesize masterObject_id, in_stock, imageObject;
 
 
 /// Create a custom init to code the object properties.
@@ -21,7 +21,6 @@
     {
         self.masterObject_id = [coder decodeIntForKey:@"masterObject_id"];
         self.in_stock = [coder decodeIntForKey:@"in_stock"];
-        self.name = [coder decodeObjectForKey:@"name"];
         self.imageObject = [coder decodeObjectForKey:@"imageObject"];
     }
     return self;
@@ -32,7 +31,6 @@
 {
     [coder encodeInteger:masterObject_id forKey:@"masterObject_id"];
     [coder encodeInteger:in_stock forKey:@"in_stock"];
-    [coder encodeObject:name forKey:@"name"];    [coder encodeObject:imageObject forKey:@"imageObject"];
 }
 
 @end

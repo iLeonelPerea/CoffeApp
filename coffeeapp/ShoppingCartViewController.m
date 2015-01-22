@@ -22,7 +22,7 @@
 
 @implementation ShoppingCartViewController
 
-@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder, imgBottomBar, imgTitle, lblDisclaimer, isEditing, btnEditDelete;
+@synthesize btnCheckOut, btnEmptyShoppingCart, lblDate, tblProducts, arrProductsShoppingCart, HUDJMProgress, tmrOrder, imgBottomBar, imgTitle, lblDisclaimer, isEditing, btnEditDelete, currentEditingProduct, currentEditingTag;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,15 +38,38 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     isEditing = NO;
+    currentEditingProduct = nil;
+    currentEditingTag = -1;
+    [self.view setFrame:CGRectMake(0, 0, (IS_IPHONE_6_PLUS)?414:(IS_IPHONE_6)?375:320, (IS_IPHONE_6_PLUS)?736:(IS_IPHONE_6)?667:568)];
     /// Set the screen elements to fit on the screen depending on the device.
-    [lblDate setFrame:(IS_IPHONE_6)?CGRectMake(21, 85, 375, 50):CGRectMake(21, 85, 295, 50)];
-    [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 134, 375, 370):(IS_IPHONE_5)?CGRectMake(0, 134, 320, 270):CGRectMake(0, 134, 320, 270)];
-    [lblDisclaimer setFrame:(IS_IPHONE_6)?CGRectMake(20, 500, 335, 90):(IS_IPHONE_5)?CGRectMake(20, 400, 280, 90):CGRectMake(20, 330, 280, 90)];
-    [imgBottomBar setFrame:(IS_IPHONE_6)?CGRectMake(0, 607, 375, 60):(IS_IPHONE_5)?CGRectMake(0, 508, 320, 60):CGRectMake(0, 420, 320, 60)];
-    [btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(19, 612, 50, 50):(IS_IPHONE_5)?CGRectMake(19, 513, 50, 50):CGRectMake(40, 437, 55, 30)];
+    [lblDate setFrame:CGRectMake(21, 85, 295, 50)];
+    //[lblDate setFrame:(IS_IPHONE_6)?CGRectMake(21, 85, 375, 50):CGRectMake(21, 85, 295, 50)];
+    [lblDisclaimer setFrame:CGRectMake(20, 500, ((IS_IPHONE_6_PLUS)?414:(IS_IPHONE_6)?375:320) - 40, 90)];
+    [lblDisclaimer setText:@"*You have only 20 mins to place your order, before the system deletes it from your account."];
+    [lblDisclaimer setFont:[UIFont fontWithName:@"Lato-Light" size:16]];
+    [lblDisclaimer setNumberOfLines:0];
+    [lblDisclaimer sizeToFit];
+    NSLog(@"%f",lblDisclaimer.frame.size.height);
+    [lblDisclaimer setFrame:CGRectMake(20, (self.view.bounds.size.height - lblDisclaimer.frame.size.height) - 70, lblDisclaimer.frame.size.width, lblDisclaimer.frame.size.height)];
+    //[lblDisclaimer setFrame:(IS_IPHONE_6)?CGRectMake(20, 500, 335, 90):(IS_IPHONE_5)?CGRectMake(20, 400, 280, 90):CGRectMake(20, 330, 280, 90)];
+    [tblProducts setFrame:CGRectMake(0, 134, self.view.frame.size.width, (self.view.frame.size.height - lblDisclaimer.frame.size.height) - 210)];
+    //[tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 134, 375, 370):(IS_IPHONE_5)?CGRectMake(0, 134, 320, 270):CGRectMake(0, 134, 320, 270)];
+    [imgBottomBar setFrame:CGRectMake(0, self.view.frame.size.height - 60, self.view.frame.size.width, 60)];
+    //[imgBottomBar setFrame:(IS_IPHONE_6)?CGRectMake(0, 607, 375, 60):(IS_IPHONE_5)?CGRectMake(0, 508, 320, 60):CGRectMake(0, 420, 320, 60)];
+    [btnEmptyShoppingCart setFrame:CGRectMake(19, self.view.frame.size.height - 55, 50, 50)];
+    //[btnEmptyShoppingCart setFrame:(IS_IPHONE_6)?CGRectMake(19, 612, 50, 50):(IS_IPHONE_5)?CGRectMake(19, 513, 50, 50):CGRectMake(40, 437, 55, 30)];
     [btnEmptyShoppingCart setTitle:@"Back" forState:UIControlStateNormal];
     [[btnEmptyShoppingCart titleLabel] setFont:[UIFont fontWithName:@"Lato-Light" size:16]];
-    [btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(200, 628, 145, 18):(IS_IPHONE_5)?CGRectMake(140, 528, 145, 18):CGRectMake(120, 437, 180, 30)];
+    [btnCheckOut setFrame:CGRectMake(self.view.frame.size.width - 201, self.view.frame.size.height - 60, 182, 60)];
+    //[btnCheckOut setFrame:(IS_IPHONE_6)?CGRectMake(174, 607, 182, 60):CGRectMake(119, self.view.frame.size.height - 60, 182, 60)];
+    [btnCheckOut setTitle:@"Place Order" forState:UIControlStateNormal];
+    [[btnCheckOut titleLabel] setTextColor:[UIColor whiteColor]];
+    [[btnCheckOut titleLabel] setFont:[UIFont fontWithName:@"Lato-Regular" size:22]];
+    [[btnCheckOut titleLabel] setTextAlignment:NSTextAlignmentLeft];;
+    UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 45, self.view.frame.size.height - 38, 20, 15)];
+    //UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(330, 667 - 38, 20, 15):CGRectMake(275, self.view.frame.size.height -38, 20, 15)];
+    [imgCheckMark setImage:[UIImage imageNamed:@"Checkmark_White"]];
+    [self.view addSubview:imgCheckMark];
     /// Set the current date text.
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"EEEE, LLLL d, yyyy"];
@@ -54,7 +77,6 @@
     NSString * strDate = [dateFormatter stringFromDate:[NSDate date]];
     [lblDate setText:[strDate capitalizedString]];
     /// Set the style of the disclaimer message.
-    [lblDisclaimer setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
     
     /// Extract the data of the array arrProductsInQueue from user defaults.
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
@@ -85,12 +107,8 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     /// Set image to Place order button
-    [btnCheckOut setImage:[UIImage imageNamed:@"PlaceOrder"] forState:UIControlStateNormal];
-    [btnCheckOut setImage:[UIImage imageNamed:@"PlaceOrder_Pressed"] forState:UIControlStateSelected];
-    //[btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel"] forState:UIControlStateNormal];
-    //[btnEmptyShoppingCart setImage:[UIImage imageNamed:@"Cancel_pressed"] forState:UIControlStateSelected];
     [imgBottomBar setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127/255.0f blue:0.0f alpha:1.0f]];
-    [btnEditDelete setFrame:CGRectMake(self.view.frame.size.width - 50, 85, 24, 24)];
+    [btnEditDelete setFrame:CGRectMake(self.view.frame.size.width - 55, 70, 40, 40)];
     
     UIView * viewTop = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
     [viewTop setBackgroundColor:[UIColor colorWithRed:4.0f/255.0f green:130.0f/255.0f blue:118.0f/255.0f alpha:1.0f]];
@@ -210,6 +228,7 @@
                       [dictOrderLog setObject:orderState forKey:@"orderStatus"];
                       [dictOrderLog setObject:orderDate forKey:@"orderDate"];
                       [dictOrderLog setObject:[NSString stringWithFormat:@"%d",[[tmpProductObject masterObject] masterObject_id]] forKey:@"productId"];
+                      [dictOrderLog setObject:[tmpProductObject name] forKey:@"productName"];
                       [dictOrderLog setObject:[NSString stringWithFormat:@"%d",[tmpProductObject quantity]] forKey:@"productQuantityOrdered"];
                       [DBManager insertOrdersLog:dictOrderLog];
                   }
@@ -281,9 +300,9 @@
     ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:indexPath.row];
     if(selectedProduct.isEditingComments)
     {
-        return 220;
+        return 200;
     }
-    return (IS_IPHONE_6)?94:80;
+    return (IS_IPHONE_6)?94:80 ;
 }
 
 /// Draw the contect of the cell for the table row. Display the quantity and name of the product with the image as background.
@@ -307,7 +326,7 @@
     /// -------- Product name
     UILabel * lblProductName = [[UILabel alloc] init];
     //[lblProductName setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 94):CGRectMake(0, 0, 320, 80)];
-    [lblProductName setFrame:CGRectMake(20, 0, self.view.frame.size.width-100, 80)];
+    [lblProductName setFrame:CGRectMake(20, 0, self.view.frame.size.width-115, (IS_IPHONE_6)?94:80)];
     [lblProductName setText:[[NSString stringWithFormat:@"%d %@",[productObject quantity],[productObject name]] capitalizedString]];
     [lblProductName setNumberOfLines:2];
     [lblProductName setFont:[UIFont fontWithName:@"Lato-Bold" size:20]];
@@ -318,13 +337,13 @@
     
     if(isEditing && !productObject.isEditingComments)
     {
-        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 80, 27, 19, 25)];
+        UIButton * btnNote = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 90, (IS_IPHONE_6)?27:20, 40, 40)];
         btnNote.tag = indexPath.row;
         [btnNote setImage:[UIImage imageNamed:@"Note"] forState:UIControlStateNormal];
         [btnNote addTarget:self action:@selector(doAddNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnNote];
         
-        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 45, 27, 19, 25)];
+        UIButton * btnRemove = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 55, (IS_IPHONE_6)?27:20, 40, 40)];
         btnRemove.tag = indexPath.row;
         [btnRemove setImage:[UIImage imageNamed:@"TrashCan_Orange"] forState:UIControlStateNormal];
         [btnRemove addTarget:self action:@selector(doRemoveProduct:) forControlEvents:UIControlEventTouchUpInside];
@@ -334,7 +353,7 @@
     //--------------------- Notes Section ---------------
     if(productObject.isEditingComments)
     {
-        UIView * viewBg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 220)];
+        UIView * viewBg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 200)];
         [viewBg setBackgroundColor:[UIColor colorWithRed:0.92914f green:0.92914f blue:0.92914f alpha:1.0f]];
         
         UITextField * txtComment = [[UITextField alloc] initWithFrame:CGRectMake(30, 52, self.view.frame.size.width-40, 80)];
@@ -347,14 +366,14 @@
         [txtComment setTag:indexPath.row];
         [cell addSubview:txtComment];
         
-        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-40, 27, 13, 13)];
+        UIButton * btnClose = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-57, 13, 40, 40)];
         [btnClose setImage:[UIImage imageNamed:@"litleCross"] forState:UIControlStateNormal];
         [btnClose setTag:indexPath.row];
         [btnClose addTarget:self action:@selector(doCancelNoteToProduct:) forControlEvents:UIControlEventTouchUpInside];
         [btnClose addTarget:self action:@selector(doCancelNoteToProduct:) forControlEvents:UIControlEventTouchUpOutside];
         [cell addSubview:btnClose];
         
-        UIButton * btnDone = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-93, 170, 80, 40)];
+        UIButton * btnDone = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width-93, 150, 80, 40)];
         [btnDone setImage:[UIImage imageNamed:@"done_btn_up"] forState:UIControlStateNormal];
         [btnDone setImage:[UIImage imageNamed:@"done_btn_down"] forState:UIControlStateHighlighted];
         [btnDone setTag:indexPath.row];
@@ -422,11 +441,19 @@
 /// add note selector
 -(void)doAddNoteToProduct:(id)sender
 {
+    if(currentEditingProduct)
+    {
+        currentEditingProduct.isEditingComments = NO;
+        [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:currentEditingTag inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
     UIButton * btn = (UIButton*)sender;
     ProductObject * selectedProduct = [arrProductsShoppingCart objectAtIndex:btn.tag];
     selectedProduct.isEditingComments = YES;
-    [tblProducts setContentOffset:CGPointMake(0, btn.frame.origin.y+(btn.tag*50))];
-    [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationMiddle];
+    currentEditingProduct = selectedProduct;
+    currentEditingTag = btn.tag;
+    float cant = (btn.tag*180);
+    [tblProducts setContentOffset:CGPointMake(0, btn.frame.origin.y*cant)];
+    [tblProducts reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:btn.tag inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
 }
 
 /// Crop the image sended as param.
@@ -459,7 +486,7 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [tblProducts setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height+(textField.tag*100))];
-    [tblProducts setContentOffset:CGPointMake(0, textField.frame.origin.y+(textField.tag*55)) animated:YES];
+    [tblProducts setContentOffset:CGPointMake(0, textField.frame.origin.y+(textField.tag*45)) animated:YES];
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
