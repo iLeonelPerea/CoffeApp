@@ -290,6 +290,7 @@
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
             /// Reload the table view to display de changes.
             [tblProducts reloadData];
+            [self updateCategoryBar];
         }else{
             /// Create an alert view to inform that there's no menu available.
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
