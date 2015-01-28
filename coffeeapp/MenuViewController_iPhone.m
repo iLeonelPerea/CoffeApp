@@ -290,6 +290,7 @@
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
             /// Reload the table view to display de changes.
             [tblProducts reloadData];
+            [self updateCategoryBar];
         }else{
             /// Create an alert view to inform that there's no menu available.
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -491,7 +492,7 @@
     
     /// Check if the flag for meals category availability. If it is not avalaible, set add button image to no available.
     /// Check is the total on hand is not more than product quantity or if the total on hand is less than zero or if the value of productDayAvailable is less than the currentDayOfWeek value. If one those statements are true, the add button image is setted to out of stock.
-    if ((!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Desayuno"]) ||
+    if ((!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Meals"]) ||
         (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek)) ) {
         //Button outstock
         UIView * viewOutOfStock = [[UIView alloc] initWithFrame:CGRectMake( (tblProducts.bounds.size.width - 148) / 2, ( ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0f) -27) / 2, 148, 27)];
@@ -653,8 +654,8 @@
             {
                 /// Check if the quantity selected is more than zero
                 if (tmpObject.quantity != 0) {
-                    /// Check if the category of the product is equal to "Desayuno" and if the meals category is available.
-                    if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"]) {
+                    /// Check if the category of the product is equal to "Meals" and if the meals category is available.
+                    if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Meals"]) {
                         /// Set the quantity of the product in zero.
                         tmpObject.quantity = 0;
                         /// Create a custom alert view.
