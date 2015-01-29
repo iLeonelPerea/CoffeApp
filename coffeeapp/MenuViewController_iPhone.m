@@ -85,7 +85,7 @@
         }
         /// Extract the hour value from the server time
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
-        initialAppDelegate.strCurrentHour = strHr;
+        initialAppDelegate.strCurrentHour = [result objectForKey:@"current_time"];
         /// Check if the hour is between the valid range of time for meals category
         if([strHr intValue] > 7 && [strHr intValue] < 11)
         {
