@@ -20,7 +20,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize signInButton, userObject, prgLoaging, imgSplashScreen;
+@synthesize signInButton, userObject, prgLoading, imgSplashScreen;
 
 /// Google App client ID. Created specifically for CoffeeApp.
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -41,8 +41,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     /// Add an observer to set up the userObject in AppDelegate.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSetUserObject) name:@"initUserFinishedLoading" object:nil];
     /// Set the progress loading indicator.
-    prgLoaging = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
-    [[prgLoaging textLabel] setText:@"Sign In..."];
+    prgLoading = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
+    [[prgLoading textLabel] setText:@"Sign In..."];
 }
 
 /// System method.
@@ -54,8 +54,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 -(void)viewDidAppear:(BOOL)animated
 {
     /// Set the elements to fit the size of the screen.
-    [signInButton setFrame:(IS_IPHONE_6)?CGRectMake(47, 600, 280, 50):(IS_IPHONE_5)?CGRectMake(20, 508, 280, 50):CGRectMake(20, 420, 280, 50)];
-    [imgSplashScreen setFrame:(IS_IPHONE_6)?CGRectMake(84, 100, 206, 351):(IS_IPHONE_5)?CGRectMake(57, 78, 206, 351):CGRectMake(57, 48, 206, 351)];
+    [signInButton setFrame:CGRectMake((self.view.bounds.size.width - 280) / 2, self.view.bounds.size.height - 65, 280, 50)];
+    //[signInButton setFrame:(IS_IPHONE_6)?CGRectMake(47, 600, 280, 50):(IS_IPHONE_5)?CGRectMake(20, 508, 280, 50):CGRectMake(20, 420, 280, 50)];
+    [imgSplashScreen setFrame:CGRectMake((self.view.bounds.size.width - 206) / 2, (self.view.bounds.size.height - 351) / 2, 206, 351)];
+    //[imgSplashScreen setFrame:(IS_IPHONE_6)?CGRectMake(84, 100, 206, 351):(IS_IPHONE_5)?CGRectMake(57, 78, 206, 351):CGRectMake(57, 48, 206, 351)];
     /// Set the images for the SignIn button.
     [signInButton setImage:[UIImage imageNamed:@"login_btn_up@2x"] forState:UIControlStateNormal];
     [signInButton setImage:[UIImage imageNamed:@"login_btn_down@2x"] forState:UIControlStateHighlighted];
@@ -64,6 +66,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 #pragma mark -- GPPSignIn delegate
 -(void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
+    [prgLoading showInView:[self view]];
     /** This is the content of auth dictionary, which is the response of the SingIn from G+
      {accessToken="", 
      refreshToken="", 
@@ -71,20 +74,48 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
      expirationDate=""}
     */
     /// This is the email which the user used to did log in
-    /// NSLog(@"%@",[[GPPSignIn sharedInstance] userEmail]);
+    /// //NSLog(@"%@",[[GPPSignIn sharedInstance] userEmail]);
     /// This is the object with the user data
     GTLPlusPerson * person = [[GPPSignIn sharedInstance] googlePlusUser];
-    /// NSLog(@"%@", person);
-    /// NSLog(@"Received error %@ and auth object %@",error, auth);
+    /// //NSLog(@"%@", person);
+    /// //NSLog(@"Received error %@ and auth object %@",error, auth);
     if (error) {
         /// Do some error handling here.
     } else {
+        //check email domain
+        NSString * strEmail = [[GPPSignIn sharedInstance] userEmail];
+        NSArray * arrEmail = [strEmail componentsSeparatedByString:@"@"];
+        if(![[arrEmail objectAtIndex:1] isEqual:@"crowdint.com"])
+        {
+            [prgLoading dismiss];
+            NSLog(@"user does not belong to company and can do nothing here...");
+            /// SignOut
+            [[GPPSignIn sharedInstance] signOut];
+            /// Revoke token
+            [[GPPSignIn sharedInstance] disconnect];
+            LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:nil message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+            [alertView setSize:CGSizeMake(200.0f, 320.0f)];
+            /// Create and add the content of the aler view.
+            UIView *contentView = alertView.contentView;
+            [contentView setBackgroundColor:[UIColor clearColor]];
+            [alertView setBackgroundColor:[UIColor clearColor]];
+            UIImageView * imgV = [[UIImageView alloc] initWithFrame:CGRectMake(35.5f, 5.0f, 129.0f, 200.0f)];
+            [imgV setImage:[UIImage imageNamed:@"ChefNo"]];
+            [contentView addSubview:imgV];
+            UILabel * lblStatus = [[UILabel alloc] initWithFrame:CGRectMake(10, 170, 180, 120)];
+            lblStatus.numberOfLines = 3;
+            [lblStatus setFont:[UIFont fontWithName:@"Lato-Regular" size:14]];
+            [lblStatus setTextAlignment:NSTextAlignmentCenter];
+            lblStatus.text = @"Sorry, you don't have permissions to enjoy our delicious application!";
+            [contentView addSubview:lblStatus];
+            [alertView show];
+            return;
+        }
         /// Show the loading message.
-        [prgLoaging showInView:[self view]];
         [self refreshInterfaceBasedOnSignIn];
         AppDelegate *myAppDelegate = [[UIApplication sharedApplication] delegate];
         GTLPlusPersonName * nameData = [person name];
-        /// NSLog(@"name: %@, lastname: %@", [nameData givenName], [nameData familyName]);
+        /// //NSLog(@"name: %@, lastname: %@", [nameData givenName], [nameData familyName]);
         /// Create an instance of UserObject with the credentials from G+.
         userObject = [[UserObject alloc] initUser:[person displayName] withId:[person.JSON objectForKey:@"id"] andFirstName:[nameData givenName] andLastName:[nameData familyName] withEmail:[[GPPSignIn sharedInstance] userEmail]  password:[person ETag] urlProfileImage:[[person image] url] ];
         /// Store the userObject in the AppDelegate.
@@ -119,7 +150,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     NSUserDefaults * defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:userObject] forKey:@"userObject"];
     [defaults synchronize];
-    [prgLoaging dismiss];
+    [prgLoading dismiss];
     /// Post a local notification to trigger "userDidRequestSignIn".
     [[NSNotificationCenter defaultCenter] postNotificationName:@"userDidRequestSignIn" object:nil];
 }

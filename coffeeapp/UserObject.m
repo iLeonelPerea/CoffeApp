@@ -78,7 +78,7 @@
             }
             /// Check for the error message to identify is the user doesn't exists in the Spree store.
             if ([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqualToString:@""]) {
-                 NSLog(@"%@",[result objectForKey:@"error"]);
+                 //NSLog(@"%@",[result objectForKey:@"error"]);
                 
                     /// Attempt to register the user in spree store
                     if ([[result objectForKey:@"error"] isEqualToString:@"Record not found"]) {
@@ -99,7 +99,7 @@
                             
                             /// Check for an error in the register proccess of the user in the Spree store.
                             if (([result objectForKey:@"error"] && ![[result objectForKey:@"error"] isEqual:@""]) || ([result objectForKey:@"exception"] && ![[result objectForKey:@"exception"] isEqual:@""])) {
-                                NSLog(@"%@",[result objectForKey:@"error"]);
+                                //NSLog(@"%@",[result objectForKey:@"error"]);
                                 [self chefAlert:[result objectForKey:@"message"] withIllustration:@"illustration_05"];
                                 return;
                             }
@@ -111,7 +111,7 @@
                             /// Suscribe the user in the Parse service for listen push notifications.
                             [PFPush subscribeToChannelInBackground:customUserChannel];
                             [PFPush subscribeToChannelInBackground:@"general_messages"];
-                            NSLog(@"I'm here");
+                            //NSLog(@"I'm here");
                             /// Post a local notification to trigger the action for ending the Log In proccess.
                             [[NSNotificationCenter defaultCenter] postNotificationName:@"initUserFinishedLoading" object:nil];
                         }];
@@ -130,7 +130,7 @@
                         [self chefAlert:[result objectForKey:@"message"] withIllustration:@"illustration_05"];
                         return;
                     }
-                    NSLog(@"user must be added to a channel now...");
+                    //NSLog(@"user must be added to a channel now...");
                 }];
             }
             /// Set the value of the user Id in the Spree store and the value for the spree_api_key

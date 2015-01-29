@@ -18,6 +18,7 @@
 #import "UserObject.h"
 #import "AppDelegate.h"
 #import "MenuViewController_iPhone.h"
+#import <LMAlertView.h>
 
 @class GPPSignInButton;
 
@@ -33,7 +34,7 @@
 @property (nonatomic, strong) UserObject *userObject;
 
 /** Outlet for HUD component to display loading messages. */
-@property (nonatomic, strong) JGProgressHUD *prgLoaging;
+@property (nonatomic, strong) JGProgressHUD *prgLoading;
 
 /** Method to evaluate the result of the auth proccess with G+.
  
