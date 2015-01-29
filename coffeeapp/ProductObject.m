@@ -85,13 +85,12 @@
     [newProductObject setDate_available:dateFloat];
     newProductObject.isEditingComments = NO;
     
-    NSString * strStartTime = [dictProduct objectForKey:@"available_from"];
-    NSDateFormatter * timeFormatter = [[NSDateFormatter alloc] init];
-    [timeFormatter setDateFormat:@"HH:mm"];
-    NSDate * timeFromString = [[NSDate alloc] init];
-    timeFromString = [timeFormatter dateFromString:strStartTime];
+    NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
+    [dtFormatter setDateFormat:@"HH:mm"];
+    NSDate * initialAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_from"]];
+    NSDate * finalAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_to"]];
     
-    newProductObject.isAvailable = @NO;
+    newProductObject.isAvailable = NO;
     return newProductObject;
 }
 

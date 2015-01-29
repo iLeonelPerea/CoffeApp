@@ -800,20 +800,6 @@
     int indexArrayProductCategories = -1; // set index of category
     float xPositionCategory = 3.0, widthLastCategory = 0.0; //position of each category
     
-    //Create label of category
-    /*UIButton *lblCategory = [[UIButton alloc] init];
-    [lblCategory setFrame:CGRectMake(xPositionCategory, 0, 3*12, 57)];
-    lblCategory.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [lblCategory setTitle:@"ALL" forState:UIControlStateNormal];
-    [lblCategory setTag:indexArrayProductCategories];
-    lblCategory.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setFilter:)];
-    [lblCategory addGestureRecognizer:tapGesture];
-    lblCategory.titleLabel.font = [UIFont fontWithName:@"Lato-Bold" size:12];
-    [lblCategory.titleLabel setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
-    [[lblCategory titleLabel] setTextColor:[UIColor blackColor]];
-    [viewScrollCategories addSubview:lblCategory];
-     */
     UIButton * btnCategoryAll = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, 5*12, 57)];
     [btnCategoryAll setTitle:@"ALL" forState:UIControlStateNormal];
     [btnCategoryAll addTarget:self action:@selector(setFilter:) forControlEvents:UIControlEventTouchUpInside];
@@ -835,18 +821,6 @@
     xPositionCategory += 50;
     for (CategoryObject *category in arrProductCategoriesObjects) {
         //Create label of category
-        /*UIButton *lblCategory = [[UIButton alloc] init];
-        [lblCategory setFrame:CGRectMake(xPositionCategory, 0, [category.category_name length]*12, 57)];
-        lblCategory.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [lblCategory setTitle:[category.category_name uppercaseString] forState:UIControlStateNormal];
-        [lblCategory.titleLabel setText:[category.category_name uppercaseString]];
-        [lblCategory setTag:indexArrayProductCategories];
-        lblCategory.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(setFilter:)];
-        [lblCategory addGestureRecognizer:tapGesture];
-        lblCategory.titleLabel.font = [UIFont fontWithName:@"Lato-Bold" size:12];
-        [lblCategory.titleLabel setTextColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f]];
-        [viewScrollCategories addSubview:lblCategory];*/
         UIButton * btnCategory = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, [category.category_name length]*12, 57)];
         [btnCategory setTitle:[category.category_name uppercaseString] forState:UIControlStateNormal];
         [btnCategory addTarget:self action:@selector(setFilter:) forControlEvents:UIControlEventTouchUpInside];
