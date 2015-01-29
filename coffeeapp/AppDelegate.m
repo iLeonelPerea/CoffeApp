@@ -64,6 +64,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         orderObject.userObject = userObject;
     }
     
+    [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+        strCurrentHour = [result objectForKey:@"current_time"];
+    }];
+    
     [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
     /// Set the mainViewController property.
     [self setMainViewController:[[LoginViewController alloc] init]];
