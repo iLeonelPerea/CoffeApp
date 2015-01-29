@@ -90,24 +90,6 @@
     newProductObject.startHour = [dictProduct objectForKey:@"available_from"];
     newProductObject.endHour = [dictProduct objectForKey:@"available_to"];
     
-    
-    /*
-     NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
-     [dtFormatter setDateFormat:@"HH:mm"];
-     NSDate * initialAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_from"]];
-     NSDate * finalAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_to"]];
-     */
-    /*
-    /// Get the current time from the server
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
-    [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:SS"];
-    NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
-    
-    BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
-    NSLog(@"bIsAvail: %d", bIsAvail);
-    [newProductObject setIsAvailable:(([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending))];
-     */
     return newProductObject;
 }
 

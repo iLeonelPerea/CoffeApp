@@ -508,12 +508,12 @@
      NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
      [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:SS"];
      NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
-     
+    
      BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
      NSLog(@"bIsAvail: %d", bIsAvail);
     
     
-    if(bIsAvail && (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0))
+    if(!bIsAvail || (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0))
     {
         //Button outstock
         UIView * viewOutOfStock = [[UIView alloc] initWithFrame:CGRectMake( (tblProducts.bounds.size.width - 148) / 2, ( ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0f) -27) / 2, 148, 27)];

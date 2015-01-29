@@ -114,7 +114,7 @@
                 [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 9)] forKey:@"total_on_hand"];
                 [dictToReturn setObject:[NSString stringWithFormat:@"%.2f", sqlite3_column_double(statement, 10)] forKey:@"date_available"];
                 [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 11)] forKey:@"available_from"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 11)] forKey:@"available_to"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 12)] forKey:@"available_to"];
                 productObject = [productObject assignProductObjectDB:dictToReturn];
                 [arrToReturn addObject:productObject];
             }
