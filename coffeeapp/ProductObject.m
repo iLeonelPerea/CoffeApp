@@ -125,6 +125,7 @@
     [newProductObject setDate_available:([[dictProduct objectForKey:@"date_available"] floatValue] != 0.0f)?[[dictProduct objectForKey:@"date_available"] floatValue]:0.0f];
     [newProductObject setDelivery_type:0];
     [newProductObject setDelivery_date:@"01-01-2000 00:00"];
+    newProductObject.isAvailable = [dictProduct objectForKey:@"is_available"];
     return newProductObject;
 }
 
