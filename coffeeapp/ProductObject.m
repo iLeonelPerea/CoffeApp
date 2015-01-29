@@ -97,7 +97,7 @@
     [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:SS"];
     NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
     
-    newProductObject.isAvailable = NO;
+    newProductObject.isAvailable = (currentTime > initialAvailableTime && currentTime < finalAvailableTime);
     return newProductObject;
 }
 
