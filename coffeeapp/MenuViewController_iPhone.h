@@ -88,9 +88,6 @@
 /** Variable to store the current day of the week in integer value, which can be between 0 and 6.  */
 @property (nonatomic, assign) int currentDayOfWeek;
 
-/** Boolean flag to determine if the category meals is available according to a time schedule. */
-@property (nonatomic, assign) BOOL areMealsAvailable;
-
 /** Variable to store the number of the current -displayed on screen- section. */
 @property (nonatomic, assign) int currentSection;
 

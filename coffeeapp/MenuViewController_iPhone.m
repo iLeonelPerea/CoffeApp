@@ -27,7 +27,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize viewPicker, viewCategories, viewScrollCategories, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive, tblProductsHeight, separatorView;
+@synthesize viewPicker, viewCategories, viewScrollCategories, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive, tblProductsHeight, separatorView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,6 +73,7 @@
     [tblProducts setDataSource:self];
     HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     
+    /*
     /// Check if meals are available based on server time
     [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:initialAppDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         if([[result objectForKey:@"success"] isEqual:@NO])
@@ -95,6 +96,7 @@
             areMealsAvailable = NO;
         }
     }];
+     */
     
     ///Iniliatize the arrays to store the products.
     arrProductObjects = [NSMutableArray new];
@@ -493,8 +495,10 @@
     
     /// Check if the flag for meals category availability. If it is not avalaible, set add button image to no available.
     /// Check is the total on hand is not more than product quantity or if the total on hand is less than zero or if the value of productDayAvailable is less than the currentDayOfWeek value. If one those statements are true, the add button image is setted to out of stock.
-    if ((!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Desayuno"]) ||
-        (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek)) ) {
+    /*if ((!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Desayuno"]) ||
+        (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek)) ) */
+    if(!productObject.isAvailable && (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0))
+    {
         //Button outstock
         UIView * viewOutOfStock = [[UIView alloc] initWithFrame:CGRectMake( (tblProducts.bounds.size.width - 148) / 2, ( ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0f) -27) / 2, 148, 27)];
         //UIView * viewOutOfStock = [[UIView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(113.5f, 101, 148, 27):CGRectMake(86, 86, 148, 27)];
@@ -656,7 +660,9 @@
                 /// Check if the quantity selected is more than zero
                 if (tmpObject.quantity != 0) {
                     /// Check if the category of the product is equal to "Desayuno" and if the meals category is available.
-                    if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"]) {
+                    //if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"])
+                    if(!productObject.isAvailable)
+                    {
                         /// Set the quantity of the product in zero.
                         tmpObject.quantity = 0;
                         /// Create a custom alert view.
