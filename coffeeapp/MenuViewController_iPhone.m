@@ -691,7 +691,7 @@
                     BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
                     NSLog(@"bIsAvailInDoPlaceOrder: %d", bIsAvail);
                     
-                    if(bIsAvail)//todo:check here product availability
+                    if(!bIsAvail)//todo:check here product availability
                     {
                         /// Set the quantity of the product in zero.
                         tmpObject.quantity = 0;
