@@ -497,8 +497,23 @@
     /// Check is the total on hand is not more than product quantity or if the total on hand is less than zero or if the value of productDayAvailable is less than the currentDayOfWeek value. If one those statements are true, the add button image is setted to out of stock.
     /*if ((!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Desayuno"]) ||
         (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek)) ) */
-    NSLog(@"product isAvailable: %d", productObject.isAvailable);
-    if(!productObject.isAvailable || (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0))
+    //todo:check product's availability
+    
+     NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
+     [dtFormatter setDateFormat:@"HH:mm"];
+     NSDate * initialAvailableTime = [dtFormatter dateFromString:productObject.startHour];
+     NSDate * finalAvailableTime = [dtFormatter dateFromString:productObject.endHour];
+     /// Get the current time from the server
+     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+     NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
+     [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:SS"];
+     NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
+     
+     BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
+     NSLog(@"bIsAvail: %d", bIsAvail);
+    
+    
+    if(bIsAvail && (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0))
     {
         //Button outstock
         UIView * viewOutOfStock = [[UIView alloc] initWithFrame:CGRectMake( (tblProducts.bounds.size.width - 148) / 2, ( ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0f) -27) / 2, 148, 27)];
@@ -662,7 +677,21 @@
                 if (tmpObject.quantity != 0) {
                     /// Check if the category of the product is equal to "Desayuno" and if the meals category is available.
                     //if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"])
-                    if(!productObject.isAvailable)
+                    
+                    NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
+                    [dtFormatter setDateFormat:@"HH:mm"];
+                    NSDate * initialAvailableTime = [dtFormatter dateFromString:productObject.startHour];
+                    NSDate * finalAvailableTime = [dtFormatter dateFromString:productObject.endHour];
+                    /// Get the current time from the server
+                    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+                    NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
+                    [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:SS"];
+                    NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
+                    
+                    BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
+                    NSLog(@"bIsAvailInDoPlaceOrder: %d", bIsAvail);
+                    
+                    if(bIsAvail)//todo:check here product availability
                     {
                         /// Set the quantity of the product in zero.
                         tmpObject.quantity = 0;

@@ -13,7 +13,7 @@
 
 /// Macro that store the URL for the testing server.
 #define TESTING_URL @"https://stage-spree-demo-store-three.herokuapp.com/api"
-#define API_URL @"https://stage-spree-demo-store-twoﬁ.herokuapp.com/api"
+#define API_URL @"https://stage-spree-demo-store-three.herokuapp.com/api"
 
 @implementation RESTManager
 

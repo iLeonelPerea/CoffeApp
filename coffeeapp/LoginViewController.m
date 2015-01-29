@@ -61,12 +61,14 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     /// Set the images for the SignIn button.
     [signInButton setImage:[UIImage imageNamed:@"login_btn_up@2x"] forState:UIControlStateNormal];
     [signInButton setImage:[UIImage imageNamed:@"login_btn_down@2x"] forState:UIControlStateHighlighted];
+    [signInButton setImage:[UIImage imageNamed:@"login_btn_up@2x"] forState:UIControlStateDisabled];
 }
 
 #pragma mark -- GPPSignIn delegate
 -(void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
     [prgLoading showInView:[self view]];
+    [signInButton setEnabled:NO];
     /** This is the content of auth dictionary, which is the response of the SingIn from G+
      {accessToken="", 
      refreshToken="", 

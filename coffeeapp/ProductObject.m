@@ -11,7 +11,7 @@
 
 @implementation ProductObject
 
-@synthesize product_id, masterObject, categoryObject, name, total_on_hand, quantity, delivery_type, delivery_date, date_available, comment, isEditingComments, isAvailable;
+@synthesize product_id, masterObject, categoryObject, name, total_on_hand, quantity, delivery_type, delivery_date, date_available, comment, isEditingComments, startHour, endHour;
 
 
 //create coder and decoder to be able to save on standar user defaults.
@@ -30,7 +30,8 @@
         self.date_available = [coder decodeFloatForKey:@"date_available"];
         self.comment = [coder decodeObjectForKey:@"comment"];
         self.isEditingComments = [coder decodeBoolForKey:@"isEditingComments"];
-        self.isAvailable = [coder decodeBoolForKey:@"isAvailable"];
+        self.startHour = [coder decodeObjectForKey:@"startHour"];
+        self.endHour = [coder decodeObjectForKey:@"endHour"];
     }
     return self;
 }
@@ -47,7 +48,8 @@
     [coder encodeFloat:date_available forKey:@"date_available"];
     [coder encodeObject:comment forKey:@"comment"];
     [coder encodeBool:isEditingComments forKey:@"isEditingComments"];
-    [coder encodeBool:isAvailable forKey:@"isAvailable"];
+    [coder encodeObject:startHour forKey:@"startHour"];
+    [coder encodeObject:endHour forKey:@"endHour"];
 }
 
 /// Assign the properties of the product object based on a dictionary.
@@ -85,12 +87,17 @@
     float dateFloat = [dateFromString timeIntervalSince1970];
     [newProductObject setDate_available:dateFloat];
     newProductObject.isEditingComments = NO;
+    newProductObject.startHour = [dictProduct objectForKey:@"available_from"];
+    newProductObject.endHour = [dictProduct objectForKey:@"available_to"];
     
-    NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
-    [dtFormatter setDateFormat:@"HH:mm"];
-    NSDate * initialAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_from"]];
-    NSDate * finalAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_to"]];
     
+    /*
+     NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
+     [dtFormatter setDateFormat:@"HH:mm"];
+     NSDate * initialAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_from"]];
+     NSDate * finalAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_to"]];
+     */
+    /*
     /// Get the current time from the server
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
@@ -100,6 +107,7 @@
     BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
     NSLog(@"bIsAvail: %d", bIsAvail);
     [newProductObject setIsAvailable:(([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending))];
+     */
     return newProductObject;
 }
 
@@ -125,7 +133,8 @@
     [newProductObject setDate_available:([[dictProduct objectForKey:@"date_available"] floatValue] != 0.0f)?[[dictProduct objectForKey:@"date_available"] floatValue]:0.0f];
     [newProductObject setDelivery_type:0];
     [newProductObject setDelivery_date:@"01-01-2000 00:00"];
-    newProductObject.isAvailable = [dictProduct objectForKey:@"is_available"];
+    newProductObject.startHour = [dictProduct objectForKey:@"available_from"];
+    newProductObject.endHour = [dictProduct objectForKey:@"available_to"];
     return newProductObject;
 }
 
