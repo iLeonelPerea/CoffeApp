@@ -93,7 +93,9 @@
     
     /// Get the current time from the server
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    NSDate * currentTime = [dtFormatter dateFromString:[appDelegate strCurrentHour]];
+    NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
+    [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:SS"];
+    NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
     
     newProductObject.isAvailable = NO;
     return newProductObject;
