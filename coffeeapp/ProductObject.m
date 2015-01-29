@@ -7,6 +7,7 @@
 //
 
 #import "ProductObject.h"
+#import "AppDelegate.h"
 
 @implementation ProductObject
 
@@ -89,6 +90,10 @@
     [dtFormatter setDateFormat:@"HH:mm"];
     NSDate * initialAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_from"]];
     NSDate * finalAvailableTime = [dtFormatter dateFromString:[dictProduct objectForKey:@"available_to"]];
+    
+    /// Get the current time from the server
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    NSDate * currentTime = [dtFormatter dateFromString:[appDelegate strCurrentHour]];
     
     newProductObject.isAvailable = NO;
     return newProductObject;
