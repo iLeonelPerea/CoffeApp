@@ -54,6 +54,8 @@
 /** Current menu active. */
 @property (nonatomic, assign) int activeMenu;
 
+@property (nonatomic, strong) NSString strCurrentHour;
+
 /** Handle the receveid push notifications.
  
     Listen for push notifications in active or inactive state of the application.

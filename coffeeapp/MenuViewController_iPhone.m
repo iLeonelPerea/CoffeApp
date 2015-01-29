@@ -15,6 +15,7 @@
 #import "MenuViewController_iPhone.h"
 #import "DBManager.h"
 #import "RESTManager.h"
+#import "AppDelegate.h"
 
 /// Macros to identify size screen
 #define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON) 
@@ -84,6 +85,7 @@
         }
         /// Extract the hour value from the server time
         NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
+        initialAppDelegate.strCurrentHour = strHr;
         /// Check if the hour is between the valid range of time for meals category
         if([strHr intValue] > 7 && [strHr intValue] < 11)
         {

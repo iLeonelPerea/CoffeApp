@@ -23,7 +23,7 @@
 @end
 
 @implementation AppDelegate
-@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber, isMenuViewController, activeMenu;
+@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber, isMenuViewController, activeMenu, strCurrentHour;
 
 /// Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
