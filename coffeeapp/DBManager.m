@@ -23,7 +23,7 @@
         if (sqlite3_open(dbpath, &inventoryDB) == SQLITE_OK) {
             char *errMsg;
             /// Define the entire database structure.
-            const char *sql_stmt = " CREATE TABLE IF NOT EXISTS PRODUCTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, PRODUCT_PRODUCT_ID INTEGER, PRODUCT_MASTER_MASTEROBJECT_ID INTEGER, PRODUCT_MASTER_IN_STOCK INTEGER, PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME TEXT, PRODUCT_MASTER_IMAGE_IMAGE_ID INTEGER, PRODUCT_MASTER_IMAGE_PRODUCT_URL TEXT, PRODUCT_CATEGORY_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_TOTAL_ON_HAND INTEGER, DATE_AVAILABLE INTEGER);  CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORIES (ID INTEGER, CATEGORY_NAME TEXT, INTERNAL_ID INTEGER PRIMARY KEY AUTOINCREMENT); CREATE TABLE IF NOT EXISTS ORDERSLOG(ID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_ID TEXT, ORDER_STATUS TEXT, ORDER_DATE INTEGER, PRODUCT_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_QUANTITY_ORDERED INTEGER); ";
+            const char *sql_stmt = " CREATE TABLE IF NOT EXISTS PRODUCTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, PRODUCT_PRODUCT_ID INTEGER, PRODUCT_MASTER_MASTEROBJECT_ID INTEGER, PRODUCT_MASTER_IN_STOCK INTEGER, PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME TEXT, PRODUCT_MASTER_IMAGE_IMAGE_ID INTEGER, PRODUCT_MASTER_IMAGE_PRODUCT_URL TEXT, PRODUCT_CATEGORY_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_TOTAL_ON_HAND INTEGER, DATE_AVAILABLE INTEGER, IS_AVAILABLE INTEGER);  CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORIES (ID INTEGER, CATEGORY_NAME TEXT, INTERNAL_ID INTEGER PRIMARY KEY AUTOINCREMENT); CREATE TABLE IF NOT EXISTS ORDERSLOG(ID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_ID TEXT, ORDER_STATUS TEXT, ORDER_DATE INTEGER, PRODUCT_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_QUANTITY_ORDERED INTEGER); ";
             if (sqlite3_exec(inventoryDB, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK){
                 isDbOk = NO;
                 //NSLog(@"table fail...");
@@ -71,7 +71,7 @@
     const char *dbpath = [[DBManager getDBPath] UTF8String];
     if (sqlite3_open(dbpath, &inventoryDB) == SQLITE_OK) {
         /// Set the Insert statement.
-        NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO PRODUCTS (PRODUCT_PRODUCT_ID,PRODUCT_MASTER_MASTEROBJECT_ID, PRODUCT_MASTER_IN_STOCK, PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME, PRODUCT_MASTER_IMAGE_IMAGE_ID, PRODUCT_MASTER_IMAGE_PRODUCT_URL, PRODUCT_CATEGORY_ID, PRODUCT_NAME, PRODUCT_TOTAL_ON_HAND, DATE_AVAILABLE) VALUES (\"%d\", \"%d\", \"%d\", \"%@\", \"%d\",\"%@\",\"%d\",\"%@\",\"%d\",\"%2f\")", product.product_id, product.masterObject.masterObject_id, product.masterObject.in_stock, product.masterObject.imageObject.attachment_file_name, product.masterObject.imageObject.image_id, product.masterObject.imageObject.product_url, product.categoryObject.category_id, product.name, product.total_on_hand, product.date_available];
+        NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO PRODUCTS (PRODUCT_PRODUCT_ID,PRODUCT_MASTER_MASTEROBJECT_ID, PRODUCT_MASTER_IN_STOCK, PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME, PRODUCT_MASTER_IMAGE_IMAGE_ID, PRODUCT_MASTER_IMAGE_PRODUCT_URL, PRODUCT_CATEGORY_ID, PRODUCT_NAME, PRODUCT_TOTAL_ON_HAND, DATE_AVAILABLE, IS_AVAILABLE) VALUES (\"%d\", \"%d\", \"%d\", \"%@\", \"%d\",\"%@\",\"%d\",\"%@\",\"%d\",\"%2f\",\"%d\")", product.product_id, product.masterObject.masterObject_id, product.masterObject.in_stock, product.masterObject.imageObject.attachment_file_name, product.masterObject.imageObject.image_id, product.masterObject.imageObject.product_url, product.categoryObject.category_id, product.name, product.total_on_hand, product.date_available, product.isAvailable];
         const char *insert_stmt = [insertSQL UTF8String];
         /// Execute the insert statement.
         sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
@@ -113,6 +113,7 @@
                 [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 8)] forKey:@"name"];
                 [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 9)] forKey:@"total_on_hand"];
                 [dictToReturn setObject:[NSString stringWithFormat:@"%.2f", sqlite3_column_double(statement, 10)] forKey:@"date_available"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 11)] forKey:@"is_available"];
                 productObject = [productObject assignProductObjectDB:dictToReturn];
                 [arrToReturn addObject:productObject];
             }

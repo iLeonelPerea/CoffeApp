@@ -497,7 +497,8 @@
     /// Check is the total on hand is not more than product quantity or if the total on hand is less than zero or if the value of productDayAvailable is less than the currentDayOfWeek value. If one those statements are true, the add button image is setted to out of stock.
     /*if ((!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Desayuno"]) ||
         (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek)) ) */
-    if(!productObject.isAvailable && (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0))
+    NSLog(@"product isAvailable: %d", productObject.isAvailable);
+    if(!productObject.isAvailable || (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0))
     {
         //Button outstock
         UIView * viewOutOfStock = [[UIView alloc] initWithFrame:CGRectMake( (tblProducts.bounds.size.width - 148) / 2, ( ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0f) -27) / 2, 148, 27)];
