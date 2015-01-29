@@ -73,7 +73,7 @@
     HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     
     /// Check if meals are available based on server time
-    [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+    [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:initialAppDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
         if([[result objectForKey:@"success"] isEqual:@NO])
         {
             /// Dismiss the HUD for loading, if it is active.

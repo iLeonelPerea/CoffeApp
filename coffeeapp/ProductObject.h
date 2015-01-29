@@ -49,6 +49,7 @@
 @property (nonatomic, strong) NSString * comment;
 
 @property (nonatomic, assign) BOOL isEditingComments;
+@property (nonatomic, assign) BOOL isAvailable;
 
 /** Assign the properties of an product object based on the dictionary sended as param. Returns an instance with the data setted.
  

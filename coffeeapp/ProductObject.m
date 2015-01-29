@@ -10,7 +10,7 @@
 
 @implementation ProductObject
 
-@synthesize product_id, masterObject, categoryObject, name, total_on_hand, quantity, delivery_type, delivery_date, date_available, comment, isEditingComments;
+@synthesize product_id, masterObject, categoryObject, name, total_on_hand, quantity, delivery_type, delivery_date, date_available, comment, isEditingComments, isAvailable;
 
 
 //create coder and decoder to be able to save on standar user defaults.
@@ -29,6 +29,7 @@
         self.date_available = [coder decodeFloatForKey:@"date_available"];
         self.comment = [coder decodeObjectForKey:@"comment"];
         self.isEditingComments = [coder decodeBoolForKey:@"isEditingComments"];
+        self.isAvailable = [coder decodeBoolForKey:@"isAvailable"];
     }
     return self;
 }
@@ -45,6 +46,7 @@
     [coder encodeFloat:date_available forKey:@"date_available"];
     [coder encodeObject:comment forKey:@"comment"];
     [coder encodeBool:isEditingComments forKey:@"isEditingComments"];
+    [coder encodeBool:isAvailable forKey:@"isAvailable"];
 }
 
 /// Assign the properties of the product object based on a dictionary.
@@ -82,6 +84,14 @@
     float dateFloat = [dateFromString timeIntervalSince1970];
     [newProductObject setDate_available:dateFloat];
     newProductObject.isEditingComments = NO;
+    
+    NSString * strStartTime = [dictProduct objectForKey:@"available_from"];
+    NSDateFormatter * timeFormatter = [[NSDateFormatter alloc] init];
+    [timeFormatter setDateFormat:@"HH:mm"];
+    NSDate * timeFromString = [[NSDate alloc] init];
+    timeFromString = [timeFormatter dateFromString:strStartTime];
+    
+    newProductObject.isAvailable = @NO;
     return newProductObject;
 }
 
