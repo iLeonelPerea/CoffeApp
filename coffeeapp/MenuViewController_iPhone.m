@@ -73,31 +73,6 @@
     [tblProducts setDataSource:self];
     HUDJMProgress = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     
-    /*
-    /// Check if meals are available based on server time
-    [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:initialAppDelegate.isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
-        if([[result objectForKey:@"success"] isEqual:@NO])
-        {
-            /// Dismiss the HUD for loading, if it is active.
-            if (HUDJMProgress) {
-                [HUDJMProgress dismissAnimated:YES];
-            }
-            return;
-        }
-        /// Extract the hour value from the server time
-        NSString * strHr = [initialAppDelegate.strCurrentHour substringToIndex:2];
-        /// Check if the hour is between the valid range of time for meals category
-        if([strHr intValue] > 7 && [strHr intValue] < 11)
-        {
-            areMealsAvailable = YES;
-        }
-        else
-        {
-            areMealsAvailable = NO;
-        }
-    }];
-     */
-    
     ///Iniliatize the arrays to store the products.
     arrProductObjects = [NSMutableArray new];
     
@@ -483,36 +458,33 @@
     [lblName setTextColor:[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1.0f]];
     [lblName setFrame:CGRectMake(19, (imgProduct.frame.size.height - 9) - lblName.frame.size.height, lblName.frame.size.width, lblName.frame.size.height)];
     [cell addSubview:lblName];
-    
+
     /// --------- Add button
     CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
-    
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     /// Create a date formatter
+    /*
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat: @"e"];
+    [dateFormatter setLocale:locale];
+    [dateFormatter setDateFormat:@"e"];
     /// Set integer variable productDayAvailable based on product's date available. The value can be between 1 and 8.
     int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
-    
-    /// Check if the flag for meals category availability. If it is not avalaible, set add button image to no available.
-    /// Check is the total on hand is not more than product quantity or if the total on hand is less than zero or if the value of productDayAvailable is less than the currentDayOfWeek value. If one those statements are true, the add button image is setted to out of stock.
-    /*if ((!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Desayuno"]) ||
-        (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek)) ) */
-    //todo:check product's availability
-    
-     NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
-     [dtFormatter setDateFormat:@"HH:mm"];
+     */
+    NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
+    [dtFormatter setLocale:locale];
+    [dtFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dtFormatter setDateFormat:@"HH:mm"];
+    NSString * currentEndHour = [NSString stringWithFormat:@"%@", productObject.endHour];
      NSDate * initialAvailableTime = [dtFormatter dateFromString:productObject.startHour];
-     NSDate * finalAvailableTime = [dtFormatter dateFromString:productObject.endHour];
+     NSDate * finalAvailableTime = [dtFormatter dateFromString:currentEndHour];
      /// Get the current time from the server
      AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
      NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
-     [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:SS"];
+    [dtFormatterFullTimeFormat setLocale:locale];
+    [dtFormatterFullTimeFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:ss"];
      NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
-    
      BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
-     NSLog(@"bIsAvail: %d", bIsAvail);
-    
-    
     if(!bIsAvail || (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0))
     {
         //Button outstock
@@ -583,7 +555,7 @@
         /// --------------------------
         
         /// Check for the stock of the product to enable/disable the add button
-        [btnAdd setEnabled:(productDayAvailable < currentDayOfWeek || [productObject total_on_hand] <= [productObject quantity])? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
+        [btnAdd setEnabled:([productObject total_on_hand] <= [productObject quantity])? NO:YES];
     }
     
     return cell;
