@@ -463,13 +463,6 @@
     CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
     /// Create a date formatter
-    /*
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setLocale:locale];
-    [dateFormatter setDateFormat:@"e"];
-    /// Set integer variable productDayAvailable based on product's date available. The value can be between 1 and 8.
-    int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
-     */
     NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
     [dtFormatter setLocale:locale];
     [dtFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
@@ -647,19 +640,22 @@
             {
                 /// Check if the quantity selected is more than zero
                 if (tmpObject.quantity != 0) {
-                    /// Check if the category of the product is equal to "Desayuno" and if the meals category is available.
-                    //if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"])
-                    
+                    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+                    /// Create a date formatter
                     NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
+                    [dtFormatter setLocale:locale];
+                    [dtFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
                     [dtFormatter setDateFormat:@"HH:mm"];
+                    NSString * currentEndHour = [NSString stringWithFormat:@"%@", productObject.endHour];
                     NSDate * initialAvailableTime = [dtFormatter dateFromString:productObject.startHour];
-                    NSDate * finalAvailableTime = [dtFormatter dateFromString:productObject.endHour];
+                    NSDate * finalAvailableTime = [dtFormatter dateFromString:currentEndHour];
                     /// Get the current time from the server
                     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
                     NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
-                    [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:SS"];
+                    [dtFormatterFullTimeFormat setLocale:locale];
+                    [dtFormatterFullTimeFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+                    [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:ss"];
                     NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
-                    
                     BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
                     NSLog(@"bIsAvailInDoPlaceOrder: %d", bIsAvail);
                     

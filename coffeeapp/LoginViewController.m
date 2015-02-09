@@ -20,7 +20,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize signInButton, userObject, prgLoading, imgSplashScreen;
+@synthesize signInButton, userObject, prgLoading, imgSplashScreen, gWebView;
 
 /// Google App client ID. Created specifically for CoffeeApp.
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
@@ -40,9 +40,36 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [signIn setDelegate:self];
     /// Add an observer to set up the userObject in AppDelegate.
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doSetUserObject) name:@"initUserFinishedLoading" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tryToLogin:) name:ApplicationOpenGoogleAuthNotification object:nil];
     /// Set the progress loading indicator.
     prgLoading = [JGProgressHUD progressHUDWithStyle:JGProgressHUDStyleDark];
     [[prgLoading textLabel] setText:@"Sign In..."];
+}
+
+-(void)tryToLogin:(NSNotification*)notification
+{
+    NSString * strURL = [NSString stringWithFormat:@"%@", [notification object]];
+    NSLog(@"try to login on: %@", strURL);
+    CGRect webRect = CGRectMake(10, self.view.frame.origin.y + 40, self.view.frame.size.width - 20, self.view.frame.size.height - 50);
+    gWebView = [[UIWebView alloc]initWithFrame:webRect];//self.view.frame];
+    NSURLRequest *nsrequest=[NSURLRequest requestWithURL:[NSURL URLWithString:strURL]];
+    [gWebView setDelegate:self];
+    [gWebView loadRequest:nsrequest];
+    [self.view addSubview:gWebView];
+}
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSLog(@"url: %@", [request URL]);
+    if ([[[request URL] absoluteString] hasPrefix:@"com.crowdint.coffeeapp:/oauth2callback"]) {
+        [prgLoading showInView:[self view]];
+        [signInButton setEnabled:NO];
+        [GPPURLHandler handleURL:[request URL] sourceApplication:@"com.apple.mobilesafari" annotation:nil];
+        [gWebView removeFromSuperview];
+        // Looks like we did log in (onhand of the url), we are logged in, the Google APi handles the rest
+        //[self.navigationController popViewControllerAnimated:YES];
+        return NO;
+    }
+    return YES;
 }
 
 /// System method.
@@ -67,8 +94,8 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 #pragma mark -- GPPSignIn delegate
 -(void)finishedWithAuth:(GTMOAuth2Authentication *)auth error:(NSError *)error
 {
-    [prgLoading showInView:[self view]];
-    [signInButton setEnabled:NO];
+    //[prgLoading showInView:[self view]];
+    //[signInButton setEnabled:NO];
     /** This is the content of auth dictionary, which is the response of the SingIn from G+
      {accessToken="", 
      refreshToken="", 

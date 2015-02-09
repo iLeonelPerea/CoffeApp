@@ -20,9 +20,13 @@
 #import "MenuViewController_iPhone.h"
 #import <LMAlertView.h>
 
+#define ApplicationOpenGoogleAuthNotification @"ApplicationOpenGoogleAuthNotification"
+
 @class GPPSignInButton;
 
-@interface LoginViewController : UIViewController <GPPSignInDelegate>
+@interface LoginViewController : UIViewController <GPPSignInDelegate, UIWebViewDelegate>
+
+@property (nonatomic, strong) UIWebView * gWebView;
 
 /** Outlet for a custom button from the G+ SDK. */
 @property (retain, nonatomic) IBOutlet GPPSignInButton *signInButton;

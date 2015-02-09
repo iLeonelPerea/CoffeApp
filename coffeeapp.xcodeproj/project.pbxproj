@@ -99,6 +99,7 @@
 		C89678B51A488CD000B38F1E /* done_btn_up.png in Resources */ = {isa = PBXBuildFile; fileRef = C89678B31A488CD000B38F1E /* done_btn_up.png */; };
 		C89ED5BA1A0023ED004441A3 /* login_btn_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C89ED5B81A0023ED004441A3 /* login_btn_down@2x.png */; };
 		C89ED5BB1A0023ED004441A3 /* login_btn_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C89ED5B91A0023ED004441A3 /* login_btn_up@2x.png */; };
+		C8A006FB1A891CDF0056D8BB /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = C8A006FA1A891CDF0056D8BB /* Application.m */; };
 		C8A265441A42581B00CBFED1 /* illustration_hurry.png in Resources */ = {isa = PBXBuildFile; fileRef = C8A265421A42581B00CBFED1 /* illustration_hurry.png */; };
 		C8A265451A42581B00CBFED1 /* notes_ico.png in Resources */ = {isa = PBXBuildFile; fileRef = C8A265431A42581B00CBFED1 /* notes_ico.png */; };
 		C8B7CC4A19F1D76600AEBA27 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B7CC4919F1D76600AEBA27 /* main.m */; };
@@ -227,6 +228,8 @@
 		C89678B31A488CD000B38F1E /* done_btn_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done_btn_up.png; sourceTree = "<group>"; };
 		C89ED5B81A0023ED004441A3 /* login_btn_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_down@2x.png"; sourceTree = "<group>"; };
 		C89ED5B91A0023ED004441A3 /* login_btn_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_btn_up@2x.png"; sourceTree = "<group>"; };
+		C8A006F91A891CDF0056D8BB /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
+		C8A006FA1A891CDF0056D8BB /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		C8A265421A42581B00CBFED1 /* illustration_hurry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = illustration_hurry.png; sourceTree = "<group>"; };
 		C8A265431A42581B00CBFED1 /* notes_ico.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notes_ico.png; sourceTree = "<group>"; };
 		C8B7CC4419F1D76600AEBA27 /* coffeeapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = coffeeapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -411,6 +414,15 @@
 			name = assets;
 			sourceTree = "<group>";
 		};
+		C8A006F81A891CC00056D8BB /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				C8A006F91A891CDF0056D8BB /* Application.h */,
+				C8A006FA1A891CDF0056D8BB /* Application.m */,
+			);
+			name = Extras;
+			sourceTree = "<group>";
+		};
 		C8B7CC3B19F1D76600AEBA27 = {
 			isa = PBXGroup;
 			children = (
@@ -434,6 +446,7 @@
 		C8B7CC4619F1D76600AEBA27 /* coffeeapp */ = {
 			isa = PBXGroup;
 			children = (
+				C8A006F81A891CC00056D8BB /* Extras */,
 				7D0C6D0719FEB03300677DAF /* Views */,
 				23C176BB19F48455009F82A3 /* VO */,
 				23C176B719F47F8E009F82A3 /* Managers */,
@@ -759,6 +772,7 @@
 				7D0C6D0A19FEB05B00677DAF /* CustomButton.m in Sources */,
 				7DEE7EE719F60D190081BCEC /* MasterObject.m in Sources */,
 				C8F5FACD19F86F7600BAFEA0 /* LeftMenuViewController.m in Sources */,
+				C8A006FB1A891CDF0056D8BB /* Application.m in Sources */,
 				7D7C19691A00B4670072E46E /* ShoppingCartViewController.m in Sources */,
 				23C176BA19F47FB3009F82A3 /* RESTManager.m in Sources */,
 				7D7C19701A0179180072E46E /* OrderObject.m in Sources */,
@@ -913,7 +927,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "625a42bb-c335-41bf-81c1-d7f0c93f228f";
 			};
 			name = Debug;
 		};
@@ -939,7 +953,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "625a42bb-c335-41bf-81c1-d7f0c93f228f";
 			};
 			name = Release;
 		};
