@@ -260,6 +260,7 @@
     /// Create and set the data dictionary to be sended as notification.
     NSDictionary *data = @{
                            @"alert": strMessage,
+                           @"sound": @"default",
                            @"userName": appDelegate.userObject.userName,
                            @"userChannel": appDelegate.userObject.userChannel,
                            @"orderNumber": orderNumber,
