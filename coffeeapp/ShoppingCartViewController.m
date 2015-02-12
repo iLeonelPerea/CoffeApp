@@ -40,7 +40,7 @@
     isEditing = NO;
     currentEditingProduct = nil;
     currentEditingTag = -1;
-    [self.view setFrame:CGRectMake(0, 0, (IS_IPHONE_6_PLUS)?414:(IS_IPHONE_6)?375:320, (IS_IPHONE_6_PLUS)?736:(IS_IPHONE_6)?667:568)];
+    [self.view setFrame:CGRectMake(0, 0, (IS_IPHONE_6_PLUS)?414:(IS_IPHONE_6)?375:320, (IS_IPHONE_6_PLUS)?736:(IS_IPHONE_6)?667:(IS_IPHONE_5)?568:480)];
     /// Set the screen elements to fit on the screen depending on the device.
     [lblDate setFrame:CGRectMake(21, 85, 295, 50)];
     //[lblDate setFrame:(IS_IPHONE_6)?CGRectMake(21, 85, 375, 50):CGRectMake(21, 85, 295, 50)];

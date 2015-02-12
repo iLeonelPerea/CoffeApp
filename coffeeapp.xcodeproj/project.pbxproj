@@ -927,7 +927,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "625a42bb-c335-41bf-81c1-d7f0c93f228f";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -953,7 +953,7 @@
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/GastronautBase-bcmhprbnqjgxfadogkwoghnasehe/Build/Products/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "625a42bb-c335-41bf-81c1-d7f0c93f228f";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

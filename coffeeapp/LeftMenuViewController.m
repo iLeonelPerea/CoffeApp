@@ -35,7 +35,7 @@
     UserObject * userObject = [[UserObject alloc] init];
     userObject = [appDelegate userObject];
     [imgUserProfile setFrame:CGRectMake(20, 40, 100, 100)];
-    [btnSignOut setFrame:CGRectMake(20, ((IS_IPHONE_6_PLUS)?736:(IS_IPHONE_6)?667:568) - 61, 230, 45)];
+    [btnSignOut setFrame:CGRectMake(20, ((IS_IPHONE_6_PLUS)?736:(IS_IPHONE_6)?667:(IS_IPHONE_5)?568:480) - 61, 230, 45)];
     /// Set the style for the user's label.
     [lblUser setFrame:CGRectMake(20, 150, 240, 60)];
     [lblUser setFont:[UIFont fontWithName:@"Lato-Light" size:19]];
