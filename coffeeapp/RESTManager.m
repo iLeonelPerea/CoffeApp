@@ -87,7 +87,20 @@
         {
             /// Create a dictionary based on the JSON of the response.
             NSDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            callback(responseJson);
+            if([responseJson objectForKey:@"exception"])
+            {
+                /// Set the dictionary with the values of the error message.
+                NSMutableDictionary * dictErrorDetails = [NSMutableDictionary new];
+                [dictErrorDetails setObject:@NO forKey:@"success"];
+                NSString * strErr;
+                strErr = @"Something went wrong, Please try in a while!";
+                [dictErrorDetails setObject:strErr forKey:@"message"];
+                callback(dictErrorDetails);
+            }
+            else
+            {
+                callback(responseJson);
+            }
         }
         else
         {
