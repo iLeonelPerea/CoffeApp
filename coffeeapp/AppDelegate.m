@@ -13,32 +13,38 @@
 #import "LeftMenuViewController.h"
 #import "RESTManager.h"
 #import <LMAlertView.h>
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
+
+/// Macros to identify size screen
+#define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON)
+#define IS_IPHONE_6 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)667) < DBL_EPSILON)
 
 @interface AppDelegate ()
 
 @end
 
 @implementation AppDelegate
-@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber, isMenuViewController;
+@synthesize userObject, orderObject, isTestingEnv, dictOrderNotification, currentOrderNumber, isMenuViewController, activeMenu, strCurrentHour;
 
 /// Google App client ID. Created specifically for CoffeeApp
 static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5rikcvv.apps.googleusercontent.com";
 
 /// Set flag and other settings when the app finished launching.
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //Defaults
+    activeMenu = 0;
+    
     /// Parse credentials and settings.
     [Parse setApplicationId:@"M9XmhjQ8B2iqs3CdNLASwl6hypCXnI8rRJLqFy0x" clientKey:@"6tCRkL9VyM3HQaUQIsduISATRURhHqLQ42ii9QJ4"];
-    [Fabric with:@[CrashlyticsKit]];
 
     [PFUser enableAutomaticUser];
     PFACL * defaultACL = [PFACL ACL];
     [defaultACL setPublicReadAccess:YES];
     [PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
     
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     /// Set YES to identify when requests are done to a testing enviroment.
-    isTestingEnv = NO;
+    isTestingEnv = YES;
     /// Set dafault value of NO to the flag to identify when MenuViewController_iPhone is active.
     isMenuViewController = NO;
     
@@ -59,6 +65,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         orderObject.userObject = userObject;
     }
     
+    [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:isTestingEnv withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
+        strCurrentHour = [result objectForKey:@"current_time"];
+    }];
+    
     [self setWindow:[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]]];
     /// Set the mainViewController property.
     [self setMainViewController:[[LoginViewController alloc] init]];
@@ -67,7 +77,7 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
     [self setViewController: [[JASidePanelController alloc] init]];
     [[self viewController] setLeftPanel:[[LeftMenuViewController alloc] init]];
     [[self viewController] setLeftPanel:[[self viewController] leftPanel]];
-    [[self viewController] setLeftFixedWidth:270];
+    [[self viewController] setLeftFixedWidth:(IS_IPHONE_6)?320:270];
     [[self viewController] setCenterPanel:[[UINavigationController alloc] initWithRootViewController:[[MenuViewController_iPhone alloc] init]]];
 
     /// Navigation bar customization.
@@ -157,10 +167,10 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 /// Informs when the aplicattion could'nt be registered for remote notitications.
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     if (error.code == 3010) {
-        NSLog(@"Push notifications are not supported in the iOS Simulator.");
+        //NSLog(@"Push notifications are not supported in the iOS Simulator.");
     } else {
         /// show some alert or otherwise handle the failure to register.
-        NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
+        //NSLog(@"application:didFailToRegisterForRemoteNotificationsWithError: %@", error);
     }
 }
 
@@ -358,9 +368,9 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
 #pragma mark - ()
 - (void)subscribeFinished:(NSNumber *)result error:(NSError *)error {
     if ([result boolValue]) {
-        NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
+        //NSLog(@"ParseStarterProject successfully subscribed to push notifications on the broadcast channel.");
     } else {
-        NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
+        //NSLog(@"ParseStarterProject failed to subscribe to push notifications on the broadcast channel.");
     }
 }
 

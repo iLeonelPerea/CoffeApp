@@ -15,6 +15,7 @@
 #import "MenuViewController_iPhone.h"
 #import "DBManager.h"
 #import "RESTManager.h"
+#import "AppDelegate.h"
 
 /// Macros to identify size screen
 #define IS_IPHONE_5 (fabs((double)[[UIScreen mainScreen]bounds].size.height - (double)568) < DBL_EPSILON) 
@@ -26,7 +27,7 @@
 @end
 
 @implementation MenuViewController_iPhone
-@synthesize viewPicker, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, areMealsAvailable, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive;
+@synthesize viewPicker, viewCategories, viewScrollCategories, pickerOptions, mapKitView, locationManager, arrProductObjects, arrProductCategoriesObjects, isViewPlaceOrderActive, tblProducts, HUDJMProgress, productObject, currentDayOfWeek, viewPlaceOrder, lblProductsCount, btnPlaceOrder, currentSection, areLocationServicesAvailable, pickerFilterActiveOption, isPickerFilterActive, tblProductsHeight, separatorView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,49 +49,25 @@
     areLocationServicesAvailable = YES;
     
     /// Set the constraints for the elements on the view.
-    [[self view] setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 667):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 0, 320, 480)];
+    [[self view] setFrame:(IS_IPHONE_6_PLUS)?CGRectMake(0, 0, 414, 736):(IS_IPHONE_6)?CGRectMake(0, 0, 375, 667):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 568):CGRectMake(0, 0, 320, 480)];
     [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height+60, self.view.frame.size.width, 60)];
-    [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:217.0f/255.0f green:109.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
-    [lblProductsCount setFrame:CGRectMake(20, 0, 100, 60)];
+    [viewPlaceOrder setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
+    [lblProductsCount setFrame:CGRectMake(19, 0, 90, 60)];
     [lblProductsCount setTextAlignment:NSTextAlignmentLeft];
-    [btnPlaceOrder setFrame:(IS_IPHONE_6)?CGRectMake(230, 0, 120, 60):CGRectMake(175, 0, 120, 60)];
-    [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
-    [[btnPlaceOrder titleLabel] setTextAlignment:NSTextAlignmentRight];
+    [lblProductsCount setFont:[UIFont fontWithName:@"Lato-light" size:16]];
+    [btnPlaceOrder setFrame:CGRectMake(self.view.bounds.size.width - 201, 0, 182, 60)];
+    //[btnPlaceOrder setFrame:(IS_IPHONE_6)?CGRectMake(174, 0, 182, 60):CGRectMake(119, 0, 182, 60)];
+    [[btnPlaceOrder titleLabel] setTextColor:[UIColor whiteColor]];
+    [[btnPlaceOrder titleLabel] setFont:[UIFont fontWithName:@"Lato-Regular" size:22]];
+    [[btnPlaceOrder titleLabel] setTextAlignment:NSTextAlignmentLeft];
+    UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 39, 22, 20, 15)];
+    //UIImageView * imgCheckMark = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(336, 22, 20, 15):CGRectMake(281, 22, 20, 15)];
+    [imgCheckMark setImage:[UIImage imageNamed:@"Checkmark_White"]];
+    [viewPlaceOrder addSubview:imgCheckMark];
     
     /// Set the default value to the flag for bottom bar.
     isViewPlaceOrderActive = NO;
     
-    /// Set the default value to the filter of categories.
-    [pickerOptions setDelegate:self];
-    [pickerOptions setDataSource:self];
-    pickerFilterActiveOption = 0;
-    isPickerFilterActive = NO;
-    [viewPicker setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 189):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 189):CGRectMake(0, 0, 320, 189)];
-    [pickerOptions setFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 189):(IS_IPHONE_5)?CGRectMake(0, 0, 320, 189):CGRectMake(0, 0, 320, 189)];
-    
-    /// Check if meals are available based on server time
-    [RESTManager sendData:nil toService:@"v1/current_time" withMethod:@"GET" isTesting:NO withAccessToken:nil isAccessTokenInHeader:NO toCallback:^(id result) {
-        if([[result objectForKey:@"success"] isEqual:@NO])
-        {
-            /// Dismiss the HUD for loading, if it is active.
-            if (HUDJMProgress) {
-                [HUDJMProgress dismissAnimated:YES];
-            }
-            return;
-        }
-        /// Extract the hour value from the server time
-        NSString * strHr = [[result objectForKey:@"current_time"] substringToIndex:2];
-        /// Check if the hour is between the valid range of time for meals category
-        if([strHr intValue] > 7 && [strHr intValue] < 11)
-        {
-            areMealsAvailable = YES;
-        }
-        else
-        {
-            areMealsAvailable = NO;
-        }
-    }];
-   
     /// Setting up tableview delegates and datasources
     [tblProducts setDelegate:self];
     [tblProducts setDataSource:self];
@@ -110,7 +87,7 @@
             arrProductCategoriesObjects = [DBManager getCategories];
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
             [tblProducts reloadData];
-            [pickerOptions reloadAllComponents];
+            [self updateCategoryBar];
         }else{
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alert show];
@@ -128,16 +105,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(doUpdateMenu:) name:@"doUpdateMenu" object:nil];
 
     UILabel * lblControllerTitle = [[UILabel alloc] init];
-    [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 50)];
+    [lblControllerTitle setFrame:CGRectMake(0, 0, 140, 55)];
     [lblControllerTitle setText:@"The Crowd's Chef"];
-    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
+    [lblControllerTitle setFont:[UIFont fontWithName:@"Lato-Regular" size:20]];
     [lblControllerTitle setTextColor:[UIColor whiteColor]];
     [[self navigationItem] setTitleView:lblControllerTitle];
     
-    UIImage *faceImage = [UIImage imageNamed:@"filter_btn_02"];
+    UIImage *faceImage = [UIImage imageNamed:@"PlateCover"];
     UIButton *face = [UIButton buttonWithType:UIButtonTypeCustom];
     face.bounds = CGRectMake( 0, 0, faceImage.size.width/2, faceImage.size.height/2 );//set bound as per you want
-    [face addTarget:self action:@selector(showPicker) forControlEvents:UIControlEventTouchUpInside];
+    [face addTarget:self action:@selector(doHideShowCategoryFilter:) forControlEvents:UIControlEventTouchUpInside];
     [face setImage:faceImage forState:UIControlStateNormal];
     UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithCustomView:face];
     [self navigationItem].rightBarButtonItem = backButton;
@@ -160,16 +137,26 @@
     /// Initialice mapkit
     mapKitView.delegate = self;
     [mapKitView setShowsUserLocation:YES];
+    
+    tblProductsHeight = self.view.frame.size.height;
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     
     /// Check if the bottom bar is active, to set the size of tblProducts.
+    int newTblProductsHeight =  tblProductsHeight - 125;
     if (isViewPlaceOrderActive) {
-        [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 64, 375, 545):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 446):CGRectMake(0, 64, 320, 358)];
+        [tblProducts setFrame:CGRectMake(0, 123, self.view.frame.size.width, newTblProductsHeight)];
     }else{
-        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 603):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 504):CGRectMake(0, 64, 320, 416)];
+        [tblProducts setFrame:CGRectMake(0, 125, self.view.frame.size.width, newTblProductsHeight)];
     }
+    [viewCategories setFrame:CGRectMake(0, 65, self.view.frame.size.width, 57)];
+    [viewScrollCategories setFrame:CGRectMake(0, 0, self.view.frame.size.width, 57)];
+    separatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 124, self.view.frame.size.width, 0.3f)];
+    [separatorView setBackgroundColor:[UIColor colorWithRed:165.0f/255.0f green:150.0f/255.0f blue:143.0f/255.0f alpha:1.0f]];
+    separatorView.layer.opacity = 0.5f;
+    [self.view addSubview:separatorView];
+    [self.view bringSubviewToFront:separatorView];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -281,6 +268,7 @@
             arrProductObjects = [[self setQuantitySelectedProducts:[DBManager getProducts]] mutableCopy];
             /// Reload the table view to display de changes.
             [tblProducts reloadData];
+            [self updateCategoryBar];
         }else{
             /// Create an alert view to inform that there's no menu available.
             UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Atention!" message:@"There's no Menu available" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -306,6 +294,7 @@
             /// Check if the product has been selected.
             if (tmpObject.quantity != 0) {
                 productsCount += tmpObject.quantity;
+                tmpObject.comment = @"";
                 [arrProductsInQueue addObject:tmpObject];
             }
         }
@@ -321,22 +310,28 @@
 #pragma mark -- Show place order bottom bar
 -(void)doShowPlaceOrderBottomBar:(int)productsCount
 {
+    /// Initialize the height of the table checking if the viewCategories is hidden or not.
+    int newTblProductsHeight = ([viewCategories isHidden])?tblProductsHeight-65:tblProductsHeight-125;
+    int tblProductsYPosition = ([viewCategories isHidden])?65:125;
     /// Check for the quantity of selected products && if place order is not active.
     if (productsCount>0 && !isViewPlaceOrderActive) {
         /// Set flag in YES.
         isViewPlaceOrderActive = YES;
+        /// Decrease the value of the table height
+        newTblProductsHeight = newTblProductsHeight - 60;
         /// Make an animation to hide the place order bottom bar.
         [UIView animateWithDuration:0.4f animations:^{
             // Decrease
             [viewPlaceOrder setFrame:CGRectMake(0, self.view.frame.size.height-60, viewPlaceOrder.frame.size.width, 60)];
         } completion:^(BOOL finished) {
-            [tblProducts setFrame: (IS_IPHONE_6)?CGRectMake(0, 64, 375, 545):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 446):CGRectMake(0, 64, 320, 358)];
+            [tblProducts setFrame:CGRectMake(0, tblProductsYPosition, self.view.frame.size.width, newTblProductsHeight)];
         }];
         
     }else if(productsCount==0 && isViewPlaceOrderActive){
         /// Set flag in NO.
         isViewPlaceOrderActive = NO;
-        [tblProducts setFrame:(IS_IPHONE_6)?CGRectMake(0, 64, 375, 603):(IS_IPHONE_5)?CGRectMake(0, 64, 320, 504):CGRectMake(0, 64, 320, 416)];
+        /// Increase the value of the table height
+        [tblProducts setFrame:CGRectMake(0, tblProductsYPosition, self.view.frame.size.width, newTblProductsHeight)];
         /// Create an animation to shoe the place order bottom bar.
         [UIView animateWithDuration:0.4f animations:^{
             // Increase
@@ -364,7 +359,7 @@
 /// Define the height for a each row, based on which device is -iPhone 6 or another-.
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return (IS_IPHONE_6)?280.0f:240.0f;
+    return (IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0f;
 }
 
 /// Return the number of sections based on the element that contains array arrProductObjects. If the filter is active return 1.
@@ -380,7 +375,7 @@
 /// Define the height for the header section.
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 50;
+    return 44;
 }
 
 /// Draw the content of each section of the table view.
@@ -390,28 +385,25 @@
     long filteredSection = (isPickerFilterActive) ? pickerFilterActiveOption : section;
     
     /// Create a view that will contain all the elements of the section.
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 50)];
-    
-    /// Create and set and image view to display the background of the section.
-    UIImageView * imgBackground = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 50)];
-    [imgBackground setImage:[UIImage imageNamed:@"patron_01"]];
-    [headerView addSubview:imgBackground];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,  tableView.bounds.size.width, 44)];
+    [headerView setBackgroundColor:[UIColor whiteColor]];
     
     /// Create and set a label to display the title of the sections.
     UILabel * lblSectionTitle = [[UILabel alloc] init];
-    [lblSectionTitle setFrame:CGRectMake(20, 0, 200, 50)];
-    [lblSectionTitle setText:[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ]];
-    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Light" size:20]];
-    [lblSectionTitle setTextColor:[UIColor colorWithRed:255 green:255 blue:255 alpha:255]];
+    [lblSectionTitle setFrame:CGRectMake(19, 0, 200, 44)];
+    NSString * sectionTitleUpperCase = [(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ];
+    [lblSectionTitle setText:[sectionTitleUpperCase uppercaseString]];
+    [lblSectionTitle setFont:[UIFont fontWithName:@"Lato-Bold" size:18]];
+    [lblSectionTitle setTextColor:[UIColor colorWithRed:74.0f/255.0f green:67.0f/255.0f blue:63.0f/255.0f alpha:255]];
     [headerView addSubview:lblSectionTitle];
     
     /// Create and set a label to display the number of elements in the section.
     UILabel * lblProductsNumber = [[UILabel alloc] init];
-    [lblProductsNumber setFrame:(IS_IPHONE_6)?CGRectMake(250, 0, 100, 50):CGRectMake(200, 0, 100, 50)];
+    [lblProductsNumber setFrame:CGRectMake(tblProducts.bounds.size.width -119, 0, 100, 44)];
     [lblProductsNumber setText:([[arrProductObjects objectAtIndex:filteredSection] count] > 1)?[NSString stringWithFormat:@"%d Products",(int)[[arrProductObjects objectAtIndex:filteredSection] count]]:[NSString stringWithFormat:@"%d Product",(int)[[arrProductObjects objectAtIndex:filteredSection] count]]];
     [lblProductsNumber setTextAlignment:NSTextAlignmentRight];
-    [lblProductsNumber setTextColor:[UIColor colorWithRed:146.0f/255.0f green:142.0f/255.0f blue:140.0f/255.0f alpha:1.0f]];
-    [lblProductsNumber setFont:[UIFont fontWithName:@"Lato-Light" size:15]];
+    [lblProductsNumber setTextColor:[UIColor colorWithRed:74.0f/255.0f green:67.0f/255.0f blue:63.0f/255.0f alpha:255]];
+    [lblProductsNumber setFont:[UIFont fontWithName:@"Lato-Light" size:16]];
     [headerView addSubview:lblProductsNumber];
     
     return headerView;
@@ -438,7 +430,7 @@
     productObject = [[arrProductObjects objectAtIndex:filteredSection] objectAtIndex:(NSInteger)indexPath.row];
     
     /// --------- Product image
-    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(0, 0, 375, 280):CGRectMake(0, 0, 320, 240)];
+    UIImageView *imgProduct = [[UIImageView alloc] initWithFrame:(IS_IPHONE_6_PLUS)?CGRectMake(0, 0, 414,257):(IS_IPHONE_6)?CGRectMake(0, 0, 375, 234):CGRectMake(0, 0, 320, 200)];
     if(productObject.masterObject.imageObject.attachment_file_name != nil){
         NSString *documentDirectoryPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
         NSString *filePathAndDirectory = [documentDirectoryPath stringByAppendingString:@"/images/thumbs"];
@@ -451,31 +443,59 @@
     }
     [cell addSubview:imgProduct];
     
-    /// --------- Transparent background
-    UIImageView * imgTransparent = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"item_transparency"]];
-    [imgTransparent setFrame:(IS_IPHONE_6)?CGRectMake(47, 159, 280, 88):CGRectMake(20, 136, 280, 88)];
-    [cell addSubview:imgTransparent];
+    /// --------- Gradiant background
+    UIImageView * imgGradiant = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Gradiant"]];
+    [imgGradiant setFrame:[imgProduct bounds]];
+    [cell addSubview:imgGradiant];
     
     /// --------- Product name
-    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(47, 159, 280, 36):CGRectMake(20, 136, 280, 36)];
-    [lblName setText: [productObject name]];
-    [lblName setFont:[UIFont fontWithName:@"Lato-Bold" size:15]];
-    [lblName setTextAlignment:NSTextAlignmentCenter];
-    [lblName setNumberOfLines:2];
-    [lblName setTextColor:[UIColor colorWithRed:84.0f/255.0f green:84.0f/255.0f blue:84.0f/255.0f alpha:1.0f]];
-    [lblName setTextAlignment:NSTextAlignmentCenter];
+    UILabel *lblName = [[UILabel alloc] initWithFrame:(IS_IPHONE_6 || IS_IPHONE_6_PLUS)?CGRectMake(19, 187.5f, 222, 187.5f):CGRectMake(19, 100, 190, 100)];
+    [lblName setText: [(NSString*)[productObject name] capitalizedString]];
+    [lblName setFont:[UIFont fontWithName:@"Lato-Bold" size:19]];
+    [lblName setTextAlignment:NSTextAlignmentLeft];
+    [lblName setNumberOfLines:0];
+    [lblName sizeToFit];
+    [lblName setTextColor:[UIColor colorWithRed:255.0f green:255.0f blue:255.0f alpha:1.0f]];
+    [lblName setFrame:CGRectMake(19, (imgProduct.frame.size.height - 9) - lblName.frame.size.height, lblName.frame.size.width, lblName.frame.size.height)];
     [cell addSubview:lblName];
-    
+
     /// --------- Add button
     CustomButton *btnAdd = [CustomButton buttonWithType:UIButtonTypeCustom];
-    
-    /// Check if the flag for meals category availability. If it is not avalaible, set add button image to no available.
-    if (!areMealsAvailable && [[(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:filteredSection] category_name ] isEqualToString:@"Desayuno"]) {
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    /// Create a date formatter
+    NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
+    [dtFormatter setLocale:locale];
+    [dtFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dtFormatter setDateFormat:@"HH:mm"];
+    NSString * currentEndHour = [NSString stringWithFormat:@"%@", productObject.endHour];
+     NSDate * initialAvailableTime = [dtFormatter dateFromString:productObject.startHour];
+     NSDate * finalAvailableTime = [dtFormatter dateFromString:currentEndHour];
+     /// Get the current time from the server
+     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+     NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
+    [dtFormatterFullTimeFormat setLocale:locale];
+    [dtFormatterFullTimeFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+    [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:ss"];
+     NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
+     BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
+    if(!bIsAvail || (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0))
+    {
         //Button outstock
-        [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(52, 197, 270, 45):CGRectMake(25, 174, 270, 45)];
-        [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
-        [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down"] forState:UIControlStateHighlighted];
-        [cell addSubview:btnAdd];
+        UIView * viewOutOfStock = [[UIView alloc] initWithFrame:CGRectMake( (tblProducts.bounds.size.width - 148) / 2, ( ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0f) -27) / 2, 148, 27)];
+        //UIView * viewOutOfStock = [[UIView alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(113.5f, 101, 148, 27):CGRectMake(86, 86, 148, 27)];
+        [viewOutOfStock setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
+        [viewOutOfStock.layer setCornerRadius:5.0f];
+        [viewOutOfStock.layer setMasksToBounds:YES];
+        UILabel * lblOutOfStock = [[UILabel alloc] initWithFrame:CGRectMake(6.5f, 0.0f, 118.0f, 27.0f)];
+        [lblOutOfStock setText:@"OUT OF STOCK"];
+        [lblOutOfStock setTextAlignment:NSTextAlignmentLeft];
+        [lblOutOfStock setTextColor:[UIColor whiteColor]];
+        [lblOutOfStock setFont:[UIFont fontWithName:@"Lato-Bold" size:16]];
+        [viewOutOfStock addSubview:lblOutOfStock];
+        UIImageView * imgOutOfStock = [[UIImageView alloc] initWithFrame:CGRectMake(124.5f, 4.5f, 18.0f, 18.0f)];
+        [imgOutOfStock setImage:[UIImage imageNamed:@"SadFace"]];
+        [viewOutOfStock addSubview:imgOutOfStock];
+        [cell addSubview:viewOutOfStock];
     }
     else
     {
@@ -483,31 +503,14 @@
         [btnAdd setEnabled:([productObject total_on_hand] == [productObject quantity])?NO:YES];
         
         /// Check if the quantity -selected product- is more than zero to modify the aspect of the add button.
-        if ([productObject quantity] > 0) {
-            [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(122, 197, 200, 45):CGRectMake(95, 174, 200, 45)];
-            [btnAdd setImage:[UIImage imageNamed:@"add02_btn_up"] forState:UIControlStateNormal];
-            [btnAdd setImage:[UIImage imageNamed:@"add02_btn_down"] forState:UIControlStateHighlighted];
-        }else{
-            [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(52, 197, 270, 45):CGRectMake(25, 174, 270, 45)];
-            [btnAdd setImage:[UIImage imageNamed:@"add_btn_up"] forState:UIControlStateNormal];
-            [btnAdd  setImage:[UIImage imageNamed:@"add_btn_down"] forState:UIControlStateHighlighted];
-        }
+        [btnAdd setFrame:CGRectMake(tblProducts.bounds.size.width -59, ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0) - 51 , 40, 40)];
+        //[btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(316, 183, 40, 40):CGRectMake(261, 149, 40, 40)];
+        [btnAdd setImage:[UIImage imageNamed:@"AddButton"] forState:UIControlStateNormal];
+        [btnAdd setImage:[UIImage imageNamed:@"AddButton_Pressed"] forState:UIControlStateHighlighted];
+
         [btnAdd setIndex:(int)indexPath.row];
         [btnAdd setSection:(int)indexPath.section];
-        
-        /// Create a date formatter
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat: @"e"];
-        /// Set integer variable productDayAvailable based on product's date available. The value can be between 1 and 8.
-        int productDayAvailable = ([[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue] == 1)? 8: [[dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:productObject.date_available]] intValue];
-        
-        /// Check is the total on hand is not more than product quantity or if the total on hand is less than zero or if the value of productDayAvailable is less than the currentDayOfWeek value. If one those statements are true, the add button image is setted to out of stock.
-        if (![productObject total_on_hand] > [productObject quantity] || productObject.total_on_hand < 0 || (productDayAvailable < currentDayOfWeek) ) {
-            [btnAdd setFrame:(IS_IPHONE_6)?CGRectMake(52, 197, 270, 45):CGRectMake(25, 174, 270, 45)];
-            [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_up"] forState:UIControlStateNormal];
-            [btnAdd setImage:[UIImage imageNamed:@"outstock_btn_down"] forState:UIControlStateHighlighted];
-            [btnAdd setEnabled:NO];
-        }
+
         [btnAdd addTarget:self action:@selector(didSelectProduct:) forControlEvents:UIControlEventTouchUpInside];
         [cell addSubview:btnAdd];
         
@@ -515,9 +518,10 @@
         CustomButton *btnMinus = [CustomButton buttonWithType:UIButtonTypeCustom];
         if ([productObject quantity] > 0)
         {
-            [btnMinus setFrame:(IS_IPHONE_6)?CGRectMake(52, 197, 60, 45):CGRectMake(25, 174, 60, 45)];
-            [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_up"] forState:UIControlStateNormal];
-            [btnMinus setImage:[UIImage imageNamed:@"subtract_btn_down"] forState:UIControlStateHighlighted];
+            [btnMinus setFrame:CGRectMake(tblProducts.bounds.size.width - 109, ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0) -51, 40, 40)];
+            //[btnMinus setFrame:(IS_IPHONE_6)?CGRectMake(266, 183, 40, 40):CGRectMake(211, 149, 40, 40)];
+            [btnMinus setImage:[UIImage imageNamed:@"SubstractButton"] forState:UIControlStateNormal];
+            [btnMinus setImage:[UIImage imageNamed:@"SubstractButton-Pressed"] forState:UIControlStateHighlighted];
         }
         [btnMinus setTitle:@"-" forState:UIControlStateNormal];
         [btnMinus setIndex:(int)indexPath.row];
@@ -527,23 +531,24 @@
         [cell addSubview:btnMinus];
         
         /// -------- Quantity selected
-        UIImageView * imgBadge = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"badge_ima"]];
-        [imgBadge setFrame:(IS_IPHONE_6)?CGRectMake(247, 20, 80, 80):CGRectMake(220, 10, 80, 80)];
+        UIImageView * imgBadge = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Circle_Count"]];
+        [imgBadge setFrame:CGRectMake(tblProducts.bounds.size.width - 32, ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0)-63, 25, 25)];
+        //[imgBadge setFrame:(IS_IPHONE_6)?CGRectMake(343, 171, 25, 25):CGRectMake(288, 137, 25, 25)];
         [imgBadge setHidden:(productObject.quantity > 0)?NO:YES];
         [cell addSubview:imgBadge];
         
-        UILabel *lblQuantity = [[UILabel alloc] initWithFrame:(IS_IPHONE_6)?CGRectMake(250, 20, 70, 70):CGRectMake(223, 10, 70, 70)];
-        [lblQuantity setText:[NSString stringWithFormat:@"%d Selected", productObject.quantity]];
+        UILabel *lblQuantity = [[UILabel alloc] initWithFrame:CGRectMake(tblProducts.bounds.size.width - 32, ((IS_IPHONE_6_PLUS)?257:(IS_IPHONE_6)?234.0f:200.0)-63, 25, 25)];
+        [lblQuantity setText:[NSString stringWithFormat:@"%d", productObject.quantity]];
         [lblQuantity setTextAlignment:NSTextAlignmentCenter];
         [lblQuantity setTextColor:[UIColor whiteColor]];
-        [lblQuantity setNumberOfLines:2];
-        [lblQuantity setFont:[UIFont fontWithName:@"Lato-Regular" size:15]];
+        [lblQuantity setNumberOfLines:0];
+        [lblQuantity setFont:[UIFont fontWithName:@"Lato-Bold" size:12]];
         [lblQuantity setHidden:(productObject.quantity > 0)?NO:YES];
         [cell addSubview:lblQuantity];
         /// --------------------------
         
         /// Check for the stock of the product to enable/disable the add button
-        [btnAdd setEnabled:(productDayAvailable < currentDayOfWeek || [productObject total_on_hand] <= [productObject quantity])? NO:YES]; // Disable if the ProductAvailable is lower than currentDay
+        [btnAdd setEnabled:([productObject total_on_hand] <= [productObject quantity])? NO:YES];
     }
     
     return cell;
@@ -635,8 +640,27 @@
             {
                 /// Check if the quantity selected is more than zero
                 if (tmpObject.quantity != 0) {
-                    /// Check if the category of the product is equal to "Desayuno" and if the meals category is available.
-                    if (!areMealsAvailable && [tmpObject.categoryObject.category_name isEqualToString:@"Desayuno"]) {
+                    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+                    /// Create a date formatter
+                    NSDateFormatter * dtFormatter = [[NSDateFormatter alloc] init];
+                    [dtFormatter setLocale:locale];
+                    [dtFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+                    [dtFormatter setDateFormat:@"HH:mm"];
+                    NSString * currentEndHour = [NSString stringWithFormat:@"%@", productObject.endHour];
+                    NSDate * initialAvailableTime = [dtFormatter dateFromString:productObject.startHour];
+                    NSDate * finalAvailableTime = [dtFormatter dateFromString:currentEndHour];
+                    /// Get the current time from the server
+                    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+                    NSDateFormatter * dtFormatterFullTimeFormat = [[NSDateFormatter alloc] init];
+                    [dtFormatterFullTimeFormat setLocale:locale];
+                    [dtFormatterFullTimeFormat setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
+                    [dtFormatterFullTimeFormat setDateFormat:@"HH:mm:ss"];
+                    NSDate * currentTime = [dtFormatterFullTimeFormat dateFromString:[appDelegate strCurrentHour]];
+                    BOOL bIsAvail = (([currentTime compare:initialAvailableTime] == NSOrderedDescending) &&  ([currentTime compare:finalAvailableTime] == NSOrderedAscending));
+                    NSLog(@"bIsAvailInDoPlaceOrder: %d", bIsAvail);
+                    
+                    if(!bIsAvail)//todo:check here product availability
+                    {
                         /// Set the quantity of the product in zero.
                         tmpObject.quantity = 0;
                         /// Create a custom alert view.
@@ -770,48 +794,87 @@
     [mapKitView setRegion:mapRegion animated: YES];
 }
 
-#pragma mark -- UIPickerViewDelegate
--(void)showPicker{
-    [viewPicker setHidden:NO];
+#pragma mark -- updateCategory
+/// Set values of each category in the top bar
+-(void)updateCategoryBar{
+    //Remove subviews from viewScroll
+    for (UIView * view in viewScrollCategories.subviews){
+        [view removeFromSuperview];
+    }
+    
+    int indexArrayProductCategories = -1; // set index of category
+    float xPositionCategory = 3.0, widthLastCategory = 0.0; //position of each category
+    
+    UIButton * btnCategoryAll = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, 5*12, 57)];
+    [btnCategoryAll setTitle:@"ALL" forState:UIControlStateNormal];
+    [btnCategoryAll addTarget:self action:@selector(setFilter:) forControlEvents:UIControlEventTouchUpInside];
+    [btnCategoryAll setTitleColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+    [btnCategoryAll.titleLabel setFont:[UIFont fontWithName:@"Lato-Bold" size:12]];
+    [btnCategoryAll.titleLabel setTextAlignment:NSTextAlignmentCenter];
+    [btnCategoryAll setTag:indexArrayProductCategories];
+    [viewScrollCategories addSubview:btnCategoryAll];
+    if (!isPickerFilterActive) { //If filter is active
+        UILabel *lblActiveCategory = [[UILabel alloc] init];
+        [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+(5*12/2), 25, 25, 25)];
+        lblActiveCategory.textAlignment = NSTextAlignmentCenter;
+        [lblActiveCategory setText:@"·"];
+        [lblActiveCategory setFont:[UIFont fontWithName:@"Lato-Light" size:80]];
+        [lblActiveCategory setTextColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
+        [viewScrollCategories addSubview:lblActiveCategory];
+    }
+    indexArrayProductCategories ++;
+    xPositionCategory += 50;
+    for (CategoryObject *category in arrProductCategoriesObjects) {
+        //Create label of category
+        UIButton * btnCategory = [[UIButton alloc] initWithFrame:CGRectMake(xPositionCategory, 0, [category.category_name length]*12, 57)];
+        [btnCategory setTitle:[category.category_name uppercaseString] forState:UIControlStateNormal];
+        [btnCategory addTarget:self action:@selector(setFilter:) forControlEvents:UIControlEventTouchUpInside];
+        [btnCategory setTitleColor:[UIColor colorWithRed:146.0f/255.0f green:132.0f/255.0f blue:125.0f/255.0f alpha:1.0f] forState:UIControlStateNormal];
+        [btnCategory.titleLabel setFont:[UIFont fontWithName:@"Lato-Bold" size:12]];
+        [btnCategoryAll.titleLabel setTextAlignment:NSTextAlignmentCenter];
+        [btnCategory setTag:indexArrayProductCategories];
+        [viewScrollCategories addSubview:btnCategory];
+        if (isPickerFilterActive && indexArrayProductCategories == pickerFilterActiveOption) { //If filter is active
+            UILabel *lblActiveCategory = [[UILabel alloc] init];
+            [lblActiveCategory setFrame:CGRectMake(xPositionCategory-11+([category.category_name length]*12/2), 25, 25, 25)];
+            lblActiveCategory.textAlignment = NSTextAlignmentCenter;
+            [lblActiveCategory setText:@"·"];
+            [lblActiveCategory setFont:[UIFont fontWithName:@"Lato-Light" size:80]];
+            [lblActiveCategory setTextColor:[UIColor colorWithRed:255.0f/255.0f green:127.0f/255.0f blue:0.0f/255.0f alpha:1.0f]];
+            [viewScrollCategories addSubview:lblActiveCategory];
+        }
+        xPositionCategory += [category.category_name length]*12;
+        indexArrayProductCategories ++;
+        widthLastCategory = [category.category_name length]*12;
+    }
+    viewScrollCategories.contentSize = CGSizeMake(xPositionCategory, 57); //Assign content size
 }
 
-/// Set the title of each category
--(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+-(void)doHideShowCategoryFilter:(id)sender
 {
-    return (row == 0) ? @"All Categories" : [(CategoryObject *)[arrProductCategoriesObjects objectAtIndex:row-1] category_name];
+    [viewCategories setHidden:![viewCategories isHidden]];
+    if(![viewCategories isHidden])
+    {
+        [viewCategories setAlpha:0.0f];
+    }
+    int newTblProductsHeight = ([viewCategories isHidden])?tblProductsHeight-65:tblProductsHeight-125;
+    newTblProductsHeight = (isViewPlaceOrderActive)?newTblProductsHeight-60:newTblProductsHeight;
+    [UIView animateWithDuration:0.2f animations:^{
+        [tblProducts setFrame:CGRectMake(0, ([viewCategories isHidden])?65:125, tblProducts.frame.size.width, newTblProductsHeight)];
+        [separatorView setFrame:CGRectMake(0, ([viewCategories isHidden])?64:124, self.view.frame.size.width, 1)];
+    } completion:^(BOOL finished) {
+        [viewCategories setAlpha:1.0f];
+    }];
 }
 
-// Hide the Picker
--(void)doPickerCancel:(id)sender
-{
-    [viewPicker setHidden:YES];
-}
-
-// Save the category selected
--(void)doPickerOk:(id)sender
-{
-    [viewPicker setHidden:YES];
-    isPickerFilterActive = ([pickerOptions selectedRowInComponent:0]==0) ? NO : YES;
-    pickerFilterActiveOption = (int)[pickerOptions selectedRowInComponent:0]-1;
+// Asign new filter and refresh
+-(void)setFilter:(id)sender{
+    //UILabel *selection = (UILabel *)tapGesture.view;
+    isPickerFilterActive = ([sender tag] + 1==0) ? NO : YES;
+    pickerFilterActiveOption = [sender tag];
     [self doReloadData];
     [self synchronizeDefaults];
-}
-
-// Return the number of categories
--(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    return [arrProductObjects count]+1;
-}
-
-// Return the number of components
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 1;
-}
-
--(CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-{
-    return 40.0f;
+    [self updateCategoryBar];
 }
 
 @end

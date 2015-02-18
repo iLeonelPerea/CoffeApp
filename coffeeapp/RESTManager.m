@@ -12,7 +12,8 @@
 #import "AppDelegate.h"
 
 /// Macro that store the URL for the testing server.
-#define TESTING_URL @"http://462ae3ac.ngrok.com/api"
+#define TESTING_URL @"https://stage-spree-demo-store-three.herokuapp.com/api"
+#define API_URL @"https://stage-spree-demo-store-three.herokuapp.com/api"
 
 @implementation RESTManager
 
@@ -31,7 +32,7 @@
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",TESTING_URL, service]];
         }
         else
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"https://stage-spree-demo-store-two.herokuapp.com/api/%@", service]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@", API_URL, service]];
     }
     else
     {
@@ -40,7 +41,7 @@
             url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@.json", TESTING_URL, service]];
         else
         {
-            url = [NSURL URLWithString:[NSString stringWithFormat:@"https://stage-spree-demo-store-two.herokuapp.com/api/%@.json", service]];
+            url = [NSURL URLWithString:[NSString stringWithFormat:@"%@/%@.json",API_URL, service]];
         }
     }
     
@@ -63,8 +64,8 @@
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:data options:kNilOptions error:nil];
         
         /// Serialize the data.
-        NSString *JSONString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
-        NSLog(@"json string: %@", JSONString);
+        //NSString *JSONString = [[NSString alloc] initWithBytes:[jsonData bytes] length:[jsonData length] encoding:NSUTF8StringEncoding];
+        //NSLog(@"json string: %@", JSONString);
         [request setValue:[NSString stringWithFormat:@"%ld", [jsonData length]] forHTTPHeaderField:@"Content-Length"];
         [request setHTTPBody:jsonData];
     }
@@ -86,7 +87,20 @@
         {
             /// Create a dictionary based on the JSON of the response.
             NSDictionary *responseJson = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-            callback(responseJson);
+            if([responseJson objectForKey:@"exception"])
+            {
+                /// Set the dictionary with the values of the error message.
+                NSMutableDictionary * dictErrorDetails = [NSMutableDictionary new];
+                [dictErrorDetails setObject:@NO forKey:@"success"];
+                NSString * strErr;
+                strErr = @"Something went wrong, Please try in a while!";
+                [dictErrorDetails setObject:strErr forKey:@"message"];
+                callback(dictErrorDetails);
+            }
+            else
+            {
+                callback(responseJson);
+            }
         }
         else
         {
@@ -99,7 +113,7 @@
                 NSString * strErr;
                 if([error.userInfo objectForKey:@"NSLocalizedDescription"])
                 {
-                    NSLog(@"%@",[error.userInfo objectForKey:@"NSLocalizedDescription"]);
+                    //NSLog(@"%@",[error.userInfo objectForKey:@"NSLocalizedDescription"]);
                     strErr = [error.userInfo objectForKey:@"NSLocalizedDescription"];
                 }
                 else
@@ -232,7 +246,7 @@
                                     if(totalImages == 0)
                                         callback(@YES);
                                 } failBlock:^(NSError *errro) {
-                                    NSLog(@"Failed to download the image to local storage");
+                                    //NSLog(@"Failed to download the image to local storage");
                                     totalImages --;
                                     if(totalImages == 0)
                                         callback(@YES);

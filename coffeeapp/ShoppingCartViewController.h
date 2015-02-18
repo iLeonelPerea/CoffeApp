@@ -51,6 +51,11 @@
 
 /** Timer to trigger the cancel method after 20 minutes of inactivity. */
 @property (nonatomic, strong) NSTimer *tmrOrder;
+@property (nonatomic, assign) BOOL isEditing;
+@property (nonatomic, strong) IBOutlet UIButton * btnEditDelete;
+@property (nonatomic, strong) ProductObject * currentEditingProduct;
+@property (nonatomic, assign) int currentEditingTag;
+-(IBAction)doEdit:(id)sender;
 
 /** Dismiss the current view controller. 
  

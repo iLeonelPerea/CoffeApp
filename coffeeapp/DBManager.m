@@ -15,7 +15,7 @@
     sqlite3 *inventoryDB;
     /// Create a file manager object.
     NSFileManager *filemgr = [NSFileManager defaultManager];
-    NSLog(@"%@",[DBManager getDBPath]);
+    //NSLog(@"%@",[DBManager getDBPath]);
     /// Check for the databse file in the file path.
     if([filemgr fileExistsAtPath:[DBManager getDBPath]] == NO){
         /// Get the DBPath
@@ -23,16 +23,16 @@
         if (sqlite3_open(dbpath, &inventoryDB) == SQLITE_OK) {
             char *errMsg;
             /// Define the entire database structure.
-            const char *sql_stmt = " CREATE TABLE IF NOT EXISTS PRODUCTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, PRODUCT_DESCRIPTION TEXT, PRODUCT_DISPLAY_PRICE TEXT, PRODUCT_PRODUCT_ID INTEGER, PRODUCT_MASTER_COST_PRICE TEXT, PRODUCT_MASTER_DESCRIPTION TEXT, PRODUCT_MASTER_DISPLAY_PRICE TEXT, PRODUCT_MASTER_MASTEROBJECT_ID INTEGER, PRODUCT_MASTER_IN_STOCK INTEGER, PRODUCT_MASTER_NAME TEXT, PRODUCT_MASTER_PRICE TEXT, PRODUCT_MASTER_SKU TEXT, PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME TEXT, PRODUCT_MASTER_IMAGE_IMAGE_ID INTEGER, PRODUCT_MASTER_IMAGE_LARGE_URL TEXT, PRODUCT_MASTER_IMAGE_MINI_URL TEXT, PRODUCT_MASTER_IMAGE_PRODUCT_URL TEXT, PRODUCT_MASTER_IMAGE_SMALL_URL TEXT, PRODUCT_CATEGORY_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_PRICE TEXT, PRODUCT_SLUG TEXT, PRODUCT_TOTAL_ON_HAND INTEGER, PRODUCT_SHOW_DAYS INTEGER, DATE_AVAILABLE INTEGER);  CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORIES (ID INTEGER, CATEGORY_NAME TEXT, INTERNAL_ID INTEGER PRIMARY KEY AUTOINCREMENT); CREATE TABLE IF NOT EXISTS ORDERSLOG(ID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_ID TEXT, ORDER_STATUS TEXT, ORDER_DATE INTEGER, PRODUCT_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_QUANTITY_ORDERED INTEGER); ";
+            const char *sql_stmt = " CREATE TABLE IF NOT EXISTS PRODUCTS (ID INTEGER PRIMARY KEY AUTOINCREMENT, PRODUCT_PRODUCT_ID INTEGER, PRODUCT_MASTER_MASTEROBJECT_ID INTEGER, PRODUCT_MASTER_IN_STOCK INTEGER, PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME TEXT, PRODUCT_MASTER_IMAGE_IMAGE_ID INTEGER, PRODUCT_MASTER_IMAGE_PRODUCT_URL TEXT, PRODUCT_CATEGORY_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_TOTAL_ON_HAND INTEGER, DATE_AVAILABLE INTEGER, START_HOUR TEXT, END_HOUR TEXT);  CREATE TABLE IF NOT EXISTS PRODUCT_CATEGORIES (ID INTEGER, CATEGORY_NAME TEXT, INTERNAL_ID INTEGER PRIMARY KEY AUTOINCREMENT); CREATE TABLE IF NOT EXISTS ORDERSLOG(ID INTEGER PRIMARY KEY AUTOINCREMENT, ORDER_ID TEXT, ORDER_STATUS TEXT, ORDER_DATE INTEGER, PRODUCT_ID INTEGER, PRODUCT_NAME TEXT, PRODUCT_QUANTITY_ORDERED INTEGER); ";
             if (sqlite3_exec(inventoryDB, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK){
                 isDbOk = NO;
-                NSLog(@"table fail...");
+                //NSLog(@"table fail...");
             }else{
                 isDbOk = YES;
             }
             [DBManager finalizeStatements:nil withDB:inventoryDB];
         }else{
-            NSLog(@"db fail...");
+            //NSLog(@"db fail...");
             isDbOk = NO;
         }
     }else{
@@ -71,13 +71,13 @@
     const char *dbpath = [[DBManager getDBPath] UTF8String];
     if (sqlite3_open(dbpath, &inventoryDB) == SQLITE_OK) {
         /// Set the Insert statement.
-        NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO PRODUCTS (PRODUCT_DESCRIPTION, PRODUCT_DISPLAY_PRICE, PRODUCT_PRODUCT_ID, PRODUCT_MASTER_COST_PRICE, PRODUCT_MASTER_DESCRIPTION, PRODUCT_MASTER_DISPLAY_PRICE, PRODUCT_MASTER_MASTEROBJECT_ID, PRODUCT_MASTER_IN_STOCK, PRODUCT_MASTER_NAME, PRODUCT_MASTER_PRICE, PRODUCT_MASTER_SKU, PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME, PRODUCT_MASTER_IMAGE_IMAGE_ID, PRODUCT_MASTER_IMAGE_LARGE_URL, PRODUCT_MASTER_IMAGE_MINI_URL, PRODUCT_MASTER_IMAGE_PRODUCT_URL, PRODUCT_MASTER_IMAGE_SMALL_URL, PRODUCT_CATEGORY_ID, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_SLUG, PRODUCT_TOTAL_ON_HAND, PRODUCT_SHOW_DAYS, DATE_AVAILABLE) VALUES (\"%@\", \"%@\", \"%d\", \"%@\", \"%@\", \"%@\", \"%d\", \"%d\", \"%@\", \"%@\", \"%@\", \"%@\", \"%d\",\"%@\",\"%@\",\"%@\",\"%@\",\"%d\",\"%@\",\"%@\",\"%@\",\"%d\",\"%d\",\"%2f\")", product.description, product.display_price, product.product_id, product.masterObject.cost_price, product.masterObject.description, product.masterObject.display_price, product.masterObject.masterObject_id, product.masterObject.in_stock, product.masterObject.name, product.masterObject.price, product.masterObject.sku, product.masterObject.imageObject.attachment_file_name, product.masterObject.imageObject.image_id, product.masterObject.imageObject.large_url, product.masterObject.imageObject.mini_url, product.masterObject.imageObject.product_url, product.masterObject.imageObject.small_url, product.categoryObject.category_id, product.name, product.price, product.slug, product.total_on_hand, product.showDays, product.date_available];
+        NSString *insertSQL = [NSString stringWithFormat:@"INSERT INTO PRODUCTS (PRODUCT_PRODUCT_ID,PRODUCT_MASTER_MASTEROBJECT_ID, PRODUCT_MASTER_IN_STOCK, PRODUCT_MASTER_IMAGE_ATTACHMENT_FILE_NAME, PRODUCT_MASTER_IMAGE_IMAGE_ID, PRODUCT_MASTER_IMAGE_PRODUCT_URL, PRODUCT_CATEGORY_ID, PRODUCT_NAME, PRODUCT_TOTAL_ON_HAND, DATE_AVAILABLE, START_HOUR, END_HOUR) VALUES (\"%d\", \"%d\", \"%d\", \"%@\", \"%d\",\"%@\",\"%d\",\"%@\",\"%d\",\"%2f\",\"%@\",\"%@\")", product.product_id, product.masterObject.masterObject_id, product.masterObject.in_stock, product.masterObject.imageObject.attachment_file_name, product.masterObject.imageObject.image_id, product.masterObject.imageObject.product_url, product.categoryObject.category_id, product.name, product.total_on_hand, product.date_available, product.startHour, product.endHour];
         const char *insert_stmt = [insertSQL UTF8String];
         /// Execute the insert statement.
         sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
         /// Check for errors in the insert.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"fiel error... %s - %d", sqlite3_errmsg(inventoryDB),product.product_id);
+            //NSLog(@"fiel error... %s - %d", sqlite3_errmsg(inventoryDB),product.product_id);
         }
     }
     /// Finalize the statement.
@@ -102,31 +102,19 @@
             while (sqlite3_step(statement) == SQLITE_ROW) {
                 ProductObject *productObject = [[ProductObject alloc] init];
                 dictToReturn = [NSMutableDictionary new];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 1)] forKey:@"description"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 2)] forKey:@"display_price"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 3)] forKey:@"product_id"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 4)] forKey:@"cost_price"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 5)] forKey:@"description"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 6)] forKey:@"display_price"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 7)] forKey:@"masterObject_id"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 8)] forKey:@"in_stock"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 9)] forKey:@"name"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 10)] forKey:@"masterPrice"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 11)] forKey:@"sku"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 12)] forKey:@"attachment_file_name"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 13)] forKey:@"image_id"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 14)] forKey:@"large_url"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 15)] forKey:@"mini_url"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 16)] forKey:@"product_url"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 17)] forKey:@"small_url"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 18)] forKey:@"category_id"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 1)] forKey:@"product_id"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 2)] forKey:@"masterObject_id"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 3)] forKey:@"in_stock"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 4)] forKey:@"attachment_file_name"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 5)] forKey:@"image_id"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 6)] forKey:@"product_url"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 7)] forKey:@"category_id"];
                 [dictToReturn setObject:category.category_name forKey:@"category_name"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 19)] forKey:@"name"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 20)] forKey:@"price"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 21)] forKey:@"slug"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 22)] forKey:@"total_on_hand"];
-                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 23)] forKey:@"showDays"];
-                [dictToReturn setObject:[NSString stringWithFormat:@"%.2f", sqlite3_column_double(statement, 24)] forKey:@"date_available"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 8)] forKey:@"name"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 9)] forKey:@"total_on_hand"];
+                [dictToReturn setObject:[NSString stringWithFormat:@"%.2f", sqlite3_column_double(statement, 10)] forKey:@"date_available"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 11)] forKey:@"available_from"];
+                [dictToReturn setObject:[NSString stringWithUTF8String:(char *)sqlite3_column_text(statement, 12)] forKey:@"available_to"];
                 productObject = [productObject assignProductObjectDB:dictToReturn];
                 [arrToReturn addObject:productObject];
             }
@@ -192,7 +180,7 @@
         sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"fiel error... %s", sqlite3_errmsg(inventoryDB));
+            //NSLog(@"fiel error... %s", sqlite3_errmsg(inventoryDB));
         }
     }
     /// Finalize the statement.
@@ -214,7 +202,7 @@
         sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"fiel error... %s - %d", sqlite3_errmsg(inventoryDB),product.product_id);
+            //NSLog(@"fiel error... %s - %d", sqlite3_errmsg(inventoryDB),product.product_id);
         }
     }
     /// Finalize the statement.
@@ -236,7 +224,7 @@
         sqlite3_prepare_v2(inventoryDB, insert_stmt, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"fiel error... %s - %@", sqlite3_errmsg(inventoryDB),[category objectForKey:@"name"]);
+            //NSLog(@"fiel error... %s - %@", sqlite3_errmsg(inventoryDB),[category objectForKey:@"name"]);
         }
     }
     /// Finalize the statement.
@@ -298,7 +286,7 @@
         sqlite3_prepare_v2(appDB, insertSQL, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"%s",sqlite3_errmsg(appDB));
+            //NSLog(@"%s",sqlite3_errmsg(appDB));
         }
     }
     /// Finalize the statement.
@@ -320,7 +308,7 @@
         sqlite3_prepare_v2(appDB, updateSQL, -1, &statement, NULL);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"%s", sqlite3_errmsg(appDB));
+            //NSLog(@"%s", sqlite3_errmsg(appDB));
         }
     }
     /// Finalize the statement.
@@ -422,7 +410,7 @@
         sqlite3_prepare_v2(appDB, deleteSQL, -1, &statement, nil);
         /// Check for errors.
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+            //NSLog(@"delete order log Fail error %s", sqlite3_errmsg(appDB));
         }
         /// Finalize the statement.
         [DBManager finalizeStatements:statement withDB:appDB];
@@ -449,7 +437,7 @@
             sqlite3_prepare_v2(appDB, deleteSQL, -1, &statement, nil);
             /// Check for errors.
             if (sqlite3_step(statement) != SQLITE_DONE) {
-                NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+                //NSLog(@"delete table content Fail error %s", sqlite3_errmsg(appDB));
             }
             /// Finalize the statement.
             [DBManager finalizeStatements:statement withDB:appDB];
@@ -475,7 +463,7 @@
             sqlite3_prepare_v2(appDB, updateSQL, -1, &statement, nil);
             /// Check for errors.
             if (sqlite3_step(statement) == SQLITE_DONE) {
-                NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+                //NSLog(@"update product stock Fail error %s", sqlite3_errmsg(appDB));
             }
             /// Finalize the statement.
             [DBManager finalizeStatements:statement withDB:appDB];
@@ -528,7 +516,7 @@
     if (sqlite3_open(dbPath, &appDB) == SQLITE_OK) {
         sqlite3_prepare_v2(appDB, deleteStmt, -1, &statement, nil);
         if (sqlite3_step(statement) != SQLITE_DONE) {
-            NSLog(@"Fail error %s", sqlite3_errmsg(appDB));
+            //NSLog(@"delete unattended orders Fail error %s", sqlite3_errmsg(appDB));
         }
     }
     [DBManager finalizeStatements:statement withDB:appDB];

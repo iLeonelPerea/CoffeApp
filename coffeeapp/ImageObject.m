@@ -10,7 +10,7 @@
 
 @implementation ImageObject
 
-@synthesize attachment_file_name, image_id, large_url, mini_url, product_url, small_url;
+@synthesize attachment_file_name, image_id, product_url;
 
 /// Create a custom init to code the object properties.
 - (id)initWithCoder:(NSCoder *)coder
@@ -20,11 +20,7 @@
     {
         self.attachment_file_name = [coder decodeObjectForKey:@"attachment_file_name"];
         self.image_id = [coder decodeIntForKey:@"image_id"];
-        self.large_url = [coder decodeObjectForKey:@"large_url"];
-        self.mini_url = [coder decodeObjectForKey:@"mini_url"];
-        self.product_url = [coder decodeObjectForKey:@"product_url"];
-        self.small_url = [coder decodeObjectForKey:@"small_url"];
-    }
+        self.product_url = [coder decodeObjectForKey:@"product_url"];    }
     return self;
 }
 
@@ -33,10 +29,7 @@
 {
     [coder encodeObject:attachment_file_name forKey:@"attachment_file_name"];
     [coder encodeInt:image_id forKey:@"image_id"];
-    [coder encodeObject:large_url forKey:@"large_url"];
-    [coder encodeObject:mini_url forKey:@"mini_url"];
     [coder encodeObject:product_url forKey:@"product_url"];
-    [coder encodeObject:small_url forKey:@"small_url"];
 }
 
 @end
