@@ -603,7 +603,7 @@
     /// Check if the location service are available and if the user`s location is under 1,000 meters.
     /// In case of false, a custom alert view is displayed to inform the user about.
     //if ([self updateDistanceToAnnotation]>1000 && areLocationServicesAvailable) {
-    if ([self updateDistanceToAnnotation]<1000 && areLocationServicesAvailable) {
+    if (([self updateDistanceToAnnotation] > 1000) && areLocationServicesAvailable) {
         /// Create the custom alert.
         LMAlertView * alertView = [[LMAlertView alloc] initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"Ooh, Something happens!" otherButtonTitles:nil];
         [alertView setSize:CGSizeMake(250.0f, 320.0f)];
