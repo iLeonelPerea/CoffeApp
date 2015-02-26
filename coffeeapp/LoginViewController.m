@@ -112,9 +112,12 @@ static NSString * const kClientID = @"1079376875634-shj8qu3kuh4i9n432ns8kspkl5ri
         /// Do some error handling here.
     } else {
         //check email domain
+        BOOL isTestingMain = NO;
         NSString * strEmail = [[GPPSignIn sharedInstance] userEmail];
+        if([strEmail isEqual:@"chefcrowd@gmail.com"])
+            isTestingMain = YES;
         NSArray * arrEmail = [strEmail componentsSeparatedByString:@"@"];
-        if(![[arrEmail objectAtIndex:1] isEqual:@"crowdint.com"])
+        if(![[arrEmail objectAtIndex:1] isEqual:@"crowdint.com"] && !isTestingMain)
         {
             [prgLoading dismiss];
             NSLog(@"user does not belong to company and can do nothing here...");
